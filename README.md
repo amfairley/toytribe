@@ -27,6 +27,8 @@ This full stack review website for children's toys was born from my wife and I's
     1. [Strategy](#strategy)
         - [Viability and Feasibility](#viability-and-feasibility)
     2. [Scope](#scope)
+        - [Back-end](#back-end)
+        - [Front-end](#front-end)
     3. [Structure](#structure)
 
 ## Project Goals
@@ -121,3 +123,26 @@ Followed is an analysis of the above user and business needs ranked from 1 (leas
 
 Overall, the above listed features to include in the site are all important and viable. Viability is ranked lower for those that I do not know how to implement yet but every effort will be made to get these into the finished product.
 
+### Scope
+
+#### Back-end
+Multiple tables within a database are required for this project. These models are:
+- **User** table that keeps track of the user's name, email, and password for created users.
+- **Toy** table that keeps track of the toy name, company, type, and image url for created toys.
+- **Review** table that keeps track of the review, rating, the user that left the review, the toy being reviewed, and similar toys children liked for created reviews.
+- **Profile** table that keeps track the about me section, country, whether they are a parent, created toys, and created reviews for the user.
+
+### Front-end
+The website will utilise template inheritance that allows for less code to be written and quicker load times for a better user experience.
+**Templates**
+- base.html: This will be the base template that the others call from to ensure a cohesive structure across the website. Present here will be:
+    - The header with the brand logo and title and the navigation links. Whilst logged out the navigation links will be replaced with buttons for login / sign up. When logged in the navigation bar will offer links to the user's own profile, and to view toys.
+    - The footer with site name, logo, and contact information.
+- toys.html: This will act as the website homepage. If the user is not logged in it will display a welcome message to the website and some text and a link for the user to either login or sign up. When logged in it will display all the toys currently reviewed on the website. Clicking on a toy will take the user to the individual toy page.
+- add_toy.html: This will open a form in which the user can fill out details of a toy and submit it to be shown in the toys.html page.
+- toy.html: The page for an individual toy showing information on the toy and allowing users to upload, edit, or delete their own reviews.
+- edit_toy.html: This will open a form in which the user that created a toy can edit the details.
+- add_review.html: This will open a form in which the user can enter and submit a review for the toy.
+- edit_review.html: This will open a form in which the user can ammend their own review.
+- user_profile.html: This page will show the public information of the user.
+- edit_user.html: This will open a form to allow the user to edit their own user profile.
