@@ -23,6 +23,11 @@ This full stack review website for children's toys was born from my wife and I's
     1. [First Time Visitor Goals](#first-time-visitor-goals)
     2. [Returning Visitor Goals](#returning-visitor-goals)
     3. [Frequent Visitor Goals](#frequent-visitor-goals)
+3. [Five Planes of UX](#five-planes-of-ux)
+    1. [Strategy](#strategy)
+        - [Viability and Feasibility](#viability-and-feasibility)
+    2. [Scope](#scope)
+    3. [Structure](#structure)
 
 ## Project Goals
 
@@ -72,12 +77,47 @@ A finished product that will proudly be displayed within the developer's portfol
 10. As a Returning Visitor, I want to be able to delete my toys and reviews, so that irrelevant content can be removed.
 11. As a Returning Visitor, I want to be able to see other user's profiles, so I can understand the person behind their reviews.
 12. As a Returning Visitor, I want to be able to search for a toy, so that I can read or make reviews about it.
-13. As a Returning Visitor, I 
 
 ### Frequent Visitor Goals
-14. As a Frequent Visitor, I want to be able to navigate to the homepage if I end up on a page that does not exist, so that I am not stuck on a non existent page.
-15. As a Frequent Visitor, I want to be able to contact the developer or team that runs the website, so that I can ask for help or collaborate with them.
-16. As a Frequent Visitor, I want to be able to access the site on different devices and screen sizes, so that I can use the website on the go or at home.
-17. As a Frequent Visitor, I want to be able to delete my profile if I want, so that my data is not stored longer than I wish it to be.
-18. As a Frequent Visitor, I want to be able to easily recover my password in case I forget it, so that I can recover access to my account
-19. As a Frequent Visitor, I want to be able to change my password, so that I know my account is kept secure.
+13. As a Frequent Visitor, I want to be able to navigate to the homepage if I end up on a page that does not exist, so that I am not stuck on a non existent page.
+14. As a Frequent Visitor, I want to be able to contact the developer or team that runs the website, so that I can ask for help or collaborate with them.
+15. As a Frequent Visitor, I want to be able to access the site on different devices and screen sizes, so that I can use the website on the go or at home.
+16. As a Frequent Visitor, I want to be able to delete my profile if I want, so that my data is not stored longer than I wish it to be.
+17. As a Frequent Visitor, I want to be able to easily recover my password in case I forget it, so that I can recover access to my account
+18. As a Frequent Visitor, I want to be able to change my password, so that I know my account is kept secure.
+
+## Five Planes of UX
+
+### Strategy
+
+- **What value does the project provide?** This project provides a website for an online community of parents and carers to share honest reviews and experiences with children's toys as a way to inform other parents and carers before they buy the toys. On top of that, it also provides context for the review in the form of sharing what other toys the child likes. For example a child that likes toy cars and trucks may rate a doll low, or a child that likes footballs and frisbees may rate a trampoline highly.
+- **What are the business needs?** The business needs are to provide an intuitive, pleasant looking, and accessible website to entice more users to join and add their own data to the database. In future, affiliate links may be used to link users to buying products, which will provide income to the business.
+- **Who is the target audience?** There are two target audiences for this web application. Firstly, anyone who is looking to buy a child a toy, be it parents, relatives, guardians etc who would like clear honest feedback on which toy would be suitable. Secondly, those with children who can lend their expertise and experience in their reviews and recommendations on toys.
+- **What are the user requirements and expectations?** The users can make their own profile in order to read and submit reviews of their own. They also expect to be able to Create, Read, Update, and Delete their own profile, toy data, and reviews whenever they want. It is expected that they can search toys to read reviews and also see other user's profiles.
+
+#### Viability and Feasibility
+Followed is an analysis of the above user and business needs ranked from 1 (least important/viable) to 5 (most important/viable):
+|   Task |   Importance | Viability/Feasibility |
+| --------- | ------------- | ----------------- |
+| Easy to navigate | 5 | 5 |
+| Responsive | 5 | 5 |
+| Immediate feedback to the user | 5 | 5 |
+| Accessible | 5 | 5 |
+| Store information securely | 5 | 3 |
+| Informative and welcoming home screen | 5 | 5 |
+| 404 page with link to homepage | 5 | 5 |
+| Contact details for the developer | 3 | 5 |
+| Create a user profile and log in / log out functionality| 5 | 3 |
+| Recover password functionality | 4 | 3 |
+| Change password functionality | 4 | 3 |
+| About-me section in public profile | 3 | 4 |
+| Full CRUD functionality for the user profile | 5 | 4 |
+| Full CRUD functionality for the user's own reviews | 5 | 4 |
+| Full CRUD functionality for the user's own toys | 5 | 4 |
+| Defensive programming to stop accidental deletion of information | 5 | 4 |
+| View other user's reviews and toys | 5 | 5 |
+| Search toys | 4 | 3 |
+| See other people's profiles | 4 | 3 |
+
+Overall, the above listed features to include in the site are all important and viable. Viability is ranked lower for those that I do not know how to implement yet but every effort will be made to get these into the finished product.
+
