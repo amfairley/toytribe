@@ -1,14 +1,14 @@
 from toy_tribe import db
 
-class User(db.Model):
+class Users(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     first_name = db.Column(db.String(50), nullable = False)
     last_name = db.Column(db.String(50), nullable = False)
     email = db.Column(db.String(200), unique = True, nullable = False)
-    password = db.Column(db.String(50), nullable = False)
-    toys = db.relationship("Toy", backref="user", lazy = True)
-    profile = db.relationship("Profile", backref = "user", cascade = "all, delete", lazy = True)
-    reviews = db.relationship("Review", backref = "user", lazy = True )
+    password = db.Column(db.String(), nullable = False)
+    toys = db.relationship("Toy", backref="users", lazy = True)
+    profile = db.relationship("Profile", backref = "users", cascade = "all, delete", lazy = True)
+    reviews = db.relationship("Review", backref = "users", lazy = True )
     
     def __repr__(self):
         return "#{0} - first_name: {1} | last_name: {2} | email: {3} | password: {4}".format(
@@ -18,7 +18,7 @@ class User(db.Model):
 
 class Toy(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="SET NULL"), nullable = True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete="SET NULL"), nullable = True)
     name = db.Column(db.String(200), nullable = False)
     company = db.Column(db.String(200), nullable = True)
     type = db.Column(db.String(50), nullable = True)
@@ -36,7 +36,7 @@ class Toy(db.Model):
 
 class Profile(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete = "CASCADE"), nullable = False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete = "CASCADE"), nullable = False)
     about_me = db.Column(db.Text, nullable = False)
     # The longest country name in the world has 56 characters: The United Kingdom of Great Britain and Northern Ireland
     country = db.Column(db.String(56), nullable = True)
@@ -49,7 +49,7 @@ class Profile(db.Model):
 
 class Review(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="SET NULL"), nullable = True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete="SET NULL"), nullable = True)
     toy_id = db.Column(db.Integer, db.ForeignKey("toy.id", ondelete="CASCADE"), nullable = False)
     review_content = db.Column(db.Text, nullable = False)
     rating = db.Column(db.Integer, primary_key = False, nullable = False)

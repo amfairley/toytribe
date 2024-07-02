@@ -1,0 +1,23 @@
+<h2>Login</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <label for="email">{{ form.email.label }}</label>
+    {{ form.email }}
+    <label for="password">{{ form.password.label }}</label>
+    {{ form.password }}
+    <input type="submit" value="Login">
+</form>
+
+<!--Check if login was successful-->
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+</div>
