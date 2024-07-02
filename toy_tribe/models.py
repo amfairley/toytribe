@@ -1,6 +1,6 @@
 from toy_tribe import db
 
-class User(db.model):
+class User(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     first_name = db.Column(db.String(50), nullable = False)
     last_name = db.Column(db.String(50), nullable = False)
@@ -16,7 +16,7 @@ class User(db.model):
         )
 
 
-class Toy(db.model):
+class Toy(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="SET NULL"), nullable = True)
     name = db.Column(db.String(200), nullable = False)
@@ -34,7 +34,7 @@ class Toy(db.model):
         )
     
 
-class Profile(db.model):
+class Profile(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete = "CASCADE"), nullable = False)
     about_me = db.Column(db.Text, nullable = False)
@@ -47,10 +47,10 @@ class Profile(db.model):
             self.id, self.user_id, self.about_me, self.country, self.is_parent
         )   
 
-class Review(db.model):
+class Review(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="SET NULL"), nullable = True)
-    toy_id = db.Column(db.Integer, db.ForeignKey("toy.id", ondelete="CASCASE"), nullable = False)
+    toy_id = db.Column(db.Integer, db.ForeignKey("toy.id", ondelete="CASCADE"), nullable = False)
     review_content = db.Column(db.Text, nullable = False)
     rating = db.Column(db.Integer, primary_key = False, nullable = False)
     date_of_creation = db.Column(db.Date, nullable = False)
