@@ -1,4 +1,5 @@
 from toy_tribe import db
+from datetime import datetime
 
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -23,8 +24,8 @@ class Toy(db.Model):
     company = db.Column(db.String(200), nullable = True)
     type = db.Column(db.String(50), nullable = True)
     is_approved = db.Column(db.Boolean, default = False, nullable = False)
-    date_of_creation = db.Column(db.Date, nullable = False)
-    image_url = db.Column(db.String(300), nullable = False)
+    image_url = db.Column(db.String(300), nullable = True)
+    date_of_creation = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     review = db.relationship("Review", backref = "toy", cascade = "all, delete", lazy = True)
 
 
