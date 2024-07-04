@@ -77,3 +77,10 @@ def edit_toy(toy_id):
         else:
             return redirect(url_for('individual_toy', toy_id = toy.id))
     return render_template('edit_toy.html', form=form)
+
+@app.route('/delete_toy/<int:toy_id>')
+def delete_toy(toy_id):
+    toy = Toy.query.get_or_404(toy_id)
+    db.session.delete(toy)
+    db.session.commit()
+    return redirect(url_for('toys'))
