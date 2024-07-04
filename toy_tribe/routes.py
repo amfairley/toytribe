@@ -6,11 +6,14 @@ from toy_tribe.forms import LoginForm, SignupForm, AddToy
 
 @app.route("/")
 def home():
-   toys = list(Toy.query.order_by(Toy.name).all())
-   return render_template("base.html", toys = toys)
+   return render_template("base.html")
 
-#Loginform
+@app.route("/toys")
+def toys():
+    toys = list(Toy.query.order_by(Toy.name).all())
+    return render_template("toys.html", toys = toys)
 
+#Login form
 @app.route('/login', methods=['GET', 'POST'])
 def login():    
     form = LoginForm()
@@ -24,6 +27,7 @@ def login():
             flash('Login failed. Check your credentials.', 'danger')
     return render_template('login.html', form=form)
 
+# Signup form
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = SignupForm()
@@ -36,6 +40,7 @@ def signup():
         return redirect(url_for('login'))
     return render_template('signup.html', form=form)
 
+# Add toy form
 @app.route('/add_toy', methods=['GET', 'POST'])
 def add_toy():
     user_id = session.get('user_id')
@@ -44,5 +49,11 @@ def add_toy():
         new_toy = Toy(user_id=user_id, name=form.name.data, company=form.company.data, type=form.type.data, is_approved=form.is_approved.data, image_url=form.image_url.data)
         db.session.add(new_toy)
         db.session.commit()
-        return redirect(url_for('home'))
+        return redirect(url_for('toys'))
     return render_template('add_toy.html', form = form)
+
+# Individual toy pages
+@app.route('/toy/<int:toy_id>')
+def individual_toy(toy_id):
+    toy = Toy.query.get_or_404(toy_id)
+    return render_template('individual_toy.html', toy=toy)
