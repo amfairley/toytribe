@@ -1,0 +1,17 @@
+<div>
+    {% for toy in toys %}
+        <a href="{{ url_for('individual_toy', toy_id=toy.id) }}">{{ toy.name }}</a>
+        <ul>
+            <li>Toy ID: {{ toy.id }}</li>
+            <li>User ID: {{ toy.user_id }}</li>
+            <li>Company Name: {{ toy.company }}</li>
+            <li>Toy Type: {{ toy.toy_id }}</li>
+            <li>Approved? {{ toy.toy_id }}</li>
+            <li>Image URL: {{ toy.toy_id }}</li>
+            <li>Date created: {{ toy.toy_id }}</li>
+        </ul>
+    {% endfor %}
+</div>
+<div>
+    <a href="{{url_for('add_toy')}}">Add toy</a>
+</div>
