@@ -1,8 +1,8 @@
-from flask import render_template, session, flash, redirect, url_for
+from flask import render_template, session, flash, redirect, url_for, request
 from werkzeug.security import generate_password_hash, check_password_hash
 from toy_tribe import app, db
 from toy_tribe.models import Users, Toy, Profile, Review
-from toy_tribe.forms import LoginForm, SignupForm, AddToy
+from toy_tribe.forms import LoginForm, SignupForm, AddToy, EditToy
 
 @app.route("/")
 def home():
@@ -12,6 +12,12 @@ def home():
 def toys():
     toys = list(Toy.query.order_by(Toy.name).all())
     return render_template("toys.html", toys = toys)
+
+# Individual toy pages
+@app.route('/toy/<int:toy_id>')
+def individual_toy(toy_id):
+    toy = Toy.query.get_or_404(toy_id)
+    return render_template('individual_toy.html', toy=toy)
 
 #Login form
 @app.route('/login', methods=['GET', 'POST'])
@@ -52,8 +58,22 @@ def add_toy():
         return redirect(url_for('toys'))
     return render_template('add_toy.html', form = form)
 
-# Individual toy pages
-@app.route('/toy/<int:toy_id>')
-def individual_toy(toy_id):
+# Edit toy form
+@app.route('/edit_toy/<int:toy_id>', methods=['GET', 'POST'])
+def edit_toy(toy_id):
     toy = Toy.query.get_or_404(toy_id)
-    return render_template('individual_toy.html', toy=toy)
+    form = EditToy(obj=toy)
+    ref = request.args.get('ref')
+    if form.validate_on_submit():
+        toy.name = form.name.data
+        toy.company = form.company.data
+        toy.type = form.type.data
+        is_approved = form.is_approved
+        image_url = form.image_url
+
+        db.session.commit()
+        if ref == 'toys':
+            return redirect(url_for('toys'))
+        else:
+            return redirect(url_for('individual_toy', toy_id = toy.id))
+    return render_template('edit_toy.html', form=form)
