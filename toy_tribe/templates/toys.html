@@ -10,6 +10,7 @@
             <li>Image URL: {{ toy.toy_id }}</li>
             <li>Date created: {{ toy.toy_id }}</li>
         </ul>
+        <a href="{{ url_for('edit_toy', toy_id=toy.id, ref='toys') }}">Edit toy</a>
     {% endfor %}
 </div>
 <div>
