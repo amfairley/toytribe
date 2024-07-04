@@ -2,11 +2,12 @@ from flask import render_template, session, flash, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 from toy_tribe import app, db
 from toy_tribe.models import Users, Toy, Profile, Review
-from toy_tribe.forms import LoginForm, SignupForm
+from toy_tribe.forms import LoginForm, SignupForm, AddToy
 
 @app.route("/")
 def home():
-    return render_template("base.html")
+   toys = list(Toy.query.order_by(Toy.name).all())
+   return render_template("base.html", toys = toys)
 
 #Loginform
 
@@ -34,3 +35,14 @@ def signup():
         flash('Registration successful', 'success')
         return redirect(url_for('login'))
     return render_template('signup.html', form=form)
+
+@app.route('/add_toy', methods=['GET', 'POST'])
+def add_toy():
+    user_id = session.get('user_id')
+    form = AddToy()
+    if form.validate_on_submit():
+        new_toy = Toy(user_id=user_id, name=form.name.data, company=form.company.data, type=form.type.data, is_approved=form.is_approved.data, image_url=form.image_url.data)
+        db.session.add(new_toy)
+        db.session.commit()
+        return redirect(url_for('home'))
+    return render_template('add_toy.html', form = form)
