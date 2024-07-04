@@ -1,0 +1,15 @@
+<h2>Add toy</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <label for="name">{{ form.name.label }}</label>
+    {{ form.name }}
+    <label for="company">{{ form.company.label }}</label>
+    {{ form.company }}
+    <label for="type">{{ form.type.label }}</label>
+    {{ form.type }}
+    <label for="is_approved">{{ form.is_approved.label }}</label>
+    {{ form.is_approved(class="form-check-input") }}
+    <label for="image_url">{{ form.image_url.label }}</label>
+    {{ form.image_url }}
+    <input type="submit" value="Add Toy">
+</form>
