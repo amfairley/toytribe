@@ -6,8 +6,20 @@
     <title>Document</title>
 </head>
 <body>
-    Hello World
-    <a href="{{ url_for('login') }}">Login</a>
-    <a href="{{ url_for('signup') }}">Signup</a>
+    {% if 'user_id' in session %}
+        <p>You are logged in!</p>
+        <div>
+            {% for toy in toys %}
+                <p>{{ toy.name }}</p>
+                <img src="{{ toy.image_url }}">
+            {% endfor %}
+        </div>
+        <div>
+            <a href="{{url_for('add_toy')}}">Add toy</a>
+        </div>
+    {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('signup') }}">Signup</a>
+    {% endif %}
 </body>
 </html>
