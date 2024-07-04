@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, EmailField
+from wtforms import StringField, PasswordField, SubmitField, EmailField, SelectField, BooleanField
 from wtforms.validators import DataRequired, Length, EqualTo, Email
 
 class LoginForm(FlaskForm):
@@ -16,3 +16,14 @@ class SignupForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')
+
+class AddToy(FlaskForm):
+    name = StringField('Toy Name', validators=[DataRequired()])
+    company = StringField('Company Name', validators=[DataRequired()])
+    type = SelectField('Type of Toy', choices = [
+        ('action_figure', 'Action Figure'),
+        ('board_game', 'Board Game')
+    ], validators=[DataRequired()])
+    is_approved = BooleanField('Approved', validators=[DataRequired()])
+    image_url = StringField('Image URL') # Not required, can be null
+    submit = SubmitField('Add Toy')
