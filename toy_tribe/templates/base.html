@@ -3,10 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="keywords" content="toys, community, toy rating, toy review, review, toy recommendation, toytribe, toy tribe">
+    <meta name="description" content="A community to share reviews of children's toys!">
+    <meta name="author" content="Adam Michael Fairley">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/static/favicon/site.webmanifest">
+
+    <!-- Fontawesome Link -->
+    <script src="https://kit.fontawesome.com/e1041abfbd.js" crossorigin="anonymous"></script>
+
+    <title>
+        {% block title %}
+            Toy Tribe
+        {% endblock %}
+    </title>
 </head>
 <body>
     {% if 'user_id' in session %}
+        <!-- Navigation Bar -->
+        <header>
+            <!-- Header Logo -->
+             <div>
+
+             </div>
+        </header>  
         <p>You are logged in!</p>
     {% else %}
         <a href="{{ url_for('login') }}">Login</a>
