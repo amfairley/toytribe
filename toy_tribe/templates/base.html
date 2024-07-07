@@ -16,6 +16,13 @@
     <!-- Fontawesome Link -->
     <script src="https://kit.fontawesome.com/e1041abfbd.js" crossorigin="anonymous"></script>
 
+    <!-- Materialize CSS CND Link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Link to personal stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+
+
     <title>
         {% block title %}
             Toy Tribe
@@ -23,18 +30,93 @@
     </title>
 </head>
 <body>
+    <!-- Navbar for logged in user -->
     {% if 'user_id' in session %}
-        <!-- Navigation Bar -->
-        <header>
-            <!-- Header Logo -->
-             <div>
-
-             </div>
-        </header>  
-        <p>You are logged in!</p>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo dangrek-regular"><img src="/static/img/toy_logo_gold.png" class="site-logo">toy
+                tribe</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger burger-menu"><i class="fas fa-bars"></i></a>
+            <ul class="right hide-on-med-and-down open-sans">
+                <li><a href="">Home</a></li>
+                <li><a href="">Toys</a></li>
+                <li><a href="">Profile</a></li>
+                <li><a href="">Log Out</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <ul class="sidenav open-sans" id="mobile-demo">
+        <li><a href="">Home</a></li>
+        <li><a href="">Toys</a></li>
+        <li><a href="">Profile</a></li>
+        <li><a href="">Log Out</a></li>
+    </ul>
+    <!-- Navbar for logged out user -->
     {% else %}
-        <a href="{{ url_for('login') }}">Login</a>
-        <a href="{{ url_for('signup') }}">Signup</a>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo dangrek-regular"><img src="/static/img/toy_logo_gold.png" class="site-logo">toy
+                tribe</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+            <ul class="right hide-on-med-and-down open-sans">
+                <li><a href="{{ url_for('signup') }}">Signup</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <ul class="sidenav open-sans" id="mobile-demo">
+        <li><a href="{{ url_for('signup') }}">Signup</a></li>
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+    </ul>
     {% endif %}
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="container">
+          <div class="row valign-wrapper">
+            <div class="col s6">
+                <a href="#" class="dangrek-regular footer-logo"><img src="/static/img/toy_logo_gold.png" class="site-logo">toy
+                    tribe</a>
+            </div>
+            <div class="col s6 roboto-regular">
+                <p id="developer">Website Developer: <br class="hide-on-large-only"><span>Adam Michael Fairley</span></p>
+                <ul id="contact-links">
+                    <li class="contact-link">
+                      <a href="mailto:a.m.fairley@outlook.com" aria-label="Go to email page">
+                        <i class="fas fa-envelope-square"></i>
+                      </a>
+                    </li>
+                    <li class="contact-link">
+                      <a href="https://www.linkedin.com/in/adamfairley/" target="_blank" rel="noopener"
+                        aria-label="Visit the linkedin page for Adam Fairley">
+                        <i class="fab fa-linkedin"></i>
+                      </a>
+                    </li>
+                    <li class="contact-link">
+                      <a href="https://github.com/amfairley" target="_blank" rel="noopener"
+                        aria-label="Visit the GitHub page for Adam Fairley">
+                        <i class="fab fa-github-square"></i>
+                      </a>
+                    </li>
+                  </ul>
+              </div>
+          </div>
+        </div>
+      </footer>
+
+
+    <!-- Materialize CSS JavaScript CDN Link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- Personal JavaScript link -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
 </body>
 </html>
