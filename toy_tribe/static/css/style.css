@@ -41,7 +41,9 @@ main {
 }
 
 /* ---------- base.html ---------- */
-
+main {
+    background-color: #FFF3D3;
+}
 /* Navigation bar */
 .nav-wrapper {
     background-color: #FFF3D3;
@@ -77,6 +79,7 @@ nav ul a{
 /* Footer */
 .page-footer {
     background-color: #FFF3D3;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
 }
 .footer-logo {
     color: #D93B58;
@@ -104,4 +107,42 @@ nav ul a{
 .contact-link i:hover{
     color:#D93B58;
     transition-duration: 0.5s;
+}
+
+main {
+    margin: 0;
+    top: 0;
+    padding: 0; 
+}
+
+
+/* Homepage */
+#hero-image{
+    background: url(/static/img/home_hero_image.webp) no-repeat center/cover;
+    overflow: hidden;
+    height: 480px;
+    width: 100%;
+    justify-content: center;
+}
+.hero-text  {
+    color: #f5f5f5;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    display: block;
+}
+.hero-button {
+    background-color: #f5f5f5;
+    color: #333A3F;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.hero-button:hover {
+    background-color: #D93B58;
+    color: #FFF3D3;
+}
+#homepage-message {
+    color: #333A3F;
+    text-align: center;
+    font-size: 2.5rem;
+    max-width: 90%;
+    margin: 0 auto;
 }
