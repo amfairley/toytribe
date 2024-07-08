@@ -1,15 +1,37 @@
-<h2>Register</h2>
-<form method="POST">
+{% extends "base.html" %}
+
+<!-- Title for browser tab -->
+{% block title %}
+Toy Tribe: Signup
+{% endblock %}
+
+<!-- Homepage Content -->
+{% block content %}
+<form id="signup-form" method="POST">
+   
     {{ form.hidden_tag() }}
-    <label for="first_name">{{ form.first_name.label }}</label>
+    
+    <i class="fa-solid fa-user-large"></i>
+    <label for="first_name" class="roboto-regular">{{ form.first_name.label }}</label>
     {{ form.first_name }}
-    <label for="last_name">{{ form.last_name.label }}</label>
+
+    <i class="fa-solid fa-user-large"></i>
+    <label for="last_name" class="roboto-regular">{{ form.last_name.label }}</label>
     {{ form.last_name }}
-    <label for="email">{{ form.email.label }}</label>
+
+    <i class="fa-solid fa-envelope"></i>
+    <label for="email" class="roboto-regular">{{ form.email.label }}</label>
     {{ form.email }}
-    <label for="password">{{ form.password.label }}</label>
+
+    <i class="fa-solid fa-lock"></i>
+    <label for="password" class="roboto-regular" id="signup-password">{{ form.password.label }}</label>
     {{ form.password }}
-    <label for="confirm_password">{{ form.confirm_password.label }}</label>
+    <span class="helper-text roboto-regular">Password requirement placeholder<br></span>
+
+    <i class="fa-solid fa-lock confirm-password"></i>
+    <label for="confirm_password" class="roboto-regular" id="signup-confirm">{{ form.confirm_password.label }}</label>
     {{ form.confirm_password }}
-    <input type="submit" value="Register">
+
+    <input id="signup-button" class="roboto-regular" type="submit" value="Signup">
 </form>
+{% endblock %}
