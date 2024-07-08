@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+<!-- Title for browser tab -->
+{% block title %}
+Toy Tribe
+{% endblock %}
+
+<!-- Homepage Content -->
+{% block content %}
+<div id="hero-image" class="valign-wrapper center-align" role="img" aria-label="Toy tribe welcome image of an assortment of toys.">
+    <div>
+        {% if 'user_id' in session %}
+            <h1 class="playfair-display hero-text">Welcome Back to Toy Tribe!</h1>
+            <a href="{{ url_for ('toys' )}}" class="waves-effect waves-light btn-large hero-button open-sans">Toys</a>
+        {% else %}
+            <h1 class="playfair-display hero-text">Welcome to Toy Tribe!</h1>
+            <a href="{{ url_for ('signup' )}}" class="waves-effect waves-light btn-large hero-button open-sans">Signup</a>
+            <a href="{{ url_for ('login' )}}" class="waves-effect waves-light btn-large hero-button open-sans">Login</a>
+        {% endif %}
+    </div> 
+</div>
+<div id="homepage-message">
+    <p class="roboto-regular" >
+        A fun online community to review, recommend, and rate children's toys!
+    </p>
+</div>
+
+
+{% endblock %}
