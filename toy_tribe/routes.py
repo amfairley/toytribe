@@ -6,7 +6,7 @@ from toy_tribe.forms import LoginForm, SignupForm, AddToy, EditToy
 
 @app.route("/")
 def home():
-   return render_template("base.html")
+   return render_template("home.html")
 
 @app.route("/toys")
 def toys():
