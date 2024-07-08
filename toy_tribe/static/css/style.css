@@ -165,9 +165,6 @@ main {
 #signup-form input {
     margin-bottom: 20px;
 }
-#signup-form input:focus {
-    border: blue;
-}
 #signup-form #password {
     margin-bottom: 0 !important;
 }
@@ -180,7 +177,39 @@ main {
     margin-top: 20px;
 }
 #signup-button {
+    font-size: 1.5rem;
     background-color: #D93B58;
     color: #FFF3D3;
     cursor: pointer;
+}
+
+/* login.html */
+#login-form {
+    max-width: min(300px, 85%);
+    margin: 0 auto;
+}
+#login-form label {
+    color: #333A3F;
+    font-size: 1.5rem;
+}
+#login-form input {
+    margin-bottom: 20px;
+}
+#login-button {
+    font-size: 1.5rem;
+    background-color: #D93B58;
+    color: #FFF3D3;
+    cursor: pointer;
+}
+#login-form p {
+    text-align: center;
+
+}
+#login-form p a {
+    text-transform: none;
+    font-size: 1.1rem;
+    background-color: #D93B58;
+    color: #FFF3D3;
+    box-shadow: none;
+    border: 2pt solid black;
 }
