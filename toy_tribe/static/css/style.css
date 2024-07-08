@@ -146,3 +146,41 @@ main {
     max-width: 90%;
     margin: 0 auto;
 }
+
+/* signup.html */
+#signup-form {
+    max-width: min(400px, 85%);
+    margin: 0 auto;
+}
+#signup-form i {
+    color: #333A3F;
+    font-size: 1.5rem;
+    padding: 0 10px 0 5px;
+}
+#signup-form label {
+    color: #333A3F;
+    font-size: 1.5rem;
+    
+}
+#signup-form input {
+    margin-bottom: 20px;
+}
+#signup-form input:focus {
+    border: blue;
+}
+#signup-form #password {
+    margin-bottom: 0 !important;
+}
+
+#signup-form span {
+    color: #808080;
+    margin-bottom: 20px;
+}
+.confirm-password {
+    margin-top: 20px;
+}
+#signup-button {
+    background-color: #D93B58;
+    color: #FFF3D3;
+    cursor: pointer;
+}
