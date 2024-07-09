@@ -1,15 +1,52 @@
-<h2>Add toy</h2>
-<form method="POST">
+{% extends "base.html" %}
+
+<!-- Title for browser tab -->
+{% block title %}
+Toy Tribe: Add Toy
+{% endblock %}
+
+<!-- Add Toy Page Content -->
+{% block content %}
+<h2 class="playfair-display" id="add-toy-title">Add toy</h2>
+
+<form id="add-toy-form" method="POST">
+
     {{ form.hidden_tag() }}
-    <label for="name">{{ form.name.label }}</label>
-    {{ form.name }}
-    <label for="company">{{ form.company.label }}</label>
-    {{ form.company }}
-    <label for="type">{{ form.type.label }}</label>
-    {{ form.type }}
-    <label for="is_approved">{{ form.is_approved.label }}</label>
-    {{ form.is_approved(class="form-check-input") }}
-    <label for="image_url">{{ form.image_url.label }}</label>
-    {{ form.image_url }}
-    <input type="submit" value="Add Toy">
+
+    <div class="add-toy-input">
+        <label for="name" class="roboto-regular">{{ form.name.label }}</label>
+        {{ form.name }}
+    </div>
+
+    <div class="add-toy-input">
+        <label for="company" class="roboto-regular">{{ form.company.label }}</label>
+        {{ form.company }}
+    </div>
+
+    <div class="add-toy-input">
+        <label for="type" class="roboto-regular">{{ form.type.label }}</label>
+        <select id="type" name="type" class="roboto-regular">
+            <option value="" disabled selected>Select the toy type</option>
+            {% for value, label in form.type.choices %}
+                <option value="{{ value }}">{{ label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="switch add-toy-input">
+        <label for="is_approved" class="roboto-regular">
+            {{ form.is_approved.label }}
+            {{ form.is_approved(class="form-check-input", id="is_approved") }}
+            <span class="lever"></span>
+        </label>
+    </div>
+
+    <div class="roboto-regular add-toy-input">
+        <label for="image_url">{{ form.image_url.label }}</label>
+        {{ form.image_url }}
+    </div>
+
+    <input id="add-toy-button" class="roboto-regular" type="submit" value="Add Toy">
 </form>
+
+{% endblock %}
