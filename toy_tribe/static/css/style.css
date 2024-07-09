@@ -290,3 +290,26 @@ main {
     cursor: pointer;
     margin-bottom: 50px;    
 }
+
+/* Edit toy */
+#edit-toy-title {
+    text-align: center;
+}
+#edit-toy-form {
+    max-width: min(600px, 85%);
+    margin: 0 auto; 
+}
+#edit-toy-form label {
+    color: #333A3F;
+    font-size: 1rem;
+}
+.edit-toy-input {
+    margin-top: 20px;
+}
+#edit-toy-button {
+    font-size: 1.5rem;
+    background-color: #D93B58;
+    color: #FFF3D3;
+    cursor: pointer;
+    margin-bottom: 50px;    
+}
