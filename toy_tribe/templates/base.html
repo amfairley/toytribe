@@ -24,8 +24,7 @@
 
 
     <title>
-        {% block title %}
-        {% endblock %}
+        Toy Tribe{% block title %}{% endblock %}
     </title>
 </head>
 <body>
@@ -33,29 +32,29 @@
     {% if 'user_id' in session %}
     <nav>
         <div class="nav-wrapper">
-            <a href="#!" class="brand-logo dangrek-regular"><img src="/static/img/toy_logo_gold.png" class="site-logo">toy
+            <a href="{{ url_for('home')}}" class="brand-logo dangrek-regular"><img src="/static/img/toy_logo_gold.png" class="site-logo">toy
                 tribe</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger burger-menu"><i class="fas fa-bars"></i></a>
             <ul class="right hide-on-med-and-down open-sans">
-                <li><a href="">Home</a></li>
-                <li><a href="">Toys</a></li>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('toys') }}">Toys</a></li>
                 <li><a href="">Profile</a></li>
-                <li><a href="">Log Out</a></li>
+                <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             </ul>
         </div>
     </nav>
     
     <ul class="sidenav open-sans" id="mobile-demo">
-        <li><a href="">Home</a></li>
-        <li><a href="">Toys</a></li>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('toys') }}">Toys</a></li>
         <li><a href="">Profile</a></li>
-        <li><a href="">Log Out</a></li>
+        <li><a href="{{ url_for('logout') }}">Log Out</a></li>
     </ul>
     <!-- Navbar for logged out user -->
     {% else %}
     <nav>
         <div class="nav-wrapper">
-            <a href="#!" class="brand-logo dangrek-regular"><img src="/static/img/toy_logo_gold.png" class="site-logo">toy
+            <a href="{{ url_for('home') }}" class="brand-logo dangrek-regular"><img src="/static/img/toy_logo_gold.png" class="site-logo">toy
                 tribe</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
             <ul class="right hide-on-med-and-down open-sans">
