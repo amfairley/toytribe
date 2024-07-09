@@ -227,9 +227,13 @@ main {
     height: 386px;
 }
 .card-image {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.toy-image-link {
+    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.05);
 }
 .toys-image {
     width: auto !important;
@@ -313,3 +317,53 @@ main {
     cursor: pointer;
     margin-bottom: 50px;    
 }
+
+/* Individual toy */
+#back-to-toys {
+    font-size: 1.5rem;
+    margin-left: 2rem;
+    float: left;
+    color: #333A3F;
+}
+#individual-toy-title {
+    text-align: center;
+}
+.toy-row {
+    margin: 0 auto;
+    max-width: 800px;
+}
+.toy-image {
+    max-height: 70vh !important;
+    width: auto !important;
+    margin: 0 auto;
+}
+.toy-information-display .card-image {
+    background-color: rgba(255, 243, 211, 0.55);
+    padding: 10px;
+}
+.individual-toy-rating {
+    color:#D93B58 !important;
+    text-shadow: #333A3F !important;
+}
+.toy-col-1 {
+    color:#333A3F;
+    width: 30%;
+    font-weight: bolder;
+}
+.toy-col-2 {
+    color:#333A3F;
+}
+.toy-buttons-div{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 25px;
+}
+.toy-buttons {
+    background-color: #f5f5f5;
+    color: #333A3F;
+}
+.toy-buttons:hover, .toy-buttons:focus {
+    background-color: #D93B58;
+    color: #FFF3D3;
+}
+
