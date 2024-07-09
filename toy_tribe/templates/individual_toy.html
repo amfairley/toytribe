@@ -45,10 +45,12 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="toy-buttons-div">
-                            <a href="{{ url_for('edit_toy', toy_id=toy.id, ref='toys') }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons">Edit toy</a>
-                            <a href="{{ url_for('delete_toy', toy_id=toy.id) }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons">Delete toy</a>
-                        </div>
+                        {% if user_id == toy.user_id %}
+                            <div class="toy-buttons-div">
+                                <a href="{{ url_for('edit_toy', toy_id=toy.id, ref='toys') }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons">Edit toy</a>
+                                <a href="{{ url_for('delete_toy', toy_id=toy.id) }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons">Delete toy</a>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
