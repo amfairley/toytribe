@@ -135,7 +135,7 @@ main {
     margin-left: 20px;
     margin-right: 20px;
 }
-.hero-button:hover {
+.hero-button:hover, .hero-button:focus {
     background-color: #D93B58;
     color: #FFF3D3;
 }
@@ -213,3 +213,59 @@ main {
     box-shadow: none;
     border: 2pt solid black;
 }
+
+/* toys.html */
+#toys-title {
+    text-align: center;
+    margin: 10px;
+}
+#toys-page {
+    width: 95%;
+}
+.toys-card {
+    background-color: rgba(0, 0, 0, 0.1);
+    height: 386px;
+}
+.card-image {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.toys-image {
+    width: auto !important;
+    max-height: 200px;
+}
+.toys-toy-title {
+    color: #333A3F;
+}
+.toys-toy-title h2 a {
+    text-decoration: none;
+    color:#D93B58;
+}
+.toys-buttons-div{
+    display: flex;
+    justify-content: space-evenly;
+}
+.toys-buttons {
+    background-color: #f5f5f5;
+    color: #333A3F;
+}
+.toys-buttons:hover, .toys-buttons:focus {
+    background-color: #D93B58;
+    color: #FFF3D3;
+}
+.add-toy-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.add-toy-card i{
+    font-size: 5rem;
+    color: grey;
+}
+.add-toy-card p {
+    color: grey;
+}
+
