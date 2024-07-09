@@ -2,44 +2,51 @@
 
 <!-- Title for browser tab -->
 {% block title %}
-Toy Tribe: Edit toy
+> Edit toy
 {% endblock %}
 
-<!-- Edit Toy Page Conent -->
+<!-- Edit Toy Page Content -->
 {% block content %}
-<h2 class="playfair-display" id="edit-toy-title">Edit toy</h2>
+    {% if 'user_id' in session %}
+        <h2 class="playfair-display" id="edit-toy-title">Edit toy</h2>
 
-<form id="edit-toy-form" method="POST">
+        <form id="edit-toy-form" method="POST">
 
-    {{ form.hidden_tag() }}
-    <div class="edit-toy-input">
-        <label for="name" class="roboto-regular">{{ form.name.label }}</label>
-        {{ form.name }}
-    </div>
+            {{ form.hidden_tag() }}
+            <div class="edit-toy-input">
+                <label for="name" class="roboto-regular">{{ form.name.label }}</label>
+                {{ form.name }}
+            </div>
 
-    <div class="edit-toy-input">
-        <label for="company" class="roboto-regular">{{ form.company.label }}</label>
-        {{ form.company }}
-    </div>
+            <div class="edit-toy-input">
+                <label for="company" class="roboto-regular">{{ form.company.label }}</label>
+                {{ form.company }}
+            </div>
 
-    <div class="edit-toy-input">
-        <label for="type" class="roboto-regular">{{ form.type.label }}</label>
-        {{ form.type }}
-    </div>
+            <div class="edit-toy-input">
+                <label for="type" class="roboto-regular">{{ form.type.label }}</label>
+                {{ form.type }}
+            </div>
 
-    <div class="switch edit-toy-input">
-        <label for="is_approved" class="roboto-regular">
-            {{ form.is_approved.label }}
-            {{ form.is_approved(class="form-check-input", id="is_approved") }}
-            <span class="lever"></span>
-        </label>
-    </div>
-    
-    <div class="edit-toy-input">
-        <label for="image_url">{{ form.image_url.label }}</label>
-        {{ form.image_url }}
-    </div>
+            <div class="switch edit-toy-input">
+                <label for="is_approved" class="roboto-regular">
+                    {{ form.is_approved.label }}
+                    {{ form.is_approved(class="form-check-input", id="is_approved") }}
+                    <span class="lever"></span>
+                </label>
+            </div>
+            
+            <div class="edit-toy-input">
+                <label for="image_url">{{ form.image_url.label }}</label>
+                {{ form.image_url }}
+            </div>
 
-    <input id="edit-toy-button" class="roboto-regular" type="submit" value="Edit Toy">
-</form>
+            <input id="edit-toy-button" class="roboto-regular" type="submit" value="Edit Toy">
+        </form>
+    {% else %}
+        <!-- Redirect to homepage -->
+        <script>
+            window.location.href = "{{ url_for('home') }}";
+        </script>
+    {% endif %}
 {% endblock %}
