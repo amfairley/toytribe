@@ -1,15 +1,45 @@
-<h2>Edit toy</h2>
-<form method="POST">
+{% extends "base.html" %}
+
+<!-- Title for browser tab -->
+{% block title %}
+Toy Tribe: Edit toy
+{% endblock %}
+
+<!-- Edit Toy Page Conent -->
+{% block content %}
+<h2 class="playfair-display" id="edit-toy-title">Edit toy</h2>
+
+<form id="edit-toy-form" method="POST">
+
     {{ form.hidden_tag() }}
-    <label for="name">{{ form.name.label }}</label>
-    {{ form.name }}
-    <label for="company">{{ form.company.label }}</label>
-    {{ form.company }}
-    <label for="type">{{ form.type.label }}</label>
-    {{ form.type }}
-    <label for="is_approved">{{ form.is_approved.label }}</label>
-    {{ form.is_approved(class="form-check-input") }}
-    <label for="image_url">{{ form.image_url.label }}</label>
-    {{ form.image_url }}
-    <input type="submit" value="Edit Toy">
+    <div class="edit-toy-input">
+        <label for="name" class="roboto-regular">{{ form.name.label }}</label>
+        {{ form.name }}
+    </div>
+
+    <div class="edit-toy-input">
+        <label for="company" class="roboto-regular">{{ form.company.label }}</label>
+        {{ form.company }}
+    </div>
+
+    <div class="edit-toy-input">
+        <label for="type" class="roboto-regular">{{ form.type.label }}</label>
+        {{ form.type }}
+    </div>
+
+    <div class="switch edit-toy-input">
+        <label for="is_approved" class="roboto-regular">
+            {{ form.is_approved.label }}
+            {{ form.is_approved(class="form-check-input", id="is_approved") }}
+            <span class="lever"></span>
+        </label>
+    </div>
+    
+    <div class="edit-toy-input">
+        <label for="image_url">{{ form.image_url.label }}</label>
+        {{ form.image_url }}
+    </div>
+
+    <input id="edit-toy-button" class="roboto-regular" type="submit" value="Edit Toy">
 </form>
+{% endblock %}
