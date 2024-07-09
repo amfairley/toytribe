@@ -1,13 +1,57 @@
-<h2>{{ toy.name }}</h2>
-<ul>
-    <li>Toy ID: {{ toy.id }}</li>
-    <li>User ID: {{ toy.user_id }}</li>
-    <li>Company Name: {{ toy.company }}</li>
-    <li>Toy Type: {{ toy.toy_id }}</li>
-    <li>Approved? {{ toy.toy_id }}</li>
-    <li>Image URL: {{ toy.toy_id }}</li>
-    <li>Date created: {{ toy.toy_id }}</li>
-</ul>
-<a href="{{ url_for('edit_toy', toy_id=toy.id, ref='individual_toy') }}">Edit toy</a>
-<a href="{{ url_for('delete_toy', toy_id=toy.id) }}">Delete toy</a>
-<a href="{{ url_for('toys') }}">Back to toy list</a>
+{% extends "base.html" %}
+
+<!-- Title for broswer tab -->
+{% block title %}
+Toy Tribe: {{ toy.name }}
+{% endblock %}
+
+<!-- Toy Page Content-->
+{% block content %}
+<a href="{{ url_for('toys') }}" id="back-to-toys" class="open-sans">
+    <i class="fa-solid fa-backward-step"></i>
+    <span>Back to Toys</span>
+</a>
+<br>
+<h2 class="playfair-display" id="individual-toy-title">{{ toy.name }}</h2>
+
+<div class="row toy-row">
+    <div class="toy-information-display col s12">
+        <div class="card">
+            <div class="card-image">
+                <img class="toy-image" src="{{ toy.image_url }}">
+                <span class="card-title individual-toy-rating">Average Rating</span>
+            </div>
+            <div class="card-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="toy-col-1 open-sans">Toy Name:</td>
+                            <td class="toy-col-2 roboto-regular">{{ toy.name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="toy-col-1 open-sans">Company Name:</td>
+                            <td class="toy-col-2 roboto-regular">{{ toy.company }}</td>
+                        </tr>
+                        <tr>
+                            <td class="toy-col-1 open-sans">Type of Toy:</td>
+                            <td class="toy-col-2 roboto-regular">{{ toy.type }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="toy-buttons-div">
+                    <a href="{{ url_for('edit_toy', toy_id=toy.id, ref='toys') }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons">Edit toy</a>
+                    <a href="{{ url_for('delete_toy', toy_id=toy.id) }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons">Delete toy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!-- Use Cards For Reviews -->
