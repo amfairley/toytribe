@@ -1,19 +1,68 @@
-<div>
+{% extends "base.html" %}
+
+<!-- Title for browser tab -->
+{% block title %}
+Toy Tribe: Toys
+{% endblock %}
+
+<!-- Toys Page Content -->
+{% block content %}
+<h1 class="playfair-display" id="toys-title">Toys</h1>
+<section class="row" id="toys-page">
     {% for toy in toys %}
-        <a href="{{ url_for('individual_toy', toy_id=toy.id) }}">{{ toy.name }}</a>
-        <ul>
-            <li>Toy ID: {{ toy.id }}</li>
-            <li>User ID: {{ toy.user_id }}</li>
-            <li>Company Name: {{ toy.company }}</li>
-            <li>Toy Type: {{ toy.toy_id }}</li>
-            <li>Approved? {{ toy.toy_id }}</li>
-            <li>Image URL: {{ toy.toy_id }}</li>
-            <li>Date created: {{ toy.toy_id }}</li>
-        </ul>
-        <a href="{{ url_for('edit_toy', toy_id=toy.id, ref='toys') }}">Edit toy</a>
-        <a href="{{ url_for('delete_toy', toy_id=toy.id) }}">Delete toy</a>
+    <div class="card sticky-action col s12 m6 l4 toys-card">
+        <div class="activator card-image waves-effect waves-block waves-light center-align">
+          <img class="toys-image" src="{{ toy.image_url }}">
+        </div>
+        <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">
+                <a class="toys-toy-title open-sans" href="{{ url_for('individual_toy', toy_id=toy.id) }}">{{ toy.name }}</a>
+                <i class="fa-solid fa-ellipsis-vertical right"></i>
+                <br>
+                <aside class="open-sans">
+                    Rating <i class="fa-regular fa-star"></i>
+                </aside>
+            </span>
+            <div class="card-action">
+                <div class="toys-buttons-div">
+                    <a href="{{ url_for('edit_toy', toy_id=toy.id, ref='toys') }}" class="waves-effect waves-light btn-small roboto-regular toys-buttons">Edit toy</a>
+                    <a href="{{ url_for('delete_toy', toy_id=toy.id) }}" class="waves-effect waves-light btn-small roboto-regular toys-buttons">Delete toy</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">
+                <a class="toys-toy-title open-sans" href="{{ url_for('individual_toy', toy_id=toy.id) }}">{{ toy.name }}</a>
+                <i class="fa-solid fa-x right"></i>
+            </span>
+            <p class="roboto-regular">
+                A {{ toy.company }} toy.
+                <br>
+                Type: {{ toy.type }}
+            </p>
+        </div>
+    </div>
+    
     {% endfor %}
-</div>
-<div>
-    <a href="{{url_for('add_toy')}}">Add toy</a>
-</div>
+    <div class="card col s12 m6 l4 toys-card add-toy-card">
+        <div class="add-toy-div">
+            <a href="{{url_for('add_toy')}}">
+                <i class="fa-solid fa-circle-plus"></i>
+                <br>
+                <p class="roboto-regular">Add new toy</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+<!-- <ul>
+    <li class="toys-toy-id ">Toy ID: {{ toy.id }}</li>
+    <li class="toys-user-id">User ID: {{ toy.user_id }}</li>
+    <li class="toys-company-name">Company Name: {{ toy.company }}</li>
+    <li class="toys-toy-type">Toy Type: {{ toy.type }}</li>
+    <li class="toys-approved">Approved? {{ toy.is_approved }}</li>
+    <li class="toys-image">Image URL: {{ toy.image_url }}</li>
+    <li class="toys-created">Date created: {{ toy.date_of_creation }}</li>
+</ul> -->
