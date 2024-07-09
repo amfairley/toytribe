@@ -1,4 +1,6 @@
-from flask import render_template, session, flash, redirect, url_for, request
+from flask import(
+    render_template, session, flash, redirect, url_for, request
+)
 from werkzeug.security import generate_password_hash, check_password_hash
 from toy_tribe import app, db
 from toy_tribe.models import Users, Toy, Profile, Review
@@ -19,6 +21,7 @@ def individual_toy(toy_id):
     toy = Toy.query.get_or_404(toy_id)
     return render_template('individual_toy.html', toy=toy)
 
+
 #Login form
 @app.route('/login', methods=['GET', 'POST'])
 def login():    
@@ -28,10 +31,16 @@ def login():
         if user and check_password_hash(user.password, form.password.data):
             session['user_id'] = user.id
             flash('Login successful', 'success')
-            return render_template('login.html', form=form)
+            return render_template('home.html')
         else:
             flash('Login failed. Check your credentials.', 'danger')
     return render_template('login.html', form=form)
+
+@app.route('/logout')
+def logout():
+    session.pop('user_id', None)
+    flash('You have been logged out successfully.', 'success')
+    return redirect(url_for('home'))
 
 # Signup form
 @app.route('/signup', methods=['GET', 'POST'])
@@ -68,8 +77,8 @@ def edit_toy(toy_id):
         toy.name = form.name.data
         toy.company = form.company.data
         toy.type = form.type.data
-        is_approved = form.is_approved
-        image_url = form.image_url
+        toy.is_approved = form.is_approved.data
+        toy.image_url = form.image_url.data
 
         db.session.commit()
         if ref == 'toys':
