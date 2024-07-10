@@ -348,6 +348,24 @@ main {
     margin-top: 20px;
 }
 
+.add-toy-input #description {
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    overflow: auto;
+    height: 200px;
+}
+
+.select-wrapper>ul>li>span {
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    color:#D93B58;
+    background-color: #FFF3D3;
+}
+
+.select-wrapper>ul>li>span:hover {
+    color:#333A3F;
+    font-weight: bolder;
+    background-color: #FFF3D3;
+}
+
 #add-toy-button {
     font-size: 1.5rem;
     background-color: #D93B58;
@@ -463,3 +481,10 @@ main {
     background-color: #D93B58;
     color: #FFF3D3;
 }
+
+
+
+
+
+
+
