@@ -49,7 +49,10 @@
                     <p class="roboto-regular">
                         A {{ toy.company }} toy.
                         <br>
-                        Type: {{ toy.type }}
+                        Type: {{ toy_types[toy.toy_type_id].toy_type }}
+                    </p>
+                    <p>
+                        <strong>Description: </strong>{{ toy.description }}
                     </p>
                 </div>
             </div>
