@@ -10,7 +10,6 @@
 
 .open-sans {
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
-  font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
   font-variation-settings:
@@ -19,7 +18,6 @@
 
 .playfair-display {
   font-family: "Playfair Display", "Times New Roman", Times, serif;
-  font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
 }
@@ -36,6 +34,7 @@ body {
     min-height: 100vh;
     flex-direction: column;
 }
+
 main {
     flex: 1 0 auto;
 }
@@ -44,22 +43,27 @@ main {
 main {
     background-color: #FFF3D3;
 }
+
 /* Navigation bar */
 .nav-wrapper {
     background-color: #FFF3D3;
-}   
+}
+
 nav .brand-logo {
     color: #D93B58;
 }
+
 .site-logo {
     height: 100%;
     max-height: 3rem;
     margin-bottom: -10px;
 }
+
 nav ul a{
     color: #333A3F;
     font-size: 1.2rem;
 }
+
 .sidenav li>a {
     color: #D93B58;
 }
@@ -83,29 +87,36 @@ nav ul a{
     background-color: #FFF3D3;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
 }
+
 .footer-logo {
     color: #D93B58;
     font-size: 2em;
 }
+
 #developer {
     text-align: center;
     color: #333A3F;
 }
+
 #developer span {
     font-weight: bolder;
 }
+
 #contact-links {
     display: flex;
     justify-content: space-around;
     margin-bottom: 0;
 }
+
 #contact-links li{
     display: inline;
 }
+
 .contact-link i{
     font-size: 2rem;
     color: #333A3F;
 }
+
 .contact-link i:hover{
     color:#D93B58;
     transition-duration: 0.5s;
@@ -117,8 +128,7 @@ main {
     padding: 0; 
 }
 
-
-/* Homepage */
+/* ---------- home.html ---------- */
 #hero-image{
     background: url(/static/img/home_hero_image.webp) no-repeat center/cover;
     overflow: hidden;
@@ -126,21 +136,25 @@ main {
     width: 100%;
     justify-content: center;
 }
+
 .hero-text  {
     color: #f5f5f5;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     display: block;
 }
+
 .hero-button {
     background-color: #f5f5f5;
     color: #333A3F;
     margin-left: 20px;
     margin-right: 20px;
 }
+
 .hero-button:hover, .hero-button:focus {
     background-color: #D93B58;
     color: #FFF3D3;
 }
+
 #homepage-message {
     color: #333A3F;
     text-align: center;
@@ -149,24 +163,27 @@ main {
     margin: 0 auto;
 }
 
-/* signup.html */
+/* ---------- signup.html ---------- */
 #signup-form {
     max-width: min(400px, 85%);
     margin: 0 auto;
 }
+
 #signup-form i {
     color: #333A3F;
     font-size: 1.5rem;
     padding: 0 10px 0 5px;
 }
+
 #signup-form label {
     color: #333A3F;
     font-size: 1.5rem;
-    
 }
+
 #signup-form input {
     margin-bottom: 20px;
 }
+
 #signup-form #password {
     margin-bottom: 0 !important;
 }
@@ -175,9 +192,11 @@ main {
     color: #808080;
     margin-bottom: 20px;
 }
+
 .confirm-password {
     margin-top: 20px;
 }
+
 #signup-button {
     font-size: 1.5rem;
     background-color: #D93B58;
@@ -185,28 +204,32 @@ main {
     cursor: pointer;
 }
 
-/* login.html */
+/* ---------- login.html ---------- */
 #login-form {
     max-width: min(300px, 85%);
     margin: 0 auto;
 }
+
 #login-form label {
     color: #333A3F;
     font-size: 1.5rem;
 }
+
 #login-form input {
     margin-bottom: 20px;
 }
+
 #login-button {
     font-size: 1.5rem;
     background-color: #D93B58;
     color: #FFF3D3;
     cursor: pointer;
 }
+
 #login-form p {
     text-align: center;
-
 }
+
 #login-form p a {
     text-transform: none;
     font-size: 1.1rem;
@@ -216,79 +239,96 @@ main {
     border: 2pt solid black;
 }
 
-/* toys.html */
+/* ---------- toys.html ---------- */
 #toys-title {
     text-align: center;
     margin: 10px;
 }
+
 #toys-page {
     width: 95%;
 }
+
 .toys-card {
     background-color: rgba(0, 0, 0, 0.1);
     height: 386px;
     overflow: auto;
 }
+
 .card-image {
     background-color: rgba(0, 0, 0, 0.05);
 }
+
 .toy-image-link {
     height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
 }
+
 .toys-image {
     width: auto !important;
     max-height: 200px;
 }
+
 .toys-toy-title {
     color: #333A3F;
 }
+
 .toys-toy-title h2 a {
     text-decoration: none;
     color:#D93B58;
 }
+
 .toys-buttons-div{
     display: flex;
     justify-content: space-evenly;
 }
+
 .toys-buttons {
     background-color: #f5f5f5;
     color: #333A3F;
 }
+
 .toys-buttons:hover, .toys-buttons:focus {
     background-color: #D93B58;
     color: #FFF3D3;
 }
+
 .add-toy-button {
     background-color: rgba(0, 0, 0, 0.5);
     padding: 10px;
     border-radius: 15%;
 }
+
 .add-toy-button i{
     color: #D93B58;
 }
+
 .add-toy-button p{
     margin: 0 auto;
     color: #f5f5f5;
 }
 
-/* Add Toy */
+/* ---------- add_toy.html ---------- */
 #add-toy-title {
     text-align: center;
 }
+
 #add-toy-form {
     max-width: min(600px, 85%);
     margin: 0 auto; 
 }
+
 #add-toy-form label {
     color: #333A3F;
     font-size: 1rem;
 }
+
 .add-toy-input {
     margin-top: 20px;
 }
+
 #add-toy-button {
     font-size: 1.5rem;
     background-color: #D93B58;
@@ -297,21 +337,25 @@ main {
     margin-bottom: 50px;    
 }
 
-/* Edit toy */
+/* ---------- edit_toy.html ---------- */
 #edit-toy-title {
     text-align: center;
 }
+
 #edit-toy-form {
     max-width: min(600px, 85%);
     margin: 0 auto; 
 }
+
 #edit-toy-form label {
     color: #333A3F;
     font-size: 1rem;
 }
+
 .edit-toy-input {
     margin-top: 20px;
 }
+
 #edit-toy-button {
     font-size: 1.5rem;
     background-color: #D93B58;
@@ -320,71 +364,81 @@ main {
     margin-bottom: 50px;    
 }
 
-/* Individual toy */
+/* ---------- individual_toy.html ---------- */
 #back-to-toys {
     font-size: 1.5rem;
     margin-left: 2rem;
     float: left;
     color: #333A3F;
 }
+
 #individual-toy-title {
     text-align: center;
 }
+
 .toy-row {
     margin: 0 auto;
     max-width: 800px;
 }
+
 .toy-image {
     max-height: 70vh !important;
     max-width: 750px;
     width: auto !important;
     margin: 0 auto;
 }
+
 .toy-information-display .card-image {
     background-color: rgba(255, 243, 211, 0.55);
     padding: 10px;
 }
+
 .individual-toy-rating {
     color:#D93B58 !important;
-    text-shadow: #333A3F !important;
 }
+
 .toy-col-1 {
     color:#333A3F;
     width: 30%;
     font-weight: bolder;
 }
+
 .toy-col-2 {
     color:#333A3F;
 }
+
 .toy-buttons-div{
     display: flex;
     justify-content: space-evenly;
     margin-top: 25px;
 }
+
 .toy-buttons {
     background-color: #f5f5f5;
     color: #333A3F;
 }
+
 .toy-buttons:hover, .toy-buttons:focus {
     background-color: #D93B58;
     color: #FFF3D3;
 }
 
-
-
-/* 404 page */
+/* ---------- 404.html AND 500.html ---------- */
 .title-error{
     text-align: center;
 }
+
 .message-error{
     text-align: center;
 }
+
 .redirect-button {
     font-size: 1.5rem;
     background-color: #D93B58;
     color: #FFF3D3;
     cursor: pointer;
 }
+
 .redirect-button:hover, .redirect-button:focus {
     font-size: larger;
     background-color: #D93B58;
