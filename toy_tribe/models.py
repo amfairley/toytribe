@@ -56,11 +56,9 @@ class Toy(db.Model):
     is_approved = db.Column(db.Boolean, default=True, nullable=False)
     image_url = db.Column(
         db.String(300),
-        default='toy_tribe/static/img/default_toy.webp',
         nullable=False)
     description = db.Column(
         db.Text(),
-        default="No description added yet.",
         nullable=False
     )
     link = db.Column(db.String(300), nullable=True)
