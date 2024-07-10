@@ -7,12 +7,12 @@
 
 <!-- Add Toy Page Content -->
 {% block content %}
-<h2 class="dangrek-regular" id="title-404">
-    404
+<h2 class="dangrek-regular title-error">
+    404 - Page Not Found
 </h2>
-<div id = "message-404">
+<div class = "message-error">
     <p class="roboto-regular">Sorry, the page you are looking for either does not exist or has been deleted.</p>
     <p class="roboto-regular">Please join us back on the Toys page!</p>
-    <a href="{{ url_for ('toys' )}}" class="waves-effect waves-light btn-small redirect-button roboto-regular">TOys</a>
+    <a href="{{ url_for ('toys' )}}" class="waves-effect waves-light btn-small redirect-button roboto-regular">Toys</a>
 </div>
 {% endblock %}
