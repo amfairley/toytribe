@@ -41,8 +41,16 @@ def toys():
     logged out users to the homepage.
     """
     toys = list(Toy.query.order_by(Toy.name).all())
+    # Display toy_types as a dictionary so I can get the value
+    # assigned to the toy.toy_type_id
+    toy_types = {toy_type.id: toy_type for toy_type in ToyType.query.all()}
     user_id = session.get('user_id')
-    return render_template("toys.html", toys=toys, user_id=user_id)
+    return render_template(
+        "toys.html",
+        toys=toys,
+        user_id=user_id,
+        toy_types=toy_types
+    )
 
 
 @app.route('/toy/<int:toy_id>')
