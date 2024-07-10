@@ -5,12 +5,12 @@
 <div id="hero-image" class="valign-wrapper center-align" role="img" aria-label="Toy tribe welcome image of an assortment of toys.">
     <div>
         {% if 'user_id' in session %}
-            <h1 class="playfair-display hero-text">Welcome Back to Toy Tribe!</h1>
-            <a href="{{ url_for ('toys' )}}" class="waves-effect waves-light btn-large hero-button open-sans">Toys</a>
+            <h2 class="playfair-display hero-text">Welcome Back to Toy Tribe!</h2>
+            <a href="{{ url_for ('toys' )}}" class="waves-effect waves-light btn-large hero-button open-sans"  aria-label = "Go to the Toy Tribe toys page">Toys</a>
         {% else %}
-            <h1 class="playfair-display hero-text">Welcome to Toy Tribe!</h1>
-            <a href="{{ url_for ('signup' )}}" class="waves-effect waves-light btn-large hero-button open-sans">Signup</a>
-            <a href="{{ url_for ('login' )}}" class="waves-effect waves-light btn-large hero-button open-sans">Login</a>
+            <h2 class="playfair-display hero-text">Welcome to Toy Tribe!</h2>
+            <a href="{{ url_for ('signup' )}}" class="waves-effect waves-light btn-large hero-button open-sans" aria-label="Go to the Toy Tribe signup page">Signup</a>
+            <a href="{{ url_for ('login' )}}" class="waves-effect waves-light btn-large hero-button open-sans" aria-label="Go to the Toy Tribe login page">Login</a>
         {% endif %}
     </div> 
 </div>

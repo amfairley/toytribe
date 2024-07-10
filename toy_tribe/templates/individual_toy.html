@@ -8,7 +8,7 @@
 <!-- Toy Page Content-->
 {% block content %}
     {% if 'user_id' in session %}
-        <a href="{{ url_for('toys') }}" id="back-to-toys" class="open-sans">
+        <a href="{{ url_for('toys') }}" id="back-to-toys" class="open-sans" aria-label="Go back to Toys page">
             <i class="fa-solid fa-backward-step"></i>
             <span>Back to Toys</span>
         </a>
@@ -19,7 +19,7 @@
             <div class="toy-information-display col s12">
                 <div class="card">
                     <div class="card-image">
-                        <img class="toy-image" src="{{ toy.image_url }}">
+                        <img class="toy-image" src="{{ toy.image_url }}" alt="An image for {{ toy.name }}">
                         <span class="card-title individual-toy-rating">Average Rating</span>
                     </div>
                     <div class="card-content">
@@ -47,8 +47,8 @@
                         </table>
                         {% if user_id == toy.user_id %}
                             <div class="toy-buttons-div">
-                                <a href="{{ url_for('edit_toy', toy_id=toy.id) }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons">Edit toy</a>
-                                <a href="{{ url_for('delete_toy', toy_id=toy.id) }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons">Delete toy</a>
+                                <a href="{{ url_for('edit_toy', toy_id=toy.id) }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons" aria-label="Go to the edit toy page for {{ toy.name }}">Edit toy</a>
+                                <a href="{{ url_for('delete_toy', toy_id=toy.id) }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons" aria-label="Delete {{ toy.name }}">Delete toy</a>
                             </div>
                         {% endif %}
                     </div>
