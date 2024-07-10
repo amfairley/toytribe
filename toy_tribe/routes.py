@@ -1,5 +1,10 @@
 from flask import(
-    render_template, session, flash, redirect, url_for, request
+    render_template,
+    session,
+    flash,
+    redirect,
+    url_for,
+    request
 )
 from werkzeug.security import generate_password_hash, check_password_hash
 from toy_tribe import app, db
@@ -13,13 +18,17 @@ def home():
 @app.route("/toys")
 def toys():
     toys = list(Toy.query.order_by(Toy.name).all())
-    return render_template("toys.html", toys = toys)
+    # Get the user id to see if they created the toy in order to edit/delete
+    user_id = session.get('user_id')
+    return render_template("toys.html", toys = toys, user_id = user_id)
 
 # Individual toy pages
 @app.route('/toy/<int:toy_id>')
 def individual_toy(toy_id):
     toy = Toy.query.get_or_404(toy_id)
-    return render_template('individual_toy.html', toy=toy)
+    # Get the user id to see if they created the toy in order to edit/delete
+    user_id = session.get('user_id')
+    return render_template('individual_toy.html', toy=toy, user_id = user_id)
 
 
 #Login form
@@ -60,6 +69,7 @@ def signup():
 def add_toy():
     user_id = session.get('user_id')
     form = AddToy()
+    # More comments
     if form.validate_on_submit():
         new_toy = Toy(user_id=user_id, name=form.name.data, company=form.company.data, type=form.type.data, is_approved=form.is_approved.data, image_url=form.image_url.data)
         db.session.add(new_toy)
@@ -93,3 +103,12 @@ def delete_toy(toy_id):
     db.session.delete(toy)
     db.session.commit()
     return redirect(url_for('toys'))
+
+# 404 error handling taken from:
+@app.errorhandler(404)
+def page_not_found(e):
+    """
+    Redirects to 404 page when the page is not found.
+
+    """
+    return render_template('404.html')
