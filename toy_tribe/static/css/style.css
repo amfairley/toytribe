@@ -374,10 +374,10 @@ main {
 
 
 /* 404 page */
-#title-404{
+.title-error{
     text-align: center;
 }
-#message-404{
+.message-error{
     text-align: center;
 }
 .redirect-button {
