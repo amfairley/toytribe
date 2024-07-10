@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+<!-- Title for browser tab -->
+{% block title %}
+> 500 Error
+{% endblock %}
+
+<!-- Add Toy Page Content -->
+{% block content %}
+<h2 class="dangrek-regular title-error">
+    500 - Internal Server Error
+</h2>
+<div class="message-error">
+    <p class="roboto-regular">Oops, something went wrong on our end!</p>
+    <p class="roboto-regular">Please try again later!</p>
+    <a href="{{ url_for ('home' )}}" class="waves-effect waves-light btn-small redirect-button roboto-regular">Home</a>
+</div>
+{% endblock %}
