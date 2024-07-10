@@ -9,6 +9,12 @@
 {% block content %}
     {% if 'user_id' in session %}
         <h1 class="playfair-display" id="toys-title">Toys</h1>
+        <div class="fixed-action-btn add-toy-button">
+            <p class="open-sans">Add Toy</p>
+            <a class="btn-floating btn-large grey lighten-1" href="{{url_for('add_toy')}}">
+                <i class="fa-solid fa-circle-plus"></i>
+            </a>
+        </div>
         <section class="row" id="toys-page">
             {% for toy in toys %}
             <div class="card sticky-action col s12 m6 l4 toys-card">
@@ -49,15 +55,6 @@
             </div>
             
             {% endfor %}
-            <div class="card col s12 m6 l4 toys-card add-toy-card">
-                <div class="add-toy-div">
-                    <a href="{{url_for('add_toy')}}">
-                        <i class="fa-solid fa-circle-plus"></i>
-                        <br>
-                        <p class="roboto-regular">Add new toy</p>
-                    </a>
-                </div>
-            </div>
         </section>
     {% else %}
         <!-- Redirect to homepage -->
