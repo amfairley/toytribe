@@ -69,9 +69,11 @@ nav ul a{
     color: #D93B58;
     font-size: 2rem;
 }
+
 #mobile-demo a {
     color: #D93B58;
 }
+
 #mobile-demo {
     background-color: #FFF3D3;
 }
@@ -225,6 +227,7 @@ main {
 .toys-card {
     background-color: rgba(0, 0, 0, 0.1);
     height: 386px;
+    overflow: auto;
 }
 .card-image {
     background-color: rgba(0, 0, 0, 0.05);
@@ -334,6 +337,7 @@ main {
 }
 .toy-image {
     max-height: 70vh !important;
+    max-width: 750px;
     width: auto !important;
     margin: 0 auto;
 }
@@ -367,3 +371,23 @@ main {
     color: #FFF3D3;
 }
 
+
+
+/* 404 page */
+#title-404{
+    text-align: center;
+}
+#message-404{
+    text-align: center;
+}
+.redirect-button {
+    font-size: 1.5rem;
+    background-color: #D93B58;
+    color: #FFF3D3;
+    cursor: pointer;
+}
+.redirect-button:hover, .redirect-button:focus {
+    font-size: larger;
+    background-color: #D93B58;
+    color: #FFF3D3;
+}
