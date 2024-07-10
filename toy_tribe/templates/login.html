@@ -2,11 +2,12 @@
 
 <!-- Title for browser tab -->
 {% block title %}
-Toy Tribe: Login
+> Login
 {% endblock %}
 
-<!-- Homepage Content -->
+<!-- Login Content -->
 {% block content %}
+<h2 class="playfair-display" id="login-title">Login</h2>
 <form id="login-form" method="POST">
 
     {{ form.hidden_tag() }}
@@ -20,12 +21,12 @@ Toy Tribe: Login
     <input id="login-button" class="roboto-regular" type="submit" value="Login">
     <p class="roboto-regular">
         Don't have an account yet? <br>
-        <a href="{{ url_for ('signup' )}}" class="waves-effect waves-light btn-small signup-button roboto-regular">Signup</a>
+        <a href="{{ url_for ('signup' )}}" class="waves-effect waves-light btn-small signup-button roboto-regular" aria-label="Go the Toy Tribe signup page">Signup</a>
     </p>
 </form>
 
 <!--Check if login was successful-->
-<div class="container">
+<!-- <div class="container">
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul class="messages">
@@ -35,5 +36,5 @@ Toy Tribe: Login
             </ul>
         {% endif %}
     {% endwith %}
-</div>
+</div> -->
 {% endblock %}
