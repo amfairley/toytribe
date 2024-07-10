@@ -104,11 +104,19 @@ def delete_toy(toy_id):
     db.session.commit()
     return redirect(url_for('toys'))
 
-# 404 error handling taken from:
+
 @app.errorhandler(404)
 def page_not_found(e):
     """
     Redirects to 404 page when the page is not found.
 
     """
-    return render_template('404.html')
+    return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    """
+    Redirects to a 500 page when there is an internal server error.
+
+    """
+    return render_template('500.html'), 500
