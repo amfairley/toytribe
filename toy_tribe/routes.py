@@ -8,8 +8,19 @@ from flask import (
 )
 from werkzeug.security import generate_password_hash, check_password_hash
 from toy_tribe import app, db
-from toy_tribe.models import Users, Toy, Profile, Review
-from toy_tribe.forms import LoginForm, SignupForm, AddToy, EditToy
+from toy_tribe.models import(
+    Users,
+    Toy,
+    ToyType,
+    Profile,
+    Review
+)
+from toy_tribe.forms import(
+    LoginForm,
+    SignupForm,
+    AddToy,
+    EditToy
+) 
 
 
 @app.route("/")
@@ -126,16 +137,22 @@ def add_toy():
     Redirects user to toys page on successful addition of a new toy.
     """
     user_id = session.get('user_id')
+    toy_types = ToyType.query.all()
     form = AddToy()
+    form.toy_type_id.choices = [(toy_type.id, toy_type.toy_type) for toy_type in toy_types]
     # If there are no errors in the form when submitted:
     if form.validate_on_submit():
+        if not form.image_url.data:
+            form.image_url.data = "/static/img/default_toy.webp"
+        if not form.description.data:
+            form.description.data = "No description added yet."
         # New Toy class instance with submitted data
         new_toy = Toy(
             user_id=user_id,
             name=form.name.data,
             company=form.company.data,
-            type=form.type.data,
-            is_approved=form.is_approved.data,
+            toy_type_id=form.toy_type_id.data,
+            description = form.description.data,
             image_url=form.image_url.data
         )
         # Adds the new_toy to the database and saves it
@@ -143,7 +160,7 @@ def add_toy():
         db.session.commit()
         # Redirects user back to toys when the new toy is added
         return redirect(url_for('toys'))
-    return render_template('add_toy.html', form=form)
+    return render_template('add_toy.html', form=form, toy_types=toy_types)
 
 
 @app.route('/edit_toy/<int:toy_id>', methods=['GET', 'POST'])
