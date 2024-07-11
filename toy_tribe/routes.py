@@ -135,6 +135,13 @@ def signup():
         # Adds the new_user to the database and saves it
         db.session.add(new_user)
         db.session.commit()
+        new_user_profile = Profile(
+            user_id = new_user.id,
+            about_me = "I am yet to fill this out.",
+            user_image = "/static/img/default_toy.webp"
+        )
+        db.session.add(new_user_profile)
+        db.session.commit()
         flash('Registration successful', 'success')
         # Redirects user to login page when signed up
         return redirect(url_for('login'))

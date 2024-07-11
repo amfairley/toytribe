@@ -131,7 +131,6 @@ class Profile(db.Model):
     is_parent = db.Column(db.Boolean, default=False, nullable=False)
     user_image = db.Column(
         db.String(300),
-        default='toy_tribe/static/img/default_profile.webp',
         nullable=False
     )
 
