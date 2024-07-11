@@ -140,7 +140,7 @@ def signup():
         new_user_profile = Profile(
             user_id = new_user.id,
             about_me = "I am yet to fill this out.",
-            user_image = "/static/img/default_toy.webp"
+            user_image = "/static/img/default_profile_image.webp"
         )
         db.session.add(new_user_profile)
         db.session.commit()
@@ -261,10 +261,7 @@ def internal_server_error(e):
 # Remove users define and return: used to put button to check links to other profiles work
 @app.route('/profile')
 def profile():
-    """
-    A function that directs users to their own profile page
-    """
-
+    """A function that directs users to their own profile page"""
     users = Users.query.all()
     country = pycountry.countries
     # Get the logged in user_id
@@ -273,7 +270,10 @@ def profile():
     # Get the user
     user = Users.query.get_or_404(user_id)
     user_profile = Profile.query.filter_by(user_id=user_id).first_or_404()
-    flag_url = "/static/img/flags/" + user_profile.country + ".svg"
+    if user_profile.country:
+        flag_url = "/static/img/flags/" + user_profile.country + ".svg"
+    else:
+        flag_url = None
     return render_template(
         'profile.html',
         user_id=user_id,
@@ -285,21 +285,23 @@ def profile():
     )
 
 
-
-
-
-
-
 @app.route('/profile/<int:user_id>')
 def other_profile(user_id):
+    """A function that directs users to other users profile pages"""
+    country = pycountry.countries
     logged_in_user = session.get("user_id")
     user = Users.query.get_or_404(user_id)
-    user_profile = Profile.query.filter_by(user_id=user_id).first_or_404()
+    user_profile = Profile.query.filter_by(user_id=user_id).first_or_404()    
+    if user_profile.country:
+        flag_url = "/static/img/flags/" + user_profile.country + ".svg"
+    else:
+        flag_url = None
     return render_template(
         'profile.html',
         user=user,
         user_profile=user_profile,
-        logged_in_user=logged_in_user
+        logged_in_user=logged_in_user,
+        flag_url=flag_url
     )
 
 # LINK to other users: 
@@ -335,6 +337,25 @@ def edit_profile(user_id):
         # Saves these changes
         db.session.commit()
         return redirect(url_for('profile'))
-    return render_template('edit_profile.html', profile=profile, form=form, countries=countries, user=user, logged_in_user=logged_in_user)
+    return render_template(
+        'edit_profile.html',
+        profile=profile,
+        form=form,
+        countries=countries,
+        user=user,
+        logged_in_user=logged_in_user
+    )
 
 
+@app.route('/delete_user/<int:user_id>')
+def delete_user(user_id):
+    """A function used to remove the user from Users table in the database."""
+    # Gets the correct User
+    user = Users.query.get_or_404(user_id)
+    # Deletes the toy
+    db.session.delete(user)
+    db.session.commit()
+    # Logs out
+    session.pop('user_id', None)
+    # Redirects back to home.
+    return redirect(url_for('home'))
