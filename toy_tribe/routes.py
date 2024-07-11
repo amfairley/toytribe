@@ -183,13 +183,16 @@ def edit_toy(toy_id):
     form = EditToy(obj=toy)
     # Checks the reference of the a tag linking to edit_toy.html
     ref = request.args.get('ref')
+    # Gets the type choices and gives them as options
+    toy_types = ToyType.query.all()
+    form.toy_type_id.choices = [(toy_type.id, toy_type.toy_type) for toy_type in toy_types]
     # If there are no errors in the form when submitted:
     if form.validate_on_submit():
         # Sets values of Toy instance to new data
-        toy.name = form.name.data
+        toy.name = form.toy_type_id.data
         toy.company = form.company.data
-        toy.type = form.type.data
-        toy.is_approved = form.is_approved.data
+        toy.toy_type_id=form.toy_type_id.data,
+        toy.description = form.description.data
         toy.image_url = form.image_url.data
         # Saves these changes
         db.session.commit()
@@ -198,8 +201,8 @@ def edit_toy(toy_id):
             return redirect(url_for('toys'))
         # If the user came from individual_toy, redirect back there
         else:
-            return redirect(url_for('individual_toy', toy_id=toy.id))
-    return render_template('edit_toy.html', form=form)
+            return redirect(url_for('individual_toy', toy_id=toy.id, toy_types=toy_types))
+    return render_template('edit_toy.html', form=form, toy_types=toy_types, toy=toy)
 
 
 @app.route('/delete_toy/<int:toy_id>')

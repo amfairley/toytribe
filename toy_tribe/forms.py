@@ -73,10 +73,7 @@ class EditToy(FlaskForm):
     """
     name = StringField('Toy Name', validators=[DataRequired()])
     company = StringField('Company Name', validators=[DataRequired()])
-    type = SelectField('Type of Toy', choices=[
-        ('action_figure', 'Action Figure'),
-        ('board_game', 'Board Game')
-    ], validators=[DataRequired()])
-    is_approved = BooleanField('Approved', validators=[DataRequired()])
-    image_url = StringField('Image URL')  # Not required, can be null
+    toy_type_id = SelectField('Type of Toy', choices=[], coerce=int)
+    description = TextAreaField('Toy Description')
+    image_url = StringField('Image URL')
     submit = SubmitField('Edit Toy')
