@@ -25,9 +25,7 @@ from toy_tribe.forms import (
 
 @app.route("/")
 def home():
-    """
-    A function that directs users to the homepage.
-    """
+    """ A function that directs users to the homepage."""
     return render_template("home.html")
 
 
@@ -98,7 +96,8 @@ def login():
 @app.route('/logout')
 def logout():
     """
-    A function that allows a user to log out and redirects them to home.html.
+    A function that allows a user to log out 
+    and redirects them to home.html.
     """
     session.pop('user_id', None)
     flash('You have been logged out successfully.', 'success')
@@ -226,9 +225,7 @@ def edit_toy(toy_id):
 
 @app.route('/delete_toy/<int:toy_id>')
 def delete_toy(toy_id):
-    """
-    A function used to remove the toy from Toy table in the database.
-    """
+    """A function used to remove the toy from Toy table in the database."""
     # Gets the correct toy
     toy = Toy.query.get_or_404(toy_id)
     # Deletes the toy
@@ -241,19 +238,13 @@ def delete_toy(toy_id):
 
 @app.errorhandler(404)
 def page_not_found(e):
-    """
-    Redirects to 404 page when the page is not found.
-
-    """
+    """Redirects to 404 page when the page is not found."""
     # Directs user and provides HTTP status code
     return render_template('404.html'), 404
 
 
 @app.errorhandler(500)
 def internal_server_error(e):
-    """
-    Redirects to a 500 page when there is an internal server error.
-
-    """
+    """Redirects to a 500 page when there is an internal server error."""
     # Directs the user and provides HTTP status code
     return render_template('500.html'), 500
