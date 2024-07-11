@@ -13,6 +13,7 @@ from wtforms.validators import (
     EqualTo,
     Email
 )
+import pycountry
 
 
 class LoginForm(FlaskForm):
@@ -82,3 +83,15 @@ class EditToy(FlaskForm):
     description = TextAreaField('Toy Description')
     image_url = StringField('Image URL')
     submit = SubmitField('Edit Toy')
+
+
+class EditProfile(FlaskForm):
+    """
+    EditProfile class to handle profile updating functionality.
+    Collects about_me, country, is_parent, user_image.
+    """
+    about_me = TextAreaField('About Me')
+    is_parent = BooleanField('Are you a parent?')
+    country = SelectField('Country', choices=[], coerce=str)
+    user_image = StringField('Profile Picture URL:')
+    submit = SubmitField('Edit Profile')

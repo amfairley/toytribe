@@ -19,8 +19,10 @@ from toy_tribe.forms import (
     LoginForm,
     SignupForm,
     AddToy,
-    EditToy
+    EditToy,
+    EditProfile
 )
+import pycountry
 
 
 @app.route("/")
@@ -264,18 +266,20 @@ def profile():
     """
 
     users = Users.query.all()
-
+    country = pycountry.countries
     # Get the logged in user_id
     user_id = session.get("user_id")
     # Get the user
     user = Users.query.get_or_404(user_id)
     user_profile = Profile.query.filter_by(user_id=user_id).first_or_404()
+    flag_url = "/static/img/flags/" + user_profile.country + ".svg"
     return render_template(
         'profile.html',
         user_id=user_id,
         user=user,
         user_profile=user_profile,
-        users=users
+        users=users,
+        flag_url = flag_url
     )
 
 
@@ -300,3 +304,31 @@ def other_profile(user_id):
     #     <p>{{ user.first_name }}</p>
     # </a>
     # {% endfor %}
+
+@app.route('/edit_profile/<int:user_id>', methods=['GET', 'POST'])
+def edit_profile(user_id):
+    """
+    A function that directs users to the edit profile page.
+    Utilizes the EditProfile form to get user data.
+    Updates the entry in the Profile table in the database with new data.
+    Redirects user back to the profile page.
+    """
+    profile = Profile.query.filter_by(user_id=user_id).first_or_404()
+    # Get a list of countrys from pycountry library
+    countries = sorted(pycountry.countries, key=lambda country: country.name)
+    country_choices = [(country.alpha_2, country.name) for country in countries]
+    # Sets the form and the country choices
+    form = EditProfile(obj=profile)
+    form.country.choices = country_choices
+    # If there are no errors in the form when submitted:
+    if form.validate_on_submit():
+        profile.about_me = form.about_me.data
+        profile.is_parent = form.is_parent.data
+        profile.country = form.country.data
+        profile.user_image = form.user_image.data
+        # Saves these changes
+        db.session.commit()
+        return redirect(url_for('profile'))
+    return render_template('edit_profile.html', profile=profile, form=form, countries=countries)
+
+

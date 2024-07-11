@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+<!-- Title for browser tab -->
+{% block title %}
+> Edit Profile
+{% endblock %}
+
+<!-- Edit Toy Page Content -->
+{% block content %}
+    {% if 'user_id' in session %}
+        <h2 class="playfair-display" id="edit-profile-title">Edit Profile</h2>
+
+        <form id="edit-toy-form" method="POST">
+
+            {{ form.hidden_tag() }}
+
+            <div class="edit-toy-input">
+                <label for="about_me" class="roboto-regular">{{ form.about_me.label }}</label>
+                {{ form.about_me }}
+            </div>
+
+            <div class="edit-profile-input">
+                <label for="is_parent" class="roboto-regular">{{ form.is_parent.label }}</label>
+                <div class="switch">
+                    <label>
+                      Not a parent
+                      {{ form.is_parent(class="form-control") }}
+                      <span class="lever"></span>
+                      I have children
+                    </label>
+                  </div>
+            </div>
+
+            <div class="edit-toy-input">
+                <label for="country" class="roboto-regular">{{ form.country.label }}</label>
+                {{ form.country(class="form-control") }}
+            </div>
+
+            <div class="edit-toy-input">
+                <label for="user_image" class="roboto-regular">{{ form.user_image.label }}</label>
+                {{ form.user_image }}
+            </div>
+
+            <input id="edit-toy-button" class="roboto-regular" type="submit" value="Edit Profile">
+    {% else %}
+        <!-- Redirect to homepage -->
+        <script>
+            window.location.href = "{{ url_for('home') }}";
+        </script>
+    {% endif %}
+{% endblock %}
