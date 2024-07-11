@@ -24,9 +24,7 @@ class Users(db.Model):
     reviews = db.relationship("Review", backref="users", lazy=True)
 
     def __repr__(self):
-        """
-        Returns a string represenation of the Users database schema.
-        """
+        """Returns a string represenation of the Users database schema."""
         return (
             f"#{self.id} | first_name: {self.first_name} | "
             f"last_name: {self.last_name} | email: {self.email} | "
@@ -75,9 +73,7 @@ class Toy(db.Model):
     )
 
     def average_rating(self):
-        """
-        Function to get the average rating for the toy from the reviews.
-        """
+        """Function to get the average rating for the toy from the reviews."""
         # Get all reviews for the toy by the toy_id
         reviews = Review.query.filter_by(toy_id=self.id).all()
         # If there are no reviews, return 0
@@ -88,9 +84,7 @@ class Toy(db.Model):
         return total_rating / len(reviews)
 
     def __repr__(self):
-        """
-        Returns a string represenation of the Toy database schema.
-        """
+        """Returns a string represenation of the Toy database schema."""
         return (
             f"#{self.id} | user_id: {self.user_id} | "
             f"toy_type_id: {self.toy_type_id} | name: {self.name} | "
@@ -112,9 +106,7 @@ class ToyType(db.Model):
     toys = db.relationship("Toy", backref="toytype", lazy=True)
 
     def __repr__(self):
-        """
-        Returns a string represenation of the Toy Type database schema.
-        """
+        """Returns a string represenation of the Toy Type database schema."""
         return f"#{self.id} | toy_type: {self.toy_type}"
 
 
@@ -144,9 +136,7 @@ class Profile(db.Model):
     )
 
     def __repr__(self):
-        """
-        Returns a string representation of the Profile database schema.
-        """
+        """Returns a string representation of the Profile database schema."""
         return (
             f"#{self.id} | user_id: {self.user_id} | "
             f"about_me: {self.about_me} | country: {self.country} | "
@@ -179,6 +169,7 @@ class Review(db.Model):
     )
 
     def __repr__(self):
+        """Returns a string representation of the Review database schema."""
         return (
             f"#{self.id} | user_id: {self.user_id} | toy_id: {self.toy_id} | "
             f"review_content: {self.review_content} | rating: {self.rating} | "
@@ -188,14 +179,17 @@ class Review(db.Model):
     # Methods to update the average toy rating when changes are made
     @staticmethod
     def after_insert(mapper, connection, target):
+        """Function to refresh average rating after new review"""
         target.toy.update_average_rating()
 
     @staticmethod
     def after_update(mapper, connection, target):
+        """Function to refresh average rating after editing review"""
         target.toy.update_average_rating()
 
     @staticmethod
     def after_delete(mapper, connection, target):
+        """Function to refresh average rating after deleting review"""
         target.toy.update_average_rating()
 
 
