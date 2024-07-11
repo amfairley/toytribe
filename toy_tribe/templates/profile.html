@@ -8,40 +8,46 @@
 <!-- Add Toy Page Content -->
 {% block content %}
 <section class="row profile-content">
-    <div class = "col s12 m4 profile-picture">
-        <img src="{{user_profile.user_image}}">
+    {% if logged_in_user == user.id %}
+    <div class = "col s6 m12 left">
+        <a href="{{ url_for('edit_profile', user_id=user.id )}}" class="roboto-regular profile-buttons" aria-label="Edit your profile">Edit</a>
+        <a href="{{ url_for('delete_user', user_id=user.id )}}" class="roboto-regular profile-buttons" aria-label="Delete your profile">Delete</a>
     </div>
-    <div class = "col s12 m8">
-        <div class="row">
-            <div class = "col s12">
-                <img class="country-flag" src="{{ flag_url }}" alt="Flag for {{ user_profile.country }}">
-                {% if user_profile.is_parent == True %}
-                <p class="right">I am a parent</p>
-                {% endif %}
-            </div>
-            <div class = "col s12">
-                <h2>
-                    {{ user.first_name }} {{ user.last_name }}
-                </h2>
-                <h3>About Me</h3>
-                <p>
-                    {{ user_profile.about_me }}
-                </p>
-
-                {% if logged_in_user == user.id %}
-                <a href="{{ url_for('edit_profile', user_id=user.id )}}">Edit</a>
-                {% endif %}
-            </div>
+    {% endif %}
+    {% if flag_url %}
+    <div class="col s6 m12">
+        <img class="country-flag" src="{{ flag_url }}" alt="Flag for {{ user_profile.country }}">
+    </div>
+    {% endif %}
+    {% if user_profile.is_parent == True %}
+    <div class="col s6 m12 parent-check-section">
+        <div class="parent-check">
+            <span class="roboto-regular">Verified Parent</span>
+            <i class="fa-regular fa-circle-check"></i>
         </div>
     </div>
-
-    {% for user in users %}
-    <a href="{{ url_for('other_profile', user_id=user.id) }}">
-        <p>{{ user.first_name }}</p>
-    </a>
-    {% endfor %}
-
+    {% endif %}
+    <div class = "col s12 m4 profile-picture">
+        <img src="{{user_profile.user_image}}" alt="User profile image for {{ user.first_name }}">
+    </div>
+    <section class = "col s12 m8">
+        <h2 class="playfair-display profile-name">
+        {{ user.first_name }} {{ user.last_name }}
+        </h2>
+    </section>
+    <section class="col s12 m8 profile-about-me">
+        <p class="roboto-regular">
+            <span>About Me:</span>
+            {{ user_profile.about_me }}
+        </p>
+    </section>
 </section>
+
+{% for user in users %}
+<a href="{{ url_for('other_profile', user_id=user.id) }}">
+    <p>{{ user.first_name }}</p>
+</a>
+{% endfor %}
 {% endblock %}
 
 
