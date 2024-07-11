@@ -8,19 +8,19 @@ from flask import (
 )
 from werkzeug.security import generate_password_hash, check_password_hash
 from toy_tribe import app, db
-from toy_tribe.models import(
+from toy_tribe.models import (
     Users,
     Toy,
     ToyType,
     Profile,
     Review
 )
-from toy_tribe.forms import(
+from toy_tribe.forms import (
     LoginForm,
     SignupForm,
     AddToy,
     EditToy
-) 
+)
 
 
 @app.route("/")
@@ -64,7 +64,12 @@ def individual_toy(toy_id):
     toy_types = {toy_type.id: toy_type for toy_type in ToyType.query.all()}
     toy = Toy.query.get_or_404(toy_id)
     user_id = session.get('user_id')
-    return render_template('individual_toy.html', toy=toy, user_id=user_id, toy_types=toy_types)
+    return render_template(
+        'individual_toy.html',
+        toy=toy,
+        user_id=user_id,
+        toy_types=toy_types
+    )
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -148,7 +153,9 @@ def add_toy():
     user_id = session.get('user_id')
     toy_types = ToyType.query.all()
     form = AddToy()
-    form.toy_type_id.choices = [(toy_type.id, toy_type.toy_type) for toy_type in toy_types]
+    form.toy_type_id.choices = [
+        (toy_type.id, toy_type.toy_type) for toy_type in toy_types
+    ]
     # If there are no errors in the form when submitted:
     if form.validate_on_submit():
         if not form.image_url.data:
@@ -161,7 +168,7 @@ def add_toy():
             name=form.name.data,
             company=form.company.data,
             toy_type_id=form.toy_type_id.data,
-            description = form.description.data,
+            description=form.description.data,
             image_url=form.image_url.data
         )
         # Adds the new_toy to the database and saves it
@@ -186,13 +193,15 @@ def edit_toy(toy_id):
     ref = request.args.get('ref')
     # Gets the type choices and gives them as options
     toy_types = ToyType.query.all()
-    form.toy_type_id.choices = [(toy_type.id, toy_type.toy_type) for toy_type in toy_types]
+    form.toy_type_id.choices = [
+        (toy_type.id, toy_type.toy_type) for toy_type in toy_types
+    ]
     # If there are no errors in the form when submitted:
     if form.validate_on_submit():
         # Sets values of Toy instance to new data
         toy.name = form.toy_type_id.data
         toy.company = form.company.data
-        toy.toy_type_id=form.toy_type_id.data,
+        toy.toy_type_id = form.toy_type_id.data,
         toy.description = form.description.data
         toy.image_url = form.image_url.data
         # Saves these changes
@@ -202,8 +211,17 @@ def edit_toy(toy_id):
             return redirect(url_for('toys'))
         # If the user came from individual_toy, redirect back there
         else:
-            return redirect(url_for('individual_toy', toy_id=toy.id, toy_types=toy_types))
-    return render_template('edit_toy.html', form=form, toy_types=toy_types, toy=toy)
+            return redirect(url_for(
+                'individual_toy',
+                toy_id=toy.id,
+                toy_types=toy_types
+            ))
+    return render_template(
+        'edit_toy.html',
+        form=form,
+        toy_types=toy_types,
+        toy=toy
+    )
 
 
 @app.route('/delete_toy/<int:toy_id>')

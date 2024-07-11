@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import(
+from wtforms import (
     StringField,
     PasswordField,
     SubmitField, EmailField,
@@ -7,7 +7,7 @@ from wtforms import(
     BooleanField,
     TextAreaField
 )
-from wtforms.validators import(
+from wtforms.validators import (
     DataRequired,
     Length,
     EqualTo,
@@ -60,7 +60,12 @@ class AddToy(FlaskForm):
     """
     name = StringField('Toy Name', validators=[DataRequired()])
     company = StringField('Company Name', validators=[DataRequired()])
-    toy_type_id = SelectField('Type of Toy', choices=[], coerce=int)
+    toy_type_id = SelectField(
+        'Type of Toy',
+        choices=[],
+        coerce=int,
+        validators=[DataRequired()]
+    )
     description = TextAreaField('Toy Description')
     image_url = StringField('Image URL')  # Not required, can be null
     submit = SubmitField('Add Toy')
