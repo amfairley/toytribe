@@ -41,7 +41,11 @@
                                 </tr>
                                 <tr>
                                     <td class="toy-col-1 open-sans">Type of Toy:</td>
-                                    <td class="toy-col-2 roboto-regular">{{ toy.type }}</td>
+                                    <td class="toy-col-2 roboto-regular">{{ toy_types[toy.toy_type_id].toy_type }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="toy-col-1 open-sans">Description:</td>
+                                    <td class="toy-col-2 roboto-regular">{{ toy.description }}</td>
                                 </tr>
                             </tbody>
                         </table>

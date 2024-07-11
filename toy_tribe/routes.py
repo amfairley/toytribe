@@ -61,9 +61,10 @@ def individual_toy(toy_id):
     Provides the user_id of the logged in user in order to redirect
     logged out users to the homepage.
     """
+    toy_types = {toy_type.id: toy_type for toy_type in ToyType.query.all()}
     toy = Toy.query.get_or_404(toy_id)
     user_id = session.get('user_id')
-    return render_template('individual_toy.html', toy=toy, user_id=user_id)
+    return render_template('individual_toy.html', toy=toy, user_id=user_id, toy_types=toy_types)
 
 
 @app.route('/login', methods=['GET', 'POST'])
