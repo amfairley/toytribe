@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+<!-- Title for browser tab -->
+{% block title %}
+> Profile
+{% endblock %}
+
+<!-- Add Toy Page Content -->
+{% block content %}
+<section class="row profile-content">
+    <div class = "col s12 m4 profile-picture">
+        <img src="{{user_profile.user_image}}">
+    </div>
+    <div class = "col s12 m8">
+        <div class="row">
+            <div class = "col s12">
+                Country
+            </div>
+            <div class = "col s12">
+                <h2>
+                    {{ user.first_name }} {{ user.last_name }}
+                </h2>
+                <h3>About Me</h3>
+                <p>
+                    {{ user_profile.about_me }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    {% for user in users %}
+    <a href="{{ url_for('other_profile', user_id=user.id) }}">
+        <p>{{ user.first_name }}</p>
+    </a>
+    {% endfor %}
+</section>
+{% endblock %}
+
+
+Name: {{ user.first_name }} {{user.last_name}} <br>
+Image url: {{user_profile.user_image }} <br>
+Country: {{user_profile.country }} <br>
+About me: {{user_profile.about_me }}

@@ -255,3 +255,48 @@ def internal_server_error(e):
     """Redirects to a 500 page when there is an internal server error."""
     # Directs the user and provides HTTP status code
     return render_template('500.html'), 500
+
+# Remove users define and return: used to put button to check links to other profiles work
+@app.route('/profile')
+def profile():
+    """
+    A function that directs users to their own profile page
+    """
+
+    users = Users.query.all()
+
+    # Get the logged in user_id
+    user_id = session.get("user_id")
+    # Get the user
+    user = Users.query.get_or_404(user_id)
+    user_profile = Profile.query.filter_by(user_id=user_id).first_or_404()
+    return render_template(
+        'profile.html',
+        user_id=user_id,
+        user=user,
+        user_profile=user_profile,
+        users=users
+    )
+
+
+
+
+
+
+
+@app.route('/profile/<int:user_id>')
+def other_profile(user_id):
+    user = Users.query.get_or_404(user_id)
+    user_profile = Profile.query.filter_by(user_id=user_id).first_or_404()
+    return render_template(
+        'profile.html',
+        user=user,
+        user_profile=user_profile
+    )
+
+# LINK to other users: 
+    # {% for user in users %}
+    # <a href="{{ url_for('other_profile', user_id=user.id) }}">
+    #     <p>{{ user.first_name }}</p>
+    # </a>
+    # {% endfor %}
