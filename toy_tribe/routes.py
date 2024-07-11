@@ -269,6 +269,7 @@ def profile():
     country = pycountry.countries
     # Get the logged in user_id
     user_id = session.get("user_id")
+    logged_in_user = session.get("user_id")
     # Get the user
     user = Users.query.get_or_404(user_id)
     user_profile = Profile.query.filter_by(user_id=user_id).first_or_404()
@@ -279,7 +280,8 @@ def profile():
         user=user,
         user_profile=user_profile,
         users=users,
-        flag_url = flag_url
+        flag_url = flag_url,
+        logged_in_user=logged_in_user
     )
 
 
@@ -290,12 +292,14 @@ def profile():
 
 @app.route('/profile/<int:user_id>')
 def other_profile(user_id):
+    logged_in_user = session.get("user_id")
     user = Users.query.get_or_404(user_id)
     user_profile = Profile.query.filter_by(user_id=user_id).first_or_404()
     return render_template(
         'profile.html',
         user=user,
-        user_profile=user_profile
+        user_profile=user_profile,
+        logged_in_user=logged_in_user
     )
 
 # LINK to other users: 
@@ -313,6 +317,8 @@ def edit_profile(user_id):
     Updates the entry in the Profile table in the database with new data.
     Redirects user back to the profile page.
     """
+    user = Users.query.get_or_404(user_id)
+    logged_in_user = session.get("user_id")
     profile = Profile.query.filter_by(user_id=user_id).first_or_404()
     # Get a list of countrys from pycountry library
     countries = sorted(pycountry.countries, key=lambda country: country.name)
@@ -329,6 +335,6 @@ def edit_profile(user_id):
         # Saves these changes
         db.session.commit()
         return redirect(url_for('profile'))
-    return render_template('edit_profile.html', profile=profile, form=form, countries=countries)
+    return render_template('edit_profile.html', profile=profile, form=form, countries=countries, user=user, logged_in_user=logged_in_user)
 
 

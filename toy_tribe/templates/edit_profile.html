@@ -7,7 +7,8 @@
 
 <!-- Edit Toy Page Content -->
 {% block content %}
-    {% if 'user_id' in session %}
+    <!-- Means only the user can edit their own profile -->
+    {% if logged_in_user==user.id %}
         <h2 class="playfair-display" id="edit-profile-title">Edit Profile</h2>
 
         <form id="edit-toy-form" method="POST">
