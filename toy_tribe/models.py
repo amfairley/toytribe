@@ -1,6 +1,7 @@
 from toy_tribe import db
 from datetime import datetime
 from sqlalchemy import event
+from sqlalchemy.dialects.postgresql import ARRAY
 
 
 class Users(db.Model):
@@ -78,7 +79,7 @@ class Toy(db.Model):
         reviews = Review.query.filter_by(toy_id=self.id).all()
         # If there are no reviews, return 0
         if not reviews:
-            return 0
+            return "Not Reviewed Yet"
         # Calculate the average rating
         total_rating = sum(review.rating for review in reviews)
         return total_rating / len(reviews)
@@ -113,7 +114,7 @@ class ToyType(db.Model):
 class Profile(db.Model):
     """
     Profile class model for database.
-    Contains id, user_id, about_me, country, is_parent.
+    Contains id, user_id, about_me, country, is_parent, user_image.
     """
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(
@@ -161,6 +162,7 @@ class Review(db.Model):
     )
     review_content = db.Column(db.Text, nullable=False)
     rating = db.Column(db.Integer, primary_key=False, nullable=False)
+    also_liked = db.Column(ARRAY(db.Integer), nullable=True)
     date_of_creation = db.Column(
         db.DateTime,
         default=datetime.utcnow,
@@ -172,27 +174,29 @@ class Review(db.Model):
         return (
             f"#{self.id} | user_id: {self.user_id} | toy_id: {self.toy_id} | "
             f"review_content: {self.review_content} | rating: {self.rating} | "
+            f"also_liked: {self.also_liked} | "
             f"date_of_creation: {self.date_of_creation}"
         )
 
-    # Methods to update the average toy rating when changes are made
-    @staticmethod
-    def after_insert(mapper, connection, target):
-        """Function to refresh average rating after new review"""
-        target.toy.update_average_rating()
+#     # Methods to update the average toy rating when changes are made
+#     @staticmethod
+#     def after_insert(mapper, connection, target):
+#         """Function to refresh average rating after new review"""
+#         target.toy.update_average_rating()
 
-    @staticmethod
-    def after_update(mapper, connection, target):
-        """Function to refresh average rating after editing review"""
-        target.toy.update_average_rating()
+#     @staticmethod
+#     def after_update(mapper, connection, target):
+#         """Function to refresh average rating after editing review"""
+#         target.toy.update_average_rating()
 
-    @staticmethod
-    def after_delete(mapper, connection, target):
-        """Function to refresh average rating after deleting review"""
-        target.toy.update_average_rating()
+#     @staticmethod
+#     def after_delete(mapper, connection, target):
+#         """Function to refresh average rating after deleting review"""
+#         target.toy.update_average_rating()
 
 
-# Event listeners for updating average ratings
-event.listen(Review, 'after_insert', Review.after_insert)
-event.listen(Review, 'after_update', Review.after_update)
-event.listen(Review, 'after_delete', Review.after_delete)
+# # Event listeners for updating average ratings
+# event.listen(Review, 'after_insert', Review.after_insert)
+# event.listen(Review, 'after_update', Review.after_update)
+# event.listen(Review, 'after_delete', Review.after_delete)
+
