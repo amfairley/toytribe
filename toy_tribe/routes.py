@@ -71,7 +71,9 @@ def individual_toy(toy_id):
         toy=toy,
         user_id=user_id,
         toy_types=toy_types,
-        reviews=reviews
+        reviews=reviews,
+        Users=Users,
+        Toy=Toy
     )
 
 
