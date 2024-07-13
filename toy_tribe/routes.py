@@ -66,7 +66,7 @@ def individual_toy(toy_id):
     toy_types = {toy_type.id: toy_type for toy_type in ToyType.query.all()}
     toy = Toy.query.get_or_404(toy_id)
     user_id = session.get('user_id')
-    reviews = Review.query.filter_by(toy_id=toy.id).all()
+    reviews = Review.query.filter_by(toy_id=toy.id).order_by(Review.id).all()
     return render_template(
         'individual_toy.html',
         toy=toy,
