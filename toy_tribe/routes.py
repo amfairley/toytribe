@@ -21,7 +21,8 @@ from toy_tribe.forms import (
     AddToy,
     EditToy,
     EditProfile,
-    AddReview
+    AddReview,
+    EditReview
 )
 import pycountry
 
@@ -369,11 +370,23 @@ def delete_user(user_id):
 
 @app.route('/add_review/<int:toy_id>', methods=['GET', 'POST'])
 def add_review(toy_id):
+    """
+    A function that directs users to the add review page.
+    Utilizes the AddReview form to get user data.
+    Creates a new entry in the Review table in the database
+    Redirects user to individual toy page on successful addition of review.
+    Redirects user back to the profile page.
+    """
+    # Get the toy that is being reviewed
     toy = Toy.query.get_or_404(toy_id)
+    # Get the user doing the review
     user_id = session.get('user_id')
+    # Get all toys and use it to populate the also_liked selection
     toys= Toy.query.all()
     toy_options = [(each_toy.id, each_toy.name) for each_toy in toys]
+    # Set the form
     form = AddReview()
+    # Set the also_liked selection choices
     form.also_liked.choices = toy_options
     # If there are no errors in the form when submitted:
     if form.validate_on_submit():
@@ -391,4 +404,40 @@ def add_review(toy_id):
         # Redirects user back to toy when the review is added
         return redirect(url_for('individual_toy', toy_id=toy_id))
     return render_template('add_review.html', form=form, toy_id=toy_id, toy=toy)
+
+
+@app.route('/edit_review/<int:review_id>', methods=['GET', 'POST'])
+def edit_review(review_id):
+    """
+    A function that directs users to the edit review page.
+    Utilizes the EditReview form to get user data.
+    Updates the entry in the Review table in the database with new data.
+    Redirects user back to the individual toy page.
+    """
+    # Get the review to be edited
+    review = Review.query.get_or_404(review_id)
+    # Get the toy that the review is for in order to redirect back to toy page
+    toy = Toy.query.get_or_404(review.toy_id)
+    toy_id = toy.id
+    # Get all toys to populate the also_liked selection
+    toys= Toy.query.all()
+    toy_options = [(each_toy.id, each_toy.name) for each_toy in toys]
+    # Select form to use and default values
+    form = EditReview(
+        review_content=review.review_content,
+        rating = review.rating,
+        also_liked = review.also_liked
+    )
+    # Set the also_liked selection choices
+    form.also_liked.choices = toy_options
+    # If there are no errors in the form when submitted:
+    if form.validate_on_submit():
+        review.review_content = form.review_content.data
+        review.rating = form.rating.data
+        review.also_liked = form.also_liked.data
+        # Save the changes
+        db.session.commit()
+        # Redirect back to individual toy page
+        return redirect(url_for('individual_toy', toy_id=toy_id))
+    return render_template('edit_review.html', form=form, toy=toy)
     
