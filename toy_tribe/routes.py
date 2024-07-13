@@ -312,13 +312,6 @@ def other_profile(user_id):
         flag_url=flag_url
     )
 
-# LINK to other users: 
-    # {% for user in users %}
-    # <a href="{{ url_for('other_profile', user_id=user.id) }}">
-    #     <p>{{ user.first_name }}</p>
-    # </a>
-    # {% endfor %}
-
 @app.route('/edit_profile/<int:user_id>', methods=['GET', 'POST'])
 def edit_profile(user_id):
     """
@@ -441,3 +434,20 @@ def edit_review(review_id):
         return redirect(url_for('individual_toy', toy_id=toy_id))
     return render_template('edit_review.html', form=form, toy=toy)
     
+
+@app.route('/delete_review/<int:review_id>')
+def delete_review(review_id):
+    """
+    A function used to remove the review
+    from Review table in the database.
+    """
+    # Gets the correct review
+    review = Review.query.get_or_404(review_id)
+    # Gets the toy id for redirection after deletion
+    toy = Toy.query.get_or_404(review.toy_id)
+    toy_id = toy.id    
+    # Deletes the review
+    db.session.delete(review)
+    db.session.commit()
+    # Redirects back to toy.
+    return redirect(url_for('individual_toy', toy_id=toy_id))
