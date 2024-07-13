@@ -467,6 +467,83 @@ main {
     color: #FFF3D3;
 }
 
+.show-reviews{
+    margin: 0 auto;
+    max-width: 800px;
+    position: relative;
+}
+
+#toy-review-title {
+    text-align: center;
+    color: #D93B58;
+    font-size: 4rem;
+    text-shadow: #333A3F;
+}
+
+.review-row {
+    border: 1pt solid #F6D36A;
+    box-shadow: 5px 5px #F6D36A;
+}
+
+.review-author {
+    font-size: 1.3rem;
+}
+
+.review-rating {
+    text-align: right;
+}
+
+.review-name-divider {
+    border-top: 1px solid #F6D36A;
+}
+
+.carousel {
+    height: 250px;
+}
+
+.carousel-divider {
+    border: 2px solid #D93B58;
+    border-radius: 1px;
+    width: 50%;
+}
+
+.also-liked-title {
+    margin-bottom: 0;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.carousel-toy {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.carousel-item {
+    height: 225px !important;
+    width: 225px !important;
+    text-align: center;
+}
+
+.liked-toy-link {
+    color: #333A3F;
+    text-shadow: -1px -1px 0 #f5f5f5, 1px -1px 0 #f5f5f5, 1px 1px 0 #f5f5f5,
+    1px 1px 0 #f5f5f5;
+    font-size: 1.5rem;
+}
+
+.review-divider {
+    margin-bottom: 14px;
+    border: 2px dashed #D93B58;
+    width: 100%;
+}
+
+.review-buttons {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
 /* ---------- 404.html AND 500.html ---------- */
 .title-error{
     text-align: center;
@@ -555,4 +632,31 @@ main {
 .profile-buttons:hover, .profile-buttons:focus {
     background-color: #D93B58;
     color: #FFF3D3;
+}
+
+/* ---------- edit_profile.html ---------- */
+#edit-profile-title {
+    text-align: center;
+}
+
+#edit-profile-form {
+    max-width: min(600px, 85%);
+    margin: 0 auto; 
+}
+
+#edit-profile-form label {
+    color: #333A3F;
+    font-size: 1rem;
+}
+
+.edit-profile-input {
+    margin-top: 20px;
+}
+
+#edit-profile-button {
+    font-size: 1.5rem;
+    background-color: #D93B58;
+    color: #FFF3D3;
+    cursor: pointer;
+    margin-bottom: 50px;    
 }
