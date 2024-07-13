@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+<!-- Title for browser tab -->
+{% block title %}
+> Edit Review
+{% endblock %}
+
+<!-- Add Review Page Content -->
+{% block content %}
+    {% if 'user_id' in session %}
+    <h2 class="playfair-display" id="add-toy-title">Edit Review for {{ toy.name }}</h2>
+
+    <form id="add-toy-form" method="POST">
+
+        {{ form.hidden_tag() }}
+
+        <div class="add-toy-input">
+            <label for="review_content" class="roboto-regular">{{ form.review_content.label }}</label>
+            {{ form.review_content }}
+        </div>
+
+        <div class="add-toy-input">
+            <label for="rating" class="roboto-regular">{{ form.rating.label }}</label>
+                {{ form.rating }}
+            </select>
+        </div>
+        <div class="edit-profile-input">
+            <label for="also_liked" class="roboto-regular">{{ form.also_liked.label }}</label>
+            {{ form.also_liked(class="form-control") }}
+        </div>
+
+        <input id="add-toy-button" class="roboto-regular" type="submit" value="Submit Review">
+</form>
+{% else %}
+    <!-- Redirect to homepage -->
+    <script>
+        window.location.href = "{{ url_for('home') }}";
+    </script>
+{% endif %}
+
+{% endblock %}
