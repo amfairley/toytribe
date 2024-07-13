@@ -5,7 +5,8 @@ from wtforms import (
     SubmitField, EmailField,
     SelectField,
     BooleanField,
-    TextAreaField
+    TextAreaField,
+    SelectMultipleField
 )
 from wtforms.validators import (
     DataRequired,
@@ -14,6 +15,7 @@ from wtforms.validators import (
     Email
 )
 import pycountry
+from toy_tribe.models import Toy
 
 
 class LoginForm(FlaskForm):
@@ -79,7 +81,7 @@ class EditToy(FlaskForm):
     """
     name = StringField('Toy Name', validators=[DataRequired()])
     company = StringField('Company Name', validators=[DataRequired()])
-    toy_type_id = SelectField('Type of Toy', choices=[], coerce=int)
+    toy_type_id = SelectField('Type of Toy', choices=[], coerce=int, validators=[DataRequired()])
     description = TextAreaField('Toy Description')
     image_url = StringField('Image URL')
     submit = SubmitField('Edit Toy')
@@ -94,4 +96,25 @@ class EditProfile(FlaskForm):
     is_parent = BooleanField('Are you a parent?')
     country = SelectField('Country', choices=[], coerce=str)
     user_image = StringField('Profile Picture URL:')
-    submit = SubmitField('Edit Profile')
+    submit = SubmitField('Save Changes')
+
+class AddReview(FlaskForm):
+    """
+    AddReview class to handle review creation functionality.
+    Collects toy name, company name, toy type, apprval, and image url.
+    """
+    review_content = TextAreaField('Review', validators=[DataRequired()])
+    rating = SelectField(
+        'Star Rating',
+        choices=[
+            ('', 'Rate the toy!'),
+            ('1', '1 Star'),
+            ('2', '2 Stars'),
+            ('3', '3 Stars'),
+            ('4', '4 Stars'),
+            ('5', '5 Stars')
+        ],
+        validators=[DataRequired()]
+    )
+    also_liked = SelectMultipleField('Also liked', choices=[], coerce=str)
+    submit = SubmitField('Submit Review')
