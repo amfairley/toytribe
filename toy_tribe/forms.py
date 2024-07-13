@@ -101,7 +101,7 @@ class EditProfile(FlaskForm):
 class AddReview(FlaskForm):
     """
     AddReview class to handle review creation functionality.
-    Collects toy name, company name, toy type, apprval, and image url.
+    Collects review content, rating, also liked.
     """
     review_content = TextAreaField('Review', validators=[DataRequired()])
     rating = SelectField(
@@ -118,3 +118,24 @@ class AddReview(FlaskForm):
     )
     also_liked = SelectMultipleField('Also liked', choices=[], coerce=str)
     submit = SubmitField('Submit Review')
+
+class EditReview(FlaskForm):
+    """
+    EditeReview class to handle review updating functionality.
+    Collects review content, rating, also liked.
+    """
+    review_content = TextAreaField('Review', validators=[DataRequired()])
+    rating = SelectField(
+        'Star Rating',
+        choices=[
+            ('', 'Rate the toy!'),
+            ('1', '1 Star'),
+            ('2', '2 Stars'),
+            ('3', '3 Stars'),
+            ('4', '4 Stars'),
+            ('5', '5 Stars')
+        ],
+        validators=[DataRequired()]
+    )
+    also_liked = SelectMultipleField('Also liked', choices=[], coerce=str)
+    submit = SubmitField('Submit Changes')
