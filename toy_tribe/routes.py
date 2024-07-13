@@ -20,7 +20,8 @@ from toy_tribe.forms import (
     SignupForm,
     AddToy,
     EditToy,
-    EditProfile
+    EditProfile,
+    AddReview
 )
 import pycountry
 
@@ -64,11 +65,13 @@ def individual_toy(toy_id):
     toy_types = {toy_type.id: toy_type for toy_type in ToyType.query.all()}
     toy = Toy.query.get_or_404(toy_id)
     user_id = session.get('user_id')
+    reviews = Review.query.filter_by(toy_id=toy.id).all()
     return render_template(
         'individual_toy.html',
         toy=toy,
         user_id=user_id,
-        toy_types=toy_types
+        toy_types=toy_types,
+        reviews=reviews
     )
 
 
@@ -206,6 +209,8 @@ def edit_toy(toy_id):
     ]
     # If there are no errors in the form when submitted:
     if form.validate_on_submit():
+
+        # If statement to check toy_type is valid and throw error message
         # Sets values of Toy instance to new data
         toy.name = form.toy_type_id.data
         toy.company = form.company.data
@@ -359,3 +364,29 @@ def delete_user(user_id):
     session.pop('user_id', None)
     # Redirects back to home.
     return redirect(url_for('home'))
+
+@app.route('/add_review/<int:toy_id>', methods=['GET', 'POST'])
+def add_review(toy_id):
+    toy = Toy.query.get_or_404(toy_id)
+    user_id = session.get('user_id')
+    toys= Toy.query.all()
+    toy_options = [(each_toy.id, each_toy.name) for each_toy in toys]
+    form = AddReview()
+    form.also_liked.choices = toy_options
+    # If there are no errors in the form when submitted:
+    if form.validate_on_submit():
+        # New Review class instance with submitted data
+        new_review = Review(
+            user_id=user_id,
+            toy_id=toy_id,
+            review_content=form.review_content.data,
+            rating=form.rating.data,
+            also_liked = form.also_liked.data            
+        )
+        # Adds the new review to the database and saves it
+        db.session.add(new_review)
+        db.session.commit()
+        # Redirects user back to toy when the review is added
+        return redirect(url_for('individual_toy', toy_id=toy_id))
+    return render_template('add_review.html', form=form, toy_id=toy_id, toy=toy)
+    
