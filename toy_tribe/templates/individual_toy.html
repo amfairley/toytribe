@@ -15,7 +15,7 @@
         <br>
         <h2 class="playfair-display" id="individual-toy-title">{{ toy.name }}</h2>
 
-        <div class="row toy-row">
+        <section class="row toy-row">
             <div class="toy-information-display col s12">
                 <div class="card">
                     <div class="card-image">
@@ -61,15 +61,23 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <section>
+        </section>
+        <section class="show-reviews">
+            {% if reviews %}
+            <h3 class="dangrek-regular" id="toy-review-title">Reviews</h3>
+            {% endif %}
             {% for review in reviews %}
-                <div class="row">
-                    <div class="col s6">
+                {% if not loop.first %}
+                    <hr class="review-divider">
+                {% endif %}
+                <div class="row review-row">
+                    <div class="col s6 review-author open-sans">
                         {% set author = Users.query.filter_by(id = review.user_id).first() %}
-                        {{ author.first_name }} {{ author.last_name }}
+                        <p>
+                            <a href="{{ url_for('profile', user_id=author.id) }}" aria-label="Go to the profile of {{ author.first_name }} {{ author.last_name }}">{{ author.first_name }} {{ author.last_name }}</a>
+                        </p>
                     </div>
-                    <div class="col s6">
+                    <div class="col s6 review-rating open-sans">
                         {% if review.rating == 1 %}
                             <p>1</p>
                         {% elif review.rating == 2 %}
@@ -83,24 +91,34 @@
                         {% endif %}
                     </div>
                     <div class="col s12">
-                        <p>{{ review.review_content }}</p>
+                        <hr class="review-name-divider">
+                    </div>
+                    <div class="col s12">
+                        <p class="roboto-regular">{{ review.review_content }}</p>
                     </div>
                     <div class="col s12">
                         {% if review.also_liked %}
-                            <p>Also liked:</p>
-                            <ul>
+                        <hr class="carousel-divider">
+                        <p class="open-sans also-liked-title">This review is by someone who likes:</p>
+                            <div class="carousel"> 
+                                <!-- Loop through the also_liked list of toy ids-->
                                 {% for liked_toy_id in review.also_liked %}
+                                    <!-- Get the toy which matches the toy id-->
                                     {% set liked_toy = Toy.query.filter_by(id=liked_toy_id).first() %}
-                                        <li>Name: {{ liked_toy.name }}</li>
+                                        <!-- If the toy still exists (not deleted)-->
+                                        {% if liked_toy %}
+                                            <div style="background-image: url('{{ liked_toy.image_url }}');" class="carousel-toy carousel-item" role="image" aria-label="Image for {{ liked_toy.name }}. The reviewer likes toy.">
+                                                <a href="{{ url_for('individual_toy', toy_id = liked_toy.id) }}" class="open-sans liked-toy-link" aria-label="Link to {{ liked_toy.name }} page">{{ liked_toy.name }}</a>
+                                            </div> 
+                                        {% endif %}
                                 {% endfor %}
-                            </ul>
+                            </div>
                         {% endif %}
                     </div>
                     {% if user_id == review.user_id %}
-                    <div class="col-12">
+                    <div class="col-12 review-buttons">
                         <a href="{{ url_for('edit_review', review_id=review.id) }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons" aria-label="Edit this review for {{ toy.name }}">Edit review</a>
                         <a href="{{ url_for('delete_review', review_id=review.id) }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons" aria-label="Delete review for {{ toy.name }}">Delete review</a>
-                        You wrote this review!
                     </div>
                     {% endif %}
                 </div>
