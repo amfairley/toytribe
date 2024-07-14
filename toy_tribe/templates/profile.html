@@ -60,17 +60,8 @@
                 </p>
             </div>
             <div class="col s6 review-rating open-sans">
-                {% if review.rating == 1 %}
-                    <p>1</p>
-                {% elif review.rating == 2 %}
-                    <p>2</p>
-                {% elif review.rating == 3 %}
-                    <p>3</p>
-                {% elif review.rating == 4 %}
-                    <p>4</p>
-                {% else %}
-                    <p>5</p>
-                {% endif %}
+                <!-- Star rating display from Fred Genkin https://codepen.io/FredGenkin/pens/showcase-->
+                <div class="Stars review-rating-stars" style="--rating: {{ review.rating }};" aria-label="Rating of this product is {{ review.rating }} out of 5."></div>
             </div>
             <div class="col s12">
                 <hr class="review-name-divider">
@@ -99,7 +90,7 @@
             </div>
             {% if (user_id == review.user_id) or (logged_in_user == review.user_id) %}
             <div class="col-12 review-buttons">
-                <a href="{{ url_for('edit_review', review_id=review.id) }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons" aria-label="Edit this review for {{ toy_reviewed.name }}">Edit review</a>
+                <a href="{{ url_for('edit_review', review_id=review.id, ref='profile') }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons" aria-label="Edit this review for {{ toy_reviewed.name }}">Edit review</a>
                 <a href="{{ url_for('delete_review', review_id=review.id) }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons" aria-label="Delete review for {{ toy_reviewed.name }}">Delete review</a>
             </div>
             {% endif %}

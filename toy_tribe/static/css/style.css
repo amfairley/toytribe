@@ -39,6 +39,31 @@ main {
     flex: 1 0 auto;
 }
 
+/* Code excerpt from Fred Genkin https://codepen.io/FredGenkin/pen/eaXYGV */
+:root {
+    --star-size: 60px;
+    --star-color: #fff;
+    --star-background: #fc0;
+}
+
+.Stars {
+    --percent: calc(var(--rating) / 5 * 100%);
+
+    display: inline-block;
+    font-size: var(--star-size);
+    font-family: Times;
+    line-height: 1;
+
+    &::before {
+        content: '★★★★★';
+        letter-spacing: 3px;
+        background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+
 /* ---------- base.html ---------- */
 main {
     background-color: #FFF3D3;
@@ -498,10 +523,18 @@ main {
 
 .review-author {
     font-size: 1.3rem;
+    height: 4rem;
 }
 
 .review-rating {
     text-align: right;
+    height: 4rem;
+}
+
+.review-rating-stars {
+    font-size: 1.5rem;
+    margin: auto 0;
+    margin-top: 1.5rem;
 }
 
 .review-name-divider {
