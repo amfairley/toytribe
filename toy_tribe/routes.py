@@ -63,6 +63,11 @@ def individual_toy(toy_id):
     Provides the user_id of the logged in user in order to redirect
     logged out users to the homepage.
     """
+    # Gets the previous page
+    referer = request.headers.get("Referer")
+    # Redirects user to home if they accessed page via URL
+    if not referer:
+        referer = url_for('home')
     toy_types = {toy_type.id: toy_type for toy_type in ToyType.query.all()}
     toy = Toy.query.get_or_404(toy_id)
     user_id = session.get('user_id')
@@ -74,7 +79,8 @@ def individual_toy(toy_id):
         toy_types=toy_types,
         reviews=reviews,
         Users=Users,
-        Toy=Toy
+        Toy=Toy,
+        referer=referer
     )
 
 
@@ -215,7 +221,14 @@ def edit_toy(toy_id):
     """
     # Get the logged in user id
     user_id = session.get("user_id")
+    # Gets the toy to be edited
     toy = Toy.query.get_or_404(toy_id)
+    # Gets the previous page
+    referer = request.headers.get("Referer")
+    # Redirects user to home if they accessed page via URL
+    if not referer:
+        referer = url_for('home')
+    # Gets the edit toy form
     form = EditToy(obj=toy)
     # Checks the reference of the a tag linking to edit_toy.html
     ref = request.args.get('ref')
@@ -251,7 +264,8 @@ def edit_toy(toy_id):
         form=form,
         toy_types=toy_types,
         toy=toy,
-        user_id=user_id
+        user_id=user_id,
+        referer = referer
     )
 
 
@@ -361,6 +375,11 @@ def edit_profile(user_id):
     Updates the entry in the Profile table in the database with new data.
     Redirects user back to the profile page.
     """
+    # Gets the previous page
+    referer = request.headers.get("Referer")
+    # Redirects user to home if they accessed page via URL
+    if not referer:
+        referer = url_for('home')
     user = Users.query.get_or_404(user_id)
     logged_in_user = session.get("user_id")
     profile = Profile.query.filter_by(user_id=user_id).first_or_404()
@@ -385,7 +404,8 @@ def edit_profile(user_id):
         form=form,
         countries=countries,
         user=user,
-        logged_in_user=logged_in_user
+        logged_in_user=logged_in_user,
+        referer=referer
     )
 
 
@@ -411,6 +431,11 @@ def add_review(toy_id):
     Redirects user to individual toy page on successful addition of review.
     Redirects user back to the profile page.
     """
+    # Gets the previous page
+    referer = request.headers.get("Referer")
+    # Redirects user to home if they accessed page via URL
+    if not referer:
+        referer = url_for('home')
     # Get the toy that is being reviewed
     toy = Toy.query.get_or_404(toy_id)
     # Get the user doing the review
@@ -440,7 +465,7 @@ def add_review(toy_id):
             db.session.commit()
             # Redirects user back to toy when the review is added
             return redirect(url_for('individual_toy', toy_id=toy_id))
-    return render_template('add_review.html', form=form, toy_id=toy_id, toy=toy)
+    return render_template('add_review.html', form=form, toy_id=toy_id, toy=toy, referer=referer)
 
 
 @app.route('/edit_review/<int:review_id>', methods=['GET', 'POST'])
@@ -451,6 +476,11 @@ def edit_review(review_id):
     Updates the entry in the Review table in the database with new data.
     Redirects user back to the individual toy page.
     """
+    # Gets the previous page
+    referer = request.headers.get("Referer")
+    # Redirects user to home if they accessed page via URL
+    if not referer:
+        referer = url_for('home')
     # Get the user id
     user_id = session.get('user_id')
     # Get the review to be edited
@@ -483,7 +513,7 @@ def edit_review(review_id):
             return redirect(url_for('individual_toy', toy_id=toy.id))
         else:
             return redirect(url_for('profile'))
-    return render_template('edit_review.html', form=form, toy=toy, user_id=user_id, review=review)
+    return render_template('edit_review.html', form=form, toy=toy, user_id=user_id, review=review, referer=referer)
     
 
 @app.route('/delete_review/<int:review_id>')

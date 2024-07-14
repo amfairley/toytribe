@@ -9,6 +9,12 @@
 {% block content %}
     <!-- Means only the user can edit their own profile -->
     {% if logged_in_user==user.id %}
+        <!-- Back button -->
+        <a href="{{ referer }}" class="open-sans back-button" aria-label="Go back to previous page">
+            <i class="fa-solid fa-backward-step"></i>
+            <span>Back</span>
+        </a>
+        <br>
         <h2 class="playfair-display edit-profile-title" id="edit-profile-title">Edit Profile</h2>
 
         <form id="edit-profile-form" method="POST">

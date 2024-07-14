@@ -8,6 +8,12 @@
 <!-- Add Review Page Content -->
 {% block content %}
     {% if 'user_id' in session %}
+    <!-- Back button -->
+    <a href="{{ referer }}" class="open-sans back-button" aria-label="Go back to previous page">
+        <i class="fa-solid fa-backward-step"></i>
+        <span>Back</span>
+    </a>
+    <br>
     <h2 class="playfair-display" id="add-review-title">Review {{ toy.name }}</h2>
 
     <form id="add-review-form" method="POST">

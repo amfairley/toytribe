@@ -8,8 +8,16 @@
 <!-- Edit Toy Page Content -->
 {% block content %}
     {% if user_id == toy.user_id %}
+        <!-- Back button -->
+        <a href="{{ referer }}" class="open-sans back-button" aria-label="Go back to previous page">
+            <i class="fa-solid fa-backward-step"></i>
+            <span>Back</span>
+        </a>
+        <br>
         <h2 class="playfair-display" id="edit-toy-title">Edit toy</h2>
 
+        <!-- Link back to previous page -->
+        <a href="{{ referer }}">Back</a>
         <form id="edit-toy-form" method="POST">
 
             {{ form.hidden_tag() }}
