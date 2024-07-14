@@ -18,6 +18,14 @@
         <section class="row" id="toys-page">
             {% for toy in toys %}
             <div class="card sticky-action col s12 m6 l4 toys-card">
+                <aside class="open-sans review-display right">
+                    {% if toy.average_rating() | float != 0 %}
+                    <!-- Star rating display from Fred Genkin https://codepen.io/FredGenkin/pens/showcase-->
+                    <div class="Stars individual-toys-star-rating" style="--rating: {{ toy.average_rating() | float | round(1) }};" aria-label="Rating of this product is {{ toy.average_rating() | float | round(1) }} out of 5."></div>
+                    {% else %}
+                    <div class="no-reviews">Not reviewed yet</div>
+                    {% endif %}
+                </aside>
                 <div class="card-image waves-effect waves-block waves-light center-align">
                     <a class="toy-image-link" href="{{ url_for('individual_toy', toy_id=toy.id) }}" aria-label="Go the individual toy page for {{ toy.name }}">
                         <img class="toys-image" src="{{ toy.image_url }}" alt="Image of {{ toy.name }}">
@@ -28,8 +36,13 @@
                         <a class="toys-toy-title open-sans" href="{{ url_for('individual_toy', toy_id=toy.id) }}">{{ toy.name }}</a>
                         <i class="fa-solid fa-ellipsis right" aria-label="See more information about {{ toy.name }}"></i>
                         <br>
-                        <aside class="open-sans">
-                            Rating <i class="fa-regular fa-star" aria-label="Toy rating for {{ toy.name }}"></i>
+                        <aside class="open-sans review-display">
+                            {% if toy.average_rating() | float != 0 %}
+                            <!-- Star rating display from Fred Genkin https://codepen.io/FredGenkin/pens/showcase-->
+                            <div class="Stars individual-toys-star-rating" style="--rating: {{ toy.average_rating() | float | round(1) }};" aria-label="Rating of this product is {{ toy.average_rating() | float | round(1) }} out of 5."></div>
+                            {% else %}
+                            <p class="no-reviews">Not reviewed yet</p>
+                            {% endif %}
                         </aside>
                     </span>
                     {% if user_id == toy.user_id %}
@@ -51,7 +64,7 @@
                         <br>
                         Type: {{ toy_types[toy.toy_type_id].toy_type }}
                     </p>
-                    <p>
+                    <p class="toy-description">
                         <strong>Description: </strong>{{ toy.description }}
                     </p>
                 </div>

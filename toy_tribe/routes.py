@@ -123,36 +123,45 @@ def signup():
     form = SignupForm()
     # If there are no errors in the form when submitted:
     if form.validate_on_submit():
-        # Creates a hashed password
-        hashed_password = generate_password_hash(
-            form.password.data,
-            # Password-Based Key Derivation Function 2 (PBKDF2)
-            # with the SHA-256 hash function.
-            # For securely storing the password.
-            method='pbkdf2:sha256',
-            # 8 byte long random value to be added before the hashed password.
-            salt_length=8
-        )
-        # New Users class instance with submitted data
-        new_user = Users(
-            first_name=form.first_name.data,
-            last_name=form.last_name.data,
-            email=form.email.data,
-            password=hashed_password
-        )
-        # Adds the new_user to the database and saves it
-        db.session.add(new_user)
-        db.session.commit()
-        new_user_profile = Profile(
-            user_id = new_user.id,
-            about_me = "I am yet to fill this out.",
-            user_image = "/static/img/default_profile_image.webp"
-        )
-        db.session.add(new_user_profile)
-        db.session.commit()
-        flash('Registration successful', 'success')
-        # Redirects user to login page when signed up
-        return redirect(url_for('login'))
+        # Check if the email is already in use
+        user=Users.query.filter_by(email=form.email.data).first()
+        if user:
+            flash('Email address already registered.')
+        else:
+            # Creates a hashed password
+            hashed_password = generate_password_hash(
+                form.password.data,
+                # Password-Based Key Derivation Function 2 (PBKDF2)
+                # with the SHA-256 hash function.
+                # For securely storing the password.
+                method='pbkdf2:sha256',
+                # 8 byte long random value to be added before the hashed password.
+                salt_length=8
+            )
+            # New Users class instance with submitted data
+            new_user = Users(
+                first_name=form.first_name.data,
+                last_name=form.last_name.data,
+                email=form.email.data,
+                password=hashed_password
+            )
+            # Adds the new_user to the database and saves it
+            db.session.add(new_user)
+            db.session.commit()
+            new_user_profile = Profile(
+                user_id = new_user.id,
+                about_me = "I am yet to fill this out.",
+                user_image = "/static/img/default_profile_image.webp"
+            )
+            db.session.add(new_user_profile)
+            db.session.commit()
+            # Redirects user to login page when signed up
+            return redirect(url_for('login'))
+    else:
+        if form.errors:
+            for field, errors, in form.errors.items():
+                for error in errors:
+                    flash(f"{field.capitalize()} error: {error}")
     return render_template('signup.html', form=form)
 
 
@@ -430,6 +439,8 @@ def edit_review(review_id):
     # Get the toy that the review is for in order to redirect back to toy page
     toy = Toy.query.get_or_404(review.toy_id)
     toy_id = toy.id
+    # Get the href ref for redirection:
+    ref = request.args.get('ref')
     # Get all toys to populate the also_liked selection
     toys= Toy.query.all()
     toy_options = [(each_toy.id, each_toy.name) for each_toy in toys]
@@ -448,8 +459,11 @@ def edit_review(review_id):
         review.also_liked = form.also_liked.data
         # Save the changes
         db.session.commit()
-        # Redirect back to individual toy page
-        return redirect(url_for('individual_toy', toy_id=toy_id))
+        # Redirect back to previous page
+        if ref == 'toy':
+            return redirect(url_for('individual_toy', toy_id=toy.id))
+        else:
+            return redirect(url_for('profile'))
     return render_template('edit_review.html', form=form, toy=toy)
     
 

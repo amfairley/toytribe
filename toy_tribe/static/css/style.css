@@ -246,6 +246,15 @@ main {
     cursor: pointer;
 }
 
+.signup-error {
+    color: #D93B58;
+    margin-bottom: 15px;
+    text-align: center;
+    max-width: 30%;
+    margin: 0 auto;
+    font-weight: bolder;
+}
+
 /* ---------- login.html ---------- */
 #login-title {
     text-align: center;
@@ -336,6 +345,35 @@ main {
 .toys-toy-title h2 a {
     text-decoration: none;
     color:#D93B58;
+}
+
+
+.individual-toys-star-rating {
+    font-size: 1.5rem;
+    z-index: 1;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 2px solid #333A3F;
+    background-color: #D93B58;
+    position: absolute;
+    z-index: 2;
+    right: 2px;
+    top: 5px;
+    cursor: default;
+}
+
+.no-reviews {
+    font-size: 1rem;
+    position: absolute;
+    z-index: 2;
+    padding: 5px 10px;
+    border: 2px solid #333A3F;
+    border-radius: 10px;
+    color: #333A3F;
+    background-color: #FFF3D3;
+    right: 2px;
+    top: 2px;
+    cursor: default;
 }
 
 .toys-buttons-div{
@@ -473,8 +511,33 @@ main {
     padding: 10px;
 }
 
-.individual-toy-rating {
-    color:#D93B58 !important;
+.individual-toy-star-rating {
+    font-size: 2rem;
+    position: relative;
+    z-index: 1;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 2px solid #333A3F;
+    background-color: #D93B58;
+}
+
+.review-strength {
+    text-align: center;
+    margin: 0;
+    color:#333A3F;
+    font-size: 1rem;
+    font-weight: bolder;
+}
+
+.individual-toy-no-reviews {
+    font-size: 1rem;
+    position: relative;
+    z-index: 2;
+    padding: 5px 10px;
+    border: 2px solid #333A3F;
+    border-radius: 10px;
+    color: #333A3F;
+    background-color: #FFF3D3;
 }
 
 .toy-col-1 {

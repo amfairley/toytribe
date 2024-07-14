@@ -8,6 +8,15 @@
 <!-- Signup Content -->
 {% block content %}
 <h2 class="playfair-display" id="signup-title">Signup</h2>
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} signup-error roboto-regular">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
 <form id="signup-form" method="POST">
    
     {{ form.hidden_tag() }}
@@ -27,12 +36,13 @@
     <i class="fa-solid fa-lock"></i>
     <label for="password" class="roboto-regular" id="signup-password">{{ form.password.label }}</label>
     {{ form.password }}
-    <span class="helper-text roboto-regular">Password requirement placeholder<br></span>
+    <span class="helper-text roboto-regular">Password must be 8 or more characters and include at least one capital letter, one number, and one special character.<br></span>
 
     <i class="fa-solid fa-lock confirm-password"></i>
     <label for="confirm_password" class="roboto-regular" id="signup-confirm">{{ form.confirm_password.label }}</label>
     {{ form.confirm_password }}
 
     <input id="signup-button" class="roboto-regular" type="submit" value="Signup">
+
 </form>
 {% endblock %}
