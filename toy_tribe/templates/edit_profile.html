@@ -44,9 +44,9 @@
 
             <input id="edit-profile-button" class="roboto-regular" type="submit" value="Save Changes">
     {% else %}
-        <!-- Redirect to homepage -->
+        <!-- Redirect to Error 403: Access Denied -->
         <script>
-            window.location.href = "{{ url_for('home') }}";
+            window.location.href = "{{ url_for('error403') }}";
         </script>
     {% endif %}
 {% endblock %}

@@ -7,42 +7,41 @@
 
 <!-- Add Review Page Content -->
 {% block content %}
-    {% if 'user_id' in session %}
-    <h2 class="playfair-display" id="edit-review-title">Edit Review for {{ toy.name }}</h2>
+    {% if user_id == review.user_id %}
+        <h2 class="playfair-display" id="edit-review-title">Edit Review for {{ toy.name }}</h2>
 
-    <form id="edit-review-form" method="POST">
+        <form id="edit-review-form" method="POST">
 
-        {{ form.hidden_tag() }}
+            {{ form.hidden_tag() }}
 
-        <div class="edit-review-input">
-            <label for="review_content" class="roboto-regular">
-                {{ form.review_content.label }}
-                <span class="form-required">*</span>
-            </label>
-            {{ form.review_content }}
-        </div>
+            <div class="edit-review-input">
+                <label for="review_content" class="roboto-regular">
+                    {{ form.review_content.label }}
+                    <span class="form-required">*</span>
+                </label>
+                {{ form.review_content }}
+            </div>
 
-        <div class="edit-review-input">
-            <label for="rating" class="roboto-regular">
-                {{ form.rating.label }}
-                <span class="form-required">*</span>
-            </label>
-                {{ form.rating }}
-            </select>
-        </div>
-        <div class="edit-review-input">
-            <label for="also_liked" class="roboto-regular">{{ form.also_liked.label }}</label>
-            {{ form.also_liked(class="form-control") }}
-        </div>
+            <div class="edit-review-input">
+                <label for="rating" class="roboto-regular">
+                    {{ form.rating.label }}
+                    <span class="form-required">*</span>
+                </label>
+                    {{ form.rating }}
+                </select>
+            </div>
+            <div class="edit-review-input">
+                <label for="also_liked" class="roboto-regular">{{ form.also_liked.label }}</label>
+                {{ form.also_liked(class="form-control") }}
+            </div>
 
-        <input id="edit-review-button" class="roboto-regular" type="submit" value="Submit Review">
-        <p class="form-required roboto-regular">*Required fields</p>
-</form>
-{% else %}
-    <!-- Redirect to homepage -->
-    <script>
-        window.location.href = "{{ url_for('home') }}";
-    </script>
-{% endif %}
-
+            <input id="edit-review-button" class="roboto-regular" type="submit" value="Submit Review">
+            <p class="form-required roboto-regular">*Required fields</p>
+        </form>
+    {% else %}
+    <!-- Redirect to Error 403: Access Denied -->
+        <script>
+            window.location.href = "{{ url_for('error403') }}";
+        </script>
+    {% endif %}
 {% endblock %}

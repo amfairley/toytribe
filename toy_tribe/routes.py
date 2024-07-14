@@ -213,6 +213,8 @@ def edit_toy(toy_id):
     Updates the entry in the Toy table in the database with new data.
     Redirects user back to the page from which they accessed edit toy from.
     """
+    # Get the logged in user id
+    user_id = session.get("user_id")
     toy = Toy.query.get_or_404(toy_id)
     form = EditToy(obj=toy)
     # Checks the reference of the a tag linking to edit_toy.html
@@ -248,7 +250,8 @@ def edit_toy(toy_id):
         'edit_toy.html',
         form=form,
         toy_types=toy_types,
-        toy=toy
+        toy=toy,
+        user_id=user_id
     )
 
 
@@ -448,6 +451,8 @@ def edit_review(review_id):
     Updates the entry in the Review table in the database with new data.
     Redirects user back to the individual toy page.
     """
+    # Get the user id
+    user_id = session.get('user_id')
     # Get the review to be edited
     review = Review.query.get_or_404(review_id)
     # Get the toy that the review is for in order to redirect back to toy page
@@ -478,7 +483,7 @@ def edit_review(review_id):
             return redirect(url_for('individual_toy', toy_id=toy.id))
         else:
             return redirect(url_for('profile'))
-    return render_template('edit_review.html', form=form, toy=toy)
+    return render_template('edit_review.html', form=form, toy=toy, user_id=user_id, review=review)
     
 
 @app.route('/delete_review/<int:review_id>')

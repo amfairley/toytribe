@@ -7,7 +7,7 @@
 
 <!-- Edit Toy Page Content -->
 {% block content %}
-    {% if 'user_id' in session %}
+    {% if user_id == toy.user_id %}
         <h2 class="playfair-display" id="edit-toy-title">Edit toy</h2>
 
         <form id="edit-toy-form" method="POST">
@@ -48,9 +48,9 @@
             <input id="edit-toy-button" class="roboto-regular" type="submit" value="Edit Toy">
         </form>
     {% else %}
-        <!-- Redirect to homepage -->
+        <!-- Redirect to Error 403: Access Denied -->
         <script>
-            window.location.href = "{{ url_for('home') }}";
+            window.location.href = "{{ url_for('error403') }}";
         </script>
     {% endif %}
 {% endblock %}
