@@ -7,102 +7,109 @@
 
 <!-- Add Profile Page Content -->
 {% block content %}
+    {% if 'user_id' in session %}
 <!-- Profile information -->
-<section class="row profile-content">
-    {% if logged_in_user == user.id %}
-    <div class = "col s6 m12 left">
-        <a href="{{ url_for('edit_profile', user_id=user.id )}}" class="roboto-regular profile-buttons" aria-label="Edit your profile">Edit</a>
-        <a href="{{ url_for('delete_user', user_id=user.id )}}" class="roboto-regular profile-buttons" aria-label="Delete your profile">Delete</a>
-    </div>
-    {% endif %}
-    {% if flag_url %}
-    <div class="col s6 m12">
-        <img class="country-flag" src="{{ flag_url }}" alt="Flag for {{ user_profile.country }}">
-    </div>
-    {% endif %}
-    {% if user_profile.is_parent == True %}
-    <div class="col s6 m12 parent-check-section">
-        <div class="parent-check">
-            <span class="roboto-regular">Verified Parent</span>
-            <i class="fa-regular fa-circle-check"></i>
-        </div>
-    </div>
-    {% endif %}
-    <div class = "col s12 m4 profile-picture">
-        <img src="{{user_profile.user_image}}" alt="User profile image for {{ user.first_name }}">
-    </div>
-    <section class = "col s12 m8">
-        <h2 class="playfair-display profile-name">
-        {{ user.first_name }} {{ user.last_name }}
-        </h2>
-    </section>
-    <section class="col s12 m8 profile-about-me">
-        <p class="roboto-regular">
-            <span>About Me:</span>
-            {{ user_profile.about_me }}
-        </p>
-    </section>
-</section>
-<!-- Reviews -->
-<section class="show-reviews">
-    {% if reviews %}
-    <h3 class="dangrek-regular" id="toy-review-title">Reviews</h3>
-    {% endif %}
-    {% for review in reviews %}
-        {% if not loop.first %}
-            <hr class="review-divider">
-        {% endif %}
-        <div class="row review-row">
-            <div class="col s6 review-author open-sans">
-                {% set toy_reviewed = Toy.query.filter_by(id = review.toy_id).first() %}
-                <p>
-                    <a href="{{ url_for('individual_toy', toy_id=toy_reviewed.id) }}" aria-label="Go to the page for {{ toy_reviewed.name }}">{{ toy_reviewed.name }}</a>
-                </p>
-            </div>
-            <div class="col s6 review-rating open-sans">
-                <!-- Star rating display from Fred Genkin https://codepen.io/FredGenkin/pens/showcase-->
-                <div class="Stars review-rating-stars" style="--rating: {{ review.rating }};" aria-label="Rating of this product is {{ review.rating }} out of 5."></div>
-            </div>
-            <div class="col s12">
-                <hr class="review-name-divider">
-            </div>
-            <div class="col s12">
-                <p class="roboto-regular">{{ review.review_content }}</p>
-            </div>
-            <div class="col s12">
-                {% if review.also_liked %}
-                <hr class="carousel-divider">
-                <p class="open-sans also-liked-title">This review is by someone who likes:</p>
-                    <div class="carousel"> 
-                        <!-- Loop through the also_liked list of toy ids-->
-                        {% for liked_toy_id in review.also_liked %}
-                            <!-- Get the toy which matches the toy id-->
-                            {% set liked_toy = Toy.query.filter_by(id=liked_toy_id).first() %}
-                                <!-- If the toy still exists (not deleted)-->
-                                {% if liked_toy %}
-                                    <div style="background-image: url('{{ liked_toy.image_url }}');" class="carousel-toy carousel-item" role="image" aria-label="Image for {{ liked_toy.name }}. The reviewer likes toy.">
-                                        <a href="{{ url_for('individual_toy', toy_id = liked_toy.id) }}" class="open-sans liked-toy-link" aria-label="Link to {{ liked_toy.name }} page">{{ liked_toy.name }}</a>
-                                    </div> 
-                                {% endif %}
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            </div>
-            {% if (user_id == review.user_id) or (logged_in_user == review.user_id) %}
-            <div class="col-12 review-buttons">
-                <a href="{{ url_for('edit_review', review_id=review.id, ref='profile') }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons" aria-label="Edit this review for {{ toy_reviewed.name }}">Edit review</a>
-                <a href="{{ url_for('delete_review', review_id=review.id) }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons" aria-label="Delete review for {{ toy_reviewed.name }}">Delete review</a>
+        <section class="row profile-content">
+            {% if logged_in_user == user.id %}
+            <div class = "col s6 m12 left">
+                <a href="{{ url_for('edit_profile', user_id=user.id )}}" class="roboto-regular profile-buttons" aria-label="Edit your profile">Edit</a>
+                <a href="{{ url_for('delete_user', user_id=user.id )}}" class="roboto-regular profile-buttons" aria-label="Delete your profile">Delete</a>
             </div>
             {% endif %}
-        </div>
-    {% endfor %}
-</section>
+            {% if flag_url %}
+            <div class="col s6 m12">
+                <img class="country-flag" src="{{ flag_url }}" alt="Flag for {{ user_profile.country }}">
+            </div>
+            {% endif %}
+            {% if user_profile.is_parent == True %}
+            <div class="col s6 m12 parent-check-section">
+                <div class="parent-check">
+                    <span class="roboto-regular">Verified Parent</span>
+                    <i class="fa-regular fa-circle-check"></i>
+                </div>
+            </div>
+            {% endif %}
+            <div class = "col s12 m4 profile-picture">
+                <img src="{{user_profile.user_image}}" alt="User profile image for {{ user.first_name }}">
+            </div>
+            <section class = "col s12 m8">
+                <h2 class="playfair-display profile-name">
+                {{ user.first_name }} {{ user.last_name }}
+                </h2>
+            </section>
+            <section class="col s12 m8 profile-about-me">
+                <p class="roboto-regular">
+                    <span>About Me:</span>
+                    {{ user_profile.about_me }}
+                </p>
+            </section>
+        </section>
+        <!-- Reviews -->
+        <section class="show-reviews">
+            {% if reviews %}
+            <h3 class="dangrek-regular" id="toy-review-title">Reviews</h3>
+            {% endif %}
+            {% for review in reviews %}
+                {% if not loop.first %}
+                    <hr class="review-divider">
+                {% endif %}
+                <div class="row review-row">
+                    <div class="col s6 review-author open-sans">
+                        {% set toy_reviewed = Toy.query.filter_by(id = review.toy_id).first() %}
+                        <p>
+                            <a href="{{ url_for('individual_toy', toy_id=toy_reviewed.id) }}" aria-label="Go to the page for {{ toy_reviewed.name }}">{{ toy_reviewed.name }}</a>
+                        </p>
+                    </div>
+                    <div class="col s6 review-rating open-sans">
+                        <!-- Star rating display from Fred Genkin https://codepen.io/FredGenkin/pens/showcase-->
+                        <div class="Stars review-rating-stars" style="--rating: {{ review.rating }};" aria-label="Rating of this product is {{ review.rating }} out of 5."></div>
+                    </div>
+                    <div class="col s12">
+                        <hr class="review-name-divider">
+                    </div>
+                    <div class="col s12">
+                        <p class="roboto-regular">{{ review.review_content }}</p>
+                    </div>
+                    <div class="col s12">
+                        {% if review.also_liked %}
+                        <hr class="carousel-divider">
+                        <p class="open-sans also-liked-title">This review is by someone who likes:</p>
+                            <div class="carousel"> 
+                                <!-- Loop through the also_liked list of toy ids-->
+                                {% for liked_toy_id in review.also_liked %}
+                                    <!-- Get the toy which matches the toy id-->
+                                    {% set liked_toy = Toy.query.filter_by(id=liked_toy_id).first() %}
+                                        <!-- If the toy still exists (not deleted)-->
+                                        {% if liked_toy %}
+                                            <div style="background-image: url('{{ liked_toy.image_url }}');" class="carousel-toy carousel-item" role="image" aria-label="Image for {{ liked_toy.name }}. The reviewer likes toy.">
+                                                <a href="{{ url_for('individual_toy', toy_id = liked_toy.id) }}" class="open-sans liked-toy-link" aria-label="Link to {{ liked_toy.name }} page">{{ liked_toy.name }}</a>
+                                            </div> 
+                                        {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    {% if (user_id == review.user_id) or (logged_in_user == review.user_id) %}
+                    <div class="col-12 review-buttons">
+                        <a href="{{ url_for('edit_review', review_id=review.id, ref='profile') }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons" aria-label="Edit this review for {{ toy_reviewed.name }}">Edit review</a>
+                        <a href="{{ url_for('delete_review', review_id=review.id) }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons" aria-label="Delete review for {{ toy_reviewed.name }}">Delete review</a>
+                    </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </section>
 
-{% for user in users %}
-<a href="{{ url_for('other_profile', user_id=user.id) }}">
-    <p>{{ user.first_name }}</p>
-</a>
-{% endfor %}
+        {% for user in users %}
+        <a href="{{ url_for('other_profile', user_id=user.id) }}">  
+            <p>{{ user.first_name }}</p>
+        </a>
+        {% endfor %}
+    {% else %}
+        <!-- Redirect to homepage -->
+        <script>
+            window.location.href = "{{ url_for('home') }}";
+        </script>
+    {% endif %}    
 {% endblock %}
 
 
