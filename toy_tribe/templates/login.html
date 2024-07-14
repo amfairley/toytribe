@@ -18,6 +18,18 @@
     <label for="password" class="roboto-regular">{{ form.password.label }}</label>
     {{ form.password }}
 
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="login-failure open-sans">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
     <input id="login-button" class="roboto-regular" type="submit" value="Login">
     <p class="roboto-regular">
         Don't have an account yet? <br>
