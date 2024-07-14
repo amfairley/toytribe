@@ -48,7 +48,7 @@
                     {% if user_id == toy.user_id %}
                         <div class="card-action">
                             <div class="toys-buttons-div">
-                                <a href="{{ url_for('edit_toy', toy_id=toy.id, ref='toys') }}" class="waves-effect waves-light btn-small roboto-regular toys-buttons" aria-label="Go to edit toy page for {{ toy.name }}">Edit toy</a>
+                                <a href="{{ url_for('edit_toy', toy_id=toy.id) }}" class="waves-effect waves-light btn-small roboto-regular toys-buttons" aria-label="Go to edit toy page for {{ toy.name }}">Edit toy</a>
                                 <a href="{{ url_for('delete_toy', toy_id=toy.id) }}" class="waves-effect waves-light btn-small roboto-regular toys-buttons" aria-label="Delete {{ toy.name }}">Delete toy</a>
                             </div>
                         </div>
@@ -69,8 +69,13 @@
                     </p>
                 </div>
             </div>
-            
             {% endfor %}
+            <div class="back-to-top-container col s12 m6 l4 ">
+                <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
+                    <i class="fa-solid fa-caret-up"></i><br>
+                    <span>Back to top</span>
+                </a>
+            </div>
         </section>
     {% else %}
         <!-- Redirect to homepage -->
