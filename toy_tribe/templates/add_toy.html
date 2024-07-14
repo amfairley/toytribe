@@ -15,18 +15,27 @@
         {{ form.hidden_tag() }}
 
         <div class="add-toy-input">
-            <label for="name" class="roboto-regular">{{ form.name.label }}</label>
+            <label for="name" class="roboto-regular">
+                {{ form.name.label }}
+                <span class="form-required">*</span>
+            </label>
             {{ form.name }}
         </div>
 
         <div class="add-toy-input">
-            <label for="company" class="roboto-regular">{{ form.company.label }}</label>
+            <label for="company" class="roboto-regular">
+                {{ form.company.label }}
+                <span class="form-required">*</span>
+            </label>
             {{ form.company }}
         </div>
 
 
         <div class="add-toy-input">
-            <label for="toy_type_id" class="roboto-regular">{{ form.toy_type_id.label }}</label>
+            <label for="toy_type_id" class="roboto-regular">
+                {{ form.toy_type_id.label }}
+                <span class="form-required">*</span>
+            </label>
             <select id="toy_type_id" name="toy_type_id" class="form-control">
                 <option value='0' selected>Select Toy Type</option>
                 {% for toy_type in toy_types %}
@@ -58,6 +67,7 @@
         </div>
 
         <input id="add-toy-button" class="roboto-regular" type="submit" value="Add Toy">
+        <p class="form-required roboto-regular">*Required fields</p>
     </form>
     {% else %}
         <!-- Redirect to homepage -->
