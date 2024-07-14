@@ -278,6 +278,20 @@ def internal_server_error(e):
     # Directs the user and provides HTTP status code
     return render_template('500.html'), 500
 
+@app.errorhandler(403)
+def access_restricted(e):
+    """
+    Redirects to a 403 page when the user tries
+    to access something without permission
+    """
+    # Directs the user and provides HTTP staus code
+    return(render_template('403.html')), 403
+
+@app.route('/403')
+def error403():
+    """A function that directs users to the error 403 page"""
+    return(render_template('403.html'))
+
 # Remove users define and return: used to put button to check links to other profiles work
 @app.route('/profile')
 def profile():
