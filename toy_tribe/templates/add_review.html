@@ -8,13 +8,13 @@
 <!-- Add Review Page Content -->
 {% block content %}
     {% if 'user_id' in session %}
-    <h2 class="playfair-display" id="add-toy-title">Review {{ toy.name }}</h2>
+    <h2 class="playfair-display" id="add-review-title">Review {{ toy.name }}</h2>
 
-    <form id="add-toy-form" method="POST">
+    <form id="add-review-form" method="POST">
 
         {{ form.hidden_tag() }}
 
-        <div class="add-toy-input">
+        <div class="add-review-input">
             <label for="review_content" class="roboto-regular">
                 {{ form.review_content.label }}
                 <span class="form-required">*</span>
@@ -34,20 +34,19 @@
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                     {% for category, message in messages %}
-                        <div class="login-failure open-sans">
+                        <div class="submit-failure open-sans">
                             {{ message }}
-                            {{ form.rating.data }}
                         </div>
                     {% endfor %}
                 {% endif %}
             {% endwith %}
         </div>
-        <div class="edit-profile-input">
+        <div class="add-review-input">
             <label for="also_liked" class="roboto-regular">{{ form.also_liked.label }}</label>
             {{ form.also_liked(class="form-control") }}
         </div>
 
-        <input id="add-toy-button" class="roboto-regular" type="submit" value="Submit Review">
+        <input id="add-review-button" class="roboto-regular" type="submit" value="Submit Review">
 </form>
 {% else %}
     <!-- Redirect to homepage -->
