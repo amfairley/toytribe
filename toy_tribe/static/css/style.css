@@ -708,6 +708,32 @@ main {
 
 /* ---------- edit_review.html ---------- */
 
+#edit-review-title {
+    text-align: center;
+}
+
+#edit-review-form {
+    max-width: min(600px, 85%);
+    margin: 0 auto; 
+}
+
+#edit-review-form label {
+    color: #333A3F;
+    font-size: 1rem;
+}
+
+.edit-review-input {
+    margin-top: 20px;
+}
+
+#edit-review-button {
+    font-size: 1.5rem;
+    background-color: #D93B58;
+    color: #FFF3D3;
+    cursor: pointer;
+    margin-bottom: 50px;    
+}
+
 
 /* ----------- Materialize changes ---------- */
 [type="checkbox"]:checked+span:not(.lever):before {
