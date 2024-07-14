@@ -114,7 +114,7 @@ class AddReview(FlaskForm):
             ('4', '4 Stars'),
             ('5', '5 Stars')
         ],
-        validators=[DataRequired()]
+        default= '',
     )
     also_liked = SelectMultipleField('Also liked', choices=[], coerce=str)
     submit = SubmitField('Submit Review')
@@ -138,4 +138,4 @@ class EditReview(FlaskForm):
         validators=[DataRequired()]
     )
     also_liked = SelectMultipleField('Also liked', choices=[], coerce=str)
-    submit = SubmitField('Submit Changes')
+    submit = SubmitField('Submit Review')
