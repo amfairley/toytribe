@@ -97,7 +97,7 @@ def login():
             return render_template('home.html')
         # Displays a flash error if incorrect
         else:
-            flash('Login failed. Check your credentials.', 'danger')
+            flash('Login failed. Check your credentials.')
     return render_template('login.html', form=form)
 
 
@@ -108,7 +108,7 @@ def logout():
     and redirects them to home.html.
     """
     session.pop('user_id', None)
-    flash('You have been logged out successfully.', 'success')
+    # flash('You have been logged out successfully.', 'success')
     return redirect(url_for('home'))
 
 
