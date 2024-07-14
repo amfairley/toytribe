@@ -271,6 +271,7 @@ def internal_server_error(e):
 def profile():
     """A function that directs users to their own profile page"""
     users = Users.query.all()
+    # Get all countries
     country = pycountry.countries
     # Get the logged in user_id
     user_id = session.get("user_id")
@@ -278,10 +279,13 @@ def profile():
     # Get the user
     user = Users.query.get_or_404(user_id)
     user_profile = Profile.query.filter_by(user_id=user_id).first_or_404()
+    # Set the flag_url correctly if chosen
     if user_profile.country:
         flag_url = "/static/img/flags/" + user_profile.country + ".svg"
     else:
         flag_url = None
+    # Get user reviews
+    reviews = Review.query.filter_by(user_id=user.id).order_by(Review.id).all()
     return render_template(
         'profile.html',
         user_id=user_id,
@@ -289,7 +293,10 @@ def profile():
         user_profile=user_profile,
         users=users,
         flag_url = flag_url,
-        logged_in_user=logged_in_user
+        logged_in_user=logged_in_user,
+        reviews=reviews,
+        # Get all toys to query for reviews
+        Toy=Toy
     )
 
 
@@ -304,12 +311,17 @@ def other_profile(user_id):
         flag_url = "/static/img/flags/" + user_profile.country + ".svg"
     else:
         flag_url = None
+    # Get user reviews
+    reviews = Review.query.filter_by(user_id=user.id).order_by(Review.id).all()
     return render_template(
         'profile.html',
         user=user,
         user_profile=user_profile,
         logged_in_user=logged_in_user,
-        flag_url=flag_url
+        flag_url=flag_url,
+        reviews=reviews,
+        # Get all toys to query for reviews
+        Toy=Toy
     )
 
 @app.route('/edit_profile/<int:user_id>', methods=['GET', 'POST'])
@@ -382,20 +394,23 @@ def add_review(toy_id):
     # Set the also_liked selection choices
     form.also_liked.choices = toy_options
     # If there are no errors in the form when submitted:
-    if form.validate_on_submit():
-        # New Review class instance with submitted data
-        new_review = Review(
-            user_id=user_id,
-            toy_id=toy_id,
-            review_content=form.review_content.data,
-            rating=form.rating.data,
-            also_liked = form.also_liked.data            
-        )
-        # Adds the new review to the database and saves it
-        db.session.add(new_review)
-        db.session.commit()
-        # Redirects user back to toy when the review is added
-        return redirect(url_for('individual_toy', toy_id=toy_id))
+    if form.is_submitted():
+        if form.rating.data == '':
+            flash('Please rate the toy.')
+        elif form.validate():
+            # New Review class instance with submitted data
+            new_review = Review(
+                user_id=user_id,
+                toy_id=toy_id,
+                review_content=form.review_content.data,
+                rating=form.rating.data,
+                also_liked = form.also_liked.data            
+            )
+            # Adds the new review to the database and saves it
+            db.session.add(new_review)
+            db.session.commit()
+            # Redirects user back to toy when the review is added
+            return redirect(url_for('individual_toy', toy_id=toy_id))
     return render_template('add_review.html', form=form, toy_id=toy_id, toy=toy)
 
 
