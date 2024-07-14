@@ -771,12 +771,18 @@ main {
     margin-top: 20px;
 }
 
-#edit-profile-button {
+.edit-profile-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.edit-profile-button {
     font-size: 1.5rem;
     background-color: #D93B58;
     color: #FFF3D3;
     cursor: pointer;
-    margin-bottom: 50px;    
+    margin-bottom: 50px;  
+    border: 1px solid black;  
 }
 
 /* ---------- add_review.html ---------- */
@@ -841,9 +847,45 @@ main {
     margin-bottom: 50px;    
 }
 
+/* ---------- change_password.html ---------- */
+#change-password-title {
+    text-align: center;
+}
+
+#password-form {
+    max-width: min(600px, 85%);
+    margin: 0 auto; 
+}
+
+#password-form label {
+    color: #333A3F;
+    font-size: 1rem;
+}
+.helper-text{
+    margin-bottom: 50px;
+    text-align: center;
+    max-width: 85%;
+}
+#change-password-button {
+    font-size: 1.5rem;
+    background-color: #D93B58;
+    color: #FFF3D3;
+    cursor: pointer;
+    margin-bottom: 50px;    
+}
+
+.password-errors {
+    margin-bottom: 5px;
+}
+
+
+
+
 
 /* ----------- Materialize changes ---------- */
+/* Check boxes in select element */
 [type="checkbox"]:checked+span:not(.lever):before {
     border-right: 2px solid #D93B58;
     border-bottom: 2px solid #D93B58;
 }
+

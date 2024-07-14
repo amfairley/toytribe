@@ -10,7 +10,7 @@
     <!-- Means only the user can edit their own profile -->
     {% if logged_in_user==user.id %}
         <!-- Back button -->
-        <a href="{{ referer }}" class="open-sans back-button" aria-label="Go back to previous page">
+        <a href="{{ url_for('profile') }}" class="open-sans back-button" aria-label="Go back to profile page.">
             <i class="fa-solid fa-backward-step"></i>
             <span>Back</span>
         </a>
@@ -47,8 +47,11 @@
                 <label for="user_image" class="roboto-regular">{{ form.user_image.label }}</label>
                 {{ form.user_image }}
             </div>
-
-            <input id="edit-profile-button" class="roboto-regular" type="submit" value="Save Changes">
+            <div class="edit-profile-buttons">
+                <a href="{{ url_for('change_password', user_id=user.id )}}" class="edit-profile-button roboto-regular" aria-label="Go to change password page">Edit password</a>
+                <input class="roboto-regular edit-profile-button" type="submit" value="Save Changes">
+            </div>
+        </form>
     {% else %}
         <!-- Redirect to Error 403: Access Denied -->
         <script>

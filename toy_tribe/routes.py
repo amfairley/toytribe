@@ -22,9 +22,11 @@ from toy_tribe.forms import (
     EditToy,
     EditProfile,
     AddReview,
-    EditReview
+    EditReview,
+    ChangePassword
 )
 import pycountry
+import re
 
 
 @app.route("/")
@@ -532,3 +534,63 @@ def delete_review(review_id):
     db.session.commit()
     # Redirects back to toy.
     return redirect(url_for('individual_toy', toy_id=toy_id))
+
+@app.route('/change_password/<int:user_id>', methods=['GET', 'POST'])
+def change_password(user_id):
+    """
+    A function that directs users to the change password page.
+    Utilizes the ChangePassword form to get user data.
+    Validates the password and updates the user password.
+    Redirects user to edit profile page on successful signup.
+    """
+    # Get the previous page
+    referer = request.headers.get("Referer")
+    # Get logged in user
+    logged_in_user = session.get("user_id")
+    # Get the user
+    user = Users.query.get_or_404(user_id)
+    # Set the form
+    form = ChangePassword()
+    # If there are no errors in the form when submitted:
+    if form.validate_on_submit():
+        # Set values
+        old_password = form.old_password.data
+        new_password = form.new_password.data
+        confirm_password = form.confirm_password.data
+        # Check if the old password is correct
+        if check_password_hash(user.password, old_password):
+            # Validate new password requirements
+            if len(new_password) < 8:
+                flash('Password must be at least 8 characters long.', 'danger')
+            elif not re.search("[A-Z]", new_password):
+                flash('Password must contain at least one uppercase letter.', 'danger')
+            elif not re.search("[0-9]", new_password):
+                flash('Password must contain at least one digit.', 'danger')
+            elif not re.search("[!@#$%^&*(),.?\":{}|<>]", new_password):
+                flash('Password must contain at least one special character.', 'danger')
+            elif new_password != confirm_password:
+                flash('New password and confirm password do not match.', 'danger')
+            else:
+                new_password_hash = generate_password_hash(
+                    new_password,
+                    # Password-Based Key Derivation Function 2 (PBKDF2)
+                    # with the SHA-256 hash function.
+                    # For securely storing the password.
+                    method='pbkdf2:sha256',
+                    # 8 byte long random value to be
+                    # added before the hashed password.
+                    salt_length=8
+                )
+                user.password = new_password_hash
+                db.session.commit()
+                flash('Password updated successfully.', 'success')
+                return redirect(url_for('edit_profile', user_id=user_id))
+        else:
+            flash('Incorrect old password. Please try again.', 'danger')
+    else:
+            # Display errors for change password form
+        if form.errors:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    flash(f"{field.capitalize()} error: {error}", 'danger')
+    return render_template('change_password.html', form=form, logged_in_user=logged_in_user, user=user, referer=referer)

@@ -12,7 +12,9 @@ from wtforms.validators import (
     DataRequired,
     Length,
     EqualTo,
-    Email
+    Email,
+    Length,
+    Regexp
 )
 import pycountry
 from toy_tribe.models import Toy
@@ -48,7 +50,17 @@ class SignupForm(FlaskForm):
         'Email',
         validators=[DataRequired(), Email(), Length(max=120)]
     )
-    password = PasswordField('Password', validators=[DataRequired()])
+    password = PasswordField(
+        'Password',
+        validators=[
+            DataRequired(),
+            Length(min=8, message="Password must be at least 8 characters long."),
+            Regexp(
+                r'^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$',
+            message="Password must contain at least one uppercase letter, one number, and one special character."
+            )
+        ]
+    )
     confirm_password = PasswordField(
         'Confirm Password',
         validators=[DataRequired(), EqualTo('password')]
@@ -139,3 +151,26 @@ class EditReview(FlaskForm):
     )
     also_liked = SelectMultipleField('Also liked', choices=[], coerce=str)
     submit = SubmitField('Submit Review')
+
+class ChangePassword(FlaskForm):
+    """
+    ChangePassword class to handle user changing thier password.
+    Collects old_password, new_password and confirm_password.
+    """
+    old_password = PasswordField('Old Password', validators=[DataRequired()])
+    new_password = PasswordField(
+        'New Password',
+        validators=[
+            DataRequired(),
+            Length(min=8, message="Password must be at least 8 characters long."),
+            Regexp(
+                r'^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$',
+            message="Password must contain at least one uppercase letter, one number, and one special character."
+            )
+        ]
+    )
+    confirm_password = PasswordField(
+        'Confirm Password',
+        validators=[DataRequired(), EqualTo('new_password')]
+    )
+    submit = SubmitField('Change Password')
