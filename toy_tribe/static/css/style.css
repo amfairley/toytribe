@@ -260,6 +260,13 @@ main {
     border: 2pt solid black;
 }
 
+.login-failure {
+    font-size: 0.8rem;
+    font-weight: bolder;
+    color: #D93B58;
+    margin-bottom: 10px;
+}
+
 /* ---------- toys.html ---------- */
 #toys-title {
     text-align: center;
@@ -379,6 +386,10 @@ main {
     color: #FFF3D3;
     cursor: pointer;
     margin-bottom: 50px;    
+}
+
+.form-required {
+    color: #D93B58;
 }
 
 /* ---------- edit_toy.html ---------- */
@@ -659,4 +670,47 @@ main {
     color: #FFF3D3;
     cursor: pointer;
     margin-bottom: 50px;    
+}
+
+/* ---------- add_review.html ---------- */
+#add-review-title {
+    text-align: center;
+}
+
+#add-review-form {
+    max-width: min(600px, 85%);
+    margin: 0 auto; 
+}
+
+#add-review-form label {
+    color: #333A3F;
+    font-size: 1rem;
+}
+
+.add-review-input {
+    margin-top: 20px;
+}
+
+.submit-failure {
+    font-size: 0.8rem;
+    font-weight: bolder;
+    color: #D93B58;
+    margin-bottom: 10px;
+}
+
+#add-review-button {
+    font-size: 1.5rem;
+    background-color: #D93B58;
+    color: #FFF3D3;
+    cursor: pointer;
+    margin-bottom: 50px;    
+}
+
+/* ---------- edit_review.html ---------- */
+
+
+/* ----------- Materialize changes ---------- */
+[type="checkbox"]:checked+span:not(.lever):before {
+    border-right: 2px solid #D93B58;
+    border-bottom: 2px solid #D93B58;
 }
