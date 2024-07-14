@@ -28,11 +28,23 @@
         <div class="add-toy-input">
             <label for="toy_type_id" class="roboto-regular">{{ form.toy_type_id.label }}</label>
             <select id="toy_type_id" name="toy_type_id" class="form-control">
-                <option value="" disabled selected>Select Toy Type</option>
+                <option value='0' selected>Select Toy Type</option>
                 {% for toy_type in toy_types %}
                     <option value="{{ toy_type.id }}">{{ toy_type.toy_type }}</option>
                 {% endfor %}
             </select>
+        </div>
+        <!-- Flash Messages -->
+        <div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="login-failure open-sans">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
         </div>
 
         <div class="roboto-regular add-toy-input">

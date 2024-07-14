@@ -167,29 +167,32 @@ def add_toy():
     user_id = session.get('user_id')
     toy_types = ToyType.query.all()
     form = AddToy()
-    form.toy_type_id.choices = [
+    form.toy_type_id.choices = [('0', "Select Toy Type")] + [
         (toy_type.id, toy_type.toy_type) for toy_type in toy_types
     ]
     # If there are no errors in the form when submitted:
-    if form.validate_on_submit():
-        if not form.image_url.data:
-            form.image_url.data = "/static/img/default_toy.webp"
-        if not form.description.data:
-            form.description.data = "No description added yet."
-        # New Toy class instance with submitted data
-        new_toy = Toy(
-            user_id=user_id,
-            name=form.name.data,
-            company=form.company.data,
-            toy_type_id=form.toy_type_id.data,
-            description=form.description.data,
-            image_url=form.image_url.data
-        )
-        # Adds the new_toy to the database and saves it
-        db.session.add(new_toy)
-        db.session.commit()
-        # Redirects user back to toys when the new toy is added
-        return redirect(url_for('toys'))
+    if form.is_submitted():
+        if form.toy_type_id.data == 0:
+            flash('Please select the toy type.')
+        elif form.validate():
+            if not form.image_url.data:
+                form.image_url.data = "/static/img/default_toy.webp"
+            if not form.description.data:
+                form.description.data = "No description added yet."
+            # New Toy class instance with submitted data
+            new_toy = Toy(
+                user_id=user_id,
+                name=form.name.data,
+                company=form.company.data,
+                toy_type_id=form.toy_type_id.data,
+                description=form.description.data,
+                image_url=form.image_url.data
+            )
+            # Adds the new_toy to the database and saves it
+            db.session.add(new_toy)
+            db.session.commit()
+            # Redirects user back to toys when the new toy is added
+            return redirect(url_for('toys'))
     return render_template('add_toy.html', form=form, toy_types=toy_types)
 
 

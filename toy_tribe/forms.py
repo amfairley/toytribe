@@ -67,7 +67,7 @@ class AddToy(FlaskForm):
         'Type of Toy',
         choices=[],
         coerce=int,
-        validators=[DataRequired()]
+        default='0',
     )
     description = TextAreaField('Toy Description')
     image_url = StringField('Image URL')  # Not required, can be null
