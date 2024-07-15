@@ -10,11 +10,19 @@
     <!-- Check if user is logged in -->
     {% if 'user_id' in session %}
         <!-- Back button -->
-        <a href="{{ referer }}" class="open-sans back-button" aria-label="Go back to previous page">
-            <i class="fa-solid fa-backward-step"></i>
-            <span>Back</span>
-        </a>
-        <br>
+        {% if referer.endswith('/profile') %}
+            <a href="{{ referer }}" class="open-sans back-button" aria-label="Go back to previous page">
+                <i class="fa-solid fa-backward-step"></i>
+                <span>Back</span>
+            </a>
+            <br>
+        {% else %}
+            <a href="{{ url_for('toys') }}" class="open-sans back-button" aria-label="Go back to previous page">
+                <i class="fa-solid fa-backward-step"></i>
+                <span>Back</span>
+            </a>
+            <br>
+        {% endif %}
         <!-- Toy title -->
         <h2 class="playfair-display" id="individual-toy-title">{{ toy.name }}</h2>
 
