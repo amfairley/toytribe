@@ -85,7 +85,7 @@
             <div id="modal{{ toy.id }}" class="modal delete-modal">
                 <div class="modal-content">
                     <p class="confirm-message playfair-display">Are you sure?</p>
-                    <p class="modal-text roboto-regular">You are about to delete the toy: {{ toy.name }}. Are you sure that you want to continue?</p>
+                    <p class="modal-text roboto-regular">You are about to permanently delete the toy: {{ toy.name }}. Are you sure that you want to continue?</p>
                 </div>
                 <div class="modal-footer row">
                     <div class="col s6 confirm-delete-button-container">
@@ -96,9 +96,6 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- #modal{{ toy.name }} -->
-            <!-- <a href="{{ url_for('delete_toy', toy_id=toy.id) }}" -->
             {% endfor %}
             <!-- Back to top div -->
             <div class="back-to-top-container col s12 m6 l4 ">
