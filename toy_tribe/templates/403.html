@@ -2,19 +2,19 @@
 
 <!-- Title for browser tab -->
 {% block title %}
-> 403 Error
+    > 403 Error
 {% endblock %}
 
-<!-- Error 403 Page Content -->
+<!-- 403 Error Content -->
 {% block content %}
-<h2 class="dangrek-regular title-error">
-    <i class="fa-solid fa-ban"></i>
-    <br>
-    403 - Access Denied
-</h2>
-<div class = "message-error">
-    <p class="roboto-regular">You do not have access to this page.</p>
-    <p class="roboto-regular">Please join us back on the Toys page!</p>
-    <a href="{{ url_for ('toys' )}}" class="waves-effect waves-light btn-small redirect-button roboto-regular" aria-label = "Go to the Toy Tribe toys page">Toys</a>
-</div>
+    <h2 class="dangrek-regular title-error">
+        <i class="fa-solid fa-ban"></i>
+        <br>
+        403 - Access Denied
+    </h2>
+    <div class = "message-error">
+        <p class="roboto-regular">You do not have access to this page.</p>
+        <p class="roboto-regular">Please join us back on the Toys page!</p>
+        <a href="{{ url_for ('toys' )}}" class="waves-effect waves-light btn-small redirect-button roboto-regular" aria-label = "Go to the Toy Tribe toys page">Toys</a>
+    </div>
 {% endblock %}

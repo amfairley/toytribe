@@ -2,17 +2,19 @@
 
 <!-- Title for browser tab -->
 {% block title %}
-> 500 Error
+    > 500 Error
 {% endblock %}
 
-<!-- Add Toy Page Content -->
+<!-- 500 Error Content -->
 {% block content %}
-<h2 class="dangrek-regular title-error">
-    500 - Internal Server Error
-</h2>
-<div class="message-error">
-    <p class="roboto-regular">Oops, something went wrong on our end!</p>
-    <p class="roboto-regular">Please try again later!</p>
-    <a href="{{ url_for ('home' )}}" class="waves-effect waves-light btn-small redirect-button roboto-regular" aria-label="Go to Toy Tribe homepage">Home</a>
-</div>
+    <h2 class="dangrek-regular title-error">
+        <i class="fa-solid fa-server"></i>
+        <br>
+        500 - Internal Server Error
+    </h2>
+    <div class="message-error">
+        <p class="roboto-regular">Oops, something went wrong on our end!</p>
+        <p class="roboto-regular">Please try again later!</p>
+        <a href="{{ url_for ('home' )}}" class="waves-effect waves-light btn-small redirect-button roboto-regular" aria-label="Go to Toy Tribe homepage">Home</a>
+    </div>
 {% endblock %}
