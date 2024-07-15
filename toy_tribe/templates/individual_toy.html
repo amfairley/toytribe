@@ -81,16 +81,30 @@
 
                             {% if user_id == toy.user_id %}
                                 <a href="{{ url_for('edit_toy', toy_id=toy.id) }}" class="waves-effect waves-light btn-small open-sans individual-toy-buttons" aria-label="Go to the edit toy page for {{ toy.name }}">Edit toy</a>
-                                <a href="{{ url_for('delete_toy', toy_id=toy.id) }}" class="waves-effect waves-light btn-small open-sans individual-toy-buttons" aria-label="Delete {{ toy.name }}">Delete toy</a>
+                                <a href="#modal{{ toy.id }}" class="waves-effect waves-light btn-small open-sans individual-toy-buttons modal-trigger" aria-label="Delete {{ toy.name }}">Delete toy</a>
                             {% endif %}
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Confirm toy delete modal -->
+        <div id="modal{{ toy.id }}" class="modal delete-modal">
+            <div class="modal-content">
+                <p class="confirm-message playfair-display">Are you sure?</p>
+                <p class="modal-text roboto-regular">You are about to permanently delete the toy: {{ toy.name }}. Are you sure that you want to continue?</p>
+            </div>
+            <div class="modal-footer row">
+                <div class="col s6 confirm-delete-button-container">
+                    <a href="#!" class="confirm-delete-no col s5 modal-close waves-effect waves-green btn-flat open-sans">Cancel</a>
+                </div>
+                <div class="col s6 confirm-delete-button-container">
+                    <a href="{{ url_for('delete_toy', toy_id=toy.id) }}" class="col s5 confirm-delete-yes modal-close waves-effect waves-green btn-flat open-sans">Confirm</a>
+                </div>
+            </div>
+        </div>
         <!-- Reviews information section -->
-        <section class="show-reviews">
+        <div class="show-reviews">
             <!-- If there are reviews, do a title -->
             {% if reviews %}
                 <h3 class="dangrek-regular" id="toy-review-title">Reviews</h3>
@@ -154,12 +168,28 @@
                     {% if user_id == review.user_id %}
                     <div class="col s12 review-buttons">
                         <a href="{{ url_for('edit_review', review_id=review.id) }}" class="waves-effect waves-light btn-small roboto-regular review-toy-buttons" aria-label="Edit this review for {{ toy.name }}">Edit review</a>
-                        <a href="{{ url_for('delete_review', review_id=review.id) }}" class="waves-effect waves-light btn-small roboto-regular review-toy-buttons" aria-label="Delete review for {{ toy.name }}">Delete review</a>
+                        <a href="#modal{{ review.id }}" class="waves-effect waves-light btn-small roboto-regular review-toy-buttons modal-trigger" aria-label="Delete review for {{ toy.name }}">Delete review</a>
                     </div>
                     {% endif %}
                 </div>
+                <!-- Confirm review delete modal -->
+                <div id="modal{{ review.id }}" class="modal delete-modal">
+                    <div class="modal-content">
+                        <p class="confirm-message playfair-display">Are you sure?</p>
+                        <p class="modal-text roboto-regular">You are about to permanently delete your review for the toy: {{ toy.name }}. Are you sure that you want to continue?</p>
+                    </div>
+                    <div class="modal-footer row">
+                        <div class="col s6 confirm-delete-button-container">
+                            <a href="#!" class="confirm-delete-no col s5 modal-close waves-effect waves-green btn-flat open-sans">Cancel</a>
+                        </div>
+                        <div class="col s6 confirm-delete-button-container">
+                            <a href="{{ url_for('delete_review', review_id=review.id) }}" class="col s5 confirm-delete-yes modal-close waves-effect waves-green btn-flat open-sans">Confirm</a>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
-        </section>
+        </div>
+        
     {% else %}
         <!-- Redirect to homepage -->
         <script>
