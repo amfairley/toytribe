@@ -20,19 +20,6 @@ import pycountry
 from toy_tribe.models import Toy
 
 
-class LoginForm(FlaskForm):
-    """
-    LoginForm class for handling user login functionality.
-    Collects user's email and password.
-    """
-    email = StringField(
-        'Email',
-        validators=[DataRequired(), Length(min=4, max=150)]
-    )
-    password = PasswordField('Password', validators=[DataRequired()])
-    submit = SubmitField('Login')
-
-
 class SignupForm(FlaskForm):
     """
     SignupForm class to handle user signup functionality.
@@ -54,10 +41,18 @@ class SignupForm(FlaskForm):
         'Password',
         validators=[
             DataRequired(),
-            Length(min=8, message="Password must be at least 8 characters long."),
+            Length(
+                min=8,
+                message="Password must be at least 8 characters long."
+            ),
             Regexp(
                 r'^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$',
-            message="Password must contain at least one uppercase letter, one number, and one special character."
+                message=(
+                    "Password must contain:\n"
+                    "- At least one uppercase letter\n"
+                    "- At least one number\n"
+                    "- At least one special character."
+                )
             )
         ]
     )
@@ -68,35 +63,17 @@ class SignupForm(FlaskForm):
     submit = SubmitField('Register')
 
 
-class AddToy(FlaskForm):
+class LoginForm(FlaskForm):
     """
-    AddToy class to handle toy creation functionality.
-    Collects toy name, company name, toy type, apprval, and image url.
+    LoginForm class for handling user login functionality.
+    Collects user's email and password.
     """
-    name = StringField('Toy Name', validators=[DataRequired()])
-    company = StringField('Company Name', validators=[DataRequired()])
-    toy_type_id = SelectField(
-        'Type of Toy',
-        choices=[],
-        coerce=int,
-        default='0',
+    email = StringField(
+        'Email',
+        validators=[DataRequired(), Length(min=4, max=150)]
     )
-    description = TextAreaField('Toy Description')
-    image_url = StringField('Image URL')  # Not required, can be null
-    submit = SubmitField('Add Toy')
-
-
-class EditToy(FlaskForm):
-    """
-    EditToy class to handle toy updating functionality.
-    Collects toy name, company, toy type, approval, and image url.
-    """
-    name = StringField('Toy Name', validators=[DataRequired()])
-    company = StringField('Company Name', validators=[DataRequired()])
-    toy_type_id = SelectField('Type of Toy', choices=[], coerce=int, validators=[DataRequired()])
-    description = TextAreaField('Toy Description')
-    image_url = StringField('Image URL')
-    submit = SubmitField('Edit Toy')
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Login')
 
 
 class EditProfile(FlaskForm):
@@ -109,6 +86,75 @@ class EditProfile(FlaskForm):
     country = SelectField('Country', choices=[], coerce=str)
     user_image = StringField('Profile Picture URL:')
     submit = SubmitField('Save Changes')
+
+
+class ChangePassword(FlaskForm):
+    """
+    ChangePassword class to handle user changing thier password.
+    Collects old_password, new_password and confirm_password.
+    """
+    old_password = PasswordField('Old Password', validators=[DataRequired()])
+    new_password = PasswordField(
+        'New Password',
+        validators=[
+            DataRequired(),
+            Length(
+                min=8,
+                message="Password must be at least 8 characters long."
+            ),
+            Regexp(
+                r'^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$',
+                message=(
+                    "Password must contain:\n"
+                    "- At least one uppercase letter\n"
+                    "- At least one number\n"
+                    "- At least one special character."
+                )
+            )
+        ]
+    )
+    confirm_password = PasswordField(
+        'Confirm Password',
+        validators=[DataRequired(), EqualTo('new_password')]
+    )
+    submit = SubmitField('Change Password')
+
+
+class AddToy(FlaskForm):
+    """
+    AddToy class to handle toy creation functionality.
+    Collects toy name, company name, toy type, approval, and image url.
+    """
+    name = StringField('Toy Name', validators=[DataRequired()])
+    company = StringField('Company Name', validators=[DataRequired()])
+    toy_type_id = SelectField(
+        'Type of Toy',
+        choices=[],
+        coerce=int,
+        default='0',
+    )
+    description = TextAreaField('Toy Description')
+    image_url = StringField('Image URL')
+    submit = SubmitField('Add Toy')
+
+
+class EditToy(FlaskForm):
+    """
+    EditToy class to handle toy updating functionality.
+    Collects toy name, company, toy type, approval, and image url.
+    """
+    name = StringField('Toy Name', validators=[DataRequired()])
+    company = StringField('Company Name', validators=[DataRequired()])
+    toy_type_id = SelectField(
+        'Type of Toy',
+        choices=[],
+        coerce=int,
+        validators=[DataRequired()]
+    )
+    description = TextAreaField('Toy Description')
+    image_url = StringField('Image URL')
+    submit = SubmitField('Edit Toy')
+
 
 class AddReview(FlaskForm):
     """
@@ -126,10 +172,11 @@ class AddReview(FlaskForm):
             ('4', '4 Stars'),
             ('5', '5 Stars')
         ],
-        default= '',
+        default=''
     )
     also_liked = SelectMultipleField('Also liked', choices=[], coerce=str)
     submit = SubmitField('Submit Review')
+
 
 class EditReview(FlaskForm):
     """
@@ -146,31 +193,7 @@ class EditReview(FlaskForm):
             ('3', '3 Stars'),
             ('4', '4 Stars'),
             ('5', '5 Stars')
-        ],
-        validators=[DataRequired()]
+        ]
     )
     also_liked = SelectMultipleField('Also liked', choices=[], coerce=str)
     submit = SubmitField('Submit Review')
-
-class ChangePassword(FlaskForm):
-    """
-    ChangePassword class to handle user changing thier password.
-    Collects old_password, new_password and confirm_password.
-    """
-    old_password = PasswordField('Old Password', validators=[DataRequired()])
-    new_password = PasswordField(
-        'New Password',
-        validators=[
-            DataRequired(),
-            Length(min=8, message="Password must be at least 8 characters long."),
-            Regexp(
-                r'^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$',
-            message="Password must contain at least one uppercase letter, one number, and one special character."
-            )
-        ]
-    )
-    confirm_password = PasswordField(
-        'Confirm Password',
-        validators=[DataRequired(), EqualTo('new_password')]
-    )
-    submit = SubmitField('Change Password')
