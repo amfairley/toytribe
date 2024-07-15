@@ -89,10 +89,10 @@
                 </div>
                 <div class="modal-footer row">
                     <div class="col s6 confirm-delete-button-container">
-                        <a href="#!" class="confirm-delete-no col s5 modal-close waves-effect waves-green btn-flat open-sans">Cancel</a>
+                        <a href="#!" class="confirm-delete-no col s5 modal-close waves-effect waves-green btn-flat open-sans" aria-label="Cancel deletion">Cancel</a>
                     </div>
                     <div class="col s6 confirm-delete-button-container">
-                        <a href="{{ url_for('delete_toy', toy_id=toy.id) }}" class="col s5 confirm-delete-yes modal-close waves-effect waves-green btn-flat open-sans">Confirm</a>
+                        <a href="{{ url_for('delete_toy', toy_id=toy.id) }}" class="col s5 confirm-delete-yes modal-close waves-effect waves-green btn-flat open-sans" aria-label="Confirm deletion">Confirm</a>
                     </div>
                 </div>
             </div>
