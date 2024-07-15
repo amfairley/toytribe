@@ -6,4 +6,9 @@ document.addEventListener("DOMContentLoaded", function() {
     // select initialization
     let selects = document.querySelectorAll("select");
     M.FormSelect.init(selects);
+
+    // carousel initialization
+    let carousels = document.querySelectorAll('.carousel');
+    M.Carousel.init(carousels);
 });
+
