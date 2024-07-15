@@ -47,7 +47,7 @@
             {% if logged_in_user == user.id %}
             <div class = "col s12 profile-buttons-container">
                 <a href="{{ url_for('edit_profile', user_id=user.id )}}" class="waves-effect waves-light btn-small open-sans profile-buttons" aria-label="Edit your profile">Edit Profile</a>
-                <a href="{{ url_for('delete_user', user_id=user.id )}}" class="waves-effect waves-light btn-small open-sans profile-buttons" aria-label="Delete your profile">Delete User</a>
+                <a href="#modal{{ user.id }}" class="waves-effect waves-light btn-small open-sans profile-buttons modal-trigger" aria-label="Delete your profile">Delete User</a>
             </div>
             {% endif %}
         </div>
@@ -130,6 +130,21 @@
                     </div>
                 </div>
             {% endfor %}
+        </div>
+        <!-- Confirm user delete modal -->
+        <div id="modal{{ user.id }}" class="modal delete-modal">
+            <div class="modal-content">
+                <p class="confirm-message playfair-display">Are you sure?</p>
+                <p class="modal-text roboto-regular">You are about to permanently delete your entire user account. Are you sure that you want to continue?</p>
+            </div>
+            <div class="modal-footer row">
+                <div class="col s6 confirm-delete-button-container">
+                    <a href="#!" class="confirm-delete-no col s5 modal-close waves-effect waves-green btn-flat open-sans" aria-label="Cancel deletion">Cancel</a>
+                </div>
+                <div class="col s6 confirm-delete-button-container">
+                    <a href="{{ url_for('delete_user', user_id=user.id) }}" class="col s5 confirm-delete-yes modal-close waves-effect waves-green btn-flat open-sans" aria-label="Confirm deletion">Confirm</a>
+                </div>
+            </div>
         </div>
     {% else %}
         <!-- Redirect to homepage -->
