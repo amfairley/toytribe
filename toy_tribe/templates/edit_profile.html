@@ -56,8 +56,8 @@
 
             <!-- Change Password and Submit buttons-->
             <div class="edit-profile-buttons">
-                <a href="{{ url_for('change_password', user_id=user.id )}}" class="edit-profile-button roboto-regular" aria-label="Go to change password page">Edit password</a>
-                <input class="roboto-regular edit-profile-button" type="submit" value="Save Changes">
+                <a href="{{ url_for('change_password', user_id=user.id )}}" class="waves-effect edit-profile-button open-sans" aria-label="Go to change password page">Edit password</a>
+                <input class="open-sans edit-profile-button" type="submit" value="Save Changes">
             </div>
         </form>
     {% else %}
