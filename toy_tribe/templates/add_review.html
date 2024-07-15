@@ -2,64 +2,74 @@
 
 <!-- Title for browser tab -->
 {% block title %}
-> Add Review
+    > Review {{ toy.name }}
 {% endblock %}
 
 <!-- Add Review Page Content -->
 {% block content %}
+    <!-- Check if the user is logged in -->
     {% if 'user_id' in session %}
-    <!-- Back button -->
-    <a href="{{ referer }}" class="open-sans back-button" aria-label="Go back to previous page">
-        <i class="fa-solid fa-backward-step"></i>
-        <span>Back</span>
-    </a>
-    <br>
-    <h2 class="playfair-display" id="add-review-title">Review {{ toy.name }}</h2>
+        <!-- Back button -->
+        <a href="{{ referer }}" class="open-sans back-button" aria-label="Go back to previous page">
+            <i class="fa-solid fa-backward-step"></i>
+            <span>Back</span>
+        </a>
+        <br>
+        <!-- Add review title -->
+        <h2 class="playfair-display" id="add-review-title">
+            <img src="{{ url_for('static',filename='img/add_review_title.png')}}" alt="Page title for Review">
+            <span> {{ toy.name }}</span>
+        </h2>
+        <!-- Add review form -->
+        <form id="add-review-form" method="POST">
 
-    <form id="add-review-form" method="POST">
+            {{ form.hidden_tag() }}
 
-        {{ form.hidden_tag() }}
+            <!-- Review content -->
+            <div class="add-review-input">
+                <label for="review_content" class="roboto-regular">
+                    {{ form.review_content.label }}
+                    <span class="form-required">*</span>
+                </label>
+                {{ form.review_content }}
+            </div>
 
-        <div class="add-review-input">
-            <label for="review_content" class="roboto-regular">
-                {{ form.review_content.label }}
-                <span class="form-required">*</span>
-            </label>
-            {{ form.review_content }}
-        </div>
+            <!-- Review rating -->
+            <div class="add-review-input">
+                <label for="rating" class="roboto-regular">
+                    {{ form.rating.label }}
+                    <span class="form-required">*</span>                
+                </label>
+                {{ form.rating }}
+            </div>
 
-        <div class="add-review-input">
-            <label for="rating" class="roboto-regular">
-                {{ form.rating.label }}
-                <span class="form-required">*</span>                
-            </label>
-            {{ form.rating }}
-        </div>
-        <!-- Flash Messages -->
-        <div>
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                        <div class="submit-failure open-sans">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-        </div>
-        <div class="add-review-input">
-            <label for="also_liked" class="roboto-regular">{{ form.also_liked.label }}</label>
-            {{ form.also_liked(class="form-control") }}
-        </div>
+            <!-- Flash Messages -->
+            <div>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="submit-failure open-sans">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
 
-        <input id="add-review-button" class="roboto-regular" type="submit" value="Submit Review">
-        <p class="form-required roboto-regular">*Required fields</p>
-</form>
-{% else %}
-    <!-- Redirect to homepage -->
-    <script>
-        window.location.href = "{{ url_for('home') }}";
-    </script>
-{% endif %}
+            <!-- Also liked checklist -->
+            <div class="add-review-input">
+                <label for="also_liked" class="roboto-regular">{{ form.also_liked.label }}</label>
+                {{ form.also_liked(class="form-control") }}
+            </div>
 
+            <!-- Submit button -->
+            <input id="add-review-button" class="roboto-regular" type="submit" value="Submit Review">
+            <p class="form-required roboto-regular">*Required fields</p>
+        </form>
+    {% else %}
+        <!-- Redirect to homepage -->
+        <script>
+            window.location.href = "{{ url_for('home') }}";
+        </script>
+    {% endif %}
 {% endblock %}
