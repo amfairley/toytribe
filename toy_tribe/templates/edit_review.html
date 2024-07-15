@@ -2,11 +2,12 @@
 
 <!-- Title for browser tab -->
 {% block title %}
-> Edit Review
+    > Edit Review
 {% endblock %}
 
 <!-- Add Review Page Content -->
 {% block content %}
+    <!-- Check if the user is the author -->
     {% if user_id == review.user_id %}
         <!-- Back button -->
         <a href="{{ referer }}" class="open-sans back-button" aria-label="Go back to previous page">
@@ -14,12 +15,17 @@
             <span>Back</span>
         </a>
         <br>
-        <h2 class="playfair-display" id="edit-review-title">Edit Review for {{ toy.name }}</h2>
+        <!-- Edit review title -->
+        <h2 id="edit-review-title">
+            <img src="{{ url_for('static',filename='img/edit_review_title.png')}}" alt="Page title for Edit Review">
+        </h2>
 
+        <!-- Edit review form -->
         <form id="edit-review-form" method="POST">
 
             {{ form.hidden_tag() }}
 
+            <!-- Review content -->
             <div class="edit-review-input">
                 <label for="review_content" class="roboto-regular">
                     {{ form.review_content.label }}
@@ -28,6 +34,7 @@
                 {{ form.review_content }}
             </div>
 
+            <!-- Review rating -->
             <div class="edit-review-input">
                 <label for="rating" class="roboto-regular">
                     {{ form.rating.label }}
@@ -36,11 +43,27 @@
                     {{ form.rating }}
                 </select>
             </div>
+
+            <!-- Flash Messages -->
+            <div>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="submit-failure open-sans">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+
+            <!-- Also liked -->
             <div class="edit-review-input">
                 <label for="also_liked" class="roboto-regular">{{ form.also_liked.label }}</label>
                 {{ form.also_liked(class="form-control") }}
             </div>
 
+            <!-- Submit button -->
             <input id="edit-review-button" class="roboto-regular" type="submit" value="Submit Review">
             <p class="form-required roboto-regular">*Required fields</p>
         </form>
