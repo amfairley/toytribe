@@ -615,6 +615,10 @@ def delete_review(review_id):
     A function used to remove the review
     from Review table in the database.
     """
+    user_id = session.get("user_id")
+
+    # Gets the reference of the link
+    ref = request.args.get('ref')
     # Gets the correct review
     review = Review.query.get_or_404(review_id)
     # Gets the toy id for redirection after deletion
@@ -623,8 +627,12 @@ def delete_review(review_id):
     # Deletes the review
     db.session.delete(review)
     db.session.commit()
-    # Redirects back to toy.
-    return redirect(url_for('individual_toy', toy_id=toy_id))
+    if ref == 'profile':
+        # Redirects back to profile
+        return redirect(url_for('other_profile', user_id=user_id))
+    else:
+        # Redirects back to toy.
+        return redirect(url_for('individual_toy', toy_id=toy_id))
 
 
 @app.route('/403')
