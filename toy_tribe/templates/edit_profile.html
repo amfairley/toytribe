@@ -2,12 +2,12 @@
 
 <!-- Title for browser tab -->
 {% block title %}
-> Edit Profile
+    > Edit Profile
 {% endblock %}
 
 <!-- Edit Toy Page Content -->
 {% block content %}
-    <!-- Means only the user can edit their own profile -->
+    <!-- Checks if the user is the owner of the profile -->
     {% if logged_in_user==user.id %}
         <!-- Back button -->
         <a href="{{ url_for('profile') }}" class="open-sans back-button" aria-label="Go back to profile page.">
@@ -15,17 +15,21 @@
             <span>Back</span>
         </a>
         <br>
+        <!-- Edit profile title -->
         <h2 class="playfair-display edit-profile-title" id="edit-profile-title">Edit Profile</h2>
 
+        <!-- Edit profile form -->
         <form id="edit-profile-form" method="POST">
 
             {{ form.hidden_tag() }}
 
+            <!-- About me -->
             <div class="edit-profile-input">
                 <label for="about_me" class="roboto-regular">{{ form.about_me.label }}</label>
                 {{ form.about_me }}
             </div>
 
+            <!-- Is parent toggle -->
             <div class="edit-profile-input">
                 <label for="is_parent" class="roboto-regular">{{ form.is_parent.label }}</label>
                 <div class="switch">
@@ -38,15 +42,19 @@
                   </div>
             </div>
 
+            <!-- Country select -->
             <div class="edit-profile-input">
                 <label for="country" class="roboto-regular">{{ form.country.label }}</label>
                 {{ form.country(class="form-control") }}
             </div>
 
+            <!-- Profile picture -->
             <div class="edit-profile-input">
                 <label for="user_image" class="roboto-regular">{{ form.user_image.label }}</label>
                 {{ form.user_image }}
             </div>
+
+            <!-- Change Password and Submit buttons-->
             <div class="edit-profile-buttons">
                 <a href="{{ url_for('change_password', user_id=user.id )}}" class="edit-profile-button roboto-regular" aria-label="Go to change password page">Edit password</a>
                 <input class="roboto-regular edit-profile-button" type="submit" value="Save Changes">
