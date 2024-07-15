@@ -6,6 +6,10 @@ document.addEventListener("DOMContentLoaded", function() {
     // select initialization
     let selects = document.querySelectorAll("select");
     M.FormSelect.init(selects);
+    
+    // modal initialization
+    let modals = document.querySelectorAll('.modal');
+    M.Modal.init(modals);
 
     // carousel initialization
     let carousels = document.querySelectorAll('.carousel');
