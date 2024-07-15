@@ -2,77 +2,86 @@
 
 <!-- Title for browser tab -->
 {% block title %}
-> Add Toy
+    > Add Toy
 {% endblock %}
 
 <!-- Add Toy Page Content -->
 {% block content %}
     {% if 'user_id' in session %}
-    <h2 class="playfair-display" id="add-toy-title">Add toy</h2>
+        <!-- Add Toy Title -->
+        <h2 id="add-toy-title">
+            <img src="{{ url_for('static',filename='img/add_toy_title.png')}}" alt="Page title for Adding Toys">
+        </h2>
+        <!-- Add toy form -->
+        <form id="add-toy-form" method="POST">
 
-    <form id="add-toy-form" method="POST">
+            {{ form.hidden_tag() }}
 
-        {{ form.hidden_tag() }}
+            <!-- Toy name -->
+            <div class="add-toy-input">
+                <label for="name" class="roboto-regular">
+                    {{ form.name.label }}
+                    <span class="form-required">*</span>
+                </label>
+                {{ form.name }}
+            </div>
 
-        <div class="add-toy-input">
-            <label for="name" class="roboto-regular">
-                {{ form.name.label }}
-                <span class="form-required">*</span>
-            </label>
-            {{ form.name }}
-        </div>
+            <!-- Toy company -->
+            <div class="add-toy-input">
+                <label for="company" class="roboto-regular">
+                    {{ form.company.label }}
+                    <span class="form-required">*</span>
+                </label>
+                {{ form.company }}
+            </div>
 
-        <div class="add-toy-input">
-            <label for="company" class="roboto-regular">
-                {{ form.company.label }}
-                <span class="form-required">*</span>
-            </label>
-            {{ form.company }}
-        </div>
-
-
-        <div class="add-toy-input">
-            <label for="toy_type_id" class="roboto-regular">
-                {{ form.toy_type_id.label }}
-                <span class="form-required">*</span>
-            </label>
-            <select id="toy_type_id" name="toy_type_id" class="form-control">
-                <option value='0' selected>Select Toy Type</option>
-                {% for toy_type in toy_types %}
-                    <option value="{{ toy_type.id }}">{{ toy_type.toy_type }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <!-- Flash Messages -->
-        <div>
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                        <div class="login-failure open-sans">
-                            {{ message }}
-                        </div>
+            <!-- Toy type -->
+            <div class="add-toy-input">
+                <label for="toy_type_id" class="roboto-regular">
+                    {{ form.toy_type_id.label }}
+                    <span class="form-required">*</span>
+                </label>
+                <select id="toy_type_id" name="toy_type_id" class="form-control">
+                    <option value='0' selected>Select Toy Type</option>
+                    {% for toy_type in toy_types %}
+                        <option value="{{ toy_type.id }}">{{ toy_type.toy_type }}</option>
                     {% endfor %}
-                {% endif %}
-            {% endwith %}
-        </div>
+                </select>
+            </div>
 
-        <div class="roboto-regular add-toy-input">
-            <label for="description">{{ form.description.label }}</label>
-            {{ form.description }}
-        </div>
+            <!-- Error Messages -->
+            <div>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="form-error-messages open-sans">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
 
-        <div class="roboto-regular add-toy-input">
-            <label for="image_url">{{ form.image_url.label }}</label>
-            {{ form.image_url }}
-        </div>
+            <!-- Toy description -->
+            <div class="roboto-regular add-toy-input">
+                <label for="description">{{ form.description.label }}</label>
+                {{ form.description }}
+            </div>
 
-        <input id="add-toy-button" class="roboto-regular" type="submit" value="Add Toy">
-        <p class="form-required roboto-regular">*Required fields</p>
-    </form>
-    {% else %}
-        <!-- Redirect to homepage -->
-        <script>
-            window.location.href = "{{ url_for('home') }}";
-        </script>
+            <!-- Toy image -->
+            <div class="roboto-regular add-toy-input">
+                <label for="image_url">{{ form.image_url.label }}</label>
+                {{ form.image_url }}
+            </div>
+
+            <!-- Submit button -->
+            <input id="add-toy-button" class="roboto-regular" type="submit" value="Add Toy">
+            <p class="form-required roboto-regular">*Required fields</p>
+        </form>
+        {% else %}
+            <!-- Redirect to homepage -->
+            <script>
+                window.location.href = "{{ url_for('home') }}";
+            </script>
     {% endif %}
 {% endblock %}

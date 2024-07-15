@@ -2,22 +2,29 @@
 
 <!-- Title for browser tab -->
 {% block title %}
-> Toys
+    > Toys
 {% endblock %}
 
 <!-- Toys Page Content -->
 {% block content %}
     {% if 'user_id' in session %}
-        <h2 class="playfair-display" id="toys-title">Toys</h2>
+        <!-- Toys title -->
+        <h2 id="toys-title">
+            <img src="{{ url_for('static',filename='img/toys_title.png')}}" alt="Page title for Toys">
+        </h2>
+        <!-- Floating add-toy button -->
         <div class="fixed-action-btn add-toy-button">
             <p class="open-sans">Add Toy</p>
             <a class="btn-floating btn-large grey lighten-1" href="{{url_for('add_toy')}}" aria-label="Add a new toy">
                 <i class="fa-solid fa-circle-plus"></i>
             </a>
         </div>
-        <section class="row" id="toys-page">
+        <!-- Toy display section -->
+        <div class="row" id="toys-page">
             {% for toy in toys %}
+            <!-- Toy card -->
             <div class="card sticky-action col s12 m6 l4 toys-card">
+                <!-- Toy rating -->
                 <aside class="open-sans review-display right">
                     {% if toy.average_rating() | float != 0 %}
                     <!-- Star rating display from Fred Genkin https://codepen.io/FredGenkin/pens/showcase-->
@@ -26,25 +33,20 @@
                     <div class="no-reviews">Not reviewed yet</div>
                     {% endif %}
                 </aside>
+                <!-- Toy image -->
                 <div class="card-image waves-effect waves-block waves-light center-align">
                     <a class="toy-image-link" href="{{ url_for('individual_toy', toy_id=toy.id) }}" aria-label="Go the individual toy page for {{ toy.name }}">
                         <img class="toys-image" src="{{ toy.image_url }}" alt="Image of {{ toy.name }}">
                     </a>
                 </div>
+                <!-- Toy title and see more -->
                 <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">
                         <a class="toys-toy-title open-sans" href="{{ url_for('individual_toy', toy_id=toy.id) }}">{{ toy.name }}</a>
                         <i class="fa-solid fa-ellipsis right" aria-label="See more information about {{ toy.name }}"></i>
                         <br>
-                        <aside class="open-sans review-display">
-                            {% if toy.average_rating() | float != 0 %}
-                            <!-- Star rating display from Fred Genkin https://codepen.io/FredGenkin/pens/showcase-->
-                            <div class="Stars individual-toys-star-rating" style="--rating: {{ toy.average_rating() | float | round(1) }};" aria-label="Rating of this product is {{ toy.average_rating() | float | round(1) }} out of 5."></div>
-                            {% else %}
-                            <p class="no-reviews">Not reviewed yet</p>
-                            {% endif %}
-                        </aside>
                     </span>
+                    <!-- Toy edit and delete buttons -->
                     {% if user_id == toy.user_id %}
                         <div class="card-action">
                             <div class="toys-buttons-div">
@@ -54,29 +56,37 @@
                         </div>
                     {% endif %}
                 </div>
+                <!-- Expanded card details-->
                 <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">
-                        <a class="toys-toy-title open-sans" href="{{ url_for('individual_toy', toy_id=toy.id) }}" aria-label="Go the individual toy page for {{ toy.name }}">{{ toy.name }}</a>
-                        <i class="fa-solid fa-x right"></i>
+                    <span class="card-title">
+                        <div class="row">
+                            <div class="col s10">
+                                <a class="toys-toy-title-reveal open-sans" href="{{ url_for('individual_toy', toy_id=toy.id) }}" aria-label="Go the individual toy page for {{ toy.name }}">{{ toy.name }}</a>
+                            </div>
+                            <div class="col s2">
+                                <i class="fa-solid fa-x right close-toy"></i>
+                            </div>
+                        </div>
                     </span>
-                    <p class="roboto-regular">
+                    <p class="roboto-regular toy-reveal-description">
                         A {{ toy.company }} toy.
                         <br>
                         Type: {{ toy_types[toy.toy_type_id].toy_type }}
                     </p>
-                    <p class="toy-description">
+                    <p class="toy-description toy-reveal-description">
                         <strong>Description: </strong>{{ toy.description }}
                     </p>
                 </div>
             </div>
             {% endfor %}
+            <!-- Back to top div -->
             <div class="back-to-top-container col s12 m6 l4 ">
                 <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
                     <i class="fa-solid fa-caret-up"></i><br>
                     <span>Back to top</span>
                 </a>
             </div>
-        </section>
+        </div>
     {% else %}
         <!-- Redirect to homepage -->
         <script>
@@ -84,13 +94,3 @@
         </script>
     {% endif %}
 {% endblock %}
-
-<!-- <ul>
-    <li class="toys-toy-id ">Toy ID: {{ toy.id }}</li>
-    <li class="toys-user-id">User ID: {{ toy.user_id }}</li>
-    <li class="toys-company-name">Company Name: {{ toy.company }}</li>
-    <li class="toys-toy-type">Toy Type: {{ toy.type }}</li>
-    <li class="toys-approved">Approved? {{ toy.is_approved }}</li>
-    <li class="toys-image">Image URL: {{ toy.image_url }}</li>
-    <li class="toys-created">Date created: {{ toy.date_of_creation }}</li>
-</ul> -->

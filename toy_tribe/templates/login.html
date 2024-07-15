@@ -2,51 +2,48 @@
 
 <!-- Title for browser tab -->
 {% block title %}
-> Login
+    > Login
 {% endblock %}
 
 <!-- Login Content -->
 {% block content %}
-<h2 class="playfair-display" id="login-title">Login</h2>
-<form id="login-form" method="POST">
+    <!-- Login title -->
+    <h2 id="login-title">
+        <img src="{{ url_for('static',filename='img/login_title.png')}}" alt="Page title for Login">
+    </h2>
+    <!-- Login form -->
+    <form id="login-form" method="POST">
 
-    {{ form.hidden_tag() }}
+        {{ form.hidden_tag() }}
 
-    <label for="email" class="roboto-regular">{{ form.email.label }}</label>
-    {{ form.email }}
+        <!-- Email -->
+        <label for="email" class="roboto-regular">{{ form.email.label }}</label>
+        {{ form.email }}
 
-    <label for="password" class="roboto-regular">{{ form.password.label }}</label>
-    {{ form.password }}
+        <!-- Password -->
+        <label for="password" class="roboto-regular">{{ form.password.label }}</label>
+        {{ form.password }}
 
-    <div class="container">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="login-failure open-sans">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-    </div>
+        <!-- Error messages -->
+        <div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="form-error-messages open-sans">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
 
-    <input id="login-button" class="roboto-regular" type="submit" value="Login">
-    <p class="roboto-regular">
-        Don't have an account yet? <br>
-        <a href="{{ url_for ('signup' )}}" class="waves-effect waves-light btn-small signup-button roboto-regular" aria-label="Go the Toy Tribe signup page">Signup</a>
-    </p>
-</form>
+        <!-- Submit button -->
+        <input id="login-button" class="roboto-regular" type="submit" value="Login">
 
-<!--Check if login was successful-->
-<!-- <div class="container">
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
-</div> -->
+        <!-- Link to signup -->
+        <p class="roboto-regular">
+            Don't have an account yet? <br>
+            <a href="{{ url_for ('signup' )}}" class="waves-effect waves-light btn-small signup-button roboto-regular" aria-label="Go the Toy Tribe signup page">Signup</a>
+        </p>
+    </form>
 {% endblock %}

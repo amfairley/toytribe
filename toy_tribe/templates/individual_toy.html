@@ -2,36 +2,44 @@
 
 <!-- Title for broswer tab -->
 {% block title %}
-> {{ toy.name }}
+    > {{ toy.name }}
 {% endblock %}
 
-<!-- Toy Page Content-->
+<!-- Individual Toy Page Content-->
 {% block content %}
     {% if 'user_id' in session %}
+        <!-- Back button -->
         <a href="{{ referer }}" class="open-sans back-button" aria-label="Go back to previous page">
             <i class="fa-solid fa-backward-step"></i>
             <span>Back</span>
         </a>
         <br>
+        <!-- Toy title -->
         <h2 class="playfair-display" id="individual-toy-title">{{ toy.name }}</h2>
 
         <!-- Toy information section -->
-        <section class="row toy-row">
+        <div class="row toy-row">
             <div class="toy-information-display col s12">
                 <div class="card">
                     <div class="card-image">
+                        <!-- Toy rating -->
                         <span class="card-title individual-toy-rating">
+                            <!-- If there is a rating -->
                             {% if toy.average_rating() | float != 0 %}
-                            <!-- Star rating display from Fred Genkin https://codepen.io/FredGenkin/pens/showcase-->
-                            <div class="Stars individual-toy-star-rating" style="--rating: {{ toy.average_rating() | float | round(1) }};" aria-label="Rating of this product is {{ toy.average_rating() | float | round(1) }} out of 5."></div>
-                            <p class="review-strength"> {{ toy.average_rating() | float | round(1) }}/5 over {{ reviews | length }} reviews</p>
+                                <!-- Star rating display from Fred Genkin https://codepen.io/FredGenkin/pens/showcase-->
+                                <div class="Stars individual-toy-star-rating" style="--rating: {{ toy.average_rating() | float | round(1) }};" aria-label="Rating of this product is {{ toy.average_rating() | float | round(1) }} out of 5."></div>
+                                <p class="review-strength"> {{ toy.average_rating() | float | round(1) }}/5 over {{ reviews | length }} reviews</p>
+                            <!-- If there is no rating -->   
                             {% else %}
-                            <div class="individual-toy-no-reviews open-sans">Not reviewed yet</div>
+                                <div class="individual-toy-no-reviews open-sans">Not reviewed yet</div>
                             {% endif %}
                         </span>
+                        <!-- Toy image -->
                         <img class="toy-image" src="{{ toy.image_url }}" alt="An image for {{ toy.name }}">
                     </div>
-                    <div class="card-content">
+
+                    <!-- Toy information table -->
+                    <div class="card-content individual-toy-information">
                         <table>
                             <thead>
                                 <tr>
@@ -58,49 +66,60 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="toy-buttons-div">
-                            <a href="{{ url_for('add_review', toy_id=toy.id )}}"  class="waves-effect waves-light btn-small roboto-regular toy-buttons" aria-label="Add a review for {{ toy.name }}">Review Toy</a>
+                        <!-- Button section -->
+                        <div class="individual-toy-buttons-div">
+                            <a href="{{ url_for('add_review', toy_id=toy.id )}}"  class="waves-effect waves-light btn-small open-sans individual-toy-buttons" aria-label="Add a review for {{ toy.name }}">Review Toy</a>
 
                             {% if user_id == toy.user_id %}
-                                <a href="{{ url_for('edit_toy', toy_id=toy.id) }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons" aria-label="Go to the edit toy page for {{ toy.name }}">Edit toy</a>
-                                <a href="{{ url_for('delete_toy', toy_id=toy.id) }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons" aria-label="Delete {{ toy.name }}">Delete toy</a>
+                                <a href="{{ url_for('edit_toy', toy_id=toy.id) }}" class="waves-effect waves-light btn-small open-sans individual-toy-buttons" aria-label="Go to the edit toy page for {{ toy.name }}">Edit toy</a>
+                                <a href="{{ url_for('delete_toy', toy_id=toy.id) }}" class="waves-effect waves-light btn-small open-sans individual-toy-buttons" aria-label="Delete {{ toy.name }}">Delete toy</a>
                             {% endif %}
                         </div>
 
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
         <!-- Reviews information section -->
         <section class="show-reviews">
+            <!-- If there are reviews, do a title -->
             {% if reviews %}
-            <h3 class="dangrek-regular" id="toy-review-title">Reviews</h3>
+                <h3 class="dangrek-regular" id="toy-review-title">Reviews</h3>
             {% endif %}
+            <!-- Loop through the reviews -->
             {% for review in reviews %}
+                <!-- Put a divider above the review if it is not the first in the list -->
                 {% if not loop.first %}
                     <hr class="review-divider">
                 {% endif %}
                 <div class="row review-row">
+                    <!-- Review author -->
                     <div class="col s6 review-author open-sans">
                         {% set author = Users.query.filter_by(id = review.user_id).first() %}
+                        <!-- Check if the user still exists -->
                         {% if author %}
                             <p>
                                 <a href="{{ url_for('other_profile', user_id=author.id) }}" aria-label="Go to the profile of {{ author.first_name }} {{ author.last_name }}">{{ author.first_name }} {{ author.last_name }}</a>
                             </p>
+                        <!-- If not found, show user deleted -->
                         {% else %}
                             <p>User Deleted</p>
                         {% endif %}
                     </div>
+                    <!-- Review rating -->
                     <div class="col s6 review-rating open-sans">
                         <!-- Star rating display from Fred Genkin https://codepen.io/FredGenkin/pens/showcase-->
                         <div class="Stars review-rating-stars" style="--rating: {{ review.rating }};" aria-label="Rating of this product is {{ review.rating }} out of 5."></div>
                     </div>
+                    <!-- Divider between name, rating and review content -->
                     <div class="col s12">
                         <hr class="review-name-divider">
                     </div>
-                    <div class="col s12">
+                    <!-- Review content -->
+                    <div class="col s12 review-content-box">
                         <p class="roboto-regular">{{ review.review_content }}</p>
                     </div>
+                    <!-- Also liked carousel -->
                     <div class="col s12">
                         {% if review.also_liked %}
                         <hr class="carousel-divider">
@@ -113,17 +132,20 @@
                                         <!-- If the toy still exists (not deleted)-->
                                         {% if liked_toy %}
                                             <div style="background-image: url('{{ liked_toy.image_url }}');" class="carousel-toy carousel-item" role="image" aria-label="Image for {{ liked_toy.name }}. The reviewer likes toy.">
-                                                <a href="{{ url_for('individual_toy', toy_id = liked_toy.id) }}" class="open-sans liked-toy-link" aria-label="Link to {{ liked_toy.name }} page">{{ liked_toy.name }}</a>
+                                                <div class="carousel-name-container">
+                                                    <a href="{{ url_for('individual_toy', toy_id = liked_toy.id) }}" class="open-sans liked-toy-link" aria-label="Link to {{ liked_toy.name }} page">{{ liked_toy.name }}</a>
+                                                </div>
                                             </div> 
                                         {% endif %}
                                 {% endfor %}
                             </div>
                         {% endif %}
                     </div>
+                    <!-- Review buttons -->
                     {% if user_id == review.user_id %}
                     <div class="col-12 review-buttons">
-                        <a href="{{ url_for('edit_review', review_id=review.id) }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons" aria-label="Edit this review for {{ toy.name }}">Edit review</a>
-                        <a href="{{ url_for('delete_review', review_id=review.id) }}" class="waves-effect waves-light btn-small roboto-regular toy-buttons" aria-label="Delete review for {{ toy.name }}">Delete review</a>
+                        <a href="{{ url_for('edit_review', review_id=review.id) }}" class="waves-effect waves-light btn-small roboto-regular review-toy-buttons" aria-label="Edit this review for {{ toy.name }}">Edit review</a>
+                        <a href="{{ url_for('delete_review', review_id=review.id) }}" class="waves-effect waves-light btn-small roboto-regular review-toy-buttons" aria-label="Delete review for {{ toy.name }}">Delete review</a>
                     </div>
                     {% endif %}
                 </div>
@@ -135,8 +157,4 @@
             window.location.href = "{{ url_for('home') }}";
         </script>
     {% endif %}
-
-
 {% endblock %}
-
-<!-- Use Cards For Reviews -->
