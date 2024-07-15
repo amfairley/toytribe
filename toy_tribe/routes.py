@@ -487,13 +487,35 @@ def edit_toy(toy_id):
     )
 
 
+def remove_toy_from_reviews(review):
+    """
+    A function to remove the toy id from the also_liked list
+    in the user reviews
+    """
+    updated_also_liked = []
+    # Loop through also_liked and if they still exist, add to updated list
+    for toy_id in review.also_liked:
+        toy = Toy.query.filter_by(id=toy_id).first()
+        if toy:
+            updated_also_liked.append(toy_id)
+    # Set also_liked as the updated list
+    review.also_liked = updated_also_liked
+
+
 @app.route('/delete_toy/<int:toy_id>')
 def delete_toy(toy_id):
     """A function used to remove the toy from Toy table in the database."""
     # Gets the correct toy
     toy = Toy.query.get_or_404(toy_id)
-    # Deletes the toy and saves it
+    # Deletes the toy
     db.session.delete(toy)
+    # Get all reviews
+    reviews = Review.query.all()
+    # Loop through them and if they have this toy id in also_liked, remove it
+    for review in reviews:
+        if toy_id in review.also_liked:
+            remove_toy_from_reviews(review)
+    # saves changes
     db.session.commit()
     # Redirects back to toys
     return redirect(url_for('toys'))
