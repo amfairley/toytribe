@@ -15,13 +15,16 @@ class Users(db.Model):
     email = db.Column(db.String(200), unique=True, nullable=False, index=True)
     # Password length of 255 covers most hashed passwords
     password = db.Column(db.String(255), nullable=False)
+    # User.id used as foreign key in Toy
     toys = db.relationship("Toy", backref="users", lazy=True)
+    # User.id used as foreign key in Profile
     profile = db.relationship(
         "Profile",
         backref="users",
         cascade="all, delete",
         lazy=True
     )
+    # User.id used as foreign key in Review
     reviews = db.relationship("Review", backref="users", lazy=True)
 
     def __repr__(self):
@@ -33,90 +36,13 @@ class Users(db.Model):
         )
 
 
-class Toy(db.Model):
-    """
-    Toy class model for database.
-    Contains id, user_id, name, company, type, is_approved, image_url,
-    date_of_creation.
-    """
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(
-        db.Integer,
-        db.ForeignKey("users.id", ondelete="SET NULL"),
-        nullable=True
-    )
-    toy_type_id = db.Column(
-        db.Integer,
-        db.ForeignKey("toytype.id", ondelete="SET NULL"),
-        nullable=True
-    )
-    name = db.Column(db.String(200), nullable=False)
-    company = db.Column(db.String(200), nullable=True)
-    is_approved = db.Column(db.Boolean, default=True, nullable=False)
-    image_url = db.Column(
-        db.String(300),
-        nullable=False)
-    description = db.Column(
-        db.Text(),
-        nullable=False
-    )
-    link = db.Column(db.String(300), nullable=True)
-    date_of_creation = db.Column(
-        db.DateTime,
-        default=datetime.utcnow,
-        nullable=False
-    )
-    review = db.relationship(
-        "Review",
-        backref="toy",
-        cascade="all, delete",
-        lazy=True
-    )
-
-    def average_rating(self):
-        """Function to get the average rating for the toy from the reviews."""
-        # Get all reviews for the toy by the toy_id
-        reviews = Review.query.filter_by(toy_id=self.id).all()
-        # If there are no reviews, return 0
-        if not reviews:
-            return "Not Reviewed Yet"
-        # Calculate the average rating
-        total_rating = sum(review.rating for review in reviews)
-        return total_rating / len(reviews)
-
-    def __repr__(self):
-        """Returns a string represenation of the Toy database schema."""
-        return (
-            f"#{self.id} | user_id: {self.user_id} | "
-            f"toy_type_id: {self.toy_type_id} | name: {self.name} | "
-            f"company: {self.company} | is_approved: {self.is_approved} | "
-            f"image_url: {self.image_url} | description: {self.description} | "
-            f"link: {self.link} date_of_creation: {self.date_of_creation} | "
-            f"average_rating: {self.average_rating:.2f}"
-        )
-
-
-class ToyType(db.Model):
-    """
-    Toy type model for database.
-    Contains id, toy_type.
-    """
-    __tablename__ = 'toytype'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    toy_type = db.Column(db.String(100), nullable=False)
-    toys = db.relationship("Toy", backref="toytype", lazy=True)
-
-    def __repr__(self):
-        """Returns a string represenation of the Toy Type database schema."""
-        return f"#{self.id} | toy_type: {self.toy_type}"
-
-
 class Profile(db.Model):
     """
     Profile class model for database.
     Contains id, user_id, about_me, country, is_parent, user_image.
     """
     id = db.Column(db.Integer, primary_key=True)
+    # Delete profile if associated user is deleted
     user_id = db.Column(
         db.Integer,
         db.ForeignKey("users.id", ondelete="CASCADE"),
@@ -144,25 +70,108 @@ class Profile(db.Model):
         )
 
 
+class Toy(db.Model):
+    """
+    Toy class model for database.
+    Contains id, user_id, name, company, type, is_approved, image_url,
+    date_of_creation.
+    """
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    # Keep the toy even if the user is deleted
+    user_id = db.Column(
+        db.Integer,
+        db.ForeignKey("users.id", ondelete="SET NULL"),
+        nullable=True
+    )
+    toy_type_id = db.Column(
+        db.Integer,
+        db.ForeignKey("toytype.id", ondelete="SET NULL"),
+        nullable=True
+    )
+    name = db.Column(db.String(200), nullable=False)
+    company = db.Column(db.String(200), nullable=True)
+    is_approved = db.Column(db.Boolean, default=True, nullable=False)
+    image_url = db.Column(
+        db.String(300),
+        nullable=False)
+    description = db.Column(
+        db.Text(),
+        nullable=False
+    )
+    link = db.Column(db.String(300), nullable=True)
+    date_of_creation = db.Column(
+        db.DateTime,
+        default=datetime.utcnow,
+        nullable=False
+    )
+    # Toy.id used as a foreign key in Review
+    review = db.relationship(
+        "Review",
+        backref="toy",
+        cascade="all, delete",
+        lazy=True
+    )
+
+    def average_rating(self):
+        """Function to get the average rating for the toy from the reviews."""
+        # Get all reviews for the toy by the toy_id
+        reviews = Review.query.filter_by(toy_id=self.id).all()
+        # If there are no reviews, return message
+        if not reviews:
+            return "Not Reviewed Yet"
+        # Calculate and return the average rating
+        total_rating = sum(review.rating for review in reviews)
+        return total_rating / len(reviews)
+
+    def __repr__(self):
+        """Returns a string represenation of the Toy database schema."""
+        return (
+            f"#{self.id} | user_id: {self.user_id} | "
+            f"toy_type_id: {self.toy_type_id} | name: {self.name} | "
+            f"company: {self.company} | is_approved: {self.is_approved} | "
+            f"image_url: {self.image_url} | description: {self.description} | "
+            f"link: {self.link} date_of_creation: {self.date_of_creation} | "
+            f"average_rating: {self.average_rating:.2f}"
+        )
+
+
+class ToyType(db.Model):
+    """
+    Toy type model for database.
+    Contains id, toy_type.
+    """
+    __tablename__ = 'toytype'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    toy_type = db.Column(db.String(100), nullable=False)
+    # ToyType.id is used as a foreign key in Toy
+    toys = db.relationship("Toy", backref="toytype", lazy=True)
+
+    def __repr__(self):
+        """Returns a string represenation of the Toy Type database schema."""
+        return f"#{self.id} | toy_type: {self.toy_type}"
+
+
 class Review(db.Model):
     """
     Review class model for database.
     Contains id, user_id, toy_id, review_content, rating, date_of_creation.
     """
     id = db.Column(db.Integer, primary_key=True)
+    # Keep the review even if the user is deleted
     user_id = db.Column(
         db.Integer,
         db.ForeignKey("users.id", ondelete="SET NULL"),
         nullable=True
     )
+    # Remove the review if the toy is deleted
     toy_id = db.Column(
         db.Integer,
         db.ForeignKey("toy.id", ondelete="CASCADE"),
         nullable=False
     )
     review_content = db.Column(db.Text, nullable=False)
-    rating = db.Column(db.Integer, primary_key=False, nullable=False)
-    also_liked = db.Column(ARRAY(db.Integer), nullable=True)
+    rating = db.Column(db.Integer, primary_key=False, nullable=True)
+    also_liked = db.Column(ARRAY(db.Integer), nullable=False)
     date_of_creation = db.Column(
         db.DateTime,
         default=datetime.utcnow,
@@ -177,26 +186,3 @@ class Review(db.Model):
             f"also_liked: {self.also_liked} | "
             f"date_of_creation: {self.date_of_creation}"
         )
-
-#     # Methods to update the average toy rating when changes are made
-#     @staticmethod
-#     def after_insert(mapper, connection, target):
-#         """Function to refresh average rating after new review"""
-#         target.toy.update_average_rating()
-
-#     @staticmethod
-#     def after_update(mapper, connection, target):
-#         """Function to refresh average rating after editing review"""
-#         target.toy.update_average_rating()
-
-#     @staticmethod
-#     def after_delete(mapper, connection, target):
-#         """Function to refresh average rating after deleting review"""
-#         target.toy.update_average_rating()
-
-
-# # Event listeners for updating average ratings
-# event.listen(Review, 'after_insert', Review.after_insert)
-# event.listen(Review, 'after_update', Review.after_update)
-# event.listen(Review, 'after_delete', Review.after_delete)
-
