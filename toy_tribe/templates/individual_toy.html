@@ -7,6 +7,7 @@
 
 <!-- Individual Toy Page Content-->
 {% block content %}
+    <!-- Check if user is logged in -->
     {% if 'user_id' in session %}
         <!-- Back button -->
         <a href="{{ referer }}" class="open-sans back-button" aria-label="Go back to previous page">

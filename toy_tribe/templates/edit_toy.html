@@ -7,6 +7,7 @@
 
 <!-- Edit Toy Page Content -->
 {% block content %}
+    <!-- Check if the user created the toy -->
     {% if user_id == toy.user_id %}
         <!-- Back button -->
         <a href="{{ referer }}" class="open-sans back-button" aria-label="Go back to previous page">
