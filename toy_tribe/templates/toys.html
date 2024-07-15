@@ -52,7 +52,9 @@
                         <div class="card-action">
                             <div class="toys-buttons-div">
                                 <a href="{{ url_for('edit_toy', toy_id=toy.id, ref='toys') }}" class="waves-effect waves-light btn-small roboto-regular toys-buttons" aria-label="Go to edit toy page for {{ toy.name }}">Edit toy</a>
-                                <a href="{{ url_for('delete_toy', toy_id=toy.id) }}" class="waves-effect waves-light btn-small roboto-regular toys-buttons" aria-label="Delete {{ toy.name }}">Delete toy</a>
+                                <!-- Delete toy modal trigger-->
+                                <a href="#modal{{ toy.id }}" class="waves-effect waves-light btn-small roboto-regular toys-buttons modal-trigger" aria-label="Delete {{ toy.name }}">Delete toy</a>
+                                  <!-- Modal Trigger -->
                             </div>
                         </div>
                     {% endif %}
@@ -79,6 +81,24 @@
                     </p>
                 </div>
             </div>
+            <!-- Confirm delete modal -->
+            <div id="modal{{ toy.id }}" class="modal delete-modal">
+                <div class="modal-content">
+                    <p class="confirm-message playfair-display">Are you sure?</p>
+                    <p class="modal-text roboto-regular">You are about to delete the toy: {{ toy.name }}. Are you sure that you want to continue?</p>
+                </div>
+                <div class="modal-footer row">
+                    <div class="col s6 confirm-delete-button-container">
+                        <a href="#!" class="confirm-delete-no col s5 modal-close waves-effect waves-green btn-flat open-sans">Cancel</a>
+                    </div>
+                    <div class="col s6 confirm-delete-button-container">
+                        <a href="{{ url_for('delete_toy', toy_id=toy.id) }}" class="col s5 confirm-delete-yes modal-close waves-effect waves-green btn-flat open-sans">Confirm</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- #modal{{ toy.name }} -->
+            <!-- <a href="{{ url_for('delete_toy', toy_id=toy.id) }}" -->
             {% endfor %}
             <!-- Back to top div -->
             <div class="back-to-top-container col s12 m6 l4 ">
