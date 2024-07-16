@@ -125,7 +125,7 @@
                         <!-- Check if the user still exists -->
                         {% if author %}
                             <p>
-                                <a href="{{ url_for('other_profile', user_id=author.id) }}" aria-label="Go to the profile of {{ author.first_name }} {{ author.last_name }}">{{ author.first_name }} {{ author.last_name }}</a>
+                                <a href="{{ url_for('other_profile', user_id=author.id) }}" aria-label="Go to the profile of {{ author.username }}">{{ author.username }}</a>
                             </p>
                         <!-- If not found, show user deleted -->
                         {% else %}
