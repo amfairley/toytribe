@@ -117,9 +117,9 @@ class Toy(db.Model):
         """Function to get the average rating for the toy from the reviews."""
         # Get all reviews for the toy by the toy_id
         reviews = Review.query.filter_by(toy_id=self.id).all()
-        # If there are no reviews, return message
+        # If there are no reviews, return 0
         if not reviews:
-            return "Not Reviewed Yet"
+            return 0
         # Calculate and return the average rating
         total_rating = sum(review.rating for review in reviews)
         return total_rating / len(reviews)
