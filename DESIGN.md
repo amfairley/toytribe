@@ -120,7 +120,7 @@ The website will utilise template inheritance that allows for less code to be wr
 - The navigation bar will meet the requirement for intuitive and responsive navigation. It will consist of the brand logo, website title and navigation links. When logged out the navigation links will be sign up and login. When logged in the navigation links will be the Toys page, the user's profile, and a link to log out.
 - The footer will have the site logo, site name, copywrite information, and contact information for the developer. This meets the requirement for providing contact details for the developer.
 
-### home.html
+#### home.html
 - This will provide a welcoming message and prompts for a user to their login/signup or explore the site. This meets the requirement for an informative and welcoming message.
 
 #### signup.html
@@ -137,7 +137,7 @@ The website will utilise template inheritance that allows for less code to be wr
 #### toys.html
 - It will consist of a page title and a responsive grid of toys beneath a search bar and a sort menu. This meets the requirements to view toys and to search and order toys.
 - Each toy object with have the image, name, rating, company, and toy description.
-- There will be an option to add a toy, fullfilling the requirement for creating a toy object.
+- There will be an option to add a toy, fulfilling the requirement for creating a toy object.
 - At the bottom of the list, there will be a button to allow the user to go back to the top, for better user experience.
 
 #### add_toy.html
@@ -201,3 +201,11 @@ Below is a proposed ERD for the tables to be modelled for the database.
 - Clickable links will have animated effects on hover or click, providing clear feedback to the user.
 - All external links will open in a new tab. 
 - Content hinting will be used where possible to influence the user to scroll down and uncover new content on the pages.
+
+### Skeleton
+
+[Balsamiq Wireframes](https://balsamiq.com/) was used during this section to create wireframes.
+
+#### Wireframes
+
+[Desktop Wireframes](/documentation/design/desktop_wireframes.png)
