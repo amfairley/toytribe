@@ -27,6 +27,7 @@ from toy_tribe.forms import (
 )
 import pycountry
 import re
+from sqlalchemy import or_
 
 
 @app.route("/")
@@ -404,6 +405,20 @@ def toys():
         )}
         # Get only the keys in the dictionary
         toys = list(sorted_toys.keys())
+    # Get the search bar query
+    search_query = request.args.get('search_query', '')
+    if search_query:
+        # Join the ToyType table to search toy types too
+        toys = Toy.query.join(ToyType).filter(
+            or_(
+                # Toy name 
+                Toy.name.ilike(f'%{search_query}%'),
+                # Toy company
+                Toy.company.ilike(f'%{search_query}%'),
+                # Toy type
+                ToyType.toy_type.ilike(f'%{search_query}%')
+            )
+        ).all()
     return render_template(
         "toys.html",
         user_id=user_id,
