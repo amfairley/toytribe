@@ -187,7 +187,7 @@ main {
 #hero-image{
     background: url(/static/img/home_hero_image.webp) no-repeat center/cover;
     overflow: hidden;
-    height: 480px;
+    height: max(480px, 70vh);
     width: 100%;
     justify-content: center;
 }
@@ -1143,6 +1143,28 @@ main {
 .modal-overlay {
     background-color: #FFF3D3;
     opacity: 0.7 !important;
+}
+
+/* ---------- Search and sort ---------- */
+/* Search row in toys */
+.search-row {
+    width: 95%;
+}
+
+/* Sort forms */
+.sort-form-toys {
+    width: 50%;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+.sort-form-toy,
+.sort-form-profile {
+    margin-bottom: 15px;
+}
+.sort-form-toys label,
+.sort-form-toy label,
+.sort-form-profile label {
+    color: #333A3F;
 }
 
 /* ---------- 403.html, 404.html, 500.html ---------- */
