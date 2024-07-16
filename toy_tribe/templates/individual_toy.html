@@ -111,6 +111,14 @@
             <!-- If there are reviews, do a title -->
             {% if reviews %}
                 <h3 class="dangrek-regular" id="toy-review-title">Reviews</h3>
+                <!-- Sort options -->
+                <form method="GET" action="{{ url_for('individual_toy', toy_id=toy.id) }}#toy-review-title" class="sort-form-toy">
+                    <label for="sort">Sort Reviews:</label>
+                    <select name="sort" id="sort" onchange="this.form.submit()">
+                        <option value="rating_desc" {% if sort_option == 'rating_desc' %}selected{% endif %}>Rating: high to low</option>
+                        <option value="rating_asc" {% if sort_option == 'rating_asc' %}selected{% endif %}>Rating: low to high</option>
+                    </select>
+                </form>
             {% endif %}
             <!-- Loop through the reviews -->
             {% for review in reviews %}
@@ -170,7 +178,7 @@
                     <!-- Review buttons -->
                     {% if user_id == review.user_id %}
                     <div class="col s12 review-buttons">
-                        <a href="{{ url_for('edit_review', review_id=review.id) }}" class="waves-effect waves-light btn-small roboto-regular review-toy-buttons" aria-label="Edit this review for {{ toy.name }}">Edit review</a>
+                        <a href="{{ url_for('edit_review', review_id=review.id, ref='toy') }}" class="waves-effect waves-light btn-small roboto-regular review-toy-buttons" aria-label="Edit this review for {{ toy.name }}">Edit review</a>
                         <a href="#modal{{ review.id }}" class="waves-effect waves-light btn-small roboto-regular review-toy-buttons modal-trigger" aria-label="Delete review for {{ toy.name }}">Delete review</a>
                     </div>
                     {% endif %}

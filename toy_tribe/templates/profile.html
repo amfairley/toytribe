@@ -56,6 +56,16 @@
             <!-- Display reviews title if there are any -->
             {% if reviews %}
             <h3 class="dangrek-regular" id="toy-review-title">Reviews</h3>
+            <!-- Sort options -->
+            <form method="GET" action="{{ url_for('profile') }}#toy-review-title sort-form-profile">
+                <label for="sort">Sort reviews:</label>
+                <select name="sort" id="sort" onchange="this.form.submit()">
+                    <option value="newest_first" {% if sort_option == 'newest_first' %}selected{% endif %}>Newest first</option>
+                    <option value="oldest_first" {% if sort_option == 'oldest_first' %}selected{% endif %}>Oldest first</option>
+                    <option value="rating_desc" {% if sort_option == 'rating_desc' %}selected{% endif %}>Rating high to low</option>
+                    <option value="rating_asc" {% if sort_option == 'rating_asc' %}selected{% endif %}>Rating low to high</option>
+                </select>
+            </form>
             {% endif %}
             <!-- Loop through reviews and create displays -->
             {% for review in reviews %}
