@@ -371,6 +371,11 @@ def individual_toy(toy_id):
     toy = Toy.query.get_or_404(toy_id)
     # Get the associated reviews
     reviews = Review.query.filter_by(toy_id=toy.id).order_by(Review.id).all()
+    # Check if the user has already submitted a review
+    already_reviewed = Review.query.filter_by(
+        user_id=user_id,
+        toy_id=toy.id
+    ).first()
     return render_template(
         'individual_toy.html',
         user_id=user_id,
@@ -378,6 +383,7 @@ def individual_toy(toy_id):
         toy_types=toy_types,
         toy=toy,
         reviews=reviews,
+        already_reviewed=already_reviewed,
         Users=Users,
         Toy=Toy
     )
@@ -545,6 +551,11 @@ def add_review(toy_id):
     form = AddReview()
     # Set the also_liked selection choices
     form.also_liked.choices = toy_options
+    # Check if the user has already submitted a review
+    already_reviewed = Review.query.filter_by(
+        user_id=user_id,
+        toy_id=toy_id
+    ).first()
     # If there are no errors in the form when submitted:
     if form.is_submitted():
         # Flash an error if a rating is not given
@@ -568,7 +579,8 @@ def add_review(toy_id):
         'add_review.html',
         referer=referer,
         toy=toy,
-        form=form
+        form=form,
+        already_reviewed=already_reviewed
     )
 
 
@@ -627,7 +639,7 @@ def edit_review(review_id):
         referer=referer,
         review=review,
         toy=toy,
-        form=form,
+        form=form
     )
 
 

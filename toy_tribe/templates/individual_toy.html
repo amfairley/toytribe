@@ -77,8 +77,11 @@
                         </table>
                         <!-- Button section -->
                         <div class="individual-toy-buttons-div">
+                            <!-- Display review button if the user has not already reviewed it -->
+                            {% if not already_reviewed %}
                             <a href="{{ url_for('add_review', toy_id=toy.id )}}"  class="waves-effect waves-light btn-small open-sans individual-toy-buttons" aria-label="Add a review for {{ toy.name }}">Review Toy</a>
-
+                            {% endif %}
+                            <!-- Display edit and delete buttons if they are the owner -->
                             {% if user_id == toy.user_id %}
                                 <a href="{{ url_for('edit_toy', toy_id=toy.id) }}" class="waves-effect waves-light btn-small open-sans individual-toy-buttons" aria-label="Go to the edit toy page for {{ toy.name }}">Edit toy</a>
                                 <a href="#modal{{ toy.id }}" class="waves-effect waves-light btn-small open-sans individual-toy-buttons modal-trigger" aria-label="Delete {{ toy.name }}">Delete toy</a>
