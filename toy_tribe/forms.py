@@ -33,6 +33,25 @@ class SignupForm(FlaskForm):
         'Last Name',
         validators=[DataRequired(), Length(min=1, max=100)]
     )
+    username = StringField(
+        'Username',
+        validators=[
+            DataRequired(),
+            Length(
+                min=3,
+                max=20,
+                message='Username must be between 3 and 20 characters long'
+            ),
+            Regexp(
+                '^[A-Za-z0-9_.]*$',
+                message=(
+                    "Username must contain only:\n"
+                    "- Letters\n"
+                    "- Numbers\n"
+                    "- Dots or underscores"
+                )
+            )
+        ])
     email = EmailField(
         'Email',
         validators=[DataRequired(), Email(), Length(max=120)]

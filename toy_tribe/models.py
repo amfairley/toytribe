@@ -12,6 +12,7 @@ class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
+    username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(200), unique=True, nullable=False, index=True)
     # Password length of 255 covers most hashed passwords
     password = db.Column(db.String(255), nullable=False)
@@ -31,8 +32,8 @@ class Users(db.Model):
         """Returns a string represenation of the Users database schema."""
         return (
             f"#{self.id} | first_name: {self.first_name} | "
-            f"last_name: {self.last_name} | email: {self.email} | "
-            f"password: {self.password}"
+            f"username: {self.username} | last_name: {self.last_name} | "
+            f"email: {self.email} | password: {self.password}"
         )
 
 
