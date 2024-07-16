@@ -23,8 +23,11 @@
         <!-- Search and filter section -->
         <div class="row search-row">
             <!-- Search bar -->
-            <div class="col s12 m6">
-
+            <div class="col s12 m6 toys-search">
+                <form action="{{ url_for('toys') }}" method="GET" class="search-form">
+                    <input type="text" name="search_query" placeholder="Search toys..." class="toy-search-text">
+                    <button type="submit" class="btn waves-effect waves-light toy-search-button" aria-label="Submit search">Search</button>
+                </form>
             </div>
             <!-- Filter bar -->
             <div class="col s12 m6 right">
