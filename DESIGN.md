@@ -209,3 +209,4 @@ Below is a proposed ERD for the tables to be modelled for the database.
 #### Wireframes
 
 [Desktop Wireframes](/documentation/design/desktop_wireframes.png)
+[Mobile Wireframes](/documentation/design/mobile_wireframes.png)
