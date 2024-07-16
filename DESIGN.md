@@ -17,6 +17,9 @@ For information on the testing procedure, see TESTING.md
 1. [Five Planes of UX](#five-planes-of-ux)
     1. [Strategy](#strategy)
         * [Viability and Feasibility](#viability-and-feasibility)
+    2. [Scope](#scope)
+        * [Back End](#back-end)
+        * [Font End](#front-end)
 
 ## Five Planes of UX
 
@@ -57,3 +60,36 @@ Followed is an analysis of the user stories and above user and business needs ra
 | 500 error page | 5 | 4 |
 
 Overall, the above listed features to include in the site are all important and viable. Viability is ranked lower for those that I do not know how to implement yet but every effort will be made to get these into the finished product.
+
+### Scope
+
+#### Back-end
+Multiple tables within a relational database are required for this project. These models are:
+- **Users** table that keeps track of the users. It will consist of ID, first name, last name, username, email, password.
+- **Profile** table that handles the public profile data. It will consist of ID, user id, about me, country, parenthood, profile image.
+- **Toy** table that keeps track of the toys. It will consist of ID, author id, type of toy, toy name, company name, approval status, image, description, affiliate link, date of creation.
+- **ToyType**: table that lists all the options for toy type. It will consist of an ID and type of toy.
+- **Review** table that keeps track of the reviews. It will consist of ID, author id, toy id, the review, rating, also liked, date of creation.
+
+#### Front-end
+The website will utilise template inheritance that allows for less code to be written and quicker load times for a better user experience.
+**Templates**
+- base.html: This will be the base template that the others call from to ensure a cohesive structure across the website. Present here will be:
+    - The header with the brand logo and title and the navigation links. Whilst logged out the navigation links will be replaced with buttons for login / sign up. When logged in the navigation bar will offer links to the user's own profile, and to view toys.
+    - The footer with site name, logo, and contact information.
+- home.html: This will be the website homepage. It will welcome the user with different messages if they are logged in or logged out. It will provide the user the opportunity to login or sign up if they are logged out or allow them to access the rest of the site if they are logged in.
+- login.html: This will open a form allowing the user to login to the website.
+- signup.html: This will open a form allowing the user to sign up to the website.
+- toys.html: This will display all the toys currently reviewed on the website. Clicking on a toy will take the user to the individual toy page.
+- add_toy.html: This will open a form in which the user can fill out details of a toy and submit it to be shown in the toys.html page.
+- edit_toy.html: This will open a form in which the user can edit the details of a toy that they created.
+- individual_toy.html: The page for an individual toy showing information on the toy and allowing users to upload, edit, or delete their own reviews.
+- add_review.html: This will open a form in which the user can enter and submit a review for the toy.
+- edit_review.html: This will open a form in which the user can amend their own review.
+- change_password.html: This will open a form in which the user can change their password.
+- profile.html: This page will show the public information of the user.
+- edit_profile.html: This will open a form to allow the user to edit their own user profile.
+- edit_password.html: This will open a form to allow the user to change their password.
+- 403.html: A 403 error page with an explanation and link for the user to click.
+- 404.html: A 404 error page with an explanation and link for the user to click.
+- 500.html: A 500 error page with an explanation and link for the user to click.
