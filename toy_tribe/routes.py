@@ -151,6 +151,17 @@ def profile():
         flag_url = None
     # Get user reviews
     reviews = Review.query.filter_by(user_id=user.id).order_by(Review.id).all()
+    # Get the sort options with default value
+    sort_option = request.args.get('sort', 'newest_first')
+    # Set sorting order
+    if sort_option == 'newest_first':
+        reviews = Review.query.filter_by(user_id=user.id).order_by(Review.id.desc()).all()
+    elif sort_option == 'oldest_first':
+        reviews = Review.query.filter_by(user_id=user.id).order_by(Review.id.asc()).all()         
+    elif sort_option == 'rating_asc':
+        reviews = Review.query.filter_by(user_id=user.id).order_by(Review.rating.asc()).all()
+    elif sort_option == 'rating_desc':
+        reviews = Review.query.filter_by(user_id=user.id).order_by(Review.rating.desc()).all()
     return render_template(
         'profile.html',
         user_id=user_id,
@@ -159,6 +170,7 @@ def profile():
         user_profile=user_profile,
         flag_url=flag_url,
         reviews=reviews,
+        sort_option=sort_option,
         # Get all toys to query for reviews
         Toy=Toy
     )
@@ -336,6 +348,7 @@ def toys():
     all of the toys.
     Provides the user id of the logged in user in order to redirect
     logged out users to the homepage.
+    Allows the page to be sorted as the users preference.
     """
     # Get logged in user for security check
     user_id = session.get('user_id')
@@ -343,11 +356,60 @@ def toys():
     toys = list(Toy.query.order_by(Toy.name).all())
     # Display toy_types as a dictionary so as to assign to the toy.toy_type_id
     toy_types = {toy_type.id: toy_type for toy_type in ToyType.query.all()}
+    # Get users sorting preference and default value
+    sort_option = request.args.get('sort', 'name_asc')
+    # Set sorting order
+    if sort_option == 'name_asc':
+        toys = Toy.query.order_by(Toy.name.asc()).all()
+    elif sort_option == 'name_desc':
+        toys = Toy.query.order_by(Toy.name.desc()).all()
+    elif sort_option == 'type_asc':
+        toys = Toy.query.join(ToyType).order_by(ToyType.toy_type.asc()).all()
+    elif sort_option == 'type_desc':
+        toys = Toy.query.join(ToyType).order_by(ToyType.toy_type.desc()).all()
+    elif sort_option == 'company_asc':
+        toys = Toy.query.order_by(Toy.company.asc()).all()
+    elif sort_option == 'company_desc':
+        toys = Toy.query.order_by(Toy.company.desc()).all()
+    elif sort_option == 'rating_asc':
+        # Get the ratings in order
+        toys = Toy.query.all()
+        # Create list of onluy ratings
+        averages = []
+        for toy in toys:
+            averages.append(toy.average_rating())
+        # Create dictionary of toy : rating
+        toys_dict = {key: value for key, value in zip(toys, averages)}
+        # Sort the dictionary
+        sorted_toys = {key: value for key, value in sorted(
+            toys_dict.items(),
+            key=lambda item: item[1]
+        )}
+        # Get only the keys in the dictionary
+        toys = list(sorted_toys.keys())
+    elif sort_option == 'rating_desc':
+        # Get the ratings in opposite order
+        toys = Toy.query.all()
+        # Create a list of only ratings
+        averages = []
+        for toy in toys:
+            averages.append(toy.average_rating())
+        # Create dictionary of toy : rating
+        toys_dict = {key: value for key, value in zip(toys, averages)}
+        # Sort the dictionary in reverse order
+        sorted_toys = {key: value for key, value in sorted(
+            toys_dict.items(),
+            key=lambda item: item[1],
+            reverse=True
+        )}
+        # Get only the keys in the dictionary
+        toys = list(sorted_toys.keys())
     return render_template(
         "toys.html",
         user_id=user_id,
         toys=toys,
-        toy_types=toy_types
+        toy_types=toy_types,
+        sort_option=sort_option
     )
 
 
@@ -377,6 +439,13 @@ def individual_toy(toy_id):
         user_id=user_id,
         toy_id=toy.id
     ).first()
+    # Get the sort options with default value
+    sort_option = request.args.get('sort', 'rating_desc')
+    # Set sorting order
+    if sort_option == 'rating_asc':
+        reviews = Review.query.filter_by(toy_id=toy.id).order_by(Review.rating.asc()).all()
+    elif sort_option == 'rating_desc':
+        reviews = Review.query.filter_by(toy_id=toy.id).order_by(Review.rating.desc()).all()
     return render_template(
         'individual_toy.html',
         user_id=user_id,
@@ -385,6 +454,7 @@ def individual_toy(toy_id):
         toy=toy,
         reviews=reviews,
         already_reviewed=already_reviewed,
+        sort_option=sort_option,
         Users=Users,
         Toy=Toy
     )
