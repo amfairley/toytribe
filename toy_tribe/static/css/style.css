@@ -1151,6 +1151,34 @@ main {
     width: 95%;
 }
 
+/* Toys search bar */
+.toys-search {
+    margin-top: 20px !important;
+}
+
+.toy-search-text {
+    display: inline !important;
+    width: 70% !important;
+    max-width: 500px !important;
+}
+
+.toy-search-button {
+    display: inline !important;  
+    width:25% !important;
+    max-width: 90px;
+    font-size: 1rem;
+    background-color: #D93B58;
+    color: #FFF3D3;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.toy-search-button:hover, .toy-search-button:focus {
+    background-color: #D93B58;
+    color: #FFF3D3;
+    font-weight: bolder;
+}
+
 /* Sort forms */
 .sort-form-toys {
     width: 50%;
@@ -1161,6 +1189,7 @@ main {
 .sort-form-profile {
     margin-bottom: 15px;
 }
+
 .sort-form-toys label,
 .sort-form-toy label,
 .sort-form-profile label {
