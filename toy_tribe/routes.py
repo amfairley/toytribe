@@ -424,8 +424,8 @@ def add_toy():
             # New Toy class instance with submitted data
             new_toy = Toy(
                 user_id=user_id,
-                name=form.name.data,
-                company=form.company.data,
+                name=form.name.data.title(),
+                company=form.company.data.title(),
                 toy_type_id=form.toy_type_id.data,
                 description=form.description.data,
                 image_url=form.image_url.data
@@ -467,8 +467,8 @@ def edit_toy(toy_id):
     # If there are no errors in the form when submitted:
     if form.validate_on_submit():
         # Sets values of Toy instance to new data
-        toy.name = form.toy_type_id.data
-        toy.company = form.company.data
+        toy.name = form.name.data.title()
+        toy.company = form.company.data.title()
         toy.toy_type_id = form.toy_type_id.data,
         toy.description = form.description.data
         toy.image_url = form.image_url.data
