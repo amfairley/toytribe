@@ -147,7 +147,7 @@ def profile():
     user_profile = Profile.query.filter_by(user_id=user_id).first_or_404()
     # Set the flag_url correctly if chosen
     if user_profile.country:
-        flag_url = "/static/img/flags/" + user_profile.country + ".svg"
+        flag_url = "/static/img/flags/" + user_profile.country.lower() + ".svg"
     else:
         flag_url = None
     # Get user reviews
