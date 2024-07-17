@@ -44,6 +44,7 @@ For information on the testing procedure, see TESTING.md
     5. [Surface](#surface)
         * [Colour Scheme](#colour-scheme)
         * [Typography](#typography)
+        * [Images](#images)
 
 ## Five Planes of UX
 
@@ -289,3 +290,10 @@ Open sans as a user friendly, very legible appearance, and it pairs nicely with 
 **[Roboto](https://fonts.google.com/specimen/Roboto)**<br>
 ![Roboto](/documentation/design/typeface_roboto.png)<br>
 Roboto is the most popular google font with high legibility and nice curves. It is used for the bulk text of the website to be easy on user's eyes and not cause strain when reading longer reviews. As a sans serif font, the backup fonts were Arial, Helvetica, and sans-serif.
+
+#### Images
+- The icons used across the site were from [Font Awesome](https://fontawesome.com/).
+- The site logo image used was from [Clipart Max](https://www.clipartmax.com/) and edited in microsoft paint to make the site logo and default toy images.
+- The site logo and some site headings were created used [InkPX wordart generator](https://inkpx.com/word-art-generator).
+- The hero image on the homepage was retrieved from [Pixabay](https://pixabay.com/photos/building-business-design-display-1867350/) from a user named Pexels and is free to use.
+- The default profile image was taken from [Pexels](https://www.pexels.com/photo/brown-teddy-bear-on-brown-wooden-bench-outside-207891/) and was free to use.
