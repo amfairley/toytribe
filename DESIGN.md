@@ -39,6 +39,10 @@ For information on the testing procedure, see TESTING.md
         * [500.html](#500html)
         * [Information Architecture](#information-architecture)
         * [Interactive Experience](#interactive-experience)
+    4. [Skeleton](#skeleton)
+        * [Wireframes](#wireframes)
+    5. [Surface](#surface)
+        * [Colour Scheme](#colour-scheme)
 
 ## Five Planes of UX
 
@@ -209,4 +213,58 @@ Below is a proposed ERD for the tables to be modelled for the database.
 #### Wireframes
 
 [Desktop Wireframes](/documentation/design/desktop_wireframes.png)
+<br>
 [Mobile Wireframes](/documentation/design/mobile_wireframes.png)
+
+### Surface
+
+#### Colour scheme
+The colour scheme started as primary colours; red, blue, and yellow. However the blue tended to not show up well on the the other colours and was dropped. In favour of a gold colour to show up nicely on the muted yellow background. A calm red was used so as to not be to harsh on the eyes and throughout the site, all black and white colours were replaced with an off-black and off white.
+The background was designed using [BGJar](https://bgjar.com/) and curvy loops and squiggles were employed to give a fun, childish appearance to the site.
+
+The star ratings are coloured white and yellow and were the default colours used. The code and functionality was taken from [Fred Genkin](https://codepen.io/FredGenkin/pen/eaXYGV).
+
+![Colour Scheme](/documentation/design/colour_scheme.png)
+
+| Muted Yellow #FFF3D3| Yellow #F6D36A | Gold #8A6D1E | Red #D93B58 | Off-White #F5F5F5 | Off-Black #333A3F |
+| ------------------- | -------------------- | ------------ | ----------- | ----------------  | ----------------- |
+| Background colour | Edit profile slider | Brand logo | Brand title | Homepage hero text | Back buttons |
+| Navigation background | Review outline and shadow | | Burger menu | Homepage buttons | Navigation links |
+| Burger menu background | Review name divider | | Burger menu links | Profile buttons | Developer links |
+| Footer background | Delete modal divider | | Footer logo | Toy card reveal text | Homepage buttons |
+| Homepage buttons: hover | | | Developer links: hover | Add toy text | Signup form icons |
+| Signup button | | | Homepage buttons: hover | Back to top link | Signup form text |
+| Login buttons | | | Homepage message | Individual toy information | Login form labels |
+| Profile buttons: hover | | | Form error messages | Individual toy buttons | Profile text |
+| Edit profile button | | | Signup button | Delete modal button hover | Profile buttons |
+| Change password button | | | Login buttons | | Edit profile text |
+| No reviews background | | | Profile buttons: hover | | Change password text |
+| Toys button | | | Edit profile slider | | Toy card title |
+| Add toy textarea | | | Edit profile button | | Toy rating border |
+| Select background | | | Change password button | | No reviews text |
+| Add toy button | | | Toy card links | | Toys button |
+| Edit toy description area | | | Toy rating background | | Back to top border |
+| Edit toy button | | | Toys button hover | | Add toy text |
+| Toy information column borders | | | Toy card reveal background | | Select text hover |
+| Toy button hover | | | Add toy icon | | Edit toy text |
+| Review backgrounds | | | Select text | | Individual toy text |
+| Liked toy link | | | Add toy button | | Individual toy buttons |
+| Add review textarea | | | Form required * | | Add review text |
+| Add review button | | | Edit toy button | | Edit review text |
+| Edit review textarea | | | Individual toy information | | Delete modal text |
+| Edit review button | | | Toy button hover | | Delete modal button hover |
+| Delete modal buttons | | | Toy review title | | Sort select text |
+| Delete modal background | | | Carousel divider | | |
+| Modal overalay | | | Review dividers | | |
+| Toy search text | | | Add review button | | |
+| Error page button | | | Edit review button | | |
+| | | | Delete modal confirmation | | |
+| | | | Delete modal buttons | | |
+| | | | Delete modal border | | |
+| | | | Toy search button | | |
+| | | | Error page text | | |
+| | | | Error page button | | |
+
+**Other colours used:**
+- Green #008000: Verfied parent tag on profile
+- Grey #808080: Signup form helper text
