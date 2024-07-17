@@ -43,6 +43,7 @@ For information on the testing procedure, see TESTING.md
         * [Wireframes](#wireframes)
     5. [Surface](#surface)
         * [Colour Scheme](#colour-scheme)
+        * [Typography](#typography)
 
 ## Five Planes of UX
 
@@ -255,7 +256,7 @@ The star ratings are coloured white and yellow and were the default colours used
 | Edit review button | | | Toy button hover | | Delete modal button hover |
 | Delete modal buttons | | | Toy review title | | Sort select text |
 | Delete modal background | | | Carousel divider | | |
-| Modal overalay | | | Review dividers | | |
+| Modal overlay | | | Review dividers | | |
 | Toy search text | | | Add review button | | |
 | Error page button | | | Edit review button | | |
 | | | | Delete modal confirmation | | |
@@ -266,5 +267,25 @@ The star ratings are coloured white and yellow and were the default colours used
 | | | | Error page button | | |
 
 **Other colours used:**
-- Green #008000: Verfied parent tag on profile
+- Green #008000: Verified parent tag on profile
 - Grey #808080: Signup form helper text
+
+#### Typography
+
+I wanted the typefaces used on this website to get across the fun nature of the subject matter whilst remaining legible and clear for the user. [Google Fonts](https://fonts.google.com/) was used to provide the free fonts in this project. Here are the fonts that I decided on:
+
+**[Dangrek](https://fonts.google.com/specimen/Dangrek)**<br>
+![Dangrek](/documentation/design/typeface_dangrek.png)<br>
+Dangrek is a balloon-like Khmer font that is legible and fun. It was used for headings and the site logo. As a sans serif font, the backup fonts used were Arial, Helvitica, and sans-serif.
+
+**[Playfair Display](https://fonts.google.com/specimen/Playfair+Display)**<br>
+![Playfair Display](/documentation/design/typeface_playfair.png)<br>
+Playfair Display is an stylish font with a modern flair. It is clear to read and gives a sense of importance, so is used for some of the page titles in my project. As a serif font, the backup fonts were Times New Roman, Times, and serif.
+
+**[Open Sans](https://fonts.google.com/specimen/Open+Sans)**<br>
+![Open Sans](/documentation/design/typeface_open_sans.png)<br>
+Open sans as a user friendly, very legible appearance, and it pairs nicely with Playfair Display. It is used in navigation links and button text to give it some obvious difference from the site text. As a sans-serif font, the backup fonts were Arial, Helvetica, and sans-serif.
+
+**[Roboto](https://fonts.google.com/specimen/Roboto)**<br>
+![Roboto](/documentation/design/typeface_roboto.png)<br>
+Roboto is the most popular google font with high legibility and nice curves. It is used for the bulk text of the website to be easy on user's eyes and not cause strain when reading longer reviews. As a sans serif font, the backup fonts were Arial, Helvetica, and sans-serif.
