@@ -48,12 +48,6 @@
                 {{ form.country(class="form-control") }}
             </div>
 
-            <!-- Profile picture -->
-            <div class="edit-profile-input">
-                <label for="user_image" class="roboto-regular">{{ form.user_image.label }}</label>
-                {{ form.user_image }}
-            </div>
-
             <!-- Change Password and Submit buttons-->
             <div class="edit-profile-buttons">
                 <a href="{{ url_for('change_password', user_id=user.id )}}" class="waves-effect edit-profile-button open-sans" aria-label="Go to change password page">Edit password</a>
