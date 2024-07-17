@@ -195,6 +195,17 @@ def other_profile(user_id):
         flag_url = None
     # Get the user reviews
     reviews = Review.query.filter_by(user_id=user.id).order_by(Review.id).all()
+    # Get the sort options with default value
+    sort_option = request.args.get('sort', 'newest_first')
+    # Set sorting order
+    if sort_option == 'newest_first':
+        reviews = Review.query.filter_by(user_id=user.id).order_by(Review.id.desc()).all()
+    elif sort_option == 'oldest_first':
+        reviews = Review.query.filter_by(user_id=user.id).order_by(Review.id.asc()).all()         
+    elif sort_option == 'rating_asc':
+        reviews = Review.query.filter_by(user_id=user.id).order_by(Review.rating.asc()).all()
+    elif sort_option == 'rating_desc':
+        reviews = Review.query.filter_by(user_id=user.id).order_by(Review.rating.desc()).all()
     return render_template(
         'profile.html',
         logged_in_user=logged_in_user,
@@ -202,6 +213,7 @@ def other_profile(user_id):
         user_profile=user_profile,
         flag_url=flag_url,
         reviews=reviews,
+        sort_option=sort_option,
         # Get all toys to query for reviews
         Toy=Toy
     )
