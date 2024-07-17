@@ -543,7 +543,7 @@ Roboto is the most popular google font with high legibility and nice curves. It 
 | **Edit password button** |
 |-------- |
 | **Page:** edit_profile.html |
-| <details><summary>Feature Image</summary><img src="/documentation/design/features/edit_password_botton.png"></details> |
+| <details><summary>Feature Image</summary><img src="/documentation/design/features/edit_password_button.png"></details> |
 | **Details:** Redirects the user to change_password.html where they can update their password. |
 | **User stories covered:** 20 |
 
