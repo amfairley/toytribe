@@ -438,6 +438,11 @@ main {
     overflow: auto;
 }
 
+.profile-review-content,
+.review-content-box p {
+    overflow-x: hidden !important;
+}
+
 /* ---------- edit_profile.html ---------- */
 /* Edit profile title */
 #edit-profile-title {
