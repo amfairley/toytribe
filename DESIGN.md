@@ -357,63 +357,63 @@ Roboto is the most popular google font with high legibility and nice curves. It 
 | **Details:** A welcome message on the home page clearly lays out the purpose and content of the website as well as highlighting the solution that it can provide the user, making them more likely to join. |
 | **User stories covered:** 1 |
 
-| **Feature** Signup title |
+| **Signup title** |
 |-------- |
 | **Page:** signup.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/signup_title.png"></details> |
 | **Details:** A title conveying the purpose of the page to the user. |
 | **User stories covered:** 1|
 
-| **Feature** Signup form |
+| **Signup form** |
 |-------- |
 | **Page:** signup.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/signup_form.png"></details> |
 | **Details:** This form allows users to enter their details to create an account with the website. Font awesome icons appear next to the labels to help the user identify the fields at a glance. |
 | **User stories covered:** 2, 3|
 
-| **Feature** Signup alerts |
+| **Signup alerts** |
 |-------- |
 | **Page:** signup.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/signup_alert.png"></details> |
 | **Details:** If the form is submitted with invalid data, an alert appears at the relevent input to alert the user. These alerts are; "Please fill in this field" for any empty fields,"Please lengthen this text to 3 characters or more (you are currently using x characters)" for username, "Please include an @ in the email address" for email, and "Please lengthen this text to 8 characters or more (you are currently using x characters)" for password. |
 | **User stories covered:** 4, 19|
 
-| **Feature** User exists alert |
+| **User exists alert** |
 |-------- |
 | **Page:** signup.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/user_exists.png"></details> |
 | **Details:** Provides the user with an alert if they use an email address already linked with an account. |
 | **User stories covered:** 4, 19|
 
-| **Feature** Signup password alerts |
+| **Signup password alerts** |
 |-------- |
 | **Page:** signup.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/signup_password_alert.png"></details> |
 | **Details:** If the strength of the password does not meet the written requirements, this alert appears informing the user. |
 | **User stories covered:** 4, 19|
 
-| **Feature** Signup submit button |
+| **Signup submit button** |
 |-------- |
 | **Page:** signup.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/signup_submit_button.png"></details> |
 | **Details:** A button that submits the form details, allowing the user to signup to the website. |
 | **User stories covered:** 2|
 
-| **Feature** Login title|
+| **Login title** |
 |-------- |
 | **Page:** login.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/login_title.png"></details> |
 | **Details:** A title for the login page informing the user of the page purpose. |
 | **User stories covered:** 1|
 
-| **Feature** Login form|
+| **Login form** |
 |-------- |
 | **Page:** login.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/login_form.png"></details> |
 | **Details:** A login form allowing the user to input information and gain access to the rest of the website. |
 | **User stories covered:** 2|
 
-| **Feature** Login button|
+| **Login button** |
 |-------- |
 | **Page:** login.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/login_button.png"></details> |
@@ -421,351 +421,350 @@ Roboto is the most popular google font with high legibility and nice curves. It 
 | **User stories covered:** 2|
 
 
-| **Feature** Signup button|
+| **Signup button** |
 |-------- |
 | **Page:** login.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/signup_button_login.png"></details> |
 | **Details:** A signup button to direct the user if they do not already have an account. |
 | **User stories covered:** 2 |
 
-| **Feature** Login alert|
+| **Login alert** |
 |-------- |
 | **Page:** login.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/login_alert.png"></details> |
 | **Details:** Alerts showing the user if they failed to meet requirements for the data entry. "Please fill in the field" if the fields are empty and "Please lengthen this text to 4 characters or more" for the email. |
 | **User stories covered:** 4, 19 |
 
-| **Feature** Login failed|
+| **Login failed** |
 |-------- |
 | **Page:** login.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/login_failed.png"></details> |
 | **Details:** An alert showing the user that the details that they entered did not match any in the database. |
 | **User stories covered:** 4, 19 |
 
-| **Feature** Profile display |
+| **Profile display** |
 |-------- |
 | **Page:** profile.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/profile_display.png"></details> |
 | **Details:** The profile display shows visiting users your country in the form of a flag, whether you are a parent, your username, description and profile image. The default profile image is a teddy bear and the default about me is "I am yet to fill this out". The username is displayed instead of first and last names to keep the user information secure. |
 | **User stories covered:** 3, 4, 14 |  
 
-| **Feature** Edit profile button |
+| **Edit profile button** |
 |-------- |
 | **Page:** profile.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/edit_profile.png"></details> |
 | **Details:** A button allowing the owner of the profile to edit it. When hovered, the font colour changes to yellow and the background colour changes to red showing it is clickable. |
 | **User stories covered:** 5, 11, 13 |
 
-| **Feature** Delete user button |
+| **Delete user button** |
 |-------- |
 | **Page:** profile.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/delete_user.png"></details> |
 | **Details:** A delete user button allowing the user to delete their own account if they so wish. When hovered, the font colour changes to yellow and the background colour changes to red showing it is clickable. |
 | **User stories covered:** 5, 21|
 
-| **Feature** Confirm delete modal |
+| **Confirm delete modal** |
 |-------- |
 | **Page:** profile.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/confirm_user_delete_modal.png"></details> |
 | **Details:** This modal appears when the delete user button is clicked. It fades out the rest of the page so the modal stands out and gets the user's attention. The cancel button cancels the deletion and closes the modal, whereas the confirm button deletes the user account and redirects the user to the logged out homepage. Both buttons have hover effects to imply their use. |
 | **User stories covered:** 5, 21 |
 
-| **Feature** Reviews title |
+| **Reviews title** |
 |-------- |
 | **Page:** profile.html individual_toy.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/profile_reviews_title.png"></details> |
 | **Details:** A heading that appears on the profile if the user has submitted and reviews and preceeds the reviews themselves or if the toy has reviews on the individual toy pages. |
 | **User stories covered:** 1 |
 
-| **Feature** Sort reviews|
+| **Sort reviews** |
 |-------- |
 | **Page:** profile.html, individual_toy.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/profile_sort_reviews.png"></details> |
 | **Details:** A select box allowing the user to order the reviews by date submitted or review rating on the profiles or by rating on the toy pages. It refreshes the page to reorder the reviews but puts the user at this point in the page so they do not have to scroll back here. |
 | **User stories covered:** 18 |
 
-| **Feature** Reviews |
+| **Reviews** |
 |-------- |
 | **Page:** profile.html, individual_toy.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/profile_review.png"></details> |
 | **Details:** A display box for the reviews. It includes a link to the toy reviewed (on profile) or username of the reviewer (on toy), the rating, the review description, and toys the reviewer also liked. If the user is the author of the review, it also provides links to edit and delete their review.|
 | **User stories covered:** 8, 9, 13, 14 |
 
-| **Feature** Also liked carousel |
+| **Also liked carousel** |
 |-------- |
 | **Page:** profile.html, individual_toy.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/also_liked_carousel.png"></details> |
 | **Details:** A display carousel for the also liked data. The user can scroll through toys that the reviewe also liked. If they created the toy, the edit and delete toy buttons appear for them. Toys that are deleted are removed globally from the also-liked data. The toy name on each page of the carousel acts as a link to the individual toy page.|
 | **User stories covered:** 9 |
 
-| **Feature** Delete review button |
+| **Delete review button** |
 |-------- |
 | **Page:** profile.html, individual_toy.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/delete_review_button.png"></details> |
 | **Details:** The delete review button allows the review author to remove their review from the database. On hover the button gets larger, changes colour, and the cursor changes to a pointer, indicating functionality. On click it opens the delete review modal. |
 | **User stories covered:** 25 |
 
-| **Feature** Delete review modal |
+| **Delete review modal** |
 |-------- |
 | **Page:** profile.html, individual_toy.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/delete_review_modal.png"></details> |
 | **Details:**  This modal appears when the delete review button is clicked. It fades out the rest of the page so the modal stands out and gets the user's attention. The cancel button cancels the deletion and closes the modal, whereas the confirm button deletes the review and redirects the user to toy page if clicked from their or profile page if clicked from there. Both buttons have hover effects to imply their use. |
 | **User stories covered:** 25 |
 
-| **Feature** Back button|
+| **Back button** |
 |-------- |
 | **Page:** edit_profile.html, individual_toy.html, edit_toy.html, add_review.html, edit_review.html, change_password.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/back_button.png"></details> |
 | **Details:** A button taking the user to the previous page. It works by taking the the previous page, so if you were to get to individual_toy.html from toys.html, back will take you to toys.html. But if you managed to get to individual_toy.html from the reviews in the user profile, back will take you to the user profile. Code is provided to stop an infinite loop e.g. edit_toy.html <--> individual_toy.html. |
 | **User stories covered:** 11 |
 
-| **Feature** Edit profile title |
+| **Edit profile title** |
 |-------- |
 | **Page:** edit_profile.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/edit_profile_title.png"></details> |
 | **Details:** A title showing the user the purpose of the page. It is not in the bubble script to highlight its functionality rather than a display page. |
 | **User stories covered:** 1 |
 
-| **Feature** Edit profile form |
+| **Edit profile form** |
 |-------- |
 | **Page:** edit_profile.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/edit_profile_form.png"></details> |
 | **Details:** The form takes in general information to be displayed on the user's profile and updates it when submitted. The buttons have the cursor change to a pointer when hovering, indicating their functionality. |
 | **User stories covered:** 13 |
 
-| **Feature** Parent toggle |
+| **Parent toggle** |
 |-------- |
 | **Page:** edit_profile.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/parent_toggle.png"></details> |
 | **Details:** This toggle allows the user to select whether or not they are a parent, displaying the verified parent icon on their public profile page. |
 | **User stories covered:** 13|
 
-| **Feature** Edit password button |
+| **Edit password button** |
 |-------- |
 | **Page:** edit_profile.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/edit_password_botton.png"></details> |
 | **Details:** Redirects the user to change_password.html where they can update their password. |
 | **User stories covered:** 20 |
 
-| **Feature** Change password title |
+| **Change password title** |
 |-------- |
 | **Page:** change_password.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/change_password_title.png"></details> |
 | **Details:** A title showing the purpose of the page to the user. A short message displaying the password requirements to the user for a good user experience. |
 | **User stories covered:** 1 |
 
-| **Feature** Change password form |
+| **Change password form** |
 |-------- |
 | **Page:** change_password.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/change_password_form.png"></details> |
 | **Details:** A form gathering information from the user to change their password. The submit button changes the cursor to a pointer on hover to show functionality. |
 | **User stories covered:** 20 |
 
-| **Feature** Change password errors |
+| **Change password errors** |
 |-------- |
 | **Page:** change_password.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/change_password_errors.png"></details> |
 | **Details:** Errors display alerting the user to try a different password that matches the password requirements. |
 | **User stories covered:** 19 |
 
-| **Feature** Change password alert |
+| **Change password alert** |
 |-------- |
 | **Page:** change_password.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/change_password_alert.png"></details> |
 | **Details:** Alerts that appear if the user has not entered information to allow the user to accurately complete the form. Displays "Please fill this field." on empty fields and specifies a password length of 8 characters or more for the new password. |
 | **User stories covered:** 19 |
 
-| **Feature** Toys title |
+| **Toys title** |
 |-------- |
 | **Page:** toys.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/toys_title.png"></details> |
 | **Details:** A title for the toys page keeping the theme and font. |
 | **User stories covered:** 1 |
 
-| **Feature** Search toys|
+| **Search toys** |
 |-------- |
 | **Page:** toys.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/search_toys.png"></details> |
 | **Details:** A search bar for the toys page. It searches through toy name, company name, and toy type to return similar results. The "search" button activates the search based on user input and the text boldens when hovered indicating the functionality. The below toy display is only filled with those that match the search criteria when submitted. |
 | **User stories covered:** 10 |
 
-| **Feature** Sort toys |
+| **Sort toys** |
 |-------- |
 | **Page:** toys.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/sort_toys.png"></details> |
 | **Details:** A sort toys functionality to order the toys in the toy display section alphabetically by name, toy company, or toy type or by their average rating, all ascending or descending. Clicking an option refreshes the page and repopulates the toy display with the toys in the chosen order. |
 | **User stories covered:** 17 |
 
-| **Feature** Toys display |
+| **Toys display** |
 |-------- |
 | **Page:** toys.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/toys_display.png"></details> |
 | **Details:** The display area shows all of the toys in the database or those searched for.|
 | **User stories covered:** 6 |
 
-| **Feature** Toy card: closed|
+| **Toy card: closed** |
 |-------- |
 | **Page:** toys.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/toy_card_closed.png"></details> |
 | **Details:** Displays the individual toy details to the user. Shows the average rating, toy image and toy name. If the user created the toy it also allows them to edit and delete the toy. The card image and toy name act as hyperlinks to the individual toy page, whilst the three ellipses (...) allow the user to open the card for more information. |
 | **User stories covered:** 6, 7, 11 |
 
-| **Feature** Toy card: open |
+| **Toy card: open** |
 |-------- |
 | **Page:** toys.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/toy_card_open.png"></details> |
 | **Details:** The open toy card reveals more information: the name of the company that made the toy and the type of toy. The name of the toy still functions as a link to the individual toy page and the X in the top right closes the card again. The average rating and the edit/delete toy buttons are still available to the user when the card is open. |
 | **User stories covered:** 6, 7, 11 |
 
-
-| **Feature** Average rating |
+| **Average rating** |
 |-------- |
 | **Page:** toys.html, individual_toy.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/average_rating.png"></details> |
 | **Details:** The average rating of a toy from its reviews is displayed in the universal star system and displays numbers from 1-5 to one decimal place. This is updated whenever a review is added, deleted, or edited. It allows a user to garner how good a toy is at a glance. If there a no reviews, the star rating is replaced with the text "Not Reviewed Yet". |
 | **User stories covered:** 7 |
 
-| **Feature** Edit toy button |
+| **Edit toy button** |
 |-------- |
 | **Page:** toys.html, individual_toy.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/edit_toy_button.png"></details> |
 | **Details:** This button appears on the toys that the logged in user created. When hovered, the colours invert and the cursor becomes a pointer to show functionality. It takes the user to the edit_toy.html page for that specific toy. |
 | **User stories covered:** 5, 22 |
 
-| **Feature** Delete toy button, individual_toy.html |
+| **Delete toy button** |
 |-------- |
-| **Page:** toys.html |
+| **Page:** toys.html, individual_toy.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/delete_toy_button.png"></details> |
 | **Details:** This button appears on the toys that the logged in user created. When hovered, the colours invert and the cursor becomes a pointer to show functionality. It opens the delete toy confirmation modal when clicked. |
 | **User stories covered:** 5, 23 |
 
-| **Feature** Delete toy modal |
+| **Delete toy modal** |
 |-------- |
 | **Page:** toys.html, individual_toy.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/delete_toy_modal.png"></details> |
 | **Details:** This modal appears when the delete toy button is clicked. It fades out the rest of the page so the modal stands out and gets the user's attention. The modal description lists the toy that will be deleted on confirmation by the user. The cancel button cancels the deletion and closes the modal, whereas the confirm button deletes the toy and redirects the user to the toys page. Both buttons have hover effects to imply their use. |
 | **User stories covered:** 5, 23 |
 
-| **Feature** Back to top |
+| **Back to top** |
 |-------- |
 | **Page:** toys.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/back_to_top.png"></details> |
 | **Details:** This button appears as the last section of the toys display. Hovering turns the cursor into a pointer, indicating functionality. Clicking it smoothly scrolls the screen to the top of the page for a good user experience. |
 | **User stories covered:** 5, 29 |
 
-| **Feature** Add toy |
+| **Add toy** |
 |-------- |
 | **Page:** toys.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/add_toy.png"></details> |
 | **Details:** This add toy button floats on the bottom right hand corner of the page and is always on top and available to the user. On hover, the cursor changes to a pointer to indicate functionality. On click, it directs the user to the add toy form. |
 | **User stories covered:** 15 |
 
-| **Feature** Add toy title |
+| **Add toy title** |
 |-------- |
 | **Page:** add_toy.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/add_toy_title.png"></details> |
 | **Details:** The title for the add toy form in keeping with the site style. Tells the user what page they are on. |
 | **User stories covered:** 1 |
 
-| **Feature** Add toy form |
+| **Add toy form** |
 |-------- |
 | **Page:** add_toy.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/add_toy_form.png"></details> |
 | **Details:** The form letting a user add a toy. Required fields are highlighted. Unrequired forms have a default value set if they are submitted empty. The usual alert pop up occurs if a required field is left empty. |
 | **User stories covered:** 15, 19 |
 
-| **Feature** Required field |
+| **Required field** |
 |-------- |
 | **Page:** add_toy.html, add_review.html, edit_review.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/required_field.png"></details> |
 | **Details:** Required fields are marked with a red asterix, which leads to a comment below the form indicating to the user that these form sections must be completed. |
 | **User stories covered:** 19 |
 
-| **Feature** Edit toy title |
+| **Edit toy title** |
 |-------- |
 | **Page:** edit_toy.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/edit_toy_title.png"></details> |
 | **Details:** The title for the edit toy form in keeping with the site style and then the toy name clearly shown. Tells the user what page they are on. |
 | **User stories covered:** 1 |
 
-| **Feature** Edit toy form |
+| **Edit toy form** |
 |-------- |
 | **Page:** edit_toy.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/edit_toy_form.png"></details> |
 | **Details:** This form allows users to update a toy that they have created. It is prepopulated with the existing details and the usual alert popups occur when required fields are left blank. |
 | **User stories covered:** 19, 22 |
 
-| **Feature** Toy name |
+| **Toy name** |
 |-------- |
 | **Page:** individual_toy.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/individual_toy_name.png"></details> |
 | **Details:** The title for the tou page that the user is on. |
 | **User stories covered:** 1 |
 
-| **Feature** Individual toy description |
+| **Individual toy description** |
 |-------- |
 | **Page:** individual_toy.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/individual_toy_card.png"></details> |
 | **Details:** This card shows the toy image, rating, and then a table of the name, company name, type, and description. Below this there is a button to add a review if the user has not already and the edit and delete toy buttons available to the toy creator. |
 | **User stories covered:** 5, 6, 7 |
 
-| **Feature** Review toy button |
+| **Review toy button** |
 |-------- |
 | **Page:** individual_toy.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/review_toy_button.png"></details> |
 | **Details:** This button only appears if the user has not already submitted a review, making it one review per person and making it harder to manipulate ratings. When hovered, the colour changes, it gets larger, and the cursor becomes a pointer, indicating functionality. When clicked it takes the user to the add review form. |
 | **User stories covered:** 5, 16 |
 
-| **Feature** Review toy button |
+| **Review toy button** |
 |-------- |
 | **Page:** individual_toy.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/review_toy_button.png"></details> |
 | **Details:** This button only appears if the user has not already submitted a review, making it one review per person and making it harder to manipulate ratings. When hovered, the colour changes, it gets larger, and the cursor becomes a pointer, indicating functionality. When clicked it takes the user to the add review form. |
 | **User stories covered:** 5, 16 |
 
-| **Feature** Add review title |
+| **Add review title** |
 |-------- |
 | **Page:** add_review.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/add_review_title.png"></details> |
 | **Details:** The title on the add review form showing the purpose of the form and display the toy name that is being reviewed. |
 | **User stories covered:** 1 |
 
-| **Feature** Add review form |
+| **Add review form** |
 |-------- |
 | **Page:** add_review.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/add_review_form.png"></details> |
 | **Details:** The add review form collects user data. It gives feedback if sections are left black and highlights required sections. The submit review button causes the mouse to become a pointer on hover, indicating functionality. |
 | **User stories covered:** 16, 19 |
 
-| **Feature** Edit review title |
+| **Edit review title** |
 |-------- |
 | **Page:** edit_review.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/edit_review_title.png"></details> |
 | **Details:** The edit review title is in keeping with the site style and informs the user of the page purpose. |
 | **User stories covered:** 1 |
 
-| **Feature** Edit review form |
+| **Edit review form** |
 |-------- |
 | **Page:** edit_review.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/edit_review_form.png"></details> |
 | **Details:** The edit review form is prepopulated with the existing details. The usual error pop ups occur for empty fields. The submit review button causes the mouse to become a pointer on hover, indicating functionality. |
 | **User stories covered:** 24 |
 
-| **Feature** Error 403 page |
+| **Error 403 page** |
 |-------- |
 | **Page:** 403.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/error_403.png"></details> |
 | **Details:** This page is displayed when a user tries to access something that they do not have access to. Such as accessing the url of editing a profile, password, toy, or review that is not theirs or try to add a second review for a toy. The large no access icon portrays the purpose of the error, which is confirmed with the title "403- Access Denied". A message to redirect the user and a link for the toy page allows the user to exit the error page. On hover the button enlarges, showing functionality. |
 | **User stories covered:**  1, 26, 27 |
 
-| **Feature** Error 404 page |
+| **Error 404 page** |
 |-------- |
 | **Page:** Page that does not exist. |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/error_404.png"></details> |
 | **Details:** This page is displayed when a user accesses a page that does not exist. The large question mark icon portrays the purpose of the error, which is confirmed with the title "404- Page not found". A message to redirect the user and a link for the toy page allows the user to exit the error page. On hover the button enlarges, showing functionality. |
 | **User stories covered:**  1, 26, 27 |
 
-| **Feature** Error 500 page |
+| **Error 500 page** |
 |-------- |
 | **Page:** Server Error |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/error_500.png"></details> |
