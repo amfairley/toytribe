@@ -50,5 +50,17 @@ document.addEventListener("DOMContentLoaded", function() {
             generatedInput.setAttribute('aria-labelledby', 'toy-type-label');
         }
     }
+
+    // Label the review sort select on individual_toy.html
+    // Check for the page
+    if (window.location.pathname.includes('/toy/')) {
+        // Find the created dropdown menu
+        let generatedInput = document.querySelector('.select-dropdown.dropdown-trigger');
+
+        // If it is there, add the label
+        if (generatedInput) {
+            generatedInput.setAttribute('aria-labelledby', 'sort-label');
+        }
+    }
 });
 
