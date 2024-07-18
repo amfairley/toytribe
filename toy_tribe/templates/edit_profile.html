@@ -25,26 +25,26 @@
 
             <!-- About me -->
             <div class="edit-profile-input">
-                <label for="about_me" class="roboto-regular">{{ form.about_me.label }}</label>
+                {{ form.about_me.label(class_="roboto-regular") }}
                 {{ form.about_me }}
             </div>
 
             <!-- Is parent toggle -->
             <div class="edit-profile-input">
-                <label for="is_parent" class="roboto-regular">{{ form.is_parent.label }}</label>
+            {{ form.is_parent.label(class_="roboto-regular") }}
                 <div class="switch">
                     <label>
-                      Not a parent
-                      {{ form.is_parent(class="form-control") }}
+                      I am not a parent
+                      {{ form.is_parent(class_="form-control") }}
                       <span class="lever"></span>
-                      I have children
+                      I am a parent
                     </label>
                   </div>
             </div>
 
             <!-- Country select -->
             <div class="edit-profile-input">
-                <label for="country" class="roboto-regular">{{ form.country.label }}</label>
+                {{ form.country.label(class_="roboto-regular", id="country-label") }}
                 {{ form.country(class="form-control") }}
             </div>
 
