@@ -26,7 +26,7 @@
             <div class="col s12 m6 toys-search">
                 <form action="{{ url_for('toys') }}" method="GET" class="search-form">
                     <label for="search_query" class="hidden-label" id="search-label">Search</label>
-                    <input type="text" name="search_query" placeholder="Search toys..." class="toy-search-text">
+                    <input type="text" name="search_query" placeholder="Search toys..." class="toy-search-text" aria-labelledby="search-label" >
                     <button type="submit" class="btn waves-effect waves-light toy-search-button" aria-label="Submit search">Search</button>
                 </form>
             </div>
