@@ -47,8 +47,8 @@ class SignupForm(FlaskForm):
                 message=(
                     "Username must contain only:\n"
                     " Letters,\n"
-                    " Numbers,\n"
-                    " Dots or underscores."
+                    " numbers,\n"
+                    " dots or underscores."
                 )
             )
         ])

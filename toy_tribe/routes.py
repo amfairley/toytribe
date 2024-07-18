@@ -575,7 +575,11 @@ def edit_toy(toy_id):
             form.image_url.data = "/static/img/default_toy.webp"
         else:
             toy.image_url = form.image_url.data,
-        toy.description = form.description.data
+        # Set default text for empty description
+        if not form.description.data:
+            form.description.data = "No description added yet."
+        else:
+            toy.description = form.description.data
         # Saves these changes
         db.session.commit()
         # If the user came from toys, redirect back to toys
