@@ -20,8 +20,10 @@
             <br>
             <!-- Add review title -->
             <h2 class="playfair-display" id="add-review-title">
-                <img src="{{ url_for('static',filename='img/add_review_title.png')}}" alt="Page title for Review">
-                <span> {{ toy.name }}</span>
+                <span> 
+                    <img src="{{ url_for('static',filename='img/add_review_title.png')}}" alt="Page title for Review">
+                    {{ toy.name }}
+                </span>
             </h2>
             <!-- Add review form -->
             <form id="add-review-form" method="POST">

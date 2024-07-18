@@ -576,7 +576,6 @@ main {
 .toys-card {
     background-color: rgba(255, 243, 223, 0.6);
     height: 386px;
-    overflow: auto;
 }
 
 .toy-description {
@@ -663,9 +662,27 @@ main {
 }
 
 .card-title {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
+.toys-toy-title {
+    max-height: 75px;
+    height: 75px;
+    overflow-y: auto;
+}
+
+.toys-card-title a {
+    max-width: 80%;
+    display: inline-block;
+}
+
+.toys-card-title i {
+    display: absolute;
+}
+
+.card-action {
+    bottom: 0;
+}
 .toys-toy-title-reveal {
     color: #f5f5f5;
 }
@@ -772,6 +789,7 @@ main {
 #edit-toy-title {
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 
 #edit-toy-title img {
@@ -828,8 +846,8 @@ main {
 
 .toy-image {
     max-height: 70vh !important;
-    max-width: 750px;
     width: auto !important;
+    max-width: 85%;
     margin: 0 auto;
 }
 
@@ -994,6 +1012,8 @@ main {
     display: block;
     color: #FFF3D3;
     font-size: 1.5rem;
+    max-height: 225px;
+    overflow-y: auto;
 }
 
 .review-divider {
@@ -1029,6 +1049,7 @@ main {
 #add-review-title {
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 
 #add-review-title img {
@@ -1274,4 +1295,135 @@ main {
     font-size: 1.7rem;
     background-color: #D02847;
     color: #FFF3D3;
+}
+
+/*---------- MEDIA QUERIES ---------- */
+/* Smallest screens */
+@media screen and (max-width: 401px) {
+    /* Header logo size */
+    .site-logo{
+        height:20px;
+    }
+
+    /* Reduce Homepage button sizes */
+    .hero-button {
+        font-size: smaller;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    /* Reduce homepage message size */
+    #homepage-message {
+        font-size: 1.5rem;
+    }
+
+    /* Toy search button size */
+    .toy-search-button {
+        font-size: 1rem;
+        padding: 0;
+    }
+
+    /* Carousel sizes */
+    .carousel-item {
+        height: 150px !important;
+        width: 150px !important;
+        text-align: center;
+    }
+
+    .liked-toy-link {
+        max-height: 150px !important;
+    }
+}
+
+/* Small screens */
+@media screen and (max-width: 650px) {
+    /* Reduce homepage message size */
+    #homepage-message {
+        font-size: 1.5rem;
+    }
+
+    /* Reduce page title sizes */
+    #toys-title img {
+        height: 70px;
+    }
+
+    #edit-toy-title span img,
+    #add-review-title span img {
+        height: 40px;
+    }
+
+    #edit-toy-title span,
+    #add-review-title span {
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    /* Make them smaller */
+    .individual-toy-buttons {
+        font-size: 0.9rem;
+        margin: 0;
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+    /* Edit profile buttons */
+    .edit-profile-button {
+        width: 45%;
+        font-size: 1rem;
+        text-align: center;
+    }
+    /* Change password title */
+    #change-password-title {
+        font-size: 2rem;
+    }
+}
+
+/* Materialize cut-off */
+@media screen and (max-width: 600px) {
+    /* Toy sort layout */
+    .toy-sort-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    /* Confirm delete modals */
+    .confirm-message {
+        margin: 5px auto;
+    }
+
+    .modal-text {
+        font-size: 1rem;
+    }
+
+    .modal-content {
+        padding-bottom: 5px !important;
+    }
+
+    .confirm-delete-no,
+    .confirm-delete-yes {
+        width: auto !important;
+    }
+}
+
+
+/* Medium screens */
+@media screen and (max-width: 900px) {
+    /* Reduce page title sizes */
+    #signup-title img,
+    #login-title img,
+    #add-toy-title img {
+        height: 70px;
+    }
+    /* Toy search button placement */
+    .search-form {
+        text-align: center;
+    }
+}
+
+/* Reviews buttons */
+@media screen and (max-width: 322px) {
+    .review-buttons a {
+        margin-top: 10px;
+    }
 }

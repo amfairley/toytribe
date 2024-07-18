@@ -17,8 +17,10 @@
         <br>
         <!-- Edit toy title -->
         <h2 class="playfair-display" id="edit-toy-title">
-            <img src="{{ url_for('static',filename='img/edit_toy_title.png')}}" alt="Page title for Edit">
-            <span> {{ toy.name }}</span>
+            <span>
+                <img src="{{ url_for('static',filename='img/edit_toy_title.png')}}" alt="Page title for Edit"> 
+                 {{ toy.name }}
+            </span>
         </h2>
         <!-- Edit toy form-->
         <form id="edit-toy-form" method="POST">

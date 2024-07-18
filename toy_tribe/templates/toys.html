@@ -31,7 +31,7 @@
                 </form>
             </div>
             <!-- Filter bar -->
-            <div class="col s12 m6 right">
+            <div class="col s12 m6 toy-sort-container">
                 <form method="GET" action="{{ url_for('toys') }}" class="sort-form-toys right">
                     <label for="sort" id="sort-label">Sort toys:</label>
                     <select name="sort" id="sort" aria-labelledby="sort-label" onchange="this.form.submit()">
@@ -69,7 +69,7 @@
                 </div>
                 <!-- Toy title and see more -->
                 <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">
+                    <span class="card-title activator grey-text text-darken-4 toys-card-title">
                         <a class="toys-toy-title open-sans" href="{{ url_for('individual_toy', toy_id=toy.id) }}">{{ toy.name }}</a>
                         <i class="fa-solid fa-ellipsis right" aria-label="See more information about {{ toy.name }}"></i>
                         <br>
