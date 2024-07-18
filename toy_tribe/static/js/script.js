@@ -27,9 +27,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
     
-    // Label the review sort select on individual_toy.html
+    // Label the review sort select on individual_toy.html and profile.html
     // Check for the page
-    if (window.location.pathname.includes('/toy/')) {
+    if (window.location.pathname.includes('/toy/') || window.location.pathname.includes('/profile')) {
         // Find the created dropdown menu
         let generatedInput = document.querySelector('.select-dropdown.dropdown-trigger');
 

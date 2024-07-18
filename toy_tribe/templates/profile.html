@@ -59,7 +59,7 @@
             <!-- Sort options -->
             {% set first_review = reviews[0] %}
             <form method="GET" action="{{ url_for('other_profile', user_id=first_review.user_id) }}#toy-review-title" class="sort-form-profile">
-                <label for="sort">Sort by:</label>
+                <label for="sort" id="sort-label">Sort by:</label>
                 <select name="sort" id="sort" onchange="this.form.submit()">
                     <option value="newest_first" {% if sort_option == 'newest_first' %}selected{% endif %}>Newest first</option>
                     <option value="oldest_first" {% if sort_option == 'oldest_first' %}selected{% endif %}>Oldest first</option>
