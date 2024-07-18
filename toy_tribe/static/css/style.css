@@ -78,6 +78,18 @@ textarea {
     }
 }
 
+/* Hidden labels so they are still accessibile to screenreaders */
+.hidden-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
 /* ----------- Materialize changes ---------- */
 /* Check boxes in select element */
 [type="checkbox"]:checked+span:not(.lever):before {
@@ -689,7 +701,7 @@ main {
     border: 1pt solid #333A3F;
     padding: 10px 20px;
     border-radius: 20px;
-    background-color: lightslategray;
+    background-color: #333A3F;
 }
 
 /* ---------- add_toy.html ---------- */
