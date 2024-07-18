@@ -39,9 +39,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Label the toy type select on add_toy.html
+    // Label the toy type select on add_toy.html and edit_toy.html
     // Check for the page
-    if (window.location.pathname.includes('/add_toy')) {
+    if (window.location.pathname.includes('/add_toy') || window.location.pathname.includes('/edit_toy')) {
         // Find the created dropdown menu
         let generatedInput = document.querySelector('.select-dropdown.dropdown-trigger');
 
@@ -51,21 +51,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Label the toy type select on edit_toy.html
+    // Label the select forms on add_review.html and edit_review.html
     // Check for the page
-    if (window.location.pathname.includes('/edit_toy')) {
-        // Find the created dropdown menu
-        let generatedInput = document.querySelector('.select-dropdown.dropdown-trigger');
-
-        // If it is there, add the label
-        if (generatedInput) {
-            generatedInput.setAttribute('aria-labelledby', 'toy-type-label');
-        }
-    }
-
-    // Label the select forms on add_review.html
-    // Check for the page
-    if (window.location.pathname.includes('/add_review')) {
+    if (window.location.pathname.includes('/add_review') || window.location.pathname.includes('/edit_review/')) {
         // Find the created dropdown menus
         let generatedInput = document.querySelectorAll('.select-dropdown.dropdown-trigger');
 
@@ -84,4 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 });
+
+
+
 
