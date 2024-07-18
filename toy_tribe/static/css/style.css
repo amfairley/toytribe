@@ -445,6 +445,10 @@ main {
     height: auto;
 }
 
+.toy-reviewed p a {
+    color: blue;
+}
+
 .profile-review-content {
     max-height: 200px;
     overflow: auto;
