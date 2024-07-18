@@ -26,5 +26,17 @@ document.addEventListener("DOMContentLoaded", function() {
             generatedInput.setAttribute('aria-labelledby', 'sort-label');
         }
     }
+
+    // Label the toy type select on add_toy.html
+    // Check for the page
+    if (window.location.pathname.includes('/add_toy')) {
+        // Find the created dropdown menu
+        let generatedInput = document.querySelector('.select-dropdown.dropdown-trigger');
+
+        // If it is there, add the label
+        if (generatedInput) {
+            generatedInput.setAttribute('aria-labelledby', 'toy-type-label');
+        }
+    }
 });
 

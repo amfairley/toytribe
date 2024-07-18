@@ -20,28 +20,22 @@
 
             <!-- Toy name -->
             <div class="add-toy-input">
-                <label for="name" class="roboto-regular">
-                    {{ form.name.label }}
-                    <span class="form-required">*</span>
-                </label>
+                {{ form.name.label(class_="roboto-regular") }}
+                <span class="form-required">*</span>
                 {{ form.name }}
             </div>
 
             <!-- Toy company -->
             <div class="add-toy-input">
-                <label for="company" class="roboto-regular">
-                    {{ form.company.label }}
-                    <span class="form-required">*</span>
-                </label>
+                {{ form.company.label(class_="roboto-regular") }}
+                <span class="form-required">*</span>
                 {{ form.company }}
             </div>
 
             <!-- Toy type -->
             <div class="add-toy-input">
-                <label for="toy_type_id" class="roboto-regular">
-                    {{ form.toy_type_id.label }}
-                    <span class="form-required">*</span>
-                </label>
+                {{ form.toy_type_id.label(class_="roboto-regular", id="toy-type-label") }}
+                <span class="form-required">*</span>
                 <select id="toy_type_id" name="toy_type_id" class="form-control">
                     <option value='0' selected>Select Toy Type</option>
                     {% for toy_type in toy_types %}
@@ -65,13 +59,13 @@
 
             <!-- Toy description -->
             <div class="roboto-regular add-toy-input">
-                <label for="description">{{ form.description.label }}</label>
+                {{ form.description.label }}
                 {{ form.description }}
             </div>
 
             <!-- Toy image -->
             <div class="roboto-regular add-toy-input">
-                <label for="image_url">{{ form.image_url.label }}</label>
+                {{ form.image_url.label }}
                 {{ form.image_url }}
             </div>
 
