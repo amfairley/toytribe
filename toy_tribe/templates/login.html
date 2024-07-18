@@ -17,11 +17,11 @@
         {{ form.hidden_tag() }}
 
         <!-- Email -->
-        <label for="email" class="roboto-regular">{{ form.email.label }}</label>
+        {{ form.email.label(class_="roboto-regular") }}
         {{ form.email }}
 
         <!-- Password -->
-        <label for="password" class="roboto-regular">{{ form.password.label }}</label>
+        {{ form.password.label(class_="roboto-regular") }}
         {{ form.password }}
 
         <!-- Error messages -->
