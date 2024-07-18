@@ -30,19 +30,15 @@
 
                 <!-- Review content -->
                 <div class="add-review-input">
-                    <label for="review_content" class="roboto-regular">
-                        {{ form.review_content.label }}
-                        <span class="form-required">*</span>
-                    </label>
+                    {{ form.review_content.label(class_="roboto-regular") }}
+                    <span class="form-required">*</span>
                     {{ form.review_content }}
                 </div>
 
                 <!-- Review rating -->
                 <div class="add-review-input">
-                    <label for="rating" class="roboto-regular">
-                        {{ form.rating.label }}
-                        <span class="form-required">*</span>                
-                    </label>
+                    {{ form.rating.label(class_="roboto-regular", id="rating-label") }}
+                    <span class="form-required">*</span>                
                     {{ form.rating }}
                 </div>
 
@@ -61,7 +57,7 @@
 
                 <!-- Also liked checklist -->
                 <div class="add-review-input">
-                    <label for="also_liked" class="roboto-regular">{{ form.also_liked.label }}</label>
+                    {{ form.also_liked.label(class_="roboto-regular", id="liked-label") }}
                     {{ form.also_liked(class="form-control") }}
                 </div>
 

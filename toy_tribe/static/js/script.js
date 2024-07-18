@@ -26,6 +26,18 @@ document.addEventListener("DOMContentLoaded", function() {
             generatedInput.setAttribute('aria-labelledby', 'sort-label');
         }
     }
+    
+    // Label the review sort select on individual_toy.html
+    // Check for the page
+    if (window.location.pathname.includes('/toy/')) {
+        // Find the created dropdown menu
+        let generatedInput = document.querySelector('.select-dropdown.dropdown-trigger');
+
+        // If it is there, add the label
+        if (generatedInput) {
+            generatedInput.setAttribute('aria-labelledby', 'sort-label');
+        }
+    }
 
     // Label the toy type select on add_toy.html
     // Check for the page
@@ -51,16 +63,25 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Label the review sort select on individual_toy.html
+    // Label the select forms on add_review.html
     // Check for the page
-    if (window.location.pathname.includes('/toy/')) {
-        // Find the created dropdown menu
-        let generatedInput = document.querySelector('.select-dropdown.dropdown-trigger');
+    if (window.location.pathname.includes('/add_review')) {
+        // Find the created dropdown menus
+        let generatedInput = document.querySelectorAll('.select-dropdown.dropdown-trigger');
 
+        // Label the first one review rating
         // If it is there, add the label
-        if (generatedInput) {
-            generatedInput.setAttribute('aria-labelledby', 'sort-label');
+        if (generatedInput[0]) {
+            generatedInput[0].setAttribute('aria-labelledby', 'rating-label');
+        }
+        
+        // Label the second one also_liked
+        // If it is there, add the label
+        if (generatedInput[1]) {
+            generatedInput[1].setAttribute('aria-labelledby', 'liked-label');
         }
     }
+
+
 });
 
