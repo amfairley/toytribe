@@ -35,14 +35,14 @@
                 <form method="GET" action="{{ url_for('toys') }}" class="sort-form-toys right">
                     <label for="sort" id="sort-label">Sort toys:</label>
                     <select name="sort" id="sort" aria-labelledby="sort-label" onchange="this.form.submit()">
-                        <option aria-labelledby="sort-label"  value="name_asc" {% if sort_option == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
-                        <option aria-labelledby="sort-label"  value="name_desc" {% if sort_option == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
-                        <option aria-labelledby="sort-label"  value="type_asc" {% if sort_option == 'type_asc' %}selected{% endif %}>Toy Type (A-Z)</option>
-                        <option aria-labelledby="sort-label"  value="type_desc" {% if sort_option == 'type_desc' %}selected{% endif %}>Toy Type (Z-A)</option>
-                        <option aria-labelledby="sort-label"  value="company_asc" {% if sort_option == 'type_desc' %}selected{% endif %}>Company (A-Z)</option>
-                        <option aria-labelledby="sort-label"  value="company_desc" {% if sort_option == 'type_desc' %}selected{% endif %}>Company (Z-A)</option>
-                        <option aria-labelledby="sort-label"  value="rating_asc" {% if sort_option == 'rating_asc' %}selected{% endif %}>Rating (Low to High)</option>
-                        <option aria-labelledby="sort-label"  value="rating_desc" {% if sort_option == 'rating_desc' %}selected{% endif %}>Rating (High to Low)</option>
+                        <option value="name_asc" {% if sort_option == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
+                        <option value="name_desc" {% if sort_option == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
+                        <option value="type_asc" {% if sort_option == 'type_asc' %}selected{% endif %}>Toy Type (A-Z)</option>
+                        <option value="type_desc" {% if sort_option == 'type_desc' %}selected{% endif %}>Toy Type (Z-A)</option>
+                        <option value="company_asc" {% if sort_option == 'type_desc' %}selected{% endif %}>Company (A-Z)</option>
+                        <option value="company_desc" {% if sort_option == 'type_desc' %}selected{% endif %}>Company (Z-A)</option>
+                        <option value="rating_asc" {% if sort_option == 'rating_asc' %}selected{% endif %}>Rating (Low to High)</option>
+                        <option value="rating_desc" {% if sort_option == 'rating_desc' %}selected{% endif %}>Rating (High to Low)</option>
                     </select>
                 </form>
             </div>

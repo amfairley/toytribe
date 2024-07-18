@@ -14,5 +14,17 @@ document.addEventListener("DOMContentLoaded", function() {
     // carousel initialization
     let carousels = document.querySelectorAll('.carousel');
     M.Carousel.init(carousels);
+
+    // Label the sort select on toys.html
+    // Check for the page
+    if (window.location.pathname.includes('/toys')) {
+        // Find the created dropdown menu
+        let generatedInput = document.querySelector('.select-dropdown.dropdown-trigger');
+
+        // If it is there, add the label
+        if (generatedInput) {
+            generatedInput.setAttribute('aria-labelledby', 'sort-label');
+        }
+    }
 });
 
