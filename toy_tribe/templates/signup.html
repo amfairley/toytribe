@@ -12,10 +12,10 @@
         <img src="{{ url_for('static',filename='img/signup_title.png')}}" alt="Page title for Signup">
     </h2>
     <!-- Alert display-->
-    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% with messages = get_flashed_messages(with_categories=false) %}
         {% if messages %}
-            {% for category, message in messages %}
-                <div class="alert alert-{{ category }} signup-error roboto-regular">
+            {% for message in messages %}
+                <div class="alert signup-error roboto-regular">
                     {{ message }}
                 </div>
             {% endfor %}

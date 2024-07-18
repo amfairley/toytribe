@@ -46,9 +46,9 @@ class SignupForm(FlaskForm):
                 '^[A-Za-z0-9_.]*$',
                 message=(
                     "Username must contain only:\n"
-                    "- Letters\n"
-                    "- Numbers\n"
-                    "- Dots or underscores"
+                    " Letters,\n"
+                    " Numbers,\n"
+                    " Dots or underscores."
                 )
             )
         ])
@@ -68,16 +68,16 @@ class SignupForm(FlaskForm):
                 r'^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$',
                 message=(
                     "Password must contain:\n"
-                    "- At least one uppercase letter\n"
-                    "- At least one number\n"
-                    "- At least one special character."
+                    " An uppercase letter, \n"
+                    " at least one number,\n"
+                    " at least one special character."
                 )
             )
         ]
     )
     confirm_password = PasswordField(
         'Confirm Password',
-        validators=[DataRequired(), EqualTo('password')]
+        validators=[DataRequired(), EqualTo('password', message="Passwords did not match.")]
     )
     submit = SubmitField('Register')
 
@@ -101,7 +101,7 @@ class EditProfile(FlaskForm):
     Collects about_me, country, is_parent, user_image.
     """
     about_me = TextAreaField('About Me')
-    is_parent = BooleanField('Are you a parent?')
+    is_parent = BooleanField('Parent status:')
     country = SelectField('Country', choices=[], coerce=str)
     user_image = StringField('Profile Picture URL:')
     submit = SubmitField('Save Changes')

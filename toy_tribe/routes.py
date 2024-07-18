@@ -89,10 +89,9 @@ def signup():
             return redirect(url_for('login'))
     else:
         # Display the errors
-        if form.errors:
-            for field, errors, in form.errors.items():
-                for error in errors:
-                    flash(f"{field.capitalize()} error: {error}")
+        for field, errors in form.errors.items():
+            for error in errors:
+                flash(error)
     return render_template('signup.html', form=form)
 
 
@@ -256,7 +255,11 @@ def edit_profile(user_id):
             profile.about_me = form.about_me.data
         profile.is_parent = form.is_parent.data
         profile.country = form.country.data
-        profile.user_image = form.user_image.data
+        # Set a default user image if none selected
+        if form.user_image.data.strip() == '':
+            profile.user_image = "/static/img/default_profile_image.webp"
+        else:
+            profile.user_image = form.user_image.data
         # Saves these changes
         db.session.commit()
         return redirect(url_for('profile'))
@@ -512,8 +515,8 @@ def add_toy():
             flash('Please select the toy type.')
         # If a toy type was selected, validate the form
         elif form.validate():
-            # Set a default user profile image if none provided
-            if not form.image_url.data:
+            # Set a default toy image if none provided
+            if form.image_url.data.strip() == '':
                 form.image_url.data = "/static/img/default_toy.webp"
             # Set a default description if none provided
             if not form.description.data:
@@ -567,8 +570,12 @@ def edit_toy(toy_id):
         toy.name = form.name.data.title()
         toy.company = form.company.data.title()
         toy.toy_type_id = form.toy_type_id.data,
+        # Set a default toy image if none provided
+        if form.image_url.data.strip() == '':
+            form.image_url.data = "/static/img/default_toy.webp"
+        else:
+            toy.image_url = form.image_url.data,
         toy.description = form.description.data
-        toy.image_url = form.image_url.data
         # Saves these changes
         db.session.commit()
         # If the user came from toys, redirect back to toys
