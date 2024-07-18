@@ -18,7 +18,7 @@ For information on the integrated security built into the app, see SECURITY.md <
 Accessibility was kept in mind throughout development and the best practices were kept to across the website. Where hidden text was used, it was hidden in a way that was still accessible to screen readers.
 Accessibility testing was performed using the [Wave](https://wave.webaim.org/) validator to provide key information about the accessibility standard of the website. Pages that required login were beyond the perview of the [Wave](https://wave.webaim.org/) browser tool, so the Wave extension for Google Chrome was used, which can be found [here](https://wave.webaim.org/extension/).
 
-**home.html**:
+**home.html**<br>
 - The contrast error on the Hero text should be ignored, as the validator ignores the black shadowing of the words and assumes it is just white text on a picture background. In reality it is white text on a black shadow, making it clearly legibile on the picture background. User feedback has confirmed this.
 <details>
 <summary>Home results</summary>
@@ -37,7 +37,7 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 <img src="/documentation/testing/wave_login.png">
 </details><br>
 
-**toys.html**
+**toys.html**<br>
 - Alerts were multipled for each toy present on the page:
     * Suspicious alt text: All checked, these are for the toy images and the ratings.
     * Possible heading: Highlighted possible headings on the delete modals but I will keep the current layout.
@@ -48,7 +48,7 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 <img src="/documentation/testing/wave_toys.png">
 </details><br>
 
-**add_toy.html**
+**add_toy.html**<br>
 Alerts:
 - Redundant link: One for the Home page as it appears in the header and footer, but works as expected so will keep.
 <details>
@@ -56,7 +56,7 @@ Alerts:
 <img src="/documentation/testing/wave_add_toy.png">
 </details><br>
 
-**edit_toy.html**
+**edit_toy.html**<br>
 Alerts:
 - Redundant link: One for the Home page as it appears in the header and footer, but works as expected so will keep..
 <details>
@@ -64,7 +64,7 @@ Alerts:
 <img src="/documentation/testing/wave_edit_toy.png">
 </details><br>
 
-**individual_toy.html**
+**individual_toy.html**<br>
 Alerts
 - Possible headings: The delete toy and delete modal content. Kept the way it is. One alert per also_liked review section. Kept as it is.
 - Broken same page links: Confirm delete modal close buttons. They work as expected so no change here.
@@ -74,7 +74,7 @@ Alerts
 <img src="/documentation/testing/wave_individual_toy.png">
 </details><br>
 
-**add_review.html**
+**add_review.html**<br>
 Alerts
 - Redundant link: One for the Home page as it appears in the header and footer, but works as expected so will keep.
 <details>
@@ -82,7 +82,7 @@ Alerts
 <img src="/documentation/testing/wave_add_review.png">
 </details><br>
 
-**edit_review.html**
+**edit_review.html**<br>
 Alerts
 - Redundant link: One for the Home page as it appears in the header and footer, but works as expected so will keep.
 <details>
@@ -90,7 +90,7 @@ Alerts
 <img src="/documentation/testing/wave_edit_review.png">
 </details><br>
 
-**profile.html**
+**profile.html**<br>
 Alerts
 - Redundant link: One for the Home page as it appears in the header and footer, but works as expected so will keep.
 - Possible headings: One for each review also_liked section. Works as expected so no changes.
@@ -100,7 +100,7 @@ Alerts
 <img src="/documentation/testing/wave_profile.png">
 </details><br>
 
-**edit_profile.html**
+**edit_profile.html**<br>
 Alerts
 - Redundant link: One for the Home page as it appears in the header and footer, but works as expected so will keep.
 <details>
@@ -108,7 +108,7 @@ Alerts
 <img src="/documentation/testing/wave_edit_profile.png">
 </details><br>
 
-**change_password.html**
+**change_password.html**<br>
 Alerts
 - Redundant link: One for the Home page as it appears in the header and footer, but works as expected so will keep.
 <details>
@@ -116,7 +116,7 @@ Alerts
 <img src="/documentation/testing/wave_change_password.png">
 </details><br>
 
-**403.html**
+**403.html**<br>
 Alerts
 - Redundant link: One for the Home page as it appears in the header and footer, but works as expected so will keep.
 <details>
@@ -124,7 +124,7 @@ Alerts
 <img src="/documentation/testing/wave_403.png">
 </details><br>
 
-**404.html**
+**404.html**<br>
 Alerts
 - Redundant link: One for the Home page as it appears in the header and footer, but works as expected so will keep.
 <details>
@@ -132,7 +132,7 @@ Alerts
 <img src="/documentation/testing/wave_404.png">
 </details><br>
 
-**500.html**
+**500.html**<br>
 Alerts
 - Redundant link: Two for the Home page as it appears in the header, footer, and as a redirect link. They work as expected so will be kept.
 <details>
