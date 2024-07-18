@@ -27,34 +27,46 @@
         {{ form.hidden_tag() }}
         
         <!-- First name -->
-        <i class="fa-solid fa-user-large"></i>
-        <label for="first_name" class="roboto-regular">{{ form.first_name.label }}</label>
+        <label for="first_name" class="roboto-regular">
+            <i class="fa-solid fa-user-large"></i>
+            {{ form.first_name.label }}
+        </label>
         {{ form.first_name }}
 
         <!-- Last name -->
-        <i class="fa-solid fa-user-large"></i>
-        <label for="last_name" class="roboto-regular">{{ form.last_name.label }}</label>
+        <label for="last_name" class="roboto-regular">
+            <i class="fa-solid fa-user-large"></i>
+            {{ form.last_name.label }}
+        </label>
         {{ form.last_name }}
 
         <!-- Username -->
-        <i class="fa-regular fa-id-card"></i>
-        <label for="last_name" class="roboto-regular">{{ form.username.label }}</label>
+        <label for="last_name" class="roboto-regular">
+            <i class="fa-regular fa-id-card"></i>
+            {{ form.username.label }}
+        </label>
         {{ form.username }}
 
         <!-- Email address -->
-        <i class="fa-solid fa-envelope"></i>
-        <label for="email" class="roboto-regular">{{ form.email.label }}</label>
+        <label for="email" class="roboto-regular">
+            <i class="fa-solid fa-envelope"></i>
+            {{ form.email.label }}
+        </label>
         {{ form.email }}
 
         <!-- Password -->
-        <i class="fa-solid fa-lock"></i>
-        <label for="password" class="roboto-regular" id="signup-password">{{ form.password.label }}</label>
+        <label for="password" class="roboto-regular" id="signup-password">
+            <i class="fa-solid fa-lock"></i>
+            {{ form.password.label }}
+        </label>
         {{ form.password }}
         <span class="helper-text roboto-regular">Password must be 8 or more characters and include at least one capital letter, one number, and one special character.<br></span>
 
         <!-- Confirm password-->
-        <i class="fa-solid fa-lock confirm-password"></i>
-        <label for="confirm_password" class="roboto-regular" id="signup-confirm">{{ form.confirm_password.label }}</label>
+        <label for="confirm_password" class="roboto-regular" id="signup-confirm">
+            <i class="fa-solid fa-lock confirm-password"></i>
+            {{ form.confirm_password.label }}
+        </label>
         {{ form.confirm_password }}
 
         <!-- Submit button -->
