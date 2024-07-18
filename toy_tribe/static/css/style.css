@@ -1180,6 +1180,10 @@ main {
     width: 95%;
 }
 
+#search-label {
+    color : black !important;
+}
+
 /* Toys search bar */
 .toys-search {
     margin-top: 20px !important;
