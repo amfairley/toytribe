@@ -654,8 +654,9 @@ def add_review(toy_id):
     # Get the toy that is being reviewed
     toy = Toy.query.get_or_404(toy_id)
     # Get all toys and use it to populate the also_liked selection
-    toys = Toy.query.all()
-    toy_options = [(each_toy.id, each_toy.name) for each_toy in toys]
+    toys = Toy.query.order_by(Toy.name).all()
+    # Makes the toy options but removes the toy that the review is for
+    toy_options = [(each_toy.id, each_toy.name) for each_toy in toys if each_toy.id != toy_id]
     # Set the form
     form = AddReview()
     # Set the also_liked selection choices
