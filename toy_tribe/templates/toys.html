@@ -25,6 +25,7 @@
             <!-- Search bar -->
             <div class="col s12 m6 toys-search">
                 <form action="{{ url_for('toys') }}" method="GET" class="search-form">
+                    <label for="search_query" class="hidden-label">Search</label>
                     <input type="text" name="search_query" placeholder="Search toys..." class="toy-search-text">
                     <button type="submit" class="btn waves-effect waves-light toy-search-button" aria-label="Submit search">Search</button>
                 </form>
@@ -32,8 +33,8 @@
             <!-- Filter bar -->
             <div class="col s12 m6 right">
                 <form method="GET" action="{{ url_for('toys') }}" class="sort-form-toys right">
-                    <label for="sort">Sort toys:</label>
-                    <select name="sort" id="sort" onchange="this.form.submit()">
+                    <label for="sort" id="sort-label">Sort toys:</label>
+                    <select name="sort" id="sort" aria-labelledby="sort-label" onchange="this.form.submit()">
                         <option value="name_asc" {% if sort_option == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
                         <option value="name_desc" {% if sort_option == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
                         <option value="type_asc" {% if sort_option == 'type_asc' %}selected{% endif %}>Toy Type (A-Z)</option>
