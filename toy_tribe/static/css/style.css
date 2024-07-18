@@ -570,6 +570,7 @@ main {
 /*Page layout */
 #toys-page {
     width: 95%;
+    max-width: 2000px;
 }
 
 /* Toy cards */
@@ -680,6 +681,9 @@ main {
     display: absolute;
 }
 
+.card-title .row .s2 {
+    margin-top: 10px;
+}
 .card-action {
     bottom: 0;
 }
@@ -872,6 +876,13 @@ main {
     color:#333A3F;
     font-size: 1rem;
     font-weight: bolder;
+    position: relative;
+    z-index: 1;
+    text-shadow: 
+        -2px -2px 4px #F5F5F5,  
+        2px -2px 4px #F5F5F5,
+        -2px  2px 4px #F5F5F5,
+        2px  2px 4px #F5F5F5;
 }
 
 .individual-toy-no-reviews {
@@ -1207,6 +1218,7 @@ main {
 /* Search row in toys */
 .search-row {
     width: 95%;
+    max-width: 2000px;
 }
 
 #search-label {
