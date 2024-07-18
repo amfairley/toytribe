@@ -9,6 +9,12 @@
 {% block content %}
     <!-- Check if the user is logged in -->
     {% if 'user_id' in session %}
+        <!-- Back button -->
+        <a href="{{ url_for('toys') }}" class="open-sans back-button" aria-label="Go back to toys page.">
+            <i class="fa-solid fa-backward-step"></i>
+            <span>Back</span>
+        </a>
+        <br>
         <!-- Add Toy Title -->
         <h2 id="add-toy-title">
             <img src="{{ url_for('static',filename='img/add_toy_title.png')}}" alt="Page title for Adding Toys">
