@@ -81,8 +81,8 @@ textarea {
 /* ----------- Materialize changes ---------- */
 /* Check boxes in select element */
 [type="checkbox"]:checked+span:not(.lever):before {
-    border-right: 2px solid #D93B58;
-    border-bottom: 2px solid #D93B58;
+    border-right: 2px solid #D02847;
+    border-bottom: 2px solid #D02847;
 }
 
 
@@ -99,7 +99,7 @@ main {
 }
 
 nav .brand-logo {
-    color: #D93B58;
+    color: #D02847;
     max-height: 64px !important;
     overflow: hidden;
 }
@@ -125,17 +125,17 @@ nav ul a{
 }
 
 .sidenav li>a {
-    color: #D93B58;
+    color: #D02847;
 }
 
 /* Burger menu */
 .fa-bars {
-    color: #D93B58;
+    color: #D02847;
     font-size: 2rem;
 }
 
 #mobile-demo a {
-    color: #D93B58;
+    color: #D02847;
 }
 
 #mobile-demo {
@@ -149,7 +149,7 @@ nav ul a{
 }
 
 .footer-logo {
-    color: #D93B58;
+    color: #D02847;
     font-size: 2em;
 }
 
@@ -178,7 +178,7 @@ nav ul a{
 }
 
 .contact-link i:hover{
-    color:#D93B58;
+    color:#D02847;
     transition-duration: 0.5s;
 }
 
@@ -218,12 +218,12 @@ main {
 }
 
 .hero-button:hover, .hero-button:focus {
-    background-color: #D93B58;
+    background-color: #D02847;
     color: #FFF3D3;
 }
 
 #homepage-message {
-    color: #D93B58;
+    color: #D02847;
     text-shadow: -1px -1px 0 #333A3F, 1px -1px 0 #333A3F, -1px 1px 0 #333A3F, 1px 1px 0 #333A3F;
     text-align: center;
     font-size: 2.5rem;
@@ -244,7 +244,7 @@ main {
 
 /* Error display */
 .signup-error {
-    color: #D93B58;
+    color: #D02847;
     margin-bottom: 15px;
     text-align: center;
     max-width: 30%;
@@ -288,7 +288,7 @@ main {
 
 #signup-button {
     font-size: 1.5rem;
-    background-color: #D93B58;
+    background-color: #D02847;
     color: #FFF3D3;
     cursor: pointer;
 }
@@ -320,7 +320,7 @@ main {
 
 #login-button {
     font-size: 1.5rem;
-    background-color: #D93B58;
+    background-color: #D02847;
     color: #FFF3D3;
     cursor: pointer;
 }
@@ -332,7 +332,7 @@ main {
 #login-form p a {
     text-transform: none;
     font-size: 1.1rem;
-    background-color: #D93B58;
+    background-color: #D02847;
     color: #FFF3D3;
     box-shadow: none;
     border: 2pt solid black;
@@ -341,7 +341,7 @@ main {
 .form-error-messages {
     font-size: 0.8rem;
     font-weight: bolder;
-    color: #D93B58;
+    color: #D02847;
     margin-bottom: 10px;
 }
 
@@ -421,7 +421,7 @@ main {
 }
 
 .profile-buttons:hover, .profile-buttons:focus {
-    background-color: #D93B58;
+    background-color: #D02847;
     color: #FFF3D3;
     font-size: 1.2rem;
 }
@@ -477,7 +477,7 @@ main {
 }
 
 .switch label input[type=checkbox]:checked+.lever:after {
-    background-color: #D93B58;
+    background-color: #D02847;
 }
 
 .switch label input[type=checkbox]:checked+.lever {
@@ -491,7 +491,7 @@ main {
 
 .edit-profile-button {
     font-size: 1.5rem;
-    background-color: #D93B58;
+    background-color: #D02847;
     color: #FFF3D3;
     cursor: pointer;
     margin-bottom: 50px;  
@@ -530,7 +530,7 @@ main {
 
 #change-password-button {
     font-size: 1.5rem;
-    background-color: #D93B58;
+    background-color: #D02847;
     color: #FFF3D3;
     cursor: pointer;
     margin-bottom: 50px;    
@@ -591,7 +591,7 @@ main {
 
 .toys-toy-title h2 a {
     text-decoration: none;
-    color:#D93B58;
+    color:#D02847;
 }
 
 .individual-toys-star-rating {
@@ -600,7 +600,7 @@ main {
     padding: 5px 10px;
     border-radius: 10px;
     border: 2px solid #333A3F;
-    background-color: #D93B58;
+    background-color: #D02847;
     position: absolute;
     z-index: 2;
     right: 2px;
@@ -633,12 +633,12 @@ main {
 }
 
 .toys-buttons:hover, .toys-buttons:focus {
-    background-color: #D93B58;
+    background-color: #D02847;
     color: #FFF3D3;
 }
 
 .card-reveal {
-    background-color: #D93B58 !important;
+    background-color: #D02847 !important;
 }
 
 .close-toy {
@@ -665,7 +665,7 @@ main {
 }
 
 .add-toy-button i{
-    color: #D93B58;
+    color: #D02847;
 }
 
 .add-toy-button p{
@@ -729,7 +729,7 @@ main {
 
 .select-wrapper>ul>li>span {
     font-family: "Roboto", Arial, Helvetica, sans-serif;
-    color:#D93B58;
+    color:#D02847;
     background-color: #FFF3D3;
 }
 
@@ -741,14 +741,14 @@ main {
 
 #add-toy-button {
     font-size: 1.5rem;
-    background-color: #D93B58;
+    background-color: #D02847;
     color: #FFF3D3;
     cursor: pointer;
     margin-bottom: 50px;    
 }
 
 .form-required {
-    color: #D93B58;
+    color: #D02847;
 }
 
 /* ---------- edit_toy.html ---------- */
@@ -791,7 +791,7 @@ main {
 
 #edit-toy-button {
     font-size: 1.5rem;
-    background-color: #D93B58;
+    background-color: #D02847;
     color: #FFF3D3;
     cursor: pointer;
     margin-bottom: 50px;    
@@ -829,7 +829,7 @@ main {
     padding: 10px 20px;
     border-radius: 20px;
     border: 2px solid #333A3F;
-    background-color: #D93B58;
+    background-color: #D02847;
 }
 
 .review-strength {
@@ -853,7 +853,7 @@ main {
 
 /* Toy table information */
 .individual-toy-information {
-    background-color: #D93B58;
+    background-color: #D02847;
     border-color: #333A3F;
 }
 
@@ -898,7 +898,7 @@ main {
 
 #toy-review-title {
     text-align: center;
-    color: #D93B58;
+    color: #D02847;
     font-size: 4rem;
     text-shadow: #333A3F;
 }
@@ -939,7 +939,7 @@ main {
 }
 
 .carousel-divider {
-    border: 2px solid #D93B58;
+    border: 2px solid #D02847;
     border-radius: 1px;
     width: 50%;
 }
@@ -978,7 +978,7 @@ main {
 
 .review-divider {
     margin-bottom: 14px;
-    border: 2px dashed #D93B58;
+    border: 2px dashed #D02847;
     width: 100%;
 }
 
@@ -999,7 +999,7 @@ main {
 }
 
 .review-toy-buttons:hover, .review-toy-buttons:focus {
-    background-color: #D93B58;
+    background-color: #D02847;
     color: #FFF3D3;
     font-size: 1.1rem;
 }
@@ -1043,13 +1043,13 @@ main {
 .submit-failure {
     font-size: 0.8rem;
     font-weight: bolder;
-    color: #D93B58;
+    color: #D02847;
     margin-bottom: 10px;
 }
 
 #add-review-button {
     font-size: 1.5rem;
-    background-color: #D93B58;
+    background-color: #D02847;
     color: #FFF3D3;
     cursor: pointer;
     margin-bottom: 50px;    
@@ -1088,7 +1088,7 @@ main {
 
 #edit-review-button {
     font-size: 1.5rem;
-    background-color: #D93B58;
+    background-color: #D02847;
     color: #FFF3D3;
     cursor: pointer;
     margin-bottom: 50px;    
@@ -1100,7 +1100,7 @@ main {
     text-align: center;
     font-size: 2.5rem;
     font-weight: bold;
-    color: #D93B58;
+    color: #D02847;
 }
 
 .modal-text {
@@ -1119,7 +1119,7 @@ main {
     position: absolute;
     border-radius: 10px;
     color: #FFF3D3;
-    background-color: #D93B58;
+    background-color: #D02847;
     font-weight: bold;
     padding-top: 5px !important;
 }
@@ -1139,8 +1139,8 @@ main {
 /* Modal styling */
 .delete-modal {
     background-color: #FFF3D3;
-    border: 1px solid #D93B58;
-    box-shadow: 5px 5px #D93B58;
+    border: 1px solid #D02847;
+    box-shadow: 5px 5px #D02847;
 }
 
 .modal-footer {
@@ -1184,7 +1184,7 @@ main {
     width:25% !important;
     max-width: 90px;
     font-size: 1rem;
-    background-color: #D93B58;
+    background-color: #D02847;
     color: #FFF3D3;
     cursor: pointer;
     border-radius: 5px;
@@ -1197,7 +1197,7 @@ main {
 }
 
 .toy-search-button:hover, .toy-search-button:focus {
-    background-color: #D93B58;
+    background-color: #D02847;
     color: #FFF3D3;
     font-weight: bolder;
 }
@@ -1225,7 +1225,7 @@ main {
 .title-error .fa-question,
 .title-error .fa-server {
     font-size: 8rem;
-    color: #D93B58;
+    color: #D02847;
 }
 
 .title-error{
@@ -1240,7 +1240,7 @@ main {
 /* Redirect button */
 .redirect-button {
     font-size: 1.5rem;
-    background-color: #D93B58;
+    background-color: #D02847;
     color: #FFF3D3;
     cursor: pointer;
     border-radius: 5px;
@@ -1248,6 +1248,6 @@ main {
 
 .redirect-button:hover, .redirect-button:focus {
     font-size: 1.7rem;
-    background-color: #D93B58;
+    background-color: #D02847;
     color: #FFF3D3;
 }
