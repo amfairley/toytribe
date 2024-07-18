@@ -70,7 +70,17 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    // Label the country select on edit_profile.html
+    // Check for the page
+    if (window.location.pathname.includes('/edit_profile')) {
+        // Find the created dropdown menu
+        let generatedInput = document.querySelector('.select-dropdown.dropdown-trigger');
 
+        // If it is there, add the label
+        if (generatedInput) {
+            generatedInput.setAttribute('aria-labelledby', 'country-label');
+        }
+    }
 });
 
 
