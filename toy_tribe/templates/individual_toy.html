@@ -52,8 +52,8 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th></th>
+                                    <th class="hidden-label">Toy property</th>
+                                    <th class="hidden-label">Toy details</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -113,7 +113,7 @@
                 <h3 class="dangrek-regular" id="toy-review-title">Reviews</h3>
                 <!-- Sort options -->
                 <form method="GET" action="{{ url_for('individual_toy', toy_id=toy.id) }}#toy-review-title" class="sort-form-toy">
-                    <label for="sort">Sort Reviews:</label>
+                    <label for="sort" id="sort-label">Sort Reviews:</label>
                     <select name="sort" id="sort" onchange="this.form.submit()">
                         <option value="rating_desc" {% if sort_option == 'rating_desc' %}selected{% endif %}>Rating: high to low</option>
                         <option value="rating_asc" {% if sort_option == 'rating_asc' %}selected{% endif %}>Rating: low to high</option>
