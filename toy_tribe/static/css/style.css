@@ -926,6 +926,10 @@ main {
     height: 4rem;
 }
 
+.review-author p a{
+    color: blue;
+}
+
 .review-rating {
     text-align: right;
     height: 4rem;
