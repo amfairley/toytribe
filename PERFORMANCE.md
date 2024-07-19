@@ -4,6 +4,8 @@
 
 # Performance Testing Results
 
+This document contains the screenshots of the Google Chrome Devtools Lighthouse testing of each page in the website. The results are discussed [here](/TESTING.md#performance-testing).
+
 ## Table of Contents
 - [Normal Internet Speed Test Results](#normal-internet-speed-test-results)
 - [Fast 3G Internet Speed Test Results](#fast-3g-internet-speed-test-results)
