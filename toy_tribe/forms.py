@@ -77,7 +77,10 @@ class SignupForm(FlaskForm):
     )
     confirm_password = PasswordField(
         'Confirm Password',
-        validators=[DataRequired(), EqualTo('password', message="Passwords did not match.")]
+        validators=[
+            DataRequired(),
+            EqualTo('password', message="Passwords did not match.")
+        ]
     )
     submit = SubmitField('Register')
 
@@ -134,7 +137,10 @@ class ChangePassword(FlaskForm):
     )
     confirm_password = PasswordField(
         'Confirm Password',
-        validators=[DataRequired(), EqualTo('new_password', message="New passwords did not match.")]
+        validators=[DataRequired(), EqualTo(
+            'new_password',
+            message="New passwords did not match."
+        )]
     )
     submit = SubmitField('Change Password')
 
