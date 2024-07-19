@@ -56,7 +56,7 @@
                 <aside class="open-sans review-display right">
                     {% if toy.average_rating() | float != 0 %}
                     <!-- Star rating display from Fred Genkin https://codepen.io/FredGenkin/pens/showcase-->
-                    <div class="Stars individual-toys-star-rating" style="--rating: {{ toy.average_rating() | float | round(1) }};" aria-label="Rating of this product is {{ toy.average_rating() | float | round(1) }} out of 5."></div>
+                    <div class="Stars individual-toys-star-rating" style="--rating: {{ toy.average_rating() | float | round(1) }};" alt="Rating of this product is {{ toy.average_rating() | float | round(1) }} out of 5."></div>
                     {% else %}
                     <div class="no-reviews">Not reviewed yet</div>
                     {% endif %}
