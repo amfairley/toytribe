@@ -189,7 +189,7 @@ def other_profile(user_id):
     country = pycountry.countries
     # If there is a current value for country, make the flag url
     if user_profile.country:
-        flag_url = "/static/img/flags/" + user_profile.country + ".svg"
+        flag_url = "/static/img/flags/" + user_profile.country.lower() + ".svg"
     else:
         flag_url = None
     # Get the user reviews
