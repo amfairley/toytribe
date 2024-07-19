@@ -32,7 +32,7 @@
                 <div class="card">
                     <div class="card-image">
                         <!-- Toy rating -->
-                        <span class="card-title individual-toy-rating">
+                        <div class="card-title individual-toy-rating">
                             <!-- If there is a rating -->
                             {% if toy.average_rating() | float != 0 %}
                                 <!-- Star rating display from Fred Genkin https://codepen.io/FredGenkin/pens/showcase-->
@@ -42,7 +42,7 @@
                             {% else %}
                                 <div class="individual-toy-no-reviews open-sans">Not reviewed yet</div>
                             {% endif %}
-                        </span>
+                        </div>
                         <!-- Toy image -->
                         <img class="toy-image" src="{{ toy.image_url }}" alt="An image for {{ toy.name }}">
                     </div>
@@ -165,7 +165,7 @@
                                     {% set liked_toy = Toy.query.filter_by(id=liked_toy_id).first() %}
                                         <!-- If the toy still exists (not deleted)-->
                                         {% if liked_toy %}
-                                            <div style="background-image: url('{{ liked_toy.image_url }}');" class="carousel-toy carousel-item" role="image" aria-label="Image for {{ liked_toy.name }}. The reviewer likes toy.">
+                                            <div style="background-image: url('{{ liked_toy.image_url }}');" class="carousel-toy carousel-item" role="img" alt="Image for {{ liked_toy.name }}. The reviewer likes toy.">
                                                 <div class="carousel-name-container">
                                                     <a href="{{ url_for('individual_toy', toy_id = liked_toy.id) }}" class="open-sans liked-toy-link" aria-label="Link to {{ liked_toy.name }} page">{{ liked_toy.name }}</a>
                                                 </div>
