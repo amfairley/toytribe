@@ -85,7 +85,7 @@
                     <!-- Toy rating -->
                     <div class="col s6 review-rating open-sans">
                         <!-- Star rating display from Fred Genkin https://codepen.io/FredGenkin/pens/showcase-->
-                        <div class="Stars review-rating-stars" style="--rating: {{ review.rating }};" alt="Rating of this product is {{ review.rating }} out of 5."></div>
+                        <div class="Stars review-rating-stars" style="--rating: {{ review.rating }};" aria-label="Rating of this product is {{ review.rating }} out of 5."></div>
                     </div>
                     <!-- Divider under name and rating -->
                     <div class="col s12">
@@ -106,7 +106,7 @@
                                     {% set liked_toy = Toy.query.filter_by(id=liked_toy_id).first() %}
                                         <!-- If the toy still exists (not deleted)-->
                                         {% if liked_toy %}
-                                        <div style="background-image: url('{{ liked_toy.image_url }}');" class="carousel-toy carousel-item" role="image" aria-label="Image for {{ liked_toy.name }}. The reviewer likes toy.">
+                                        <div style="background-image: url('{{ liked_toy.image_url }}');" class="carousel-toy carousel-item" role="img" aria-label="Image for {{ liked_toy.name }}. The reviewer likes toy.">
                                             <div class="carousel-name-container">
                                                 <a href="{{ url_for('individual_toy', toy_id = liked_toy.id) }}" class="open-sans liked-toy-link" aria-label="Link to {{ liked_toy.name }} page">{{ liked_toy.name }}</a>
                                             </div>
