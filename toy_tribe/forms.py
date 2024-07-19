@@ -125,16 +125,16 @@ class ChangePassword(FlaskForm):
                 r'^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$',
                 message=(
                     "Password must contain:\n"
-                    "- At least one uppercase letter\n"
-                    "- At least one number\n"
-                    "- At least one special character."
+                    " An uppercase letter, \n"
+                    " at least one number,\n"
+                    " at least one special character."
                 )
             )
         ]
     )
     confirm_password = PasswordField(
         'Confirm Password',
-        validators=[DataRequired(), EqualTo('new_password')]
+        validators=[DataRequired(), EqualTo('new_password', message="New passwords did not match.")]
     )
     submit = SubmitField('Change Password')
 
