@@ -155,13 +155,21 @@ def profile():
     sort_option = request.args.get('sort', 'newest_first')
     # Set sorting order
     if sort_option == 'newest_first':
-        reviews = Review.query.filter_by(user_id=user.id).order_by(Review.id.desc()).all()
+        reviews = Review.query.filter_by(
+            user_id=user.id
+        ).order_by(Review.id.desc()).all()
     elif sort_option == 'oldest_first':
-        reviews = Review.query.filter_by(user_id=user.id).order_by(Review.id.asc()).all()         
+        reviews = Review.query.filter_by(
+            user_id=user.id
+        ).order_by(Review.id.asc()).all()
     elif sort_option == 'rating_asc':
-        reviews = Review.query.filter_by(user_id=user.id).order_by(Review.rating.asc()).all()
+        reviews = Review.query.filter_by(
+            user_id=user.id
+        ).order_by(Review.rating.asc()).all()
     elif sort_option == 'rating_desc':
-        reviews = Review.query.filter_by(user_id=user.id).order_by(Review.rating.desc()).all()
+        reviews = Review.query.filter_by(
+            user_id=user.id
+        ).order_by(Review.rating.desc()).all()
     return render_template(
         'profile.html',
         user_id=user_id,
@@ -198,13 +206,21 @@ def other_profile(user_id):
     sort_option = request.args.get('sort', 'newest_first')
     # Set sorting order
     if sort_option == 'newest_first':
-        reviews = Review.query.filter_by(user_id=user.id).order_by(Review.id.desc()).all()
+        reviews = Review.query.filter_by(
+            user_id=user.id
+        ).order_by(Review.id.desc()).all()
     elif sort_option == 'oldest_first':
-        reviews = Review.query.filter_by(user_id=user.id).order_by(Review.id.asc()).all()         
+        reviews = Review.query.filter_by(
+            user_id=user.id
+        ).order_by(Review.id.asc()).all()
     elif sort_option == 'rating_asc':
-        reviews = Review.query.filter_by(user_id=user.id).order_by(Review.rating.asc()).all()
+        reviews = Review.query.filter_by(
+            user_id=user.id
+        ).order_by(Review.rating.asc()).all()
     elif sort_option == 'rating_desc':
-        reviews = Review.query.filter_by(user_id=user.id).order_by(Review.rating.desc()).all()
+        reviews = Review.query.filter_by(
+            user_id=user.id
+        ).order_by(Review.rating.desc()).all()
     return render_template(
         'profile.html',
         logged_in_user=logged_in_user,
@@ -425,7 +441,7 @@ def toys():
         # Join the ToyType table to search toy types too
         toys = Toy.query.join(ToyType).filter(
             or_(
-                # Toy name 
+                # Toy name
                 Toy.name.ilike(f'%{search_query}%'),
                 # Toy company
                 Toy.company.ilike(f'%{search_query}%'),
@@ -472,9 +488,13 @@ def individual_toy(toy_id):
     sort_option = request.args.get('sort', 'rating_desc')
     # Set sorting order
     if sort_option == 'rating_asc':
-        reviews = Review.query.filter_by(toy_id=toy.id).order_by(Review.rating.asc()).all()
+        reviews = Review.query.filter_by(
+            toy_id=toy.id
+        ).order_by(Review.rating.asc()).all()
     elif sort_option == 'rating_desc':
-        reviews = Review.query.filter_by(toy_id=toy.id).order_by(Review.rating.desc()).all()
+        reviews = Review.query.filter_by(
+            toy_id=toy.id
+        ).order_by(Review.rating.desc()).all()
     return render_template(
         'individual_toy.html',
         user_id=user_id,
@@ -655,7 +675,9 @@ def add_review(toy_id):
     # Get all toys and use it to populate the also_liked selection
     toys = Toy.query.order_by(Toy.name).all()
     # Makes the toy options but removes the toy that the review is for
-    toy_options = [(each_toy.id, each_toy.name) for each_toy in toys if each_toy.id != toy_id]
+    toy_options = [(
+        each_toy.id, each_toy.name
+    ) for each_toy in toys if each_toy.id != toy_id]
     # Set the form
     form = AddReview()
     # Set the also_liked selection choices
