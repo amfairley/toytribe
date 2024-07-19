@@ -29,7 +29,7 @@ This document covers the full testing of the website. This includes:
     * [Accessibility Testing](#accessibility-testing)
     * [Performance Testing](#performance-testing)
     * [HTML Validation](#html-validation)
-    * CSS validation
+    * [CSS Validation](#css-validation)
     * JS validation
     * Python validation
 
@@ -506,8 +506,8 @@ Alerts
 
 The performance of the webpage was tested using Lighthouse within the Google Chrome Devtools to confirm that the site was performing well, is accessible, follows best practices, and follows basic SEO (search engine optimisation) advice. 
 During development, care was taking to provide the best performing website that could be provided. These efforts include:
-- Image optimisation: [Cloud Convert](https://cloudconvert.com/png-to-webp) was used to convert site images to smaller file formats for faster load times. .PNG files were only used where the filesize was already very small, for example the bubble text on page titles. Otherwise, .WEBP and .SVG files to reduce file sizes and optimise them for web application usage.
-- Code minification: Complete code minifiction was avoided in this project to allow easier assessment upon submission. That being said,code has been written to meet the highest standards, repetition had been removed, and short, elegant solutions have been used wherever possible in order to reduce the code size. In future minification will be used. For example [Python Minifier](https://python-minifier.com/) reduces the size of the routes.py file from 30,136 Bytes to 10,166 Bytes highlighting a possible route for performance improvement.
+- Image optimisation: [Cloud Convert](https://cloudconvert.com/png-to-webp) was used to convert site images to smaller file formats for faster load times. .PNG files were only used where the file size was already very small, for example the bubble text on page titles. Otherwise, .WEBP and .SVG files to reduce file sizes and optimise them for web application usage.
+- Code minification: Complete code minification was avoided in this project to allow easier assessment upon submission. That being said, code has been written to meet the highest standards, repetition had been removed, and short, elegant solutions have been used wherever possible in order to reduce the code size. In future minification will be used. For example [Python Minifier](https://python-minifier.com/) reduces the size of the routes.py file from 30,136 Bytes to 10,166 Bytes highlighting a possible route for performance improvement.
 
 The performance was tested for normal internet speed, fast 3G, and slow 3G to test the performance in a majority of scenarios and locations. This was done by setting the performance network throttling in Google Chrome Devtools. The testing was also run on Google Chrome incognito mode to avoid any complications with plugins or extensions.
 
@@ -521,9 +521,9 @@ The performance was tested for normal internet speed, fast 3G, and slow 3G to te
 ### HTML validation
 The [W3C markup validation service](https://validator.w3.org/) was used to validate the HTML of each page of this website. As each page including some Jinja templating language that threw errors in the validator; the HTML was validated after deployment. Each page was accessed and the source code (CTRL+U or right click > View Page Source) was copied and pasted into the validator to validate by direct input.<br>
 **Warnings**:
-- toys.html showed warnings for possible misuse of aria labels on the toy review stars and the more information ellipses on the toy cards. These were investigated and as they passed accessibility criteria and are correctly picked up by screenreaders with no impact to the website functionality, these warnings were eventually ignored.
+- toys.html showed warnings for possible misuse of aria labels on the toy review stars and the more information ellipses on the toy cards. These were investigated and as they passed accessibility criteria and are correctly picked up by screen readers with no impact to the website functionality, these warnings were eventually ignored.
 - individual_toy.html showed the same warnings for possible misuse of aria labels for the toy review stars and review rating stars. The same approach as above was taken.
-- profile.html showed the same warning for possible missue of arial labels for each review rating. The same approach as above was taken.
+- profile.html showed the same warning for possible missuse of arial labels for each review rating. The same approach as above was taken.
 
 **Errors**
 - Overall there were no errors in the HTML code validation.
@@ -604,4 +604,11 @@ Screenshots of the validation results are shown here:
 <details>
     <summary>Error 500</summary>
     <img src="/documentation/testing/html_500.png">
+</details>
+
+### CSS validation
+CSS validation was completed using the [W3C Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/). It showed no erros in the CSS code. The 6 warnings were to do with imported style sheets that were not checked and the copied code for the star rating stylings, which were left alone to ensure correct functionality.
+<details>
+    <summary>CSS validation results</summary>
+    <img src="/documentation/testing/css_validation.png">
 </details>
