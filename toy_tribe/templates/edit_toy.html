@@ -43,7 +43,7 @@
             <div class="edit-toy-input">
                 {{ form.toy_type_id.label(class_="roboto-regular", id="toy-type-label") }}
                 <select id="toy_type_id" name="toy_type_id" class="form-control">
-                    <option value="" disabled selected>Select Toy Type</option>
+                    <option value="" disabled>Select Toy Type</option>
                     {% for toy_type in toy_types %}
                         <option value="{{ toy_type.id }}" {% if toy_type.id == toy.toy_type_id %}selected{% endif %}>
                             {{ toy_type.toy_type }}</option>
