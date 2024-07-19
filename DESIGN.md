@@ -198,11 +198,33 @@ The website will utilise template inheritance that allows for less code to be wr
 #### Information Architecture
 **Front-end**: Site map <br>
 Below is a proposed site map of the website showing links and redirections.
-![Toy tribe site map](/documentation/design/site_map.png)
+![Toy tribe site map](/documentation/design/site_map.png)<br>
+The key points are:
+- The navbar will display links to signup and login when the user is logged out
+- The navbar will display links to home, toys, user profile, and log out when the user is logged in.
+- The navbar and footer logos will be a link to the homepage
+- The footer will have external links to the developer's GitHub, LinkedIn, and email
+- The signup page will divert the user to the logged in page when successfully signed up
+- The login page will have a link to the signup page for those without a user account yet
+- The homepage will provide a link to the main toys page
+- The toys page will link to individual toy pages, as well as providing the functionality of adding a toy, or editing a toy
+- The individual toy page will allow users to edit the toy, delete the toy, add/edit/delete reviews. Upon deletion of the toy the users are redirected to the toys page.
+- The profile page will display the user information, allowing the user to edit or delete their profile. Deletion will divert the user to the logged out home page.
+- The edit profile page will provide a link to change the password, which directs the user back to the profile when changed
+- Editing the reviews or toys will always divert the user back to their previous page upon completion
+- Trying to access the edit page for a toy, review, or user you do not own will diver the user to the error 403 access denied page
 
 **Back-end**: Entity-relationship-diagram (ERD) <br>
 Below is a proposed ERD for the tables to be modelled for the database.
-![Toy tribe entity relationship diagram](/documentation/design/entity_relationship_diagram.png)
+![Toy tribe entity relationship diagram](/documentation/design/entity_relationship_diagram.png)<br>
+**Explanation**
+- The relational database will consist of 5 linked tables.
+- The user table will house information on the user and will not use any foreign keys.
+- The toy type table will list various types of toys with incremental ids.
+- The toy table will house the toy data. It will use the user_id as a foreign key in order to identify the creator of the toy. This creates a one to many relationship between users and toys, as one user may create many toys. It is linked in a way that if a user is deleted, the toy will remain in the database. The table also has a foreign key of the toy_type_id. This provides a one to one relationship, as a toy will only be able to have one toy type.
+- The review table will house the review data. It will have the user_id as a foreign key in order to identify the author of the review. This creates a one to many relationship between users and reviews, as one user may create multiple reviews. The table also has the foreign key of toy_id to identify which toy the review is for. This creates a one to many relationship between toys and reviews, as even though only one user may create a review for a specific toy, that toy can have multiple reviews from different users. It is linked in a way that deletion of a user will not delete the review, but deletion of a toy will delete all associated reviews. The also_liked data of a review houses a list of integers that relate to toy_ids that the reviewer also liked. Instead of setting up a many to many relationship in the schema, reading the also_liked data and assigning associated toys will be handled with python code.
+- The profile table will house the public profile data about the user. It will have user_id as a foreign key to assign the profile to the correct user. This is a one to one relationship, as a user is only allowed one profile. It is linked in a way that deletion of the user will also delete the profile associated with them.
+
 
 #### Interactive Experience
 - Clickable links will have animated effects on hover or click, providing clear feedback to the user.
@@ -222,6 +244,9 @@ Below is a proposed ERD for the tables to be modelled for the database.
 ### Surface
 
 #### Colour scheme
+
+**NOTE: FOR ACCESSIBILITY AND CONTRAST REASONS; D93B58 WAS REPLACED WITH A SHADE 10% DARKER: #D02847 ACROSS THE SITE**<br>
+
 The colour scheme started as primary colours; red, blue, and yellow. However the blue tended to not show up well on the the other colours and was dropped. In favour of a gold colour to show up nicely on the muted yellow background. A calm red was used so as to not be to harsh on the eyes and throughout the site, all black and white colours were replaced with an off-black and off white.
 The background was designed using [BGJar](https://bgjar.com/) and curvy loops and squiggles were employed to give a fun, childish appearance to the site.
 
@@ -229,7 +254,7 @@ The star ratings are coloured white and yellow and were the default colours used
 
 ![Colour Scheme](/documentation/design/colour_scheme.png)
 
-| Muted Yellow #FFF3D3| Yellow #F6D36A | Gold #8A6D1E | Red #D93B58 | Off-White #F5F5F5 | Off-Black #333A3F |
+| Muted Yellow #FFF3D3| Yellow #F6D36A | Gold #8A6D1E | Red #D02847 | Off-White #F5F5F5 | Off-Black #333A3F |
 | ------------------- | -------------------- | ------------ | ----------- | ----------------  | ----------------- |
 | Background colour | Edit profile slider | Brand logo | Brand title | Homepage hero text | Back buttons |
 | Navigation background | Review outline and shadow | | Burger menu | Homepage buttons | Navigation links |
@@ -270,7 +295,6 @@ The star ratings are coloured white and yellow and were the default colours used
 
 **Other colours used:**
 - Green #008000: Verified parent tag on profile
-- Grey #808080: Signup form helper text
 
 #### Typography
 
@@ -419,7 +443,6 @@ Roboto is the most popular google font with high legibility and nice curves. It 
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/login_button.png"></details> |
 | **Details:** A login button that submits the user entered data and provides access to the rest of the website. |
 | **User stories covered:** 2|
-
 
 | **Signup button** |
 |-------- |
@@ -715,13 +738,6 @@ Roboto is the most popular google font with high legibility and nice curves. It 
 | **Details:** This button only appears if the user has not already submitted a review, making it one review per person and making it harder to manipulate ratings. When hovered, the colour changes, it gets larger, and the cursor becomes a pointer, indicating functionality. When clicked it takes the user to the add review form. |
 | **User stories covered:** 5, 16 |
 
-| **Review toy button** |
-|-------- |
-| **Page:** individual_toy.html |
-| <details><summary>Feature Image</summary><img src="/documentation/design/features/review_toy_button.png"></details> |
-| **Details:** This button only appears if the user has not already submitted a review, making it one review per person and making it harder to manipulate ratings. When hovered, the colour changes, it gets larger, and the cursor becomes a pointer, indicating functionality. When clicked it takes the user to the add review form. |
-| **User stories covered:** 5, 16 |
-
 | **Add review title** |
 |-------- |
 | **Page:** add_review.html |
@@ -754,7 +770,7 @@ Roboto is the most popular google font with high legibility and nice curves. It 
 |-------- |
 | **Page:** 403.html |
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/error_403.png"></details> |
-| **Details:** This page is displayed when a user tries to access something that they do not have access to. Such as accessing the url of editing a profile, password, toy, or review that is not theirs or try to add a second review for a toy. The large no access icon portrays the purpose of the error, which is confirmed with the title "403- Access Denied". A message to redirect the user and a link for the toy page allows the user to exit the error page. On hover the button enlarges, showing functionality. |
+| **Details:** This page is displayed when a user tries to access something that they do not have access to. Such as accessing the url of editing a profile, password, toy, or review that is not theirs or try to add a second review for a toy. The large no access icon portrays the purpose of the error, which is confirmed with the title "403- Access Denied". A message to redirect the user and a link for the toys page allows the user to exit the error page. On hover the button enlarges, showing functionality. |
 | **User stories covered:**  1, 26, 27 |
 
 | **Error 404 page** |
