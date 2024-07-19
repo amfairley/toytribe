@@ -2,27 +2,37 @@
 
 ---
 
-# Testing
-
-This document covers the full testing of the website. This include
-- Wave accessibility validator
-
 For overview information of this website, see [README.md](/README.md) <br>
 See [DESIGN.md](/DESIGN.md) for information on the five planes of UX design, site map, database scheme, and features. <br>
 For information on the development and deployment of this website, see DEV.md <br>
 For information on the integrated security built into the app, see SECURITY.md <br>
 
-Manual testing (often called user testing) is where the site is manually tested by clicking buttons, filling out forms, and testing all the logic. Automatic testing involves using scripts and a testing framework to test functionality. Automated testing can be quick, thorough, and allow the developer to pick up errors early on but relies on the developer asking the right questions and does not test for user experience. For this project, I have concentrated on manual testing to test the user experience and automated testing for validation of the code, accessibility testing, and site performance testing.
+# Testing
+
+
+Manual testing (often called user testing) is where the site is manually tested by clicking buttons, filling out forms, and testing all the logic. Automated testing involves using scripts and a testing framework to test functionality. Automated testing can be quick, thorough, and allow the developer to pick up errors early on but relies on the developer asking the right questions and does not test for user experience. For this project, I have concentrated on manual testing to test the user experience and automated testing for validation of the code, accessibility testing, and site performance testing.
+
+
+This document covers the full testing of the website. This includes:
+- Testing user stories
+- Manual testing
+- Wave accessibility validation
 
 ---
 
 ## Table of contents
 1. [Testing User Stories](#testing-user-stories)
 1. [Manual Testing](#manual-testing)
-1. [Accessibility Testing](#accessibility-testing)
+1. [Automated Testing](#automated-testing)
+    * [Accessibility Testing](#accessibility-testing)
+    * [Performance testing](#performance-testing)
+    * HTML validation
+    * CSS validation
+    * JS validation
+    * Python validation
 
 ## Testing user stories 
-The [user stores](/README.md#user-stories) have been a driving force for the development of this project. Here, features are assigned to the user stories to show completion. More can be seen about the individual features [here](/DESIGN.md#features).
+The [user stores](/README.md#user-stories) have been a driving force for the development of this project. Here, features are assigned to the user stories to show completion. More can be seen about the individual features [here](/DESIGN.md#features). This section is designed so at to confidently say that I have met all of the criteria that I set out with to create a website that the target audience of parents and cares will find usable, intuitive, and that provides a unique purpose.
 
 **1: I want to be able to the tell the purpose of the website immediately**<br>
 This requirement is met by the site logo in the header and footer, the hero image and welcome text on the home page, and the page titles.
@@ -160,7 +170,7 @@ This requirement is met by the burger menu for navigation links on smaller devic
 | Email field | Reuse an email address | Alert appears informing the user that the email addres is already in use | Y | N/A |
 | Password field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
 | Password field | Make a password less than 8 characters | Alert appears informing the user to make the password at least 8 characters | Y | N/A |
-| Confirm password field field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
+| Confirm password field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
 | Passwords | Make them not match | Alert appears highlighting that passwords do not match | Y | N/A |
 | Passwords | No capital letters, numbers, or special characters | Alert appears reminding the user of the password strength requirements | Y | N/A |
 | Signup button | Add valid detail and click | User is redirected to login screen | Y | N/A |
@@ -183,7 +193,7 @@ This requirement is met by the burger menu for navigation links on smaller devic
 | Sort toys: Rating low to high | Select | Displays toys in order of average rating from 0-5 | Y | N/A |
 | Sort toys: Rating high to low | Select | Displays toys in order of average rating from 5-0 | Y | N/A |
 | Toy display area | Resize screen | Area shows rows of 4 on large screens, 3 on medium screens, 2 on small screens, and 1 on mobile | Y | Maximum width of the toy and search areas set to 2000px |
-| Toy card rating | N/A | Displays "Not Reviewed Yet" if no reviews or avarage review to 1 decimal place | Y | N/A |
+| Toy card rating | N/A | Displays "Not Reviewed Yet" if no reviews or average review to 1 decimal place | Y | N/A |
 | Toy card image | Click | Directs user to correct individual toy page | Y | N/A |
 | Toy card name | Click | Directs user to correct individual toy page | Y | N/A |
 | Toy card ellipses | Click | Opens the toy card to review more information | Y | N/A |
@@ -232,7 +242,7 @@ This requirement is met by the burger menu for navigation links on smaller devic
 | Toy name | N/A | Shows the correct toy name | Y | N/A |
 | Toy image | Change screen sizes | Resizes with screen size | Y | N/A |
 | Average rating | N/A | Stars and text show accurate data | Y | N/A |
-| Average rating | N/A | Stays on top of image | N | Text goes behing image. Z-index and white shadow added to stand out |
+| Average rating | N/A | Stays on top of image | N | Text goes behind image. Z-index and white shadow added to stand out |
 | Average rating | Do above fix | Stays on top of image | Y | N/A |
 | Toy information | N/A | Displays accurate information | Y | N/A |
 | Add review button | N/A | Disappears if the user has a review for this toy. Reappears on review deletion | Y | N/A |
@@ -256,7 +266,7 @@ This requirement is met by the burger menu for navigation links on smaller devic
 | Review author | Click | Directs the user to the author's profile page | Y | N/A |
 | Review rating | N/A | Displays correct number of stars for the rating | Y | N/A |
 | Also liked carousel | N/A | Shows if the review has also_liked values or does not appear if there aren't any | Y | N/A |
-| Also liked carousel | Click | Cycles throught the also-liked toys | Y | N/A |
+| Also liked carousel | Click | Cycles through the also-liked toys | Y | N/A |
 | Also liked carousel | Click on toy names | Directs the user to that individual toy page | Y | N/A |
 | Edit review button | N/A | Is only shown to the author of the review | Y | N/A |
 | Delete review button | N/A | Is only shown to the author of the review | Y | N/A |
@@ -299,13 +309,13 @@ This requirement is met by the burger menu for navigation links on smaller devic
 | Edit and delete profile buttons | Hover | Colours change and size increases | Y | N/A |
 | Edit profile button | Click | Directs to the correct edit profile page | Y | N/A |
 | Delete user button | Click | Opens the confirm delete modal | Y | N/A |
-| Delete user modal | N/A | Displays a warning message about the permenance of deletion | Y | N/A |
+| Delete user modal | N/A | Displays a warning message about the permanence of deletion | Y | N/A |
 | Delete user modal: cancel | Click | Closes the modal | Y | N/A |
-| Delete user modal: confirm | Click | Deletes the user account and profile, renames all review authors on the users reviews to "User Deleted", directs the user to the logged out home pageS | Y | N |
+| Delete user modal: confirm | Click | Deletes the user account and profile, renames all review authors on the users reviews to "User Deleted", directs the user to the logged out home page | Y | N |
 | Delete user modal buttons | Hover | Colours change and words enlarge | Y | N |
 | Delete user modal | Resize screen | Text and buttons get smaller on screen widths below 601px | Y | N |
 | Delete review | Carry out deletion | Deletes the review and refreshes review page | Y | N/A |
-| User information | Resize screen | Layout changes to image on top and everything in one coloumn on screen widths less than 600px | Y | N/A |
+| User information | Resize screen | Layout changes to image on top and everything in one column on screen widths less than 600px | Y | N/A |
 | Reviews title and content | N/A | Only displays if the user has submitted reviews | Y | N/A |
 | Sort reviews: Newest first | Select | Displays the reviews in order of newest to oldest | Y | N/A |
 | Sort reviews: Oldest first | Select | Displays the reviews in order of oldest to newest | Y | N/A |
@@ -315,7 +325,7 @@ This requirement is met by the burger menu for navigation links on smaller devic
 | Toy name | Click | Directs the user to the correct individual toy page | Y | N/A |
 | Review rating | N/A | Displays correct number of stars for the rating | Y | N/A |
 | Also liked carousel | N/A | Shows if the review has also_liked values or does not appear if there aren't any | Y | N/A |
-| Also liked carousel | Click | Cycles throught the also-liked toys | Y | N/A |
+| Also liked carousel | Click | Cycles through the also-liked toys | Y | N/A |
 | Also liked carousel | Click on toy names | Directs the user to that individual toy page | Y | N/A |
 | Edit review button | N/A | Is only shown to the author of the review | Y | N/A |
 | Delete review button | N/A | Is only shown to the author of the review | Y | N/A |
@@ -333,7 +343,7 @@ This requirement is met by the burger menu for navigation links on smaller devic
 | Back button | Click | Directs the user back to their profile page | Y | N/A |
 | Edit profile form | N/A | Populated with existing data | Y | N/A |
 | About me field | Delete all and submit | The about me is populated with the default text informing other users that it is not filled out | Y | N/A |
-| Parent status toggle | Click | Works well and displays/removes the verfied parent display on the profile | Y | N/A |
+| Parent status toggle | Click | Works well and displays/removes the verified parent display on the profile | Y | N/A |
 | Country select field | Select country | Displays all countries in alphabetical order, selecting one changes the flag on the user profile | Y | N/A |
 | Edit password button | Click | Directs the user to the change password page | Y | N/A |
 | Save changes button | Submits the changes, updates the user profile, directs user back to their profile page | Y | N/A |
@@ -362,7 +372,9 @@ This requirement is met by the burger menu for navigation links on smaller devic
 | Home button | Hover | Button resizes | Y | N/A |
 | Home button | Click | User is directed to the home page | Y | N/A |
 
-## Accessibility Testing
+## Automated Testing
+
+### Accessibility Testing
 Accessibility was kept in mind throughout development and the best practices were kept to across the website. Where hidden text was used, it was hidden in a way that was still accessible to screen readers.
 Accessibility testing was performed using the [Wave](https://wave.webaim.org/) validator to provide key information about the accessibility standard of the website. Pages that required login were beyond the purview of the [Wave](https://wave.webaim.org/) browser tool, so the Wave extension for Google Chrome was used, which can be found [here](https://wave.webaim.org/extension/).
 
@@ -487,3 +499,19 @@ Alerts
 <summary>Error 404 results</summary>
 <img src="/documentation/testing/wave_500.png">
 </details><br>
+
+### Performance Testing
+
+The performance of the webpage was tested using Lighthouse within the Google Chrome Devtools to confirm that the site was performing well, is accessible, follows best practices, and follows basic SEO (search engine optimisation) advice. 
+During development, care was taking to provide the best performing website that could be provided. These efforts include:
+- Image optimisation: [Cloud Convert](https://cloudconvert.com/png-to-webp) was used to convert site images to smaller file formats for faster load times. .PNG files were only used where the filesize was already very small, for example the bubble text on page titles. Otherwise, .WEBP and .SVG files to reduce file sizes and optimise them for web application usage.
+- Code minification: Complete code minifiction was avoided in this project to allow easier assessment upon submission. That being said,code has been written to meet the highest standards, repetition had been removed, and short, elegant solutions have been used wherever possible in order to reduce the code size. In future minification will be used. For example [Python Minifier](https://python-minifier.com/) reduces the size of the routes.py file from 30,136 Bytes to 10,166 Bytes highlighting a possible route for performance improvement.
+
+The performance was tested for normal internet speed, fast 3G, and slow 3G to test the performance in a majority of scenarios and locations. This was done by setting the performance network throttling in Google Chrome Devtools. The testing was also run on Google Chrome incognito mode to avoid any complications with plugins or extensions. The resulting screenshots are provided in [PERFORMANCE.md](/PERFORMANCE.md) but the results are discussed here.
+
+**Results**
+- The score of 96 for accessibility on the individual_toy.html and profile.html pages are for the aria-labels on the carousel images. These have been kept, as pass the accessibility criteria on the [Wave](https://wave.webaim.org/) validator and the issues picked up by Lighthouse are due to the Materialize settings for carousel items.
+- The scores of 96 for best practices and 91 for SEO on the 404 page are due to the 404 error that the page shows, which indicates that it is working as expected. These were best practices issue: browser error 404 logged to console and SEO issue: Page had unsuccessful HTTP status code 404.
+- All other Accessibility, Best Practices, and SEO scores were 100.
+- Overall the site performs well on all 3 internet speeds, never dipping below 90 for performance.
+- In future, a larger database may cause performance issues for the pages displaying toys and reviews. In this case, pages will be introduced to limit the number of toys or reviews shown at a time.
