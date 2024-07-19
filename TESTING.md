@@ -17,6 +17,8 @@ This document covers the full testing of the website. This includes:
 - Testing user stories
 - Manual testing
 - Wave accessibility validation
+- Google Chrome Devtools Lighthouse performance testing
+- HTML validation
 
 ---
 
@@ -25,8 +27,8 @@ This document covers the full testing of the website. This includes:
 1. [Manual Testing](#manual-testing)
 1. [Automated Testing](#automated-testing)
     * [Accessibility Testing](#accessibility-testing)
-    * [Performance testing](#performance-testing)
-    * HTML validation
+    * [Performance Testing](#performance-testing)
+    * [HTML Validation](#html-validation)
     * CSS validation
     * JS validation
     * Python validation
@@ -515,3 +517,91 @@ The performance was tested for normal internet speed, fast 3G, and slow 3G to te
 - All other Accessibility, Best Practices, and SEO scores were 100.
 - Overall the site performs well on all 3 internet speeds, never dipping below 90 for performance.
 - In future, a larger database may cause performance issues for the pages displaying toys and reviews. In this case, pages will be introduced to limit the number of toys or reviews shown at a time.
+
+### HTML validation
+The [W3C markup validation service](https://validator.w3.org/) was used to validate the HTML of each page of this website. As each page including some Jinja templating language that threw errors in the validator; the HTML was validated after deployment. Each page was accessed and the source code (CTRL+U or right click > View Page Source) was copied and pasted into the validator to validate by direct input.<br>
+**Warnings**:
+- toys.html showed warnings for possible misuse of aria labels on the toy review stars and the more information ellipses on the toy cards. These were investigated and as they passed accessibility criteria and are correctly picked up by screenreaders with no impact to the website functionality, these warnings were eventually ignored.
+- individual_toy.html showed the same warnings for possible misuse of aria labels for the toy review stars and review rating stars. The same approach as above was taken.
+- profile.html showed the same warning for possible missue of arial labels for each review rating. The same approach as above was taken.
+
+**Errors**
+- Overall there were no errors in the HTML code validation.
+
+<br>
+Screenshots of the validation results are shown here:
+
+<details>
+    <summary>Home</summary>
+    <img src="/documentation/testing/html_home.png">
+</details>
+
+<details>
+    <summary>Signup</summary>
+    <img src="/documentation/testing/html_signup.png">
+</details>
+
+<details>
+    <summary>Login</summary>
+    <img src="/documentation/testing/html_login.png">
+</details>
+
+<details>
+    <summary>Toys</summary>
+    <img src="/documentation/testing/html_toys.png">
+</details>
+
+<details>
+    <summary>Add Toy</summary>
+    <img src="/documentation/testing/html_addtoy.png">
+</details>
+
+<details>
+    <summary>Edit Toy</summary>
+    <img src="/documentation/testing/html_edittoy.png">
+</details>
+
+<details>
+    <summary>Individual Toy</summary>
+    <img src="/documentation/testing/html_individualtoy.png">
+</details>
+
+<details>
+    <summary>Add Review</summary>
+    <img src="/documentation/testing/html_addreview.png">
+</details>
+
+<details>
+    <summary>Edit Review</summary>
+    <img src="/documentation/testing/html_editreview.png">
+</details>
+
+<details>
+    <summary>Profile</summary>
+    <img src="/documentation/testing/html_profile.png">
+</details>
+
+<details>
+    <summary>Edit Profile</summary>
+    <img src="/documentation/testing/html_editprofile.png">
+</details>
+
+<details>
+    <summary>Change Password</summary>
+    <img src="/documentation/testing/html_changepassword.png">
+</details>
+
+<details>
+    <summary>Error 403</summary>
+    <img src="/documentation/testing/html_403.png">
+</details>
+
+<details>
+    <summary>Error 404</summary>
+    <img src="/documentation/testing/html_404.png">
+</details>
+
+<details>
+    <summary>Error 500</summary>
+    <img src="/documentation/testing/html_500.png">
+</details>
