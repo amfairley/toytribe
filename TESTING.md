@@ -12,10 +12,13 @@ See [DESIGN.md](/DESIGN.md) for information on the five planes of UX design, sit
 For information on the development and deployment of this website, see DEV.md <br>
 For information on the integrated security built into the app, see SECURITY.md <br>
 
+Manual testing (often called user testing) is where the site is manually tested by clicking buttons, filling out forms, and testing all the logic. Automatic testing involves using scripts and a testing framework to test functionality. Automated testing can be quick, thorough, and allow the developer to pick up errors early on but relies on the developer asking the right questions and does not test for user experience. For this project, I have concentrated on manual testing to test the user experience and automated testing for validation of the code, accessibility testing, and site performance testing.
+
 ---
 
 ## Table of contents
 1. [Testing User Stories](#testing-user-stories)
+1. [Manual Testing](#manual-testing)
 1. [Accessibility Testing](#accessibility-testing)
 
 ## Testing user stories 
@@ -111,6 +114,253 @@ This requirement is met by the back to top button at the bottom of the toys page
 **30: I want the navigation bar to shrink down on smaller screens**<br>
 This requirement is met by the burger menu for navigation links on smaller devices.
 
+
+## Manual Testing
+
+| Feature | Action | Expected results | Passed | Comments |
+| ----- | ----- | ----- | ----- | ----- |
+| **base.html** | | | | |
+| Navigation bar site logo | Click | Directs to home page | Y | N/A |
+| Navigation bar site logo | Resize | Shrinks at screen sizes under 401px | Y | N/A |
+| Footer site logo | Click | Directs to home page | Y | N/A |
+| Footer site logo | Resize | Shrinks at screen sizes under 401px | Y | N/A |
+| Burger menu | Resize screen | Appears under 993px screen width | Y | N/A |
+| Logged out: Signup nav link | Click | Directs to signup page | Y | N/A |
+| Logged out: Signup burger link | Click | Directs to signup page | Y | N/A |
+| Logged out: Login nav link | Click | Directs to login page | Y | N/A |
+| Logged out: Login burger link | Click | Directs to login page | Y | N/A |
+| Logged in: Navbar link Home | Click | Directs to home page | Y | N/A |
+| Logged in: Burger link Home | Click | Directs to home page | Y | N/A |
+| Logged in: Navbar link Toys | Click | Directs to toys page | Y | N/A |
+| Logged in: Burger link Toys | Click | Directs to toys page | Y | N/A |
+| Logged in: Navbar link Profile | Click | Directs to user profile page | Y | N/A |
+| Logged in: Burger link Profile | Click | Directs to user profile page | Y | N/A |
+| Logged in: Navbar link Logout | Click | Logs out and directs to home page | Y | N/A |
+| Logged in: Burger link Logour | Click | Logs out and directs to home page | Y | N/A |
+| Footer links | Hover | Colour changes on hover | Y | N/A |
+| Footer link: email | Click | Opens an email to the developer in a new window | Y | N/A |
+| Footer link: LinkedIn | Click | Opens the developers LinkedIn profile in a new tab | Y | N/A |
+| Footer link: GitHub | Click | Open the developers GitHub profile in a new tab | Y | N/A |
+| **home.html** | | | | |
+| Hero Text | Login | Displays different message if logged in | Y | N/A |
+| Hero links | Hover | Colour changes | Y | N/A |
+| Logged out: Signup hero image link | Click | Directs to signup page | Y | N/A |
+| Logged out: Login hero image link | Click | Directs to login page | Y | N/A |
+| Loggin in: Toys hero image link | Click | Directs to toys page | Y | N/A |
+| Logged out: Signup/Login hero buttons | Resize | Shrink at screen sizes under 401px | Y | N/A |
+| **signup.html** | | | | |
+| First name field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
+| Last name field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
+| Username field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
+| Username field | Make a short username | Alert appears asking user to make the user name at least 3 characters | Y | N/A |
+| Username field | Use special characters | Alert appears displaying invalid characters | Y | N/A |
+| Email field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
+| Email field | Do not include "@" | Alert appears telling user to includer "@" | Y | N/A |
+| Email field | End email with "@" | Alert appears telling user to complete email address | Y | N/A |
+| Email field | Reuse an email address | Alert appears informing the user that the email addres is already in use | Y | N/A |
+| Password field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
+| Password field | Make a password less than 8 characters | Alert appears informing the user to make the password at least 8 characters | Y | N/A |
+| Confirm password field field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
+| Passwords | Make them not match | Alert appears highlighting that passwords do not match | Y | N/A |
+| Passwords | No capital letters, numbers, or special characters | Alert appears reminding the user of the password strength requirements | Y | N/A |
+| Signup button | Add valid detail and click | User is redirected to login screen | Y | N/A |
+| **login.html** | | | | |
+| Email field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
+| Email field | Use less than 4 characters | Alert appears asking user to complete the field with a longer entry | Y | N/A |
+| Password field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
+| Password field | Complete incorrectly | Alert appears informing the user that the login failed and to check their credentials | Y | N/A |
+| Sign up button | Click | Directs user to the signup page | Y | N/A |
+| Login button | Enter correct information and click | Directs user to the logged in homepage | Y | N/A |
+| **toys.html** | | | | |
+| Toys page | Access url whilst logged out | Redirected to logged out homepage | Y | N/A |
+| Search bar | Search something | Toys with matching or similar toy name, toy company, or toy type are displayed | Y | N/A |
+| Sort toys: Name A-Z | Select | Displays toys in alphabetical order by toy name | Y | N/A |
+| Sort toys: Name Z-A | Select | Displays toys in reverse alphabetical order by toy name | Y | N/A |
+| Sort toys: Toy type A-Z | Select | Displays toys in alphabetical order by toy type | Y | N/A |
+| Sort toys: Toy type Z-A | Select | Displays toys in reverse alphabetical order by toy type | Y | N/A |
+| Sort toys: Company A-Z | Select | Displays toys in alphabetical order by toy company name | Y | N/A |
+| Sort toys: Company Z-A | Select | Displays toys in reverse alphabetical order by toy company name | Y | N/A |
+| Sort toys: Rating low to high | Select | Displays toys in order of average rating from 0-5 | Y | N/A |
+| Sort toys: Rating high to low | Select | Displays toys in order of average rating from 5-0 | Y | N/A |
+| Toy display area | Resize screen | Area shows rows of 4 on large screens, 3 on medium screens, 2 on small screens, and 1 on mobile | Y | Maximum width of the toy and search areas set to 2000px |
+| Toy card rating | N/A | Displays "Not Reviewed Yet" if no reviews or avarage review to 1 decimal place | Y | N/A |
+| Toy card image | Click | Directs user to correct individual toy page | Y | N/A |
+| Toy card name | Click | Directs user to correct individual toy page | Y | N/A |
+| Toy card ellipses | Click | Opens the toy card to review more information | Y | N/A |
+| Open toy card cross | Click | Closes the toy card again | Y | N/A |
+| Edit toy button | N/A | Only appears on toys that the user has created | Y | N/A |
+| Delete toy button | N/A | Only appears on toys that the user has created | Y | N/A |
+| Edit and delete toy button | Hover | Colours change | Y | N/A |
+| Back to top button | Click | Page scrolls smoothly to the top | Y | N/A |
+| Add toy button | N/A | Stays in the same spot as the page is scrolled up and down | Y | N/A |
+| Add toy button | Click | Directs user to add toy page | Y | N/A |
+| **add_toy.html** | | | | |
+| Add toy page | Access url whilst logged out | Redirected to logged out homepage | Y | N/A |
+| Back button | Click | Takes the user to the toys page, even if accessed via url | Y | N/A |
+| Add toy title | Resize screen | Gets smaller on screen widths less than 900px | Y | N/A |
+| Toy name field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
+| Company name field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
+| Toy type field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
+| Toy description field | Leave empty | Submits the form with the default value | Y | N/A |
+| Toy image url field | Leave empty | Submits the form with the default value | Y | N/A |
+| Add toy button | Fill out the form and click | Creates a Toy instance that appears on the toys page and redirects the user there | Y | N/A |
+| **edit_toy.html** | | | | |
+| Edit toy page | Access url whilst logged out | Directed to error 403 page, access denied | Y | N/A |
+| Edit toy page | Access url whilst logged in as a user that did not create the toy | Directed to error 403 page, access denied | Y | N/A |
+| Back button | Click | Takes the user to the toys page if accessed from there, or individual toy page if accessed from there | Y | N/A |
+| Edit toy title | Resize screen | Gets smaller on screen widths less than 900px | Y | N/A |
+| Edit toy title | N/A | Displays correct toy name | Y | N/A |
+| Edit toy form | N/A | Populated with existing data | Y | N/A |
+| Toy name field | Delete and leave empty | Alert appears asking user to complete the field | Y | N/A |
+| Company name field | Delete and leave empty | Alert appears asking user to complete the field | Y | N/A |
+| Toy description field | Leave empty | Submits the form with the default value | N | Gives an empty field. routes.py updated to give default description |
+| Toy description field | Leave empty and do above fix | Submits the form with the default value | Y | N/A |
+| Toy image url field | Leave empty | Submits the form with the default value | Y | N/A |
+| Edit toy button | Make changes and click | Saves these changes and directs user to toys page if accessed from there or individual toy page if accessed from there | Y | N/A |
+| **delete_toy** | | | | |
+| Delete toy button | Click | Opens modal asking to confirm deletion | Y | N/A |
+| Delete toy modal | N/A | Displays correct toy name | Y | N/A |
+| Delete toy modal: cancel | Click | Closes the modal | Y | N/A |
+| Delete toy modal: confirm | Click | Deletes the toy and directs the user to the toys page | Y | N |
+| Delete toy modal buttons | Hover | Colours change and words enlarge | Y | N |
+| Delete toy modal | Resize screen | Text and buttons get smaller on screen widths below 601px | Y | N |
+| Delete toy | Carry out deletion | Deletes all reviews associated with the toy | Y | N/A |
+| Delete toy | Carry out deletion | Removes toy from all review also_liked carousels | Y | N/A |
+| **individual_toy.html** | | | | |
+| Individual toy page | Access url whilst logged out | Redirected to logged out home page | Y | N/A |
+| Back button | Click | Directs user to toys if accessed from that page or profile if accessed from that page | Y | N/A |
+| Toy name | N/A | Shows the correct toy name | Y | N/A |
+| Toy image | Change screen sizes | Resizes with screen size | Y | N/A |
+| Average rating | N/A | Stars and text show accurate data | Y | N/A |
+| Average rating | N/A | Stays on top of image | N | Text goes behing image. Z-index and white shadow added to stand out |
+| Average rating | Do above fix | Stays on top of image | Y | N/A |
+| Toy information | N/A | Displays accurate information | Y | N/A |
+| Add review button | N/A | Disappears if the user has a review for this toy. Reappears on review deletion | Y | N/A |
+| Add review button | Click | Opens add review page | Y | N/A |
+| Add review button | Hover | Colour changes and size increases | Y | N/A |
+| Edit toy button | N/A | Only shows if the user is the creator of the toy | Y | N/A |
+| Edit toy button | Click | Opens edit toy page | Y | N/A |
+| Edit toy button | Hover | Colour changes and size increases | Y | N/A |
+| Delete toy button | N/A | Only shows if the user is the creator of the toy | Y | N/A |
+| Delete toy button | Hover | Colour changes and size increases | Y | N/A |
+| Delete toy button | Click | Opens delete toy confirmation modal | Y | N/A |
+| Add review, edit toy, delete toy buttons | Resize screen | Button size decreases below screen widths of 420px | Y | N/A |
+| Delete toy modal | N/A | Displays correct toy name | Y | N/A |
+| Delete toy modal: cancel | Click | Closes the modal | Y | N/A |
+| Delete toy modal: confirm | Click | Deletes the toy and directs the user to the toys page | Y | N/A |
+| Delete toy modal buttons | Hover | Colours change and words enlarge | Y | N/A |
+| Delete toy modal | Resize screen | Text and buttons get smaller on screen widths below 601px | Y | N/A |
+| Sort reviews: high to low | Select | Displays the reviews in order of highest to lowest rating | Y | N/A |
+| Sort reviews: low to high | Select | Displays the reviews in order of lowest to highest rating | Y | N/A |
+| Review author | N/A | Displays the username of the creator or "User Deleted" if they deleted their account | Y | N/A |
+| Review author | Click | Directs the user to the author's profile page | Y | N/A |
+| Review rating | N/A | Displays correct number of stars for the rating | Y | N/A |
+| Also liked carousel | N/A | Shows if the review has also_liked values or does not appear if there aren't any | Y | N/A |
+| Also liked carousel | Click | Cycles throught the also-liked toys | Y | N/A |
+| Also liked carousel | Click on toy names | Directs the user to that individual toy page | Y | N/A |
+| Edit review button | N/A | Is only shown to the author of the review | Y | N/A |
+| Delete review button | N/A | Is only shown to the author of the review | Y | N/A |
+| Edit and delete review buttons | Hover | Colour changes and the size increases | Y | N/A |
+| Edit review button | Click | Opens the edit review page | Y | N/A |
+| Delete review button | Click | Opens the confirm delete review modal | Y | N/A |
+| Delete review modal | N/A | Displays a message showing the correct toy name | Y | N/A |
+| Delete review modal: cancel | Click | Closes the modal | Y | N/A |
+| Delete review modal: confirm | Click | Deletes the review and directs the user to the toy page or profile page depending on where they accessed it from | Y | N |
+| Delete review modal buttons | Hover | Colours change and words enlarge | Y | N |
+| Delete review modal | Resize screen | Text and buttons get smaller on screen widths below 601px | Y | N |
+| Delete review | Carry out deletion | Deletes the review and refreshes review page | Y | N/A |
+| **add_review.html** | | | | |
+| Add review page | Access url whilst logged out | Redirected to logged out home page | Y | N/A |
+| Back button | Click | Directs the user to the individual toy page | Y | N/A |
+| Add review title | N/A | Display correct toy name | Y | N/A |
+| Add review title | Resize screen | Title size reduces at screen widths below 650px | Y | N/A |
+| Review field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
+| Star rating field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
+| Toy type field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
+| Also liked field | Click | Shows a multiple select option comprised of all other toys in the database in alphabetical order | Y | N/A |
+| Submit review button | Complete form and click | Submits the form and directs the user to the individual toy page | Y | N/A |
+| **edit_review.html** | | | | |
+| Edit review page | Try to access it via url if you are not the creator or logged out | Directs the user to error 403 access denied page | Y | N/A |
+| Back button | Click | Takes user to individual toy page if accessed from there or user profile if accessed from there | Y | N/A |
+| Edit review form | N/A | Populated with existing data | Y | N/A |
+| Review field | Try to submit with an empty field | Alert appears asking user to complete the field | Y | N/A |
+| Star rating field | Set to default message and submit | Alert appears asking user to complete the field | Y | N/A |
+| Submit review button | Change values and submit | Values are saved and user is directed to individual toy page or profile page depending on where they accessed edit review from | Y | N/A |
+| **profile.html** | | | | |
+| Own Profile page (/profile) | Try to access it via url if logged out | Directs the user to the 404 page | Y | N/A |
+| Other Profile page (/profile/<user_id>) | Try to access it via url if logged out | Directs the user to the logged out home page | Y | N/A |
+| Flag display | N/A | If there is a flag url associated with the profile, display the country flag, otherwise display nothing | Y | N/A |
+| Verified parent display | N/A | If is_parent is true for the user, display a green tick and "Verified parent" otherwise show nothing | Y | N/A |
+| Flag and verified parent display | Change values | They change depending on the value in the profile instance | Y | N/A |
+| Profile title | N/A | Displays the correct username for the profile | Y | N/A |
+| Profile image | N/A | Displays correct image and resizes with screen size | Y | N/A |
+| About me text | Have a long about me | A scroll bar appears to scroll through the content over a height of 300px | Y | N/A |
+| Edit and delete profile buttons | N/A | Display for user's own profile, not for other users | Y | N/A |
+| Edit and delete profile buttons | Hover | Colours change and size increases | Y | N/A |
+| Edit profile button | Click | Directs to the correct edit profile page | Y | N/A |
+| Delete user button | Click | Opens the confirm delete modal | Y | N/A |
+| Delete user modal | N/A | Displays a warning message about the permenance of deletion | Y | N/A |
+| Delete user modal: cancel | Click | Closes the modal | Y | N/A |
+| Delete user modal: confirm | Click | Deletes the user account and profile, renames all review authors on the users reviews to "User Deleted", directs the user to the logged out home pageS | Y | N |
+| Delete user modal buttons | Hover | Colours change and words enlarge | Y | N |
+| Delete user modal | Resize screen | Text and buttons get smaller on screen widths below 601px | Y | N |
+| Delete review | Carry out deletion | Deletes the review and refreshes review page | Y | N/A |
+| User information | Resize screen | Layout changes to image on top and everything in one coloumn on screen widths less than 600px | Y | N/A |
+| Reviews title and content | N/A | Only displays if the user has submitted reviews | Y | N/A |
+| Sort reviews: Newest first | Select | Displays the reviews in order of newest to oldest | Y | N/A |
+| Sort reviews: Oldest first | Select | Displays the reviews in order of oldest to newest | Y | N/A |
+| Sort reviews: Rating high to low | Select | Displays the reviews in order of highest to lowest rating | Y | N/A |
+| Sort reviews: Rating low to high | Select | Displays the reviews in order of lowest to highest rating | Y | N/A |
+| Toy name | N/A | Displays the correct toy name | Y | N/A |
+| Toy name | Click | Directs the user to the correct individual toy page | Y | N/A |
+| Review rating | N/A | Displays correct number of stars for the rating | Y | N/A |
+| Also liked carousel | N/A | Shows if the review has also_liked values or does not appear if there aren't any | Y | N/A |
+| Also liked carousel | Click | Cycles throught the also-liked toys | Y | N/A |
+| Also liked carousel | Click on toy names | Directs the user to that individual toy page | Y | N/A |
+| Edit review button | N/A | Is only shown to the author of the review | Y | N/A |
+| Delete review button | N/A | Is only shown to the author of the review | Y | N/A |
+| Edit and delete review buttons | Hover | Colour changes and the size increases | Y | N/A |
+| Edit review button | Click | Opens the edit review page | Y | N/A |
+| Delete review button | Click | Opens the confirm delete review modal | Y | N/A |
+| Delete review modal | N/A | Displays a message showing the correct toy name | Y | N/A |
+| Delete review modal: cancel | Click | Closes the modal | Y | N/A |
+| Delete review modal: confirm | Click | Deletes the review and directs the user to the toy page or profile page depending on where they accessed it from | Y | N |
+| Delete review modal buttons | Hover | Colours change and words enlarge | Y | N |
+| Delete review modal | Resize screen | Text and buttons get smaller on screen widths below 601px | Y | N |
+| Delete review | Carry out deletion | Deletes the review and refreshes review page | Y | N/A |
+| **edit_profile.html** | | | | |
+| Edit profile page | Try to access it via url as another user or logged out | Directed to the error 403 access denied page | Y | N/A |
+| Back button | Click | Directs the user back to their profile page | Y | N/A |
+| Edit profile form | N/A | Populated with existing data | Y | N/A |
+| About me field | Delete all and submit | The about me is populated with the default text informing other users that it is not filled out | Y | N/A |
+| Parent status toggle | Click | Works well and displays/removes the verfied parent display on the profile | Y | N/A |
+| Country select field | Select country | Displays all countries in alphabetical order, selecting one changes the flag on the user profile | Y | N/A |
+| Edit password button | Click | Directs the user to the change password page | Y | N/A |
+| Save changes button | Submits the changes, updates the user profile, directs user back to their profile page | Y | N/A |
+| **change_password.html** | | | | |
+| Change password page | Try to access it for another user or logged out | Directed to error 403 access denied page | Y | N/A |
+| Back button | Click | Directs the user back to their edit profile page | Y | N/A |
+| Change password title | Resize screen | Title size decreases at screen widths less than 420px | Y | N/A |
+| Old password field | Leave empty | Alert telling users to fill in the field | Y | N/A |
+| Old password field | Fill in with incorrect data | Alert shows telling the user that the old password is incorrect | Y | N/A |
+| Password fields | Use two non-matching new passwords | Alert shows telling the user that the new passwords do not match | Y | N/A |
+| Password fields | Use new passwords that do not have a capital letter, number, or special character | Alert shows reminding the user of the password requirements | Y | N/A |
+| Change password button | Fill out form and click | Updates password and directs user to edit profile page | Y | N/A |
+| **403.html** | | | | |
+| 403 page | Try to access a url that you do not have access to | User is redirected to the error 403 access denied page | Y | N/A |
+| Error message | N/A | A clear message explaining the error with a link to the home page | Y | N/A |
+| Home button | Hover | Button resizes | Y | N/A |
+| Home button | Click | User is directed to the home page | Y | N/A |
+| **404.html** | | | | |
+| 404 page | Go to a page that does not exist | User is redirected to the error 404 page not found page | Y | N/A |
+| Error message | N/A | A clear message explaining the error with a link to the home page | Y | N/A |
+| Home button | Hover | Button resizes | Y | N/A |
+| Home button | Click | User is directed to the home page | Y | N/A |
+| **500.html** | | | | |
+| 500 page | N/A | User is directed to this page when there is a server error | N/A | Unable to test this with a running server but all code is correct and should work |
+| Error message | N/A | A clear message explaining the error with a link to the home page | Y | N/A |
+| Home button | Hover | Button resizes | Y | N/A |
+| Home button | Click | User is directed to the home page | Y | N/A |
 
 ## Accessibility Testing
 Accessibility was kept in mind throughout development and the best practices were kept to across the website. Where hidden text was used, it was hidden in a way that was still accessible to screen readers.
