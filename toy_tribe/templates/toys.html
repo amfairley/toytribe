@@ -26,7 +26,7 @@
             <div class="col s12 m6 toys-search">
                 <form action="{{ url_for('toys') }}" method="GET" class="search-form">
                     <label for="search_query" class="hidden-label" id="search-label">Search</label>
-                    <input type="text" name="search_query" placeholder="Search toys..." class="toy-search-text" aria-labelledby="search-label" >
+                    <input type="text" name="search_query" placeholder="Search toys..." class="toy-search-text" aria-labelledby="search-label" id="search_query">
                     <button type="submit" class="btn waves-effect waves-light toy-search-button" aria-label="Submit search">Search</button>
                 </form>
             </div>
@@ -56,7 +56,7 @@
                 <aside class="open-sans review-display right">
                     {% if toy.average_rating() | float != 0 %}
                     <!-- Star rating display from Fred Genkin https://codepen.io/FredGenkin/pens/showcase-->
-                    <div class="Stars individual-toys-star-rating" style="--rating: {{ toy.average_rating() | float | round(1) }};" alt="Rating of this product is {{ toy.average_rating() | float | round(1) }} out of 5."></div>
+                    <div class="Stars individual-toys-star-rating" style="--rating: {{ toy.average_rating() | float | round(1) }};" aria-label="Rating of this product is {{ toy.average_rating() | float | round(1) }} out of 5."></div>
                     {% else %}
                     <div class="no-reviews">Not reviewed yet</div>
                     {% endif %}
@@ -88,7 +88,7 @@
                 </div>
                 <!-- Expanded card details-->
                 <div class="card-reveal">
-                    <span class="card-title">
+                    <div class="card-title">
                         <div class="row">
                             <div class="col s10">
                                 <a class="toys-toy-title-reveal open-sans" href="{{ url_for('individual_toy', toy_id=toy.id) }}" aria-label="Go the individual toy page for {{ toy.name }}">{{ toy.name }}</a>
@@ -97,7 +97,7 @@
                                 <i class="fa-solid fa-x right close-toy"></i>
                             </div>
                         </div>
-                    </span>
+                    </div>
                     <p class="roboto-regular toy-reveal-description">
                         A {{ toy.company }} toy.
                         <br>
