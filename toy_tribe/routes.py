@@ -329,10 +329,9 @@ def change_password(user_id):
             flash('Incorrect old password. Please try again.')
     else:
         # Display errors for change password form
-        if form.errors:
-            for field, errors in form.errors.items():
-                for error in errors:
-                    flash(f"{field.capitalize()} error: {error}")
+        for field, errors in form.errors.items():
+            for error in errors:
+                flash(error)
     return render_template(
         'change_password.html',
         logged_in_user=logged_in_user,
