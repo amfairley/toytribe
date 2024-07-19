@@ -9,7 +9,6 @@ For information on the integrated security built into the app, see SECURITY.md <
 
 # Testing
 
-
 Manual testing (often called user testing) is where the site is manually tested by clicking buttons, filling out forms, and testing all the logic. Automated testing involves using scripts and a testing framework to test functionality. Automated testing can be quick, thorough, and allow the developer to pick up errors early on but relies on the developer asking the right questions and does not test for user experience. For this project, I have concentrated on manual testing to test the user experience and automated testing for validation of the code, accessibility testing, and site performance testing.
 
 
@@ -31,7 +30,7 @@ This document covers the full testing of the website. This includes:
     * [HTML Validation](#html-validation)
     * [CSS Validation](#css-validation)
     * [JavaScript Validation](#javascript-validation)
-    * Python validation
+    * [Python Validation](#python-validation)
 
 ## Testing user stories 
 The [user stores](/README.md#user-stories) have been a driving force for the development of this project. Here, features are assigned to the user stories to show completion. More can be seen about the individual features [here](/DESIGN.md#features). This section is designed so at to confidently say that I have met all of the criteria that I set out with to create a website that the target audience of parents and cares will find usable, intuitive, and that provides a unique purpose.
@@ -618,4 +617,27 @@ The JavaScript code was testing using the JavaScript linter [JSLint](https://www
 <details>
     <summary>JavaScript validation results</summary>
     <img src="/documentation/testing/js_validation.png">
+</details>
+
+### Python Validation
+The Python code for this project was written in strict accordance with the [PEP 8](https://peps.python.org/pep-0008/) style guide for Python code. These include using correct indentations, maximum line lengths of 79 characters, and adhering to naming conventions for variables, functions, and classes. The [Code Institue python linter](https://pep8ci.herokuapp.com/) was used to validate the written code. The only error that it reported was in my `__init__.py` file where it highlighted an import not being at the top of the page. The reason for this is because it relied on the database definition given 2 lines above it and would have caused errors in the code if it had been with the rest of the imports. All other python scripts passed with no isses. The env.py file was also linted showing no errors but the screenshot has been omitted for security issues as it contains the secret key.
+<details>
+    <summary>Init file results</summary>
+    <img src="/documentation/testing/python_init.png">
+</details>
+<details>
+    <summary>forms.py results</summary>
+    <img src="/documentation/testing/python_forms.png">
+</details>
+<details>
+    <summary>models.py file results</summary>
+    <img src="/documentation/testing/python_models.png">
+</details>
+<details>
+    <summary>routes.py file results</summary>
+    <img src="/documentation/testing/python_routes.png">
+</details>
+<details>
+    <summary>update_db.py file results</summary>
+    <img src="/documentation/testing/python_update.png">
 </details>
