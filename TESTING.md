@@ -30,7 +30,7 @@ This document covers the full testing of the website. This includes:
     * [Performance Testing](#performance-testing)
     * [HTML Validation](#html-validation)
     * [CSS Validation](#css-validation)
-    * JS validation
+    * [JavaScript Validation](#javascript-validation)
     * Python validation
 
 ## Testing user stories 
@@ -606,9 +606,16 @@ Screenshots of the validation results are shown here:
     <img src="/documentation/testing/html_500.png">
 </details>
 
-### CSS validation
-CSS validation was completed using the [W3C Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/). It showed no erros in the CSS code. The 6 warnings were to do with imported style sheets that were not checked and the copied code for the star rating stylings, which were left alone to ensure correct functionality.
+### CSS Validation
+CSS validation was completed using the [W3C Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/). It showed no errors in the CSS code. The 6 warnings were to do with imported style sheets that were not checked and the copied code for the star rating stylings, which were left alone to ensure correct functionality.
 <details>
     <summary>CSS validation results</summary>
     <img src="/documentation/testing/css_validation.png">
+</details>
+
+### JavaScript Validation
+The JavaScript code was testing using the JavaScript linter [JSLint](https://www.jslint.com/). The settings were set for browser, so that the linter recognised the "document" variable, and I added "M" to the imported variables so that the linter recognised the materialize initialisation functions. The code passed through with no errors.
+<details>
+    <summary>JavaScript validation results</summary>
+    <img src="/documentation/testing/js_validation.png">
 </details>
