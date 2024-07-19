@@ -62,20 +62,20 @@ textarea {
 
 .Stars {
     --percent: calc(var(--rating) / 5 * 100%);
-
     display: inline-block;
     font-size: var(--star-size);
     font-family: Times;
     line-height: 1;
+}
 
-    &::before {
-        content: '★★★★★';
-        letter-spacing: 3px;
-        background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+.Stars::before {
+    content: '★★★★★';
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 
 /* Hidden labels so they are still accessibile to screenreaders */
@@ -679,10 +679,6 @@ main {
     display: inline-block;
 }
 
-.toys-card-title i {
-    display: absolute;
-}
-
 .card-title .row .s2 {
     margin-top: 10px;
 }
@@ -949,7 +945,6 @@ main {
     text-align: center;
     color: #D02847;
     font-size: 4rem;
-    text-shadow: #333A3F;
 }
 
 .review-row {
@@ -975,7 +970,12 @@ main {
 .review-rating-stars {
     font-size: 1.5rem;
     margin: auto 0;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 2px solid #333A3F;
+    background-color: #D02847;
+    margin-left: -100px !important;
 }
 
 .review-name-divider {
@@ -1425,6 +1425,17 @@ main {
     .confirm-delete-yes {
         width: auto !important;
     }
+
+    /*Review ratings*/
+    .review-rating {
+        text-align: center;
+    }
+
+    .review-rating-stars {
+        margin: 0 !important;
+        float: none;
+        text-align: center;
+    }
 }
 
 
@@ -1436,7 +1447,7 @@ main {
     #add-toy-title img {
         height: 70px;
     }
-    
+
     /* Toy search button placement */
     .search-form {
         text-align: center;

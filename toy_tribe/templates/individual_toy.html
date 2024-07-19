@@ -128,7 +128,7 @@
                 {% endif %}
                 <div class="row review-row">
                     <!-- Review author -->
-                    <div class="col s6 review-author open-sans">
+                    <div class="col s12 m6 review-author open-sans">
                         {% set author = Users.query.filter_by(id = review.user_id).first() %}
                         <!-- Check if the user still exists -->
                         {% if author %}
@@ -141,7 +141,7 @@
                         {% endif %}
                     </div>
                     <!-- Review rating -->
-                    <div class="col s6 review-rating open-sans">
+                    <div class="col s12 m6 review-rating open-sans">
                         <!-- Star rating display from Fred Genkin https://codepen.io/FredGenkin/pens/showcase-->
                         <div class="Stars review-rating-stars" style="--rating: {{ review.rating }};" aria-label="Rating of this product is {{ review.rating }} out of 5."></div>
                     </div>
