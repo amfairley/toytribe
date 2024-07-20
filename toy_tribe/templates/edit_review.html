@@ -19,6 +19,38 @@
         <h2 id="edit-review-title">
             <img src="{{ url_for('static',filename='img/edit_review_title.png')}}" alt="Page title for Edit Review">
         </h2>
+        <!-- Edit Review Success Message -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category == "success-message" %}
+                        {% if ref == "toy" %}
+                            <!--Display the success message as a Materialize Toast-->
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    M.toast({html: '{{ message }}'});
+                                    // After 2s redirect to Individual page
+                                    setTimeout(function() {
+                                        window.location.href = "{{ url_for('individual_toy', toy_id=toy.id) }}";
+                                    }, 2000);
+                                });
+                            </script>
+                        {% else %}
+                            <!--Display the success message as a Materialize Toast-->
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    M.toast({html: '{{ message }}'});
+                                    // After 2s redirect to profile page
+                                    setTimeout(function() {
+                                        window.location.href = "{{ url_for('profile') }}";
+                                    }, 2000);
+                                });
+                            </script>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
 
         <!-- Edit review form -->
         <form id="edit-review-form" method="POST">
@@ -39,14 +71,16 @@
                 {{ form.rating }}
             </div>
 
-            <!-- Flash Messages -->
+            <!-- Flash Error Messages -->
             <div>
                 {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
                         {% for category, message in messages %}
-                            <div class="submit-failure open-sans">
-                                {{ message }}
-                            </div>
+                            {% if category == 'error-message' %}
+                                <div class="submit-failure open-sans">
+                                    {{ message }}
+                                </div>
+                            {% endif %}
                         {% endfor %}
                     {% endif %}
                 {% endwith %}

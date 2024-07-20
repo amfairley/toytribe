@@ -15,6 +15,25 @@
             <span>Back</span>
         </a>
         <br>
+        <!-- Edit Profile Success Message -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category == "success-message" %}
+                    <!--Display the success message as a Materialize Toast-->
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            M.toast({html: '{{ message }}'});
+                            // After 2s redirect to profile page
+                            setTimeout(function() {
+                                window.location.href = "{{ url_for('profile') }}";
+                            }, 2000);
+                        });
+                    </script>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <!-- Edit profile title -->
         <h2 class="playfair-display edit-profile-title" id="edit-profile-title">Edit Profile</h2>
 

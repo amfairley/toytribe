@@ -9,6 +9,21 @@
 {% block content %}
     <!-- Check if the user is logged in -->
     {% if 'user_id' in session %}
+    <!-- Delete Review Success Message -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                {% if category == "delete-review-message" %}
+                <!--Display the success message as a Materialize Toast-->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        M.toast({html: '{{ message }}'});
+                    });
+                </script>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     <!-- Profile information -->
         <div class="row profile-content">
             <!-- Display flag if the user has one -->

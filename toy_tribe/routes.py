@@ -52,7 +52,7 @@ def signup():
         user = Users.query.filter_by(email=form.email.data).first()
         if user:
             # Display error if the email is in use
-            flash('Email address already registered.')
+            flash('Email address already registered.', 'error-message')
         else:
             # Creates a hashed password
             hashed_password = generate_password_hash(
@@ -85,13 +85,16 @@ def signup():
             # Adds the profile to the database and saves it
             db.session.add(new_user_profile)
             db.session.commit()
-            # Redirects user to login page when signed up
-            return redirect(url_for('login'))
+            # Displays success message
+            flash(
+                'Signup successful. Redirecting to login page.',
+                'success-message'
+            )
     else:
         # Display the errors
         for field, errors in form.errors.items():
             for error in errors:
-                flash(error)
+                flash(error, 'error-message')
     return render_template('signup.html', form=form)
 
 
@@ -113,12 +116,14 @@ def login():
         if user and check_password_hash(user.password, form.password.data):
             # Create a session with the logging in user
             session['user_id'] = user.id
-            # Directs user to home.html
-            flash('Login successful', 'success-message')
-            # return render_template('home.html')
+            # Displays success message
+            flash(
+                'Login successful. Redirecting to home page.',
+                'success-message'
+            )
         # Displays a flash error if incorrect
         else:
-            flash('Login failed. Check your credentials.')
+            flash('Login failed. Check your credentials.', 'error-message')
     return render_template('login.html', form=form)
 
 
@@ -131,6 +136,11 @@ def logout():
     # Remove the user from the current session and replace with None
     session.pop('user_id', None)
     # Redirect the user to the homepage
+    # Displays success message
+    flash(
+        'Logout successful.',
+        'success-message-home'
+    )
     return redirect(url_for('home'))
 
 
@@ -279,7 +289,11 @@ def edit_profile(user_id):
             profile.user_image = form.user_image.data
         # Saves these changes
         db.session.commit()
-        return redirect(url_for('profile'))
+        # Display success message
+        flash(
+            'Profile updated. Redirecting you to your profile.',
+            'success-message'
+        )
     return render_template(
         'edit_profile.html',
         logged_in_user=logged_in_user,
@@ -340,15 +354,19 @@ def change_password(user_id):
                 user.password = new_password_hash
                 # Save the changes
                 db.session.commit()
-                return redirect(url_for('edit_profile', user_id=user_id))
+                # Display success message
+                flash(
+                    'Password. Redirecting you to edit profile.',
+                    'success-message'
+                )
         # If the old password is incorrect:
         else:
-            flash('Incorrect old password. Please try again.')
+            flash('Incorrect old password. Please try again.', 'error-message')
     else:
         # Display errors for change password form
         for field, errors in form.errors.items():
             for error in errors:
-                flash(error)
+                flash(error, 'error-message')
     return render_template(
         'change_password.html',
         logged_in_user=logged_in_user,
@@ -368,6 +386,11 @@ def delete_user(user_id):
     db.session.commit()
     # Logs out
     session.pop('user_id', None)
+    # Success display message
+    flash(
+        'User successfully deleted.',
+        'success-message-home'
+    )
     # Redirects back to home.
     return redirect(url_for('home'))
 
@@ -532,7 +555,7 @@ def add_toy():
     if form.is_submitted():
         # Check if a toy type was not selected
         if form.toy_type_id.data == 0:
-            flash('Please select the toy type.')
+            flash('Please select the toy type.', 'error-message')
         # If a toy type was selected, validate the form
         elif form.validate():
             # Set a default toy image if none provided
@@ -553,8 +576,11 @@ def add_toy():
             # Adds the new_toy to the database and saves it
             db.session.add(new_toy)
             db.session.commit()
-            # Redirects user back to toys when the new toy is added
-            return redirect(url_for('toys'))
+            # Display success message
+            flash(
+                'Toy successfully created. Redirecting you to Toys page.',
+                'success-message'
+            )
     return render_template('add_toy.html', form=form, toy_types=toy_types)
 
 
@@ -602,22 +628,18 @@ def edit_toy(toy_id):
             toy.description = form.description.data
         # Saves these changes
         db.session.commit()
-        # If the user came from toys, redirect back to toys
-        if ref == 'toys':
-            return redirect(url_for('toys'))
-        # If the user came from individual_toy, redirect back there
-        else:
-            return redirect(url_for(
-                'individual_toy',
-                toy_id=toy.id,
-                toy_types=toy_types
-            ))
+        # Displays success message
+        flash(
+            'Toy successfully edited. Redirecting you back.',
+            'success-message'
+        )
     return render_template(
         'edit_toy.html',
         user_id=user_id,
         toy=toy,
         referer=referer,
         form=form,
+        ref=ref,
         toy_types=toy_types
     )
 
@@ -652,6 +674,11 @@ def delete_toy(toy_id):
             remove_toy_from_reviews(review)
     # saves changes
     db.session.commit()
+    # Displays success message
+    flash(
+        'Toy successfully deleted.',
+        'success-message'
+    )
     # Redirects back to toys
     return redirect(url_for('toys'))
 
@@ -692,7 +719,7 @@ def add_review(toy_id):
     if form.is_submitted():
         # Flash an error if a rating is not given
         if form.rating.data == '':
-            flash('Please rate the toy.')
+            flash('Please rate the toy.', 'error-message')
         elif form.validate():
             # New Review class instance with submitted data
             new_review = Review(
@@ -705,8 +732,14 @@ def add_review(toy_id):
             # Adds the new review to the database and saves it
             db.session.add(new_review)
             db.session.commit()
-            # Redirects user back to toy when the review is added
-            return redirect(url_for('individual_toy', toy_id=toy_id))
+            # Displays success message
+            flash(
+                (
+                    'Review successfully submitted. '
+                    'Redirecting you to the toy page.'
+                ),
+                'success-message'
+            )
     return render_template(
         'add_review.html',
         referer=referer,
@@ -752,7 +785,7 @@ def edit_review(review_id):
     if form.is_submitted():
         # Check that a rating is provided
         if form.rating.data == '':
-            flash('Please rate the toy.')
+            flash('Please rate the toy.', 'error-message')
         # If rating is provided, validate the form
         elif form.validate():
             review.review_content = form.review_content.data
@@ -760,16 +793,17 @@ def edit_review(review_id):
             review.also_liked = form.also_liked.data
             # Save the changes
             db.session.commit()
-            # Redirect back to previous page
-            if ref == 'toy':
-                return redirect(url_for('individual_toy', toy_id=toy.id))
-            else:
-                return redirect(url_for('profile'))
+            # Displays success message
+            flash(
+                'Review changes saved. Redirecting you back.',
+                'success-message'
+            )
     return render_template(
         'edit_review.html',
         user_id=user_id,
         referer=referer,
         review=review,
+        ref=ref,
         toy=toy,
         form=form
     )
@@ -793,6 +827,11 @@ def delete_review(review_id):
     # Deletes the review
     db.session.delete(review)
     db.session.commit()
+    # Displays success message
+    flash(
+        'Review deleted.',
+        'delete-review-message'
+    )
     if ref == 'profile':
         # Redirects back to profile
         return redirect(url_for('other_profile', user_id=user_id))

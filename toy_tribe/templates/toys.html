@@ -13,6 +13,21 @@
         <h2 id="toys-title">
             <img src="{{ url_for('static',filename='img/toys_title.png')}}" alt="Page title for Toys">
         </h2>
+        <!-- Delete Toy Success Message -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category == "success-message" %}
+                    <!--Display the success message as a Materialize Toast-->
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            M.toast({html: '{{ message }}'});
+                        });
+                    </script>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <!-- Floating add-toy button -->
         <div class="fixed-action-btn add-toy-button">
             <p class="open-sans">Add Toy</p>

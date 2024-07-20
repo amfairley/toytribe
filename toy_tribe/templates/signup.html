@@ -11,13 +11,34 @@
     <h2 id="signup-title">
         <img src="{{ url_for('static',filename='img/signup_title.png')}}" alt="Page title for Signup">
     </h2>
-    <!-- Alert display-->
-    {% with messages = get_flashed_messages(with_categories=false) %}
+    <!-- Signup Success Message -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-            {% for message in messages %}
-                <div class="alert signup-error roboto-regular">
-                    {{ message }}
-                </div>
+            {% for category, message in messages %}
+                {% if category == "success-message" %}
+                <!--Display the success message as a Materialize Toast-->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        M.toast({html: '{{ message }}'});
+                        // After 2s redirect to login page
+                        setTimeout(function() {
+                            window.location.href = "{{ url_for('login') }}";
+                        }, 2000);
+                    });
+                </script>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <!-- Alert display-->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                {% if category == "error-message" %}
+                    <div class="form-error-messages alert signup-error open-sans">
+                        {{ message }}
+                    </div>
+                {% endif %}
             {% endfor %}
         {% endif %}
     {% endwith %}

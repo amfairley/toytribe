@@ -22,6 +22,38 @@
                  {{ toy.name }}
             </span>
         </h2>
+        <!-- Edit Toy Success Message -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category == "success-message" %}
+                        {% if ref == "toys" %}
+                            <!--Display the success message as a Materialize Toast-->
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    M.toast({html: '{{ message }}'});
+                                    // After 2s redirect to toys page
+                                    setTimeout(function() {
+                                        window.location.href = "{{ url_for('toys') }}";
+                                    }, 2000);
+                                });
+                            </script>
+                        {% else %}
+                            <!--Display the success message as a Materialize Toast-->
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    M.toast({html: '{{ message }}'});
+                                    // After 2s redirect to individual toy page
+                                    setTimeout(function() {
+                                        window.location.href = "{{ url_for('individual_toy', toy_id=toy.id, toy_types=toy_types) }}";
+                                    }, 2000);
+                                });
+                            </script>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <!-- Edit toy form-->
         <form id="edit-toy-form" method="POST">
 
