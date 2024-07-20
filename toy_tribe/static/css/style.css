@@ -305,6 +305,18 @@ main {
     cursor: pointer;
 }
 
+/* Success message */
+.toast {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    max-width: 80%;
+    text-align: center;
+    color:white;
+    background-color: green;
+}
+
 /* ---------- login.html ---------- */
 /* Login title */
 #login-title {
