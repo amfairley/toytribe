@@ -27,7 +27,7 @@
     <!-- Profile information -->
         <div class="row profile-content">
             <!-- Display flag if the user has one -->
-            {% if flag_url %}
+            {% if flag_url and flag_url != '/static/img/flags/none.svg' %}
             <div class="col s12">
                 <img class="country-flag" src="{{ flag_url }}" alt="Flag for {{ user_profile.country }}">
             </div>

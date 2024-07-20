@@ -267,7 +267,7 @@ def edit_profile(user_id):
     # Get a list of countrys from pycountry library
     countries = sorted(pycountry.countries, key=lambda country: country.name)
     # Populate the country select element
-    country_choices = [
+    country_choices = [(None, 'Select a country')] + [
         (country.alpha_2, country.name) for country in countries
     ]
     # Sets the form and the country choices
