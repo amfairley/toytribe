@@ -11,6 +11,14 @@
     <h2 id="login-title">
         <img src="{{ url_for('static',filename='img/login_title.png')}}" alt="Page title for Login">
     </h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                // Display the toast with the message
+                M.toast({html: '{{ message }}'});
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     <!-- Login form -->
     <form id="login-form" method="POST">
 
@@ -29,9 +37,19 @@
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                     {% for category, message in messages %}
-                        <div class="form-error-messages open-sans">
+                        {% if category == "success-message" %}
+                        <div class="form-success-messages open-sans">
                             {{ message }}
                         </div>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                M.toast({html: '{{ message }}'});
+                                setTimeout(function() {
+                                    window.location.href = "{{ url_for('home') }}";
+                                }, 2000); // 2000 milliseconds = 2 seconds
+                            });
+                        </script>
+                        {% endif %}
                     {% endfor %}
                 {% endif %}
             {% endwith %}

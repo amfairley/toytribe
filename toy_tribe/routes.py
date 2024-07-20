@@ -114,7 +114,8 @@ def login():
             # Create a session with the logging in user
             session['user_id'] = user.id
             # Directs user to home.html
-            return render_template('home.html')
+            flash('Login successful', 'success-message')
+            # return render_template('home.html')
         # Displays a flash error if incorrect
         else:
             flash('Login failed. Check your credentials.')
