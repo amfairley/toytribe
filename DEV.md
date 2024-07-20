@@ -1,4 +1,4 @@
-![Website logo](/documentation/screenshots/site-logo.png)
+![Website logo](/documentation/screenshots/site_logo.png)
 
 ---
 

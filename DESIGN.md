@@ -1,4 +1,4 @@
-![Website logo](/documentation/screenshots/site-logo.png)
+![Website logo](/documentation/screenshots/site_logo.png)
 
 ---
 
@@ -219,7 +219,7 @@ Below is a proposed ERD for the tables to be modelled for the database.
 ![Toy tribe entity relationship diagram](/documentation/design/entity_relationship_diagram.png)<br>
 **Explanation**
 - The relational database will consist of 5 linked tables.
-- The user table will house information on the user and will not use any foreign keys.
+- The user table will house information on the user and will not use any foreign keys. It will autoincrement, giving each user a unique ID.
 - The toy type table will list various types of toys with incremental ids.
 - The toy table will house the toy data. It will use the user_id as a foreign key in order to identify the creator of the toy. This creates a one to many relationship between users and toys, as one user may create many toys. It is linked in a way that if a user is deleted, the toy will remain in the database. The table also has a foreign key of the toy_type_id. This provides a one to one relationship, as a toy will only be able to have one toy type.
 - The review table will house the review data. It will have the user_id as a foreign key in order to identify the author of the review. This creates a one to many relationship between users and reviews, as one user may create multiple reviews. The table also has the foreign key of toy_id to identify which toy the review is for. This creates a one to many relationship between toys and reviews, as even though only one user may create a review for a specific toy, that toy can have multiple reviews from different users. It is linked in a way that deletion of a user will not delete the review, but deletion of a toy will delete all associated reviews. The also_liked data of a review houses a list of integers that relate to toy_ids that the reviewer also liked. Instead of setting up a many to many relationship in the schema, reading the also_liked data and assigning associated toys will be handled with python code.
@@ -239,6 +239,7 @@ Below is a proposed ERD for the tables to be modelled for the database.
 
 [Desktop Wireframes](/documentation/design/desktop_wireframes.png)
 <br>
+
 [Mobile Wireframes](/documentation/design/mobile_wireframes.png)
 
 ### Surface

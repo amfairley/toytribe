@@ -1,4 +1,4 @@
-![Website logo](/documentation/screenshots/site-logo.png)
+![Website logo](/documentation/screenshots/site_logo.png)
 
 ---
 
@@ -376,7 +376,7 @@ This requirement is met by the burger menu for navigation links on smaller devic
 ## Automated Testing
 
 ### Accessibility Testing
-Accessibility was kept in mind throughout development and the best practices were kept to across the website. Where hidden text was used, it was hidden in a way that was still accessible to screen readers.
+Accessibility was kept in mind throughout development and the best practices were kept to across the website including, but not limited to, ensuring aria-labels and alt texts were used throughout, using semantic HTML, creating easy to see colour contrasts. Where hidden text was used, it was hidden in a way that was still accessible to screen readers.
 Accessibility testing was performed using the [Wave](https://wave.webaim.org/) validator to provide key information about the accessibility standard of the website. Pages that required login were beyond the purview of the [Wave](https://wave.webaim.org/) browser tool, so the Wave extension for Google Chrome was used, which can be found [here](https://wave.webaim.org/extension/).
 
 **home.html**<br>
