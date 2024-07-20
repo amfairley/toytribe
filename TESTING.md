@@ -31,6 +31,11 @@ This document covers the full testing of the website. This includes:
     * [CSS Validation](#css-validation)
     * [JavaScript Validation](#javascript-validation)
     * [Python Validation](#python-validation)
+1. [Bugs](#bugs)
+    * [Bug 1](#bug-1)
+    * [Bug 2](#bug-2)
+    * [Bug 3](#bug-3)
+    * [Known bugs](#known-bugs)
 
 ## Testing user stories 
 The [user stores](/README.md#user-stories) have been a driving force for the development of this project. Here, features are assigned to the user stories to show completion. More can be seen about the individual features [here](/DESIGN.md#features). This section is designed so at to confidently say that I have met all of the criteria that I set out with to create a website that the target audience of parents and cares will find usable, intuitive, and that provides a unique purpose.
@@ -90,7 +95,7 @@ This requirement is met by the sort toys select box on the toys page.
 This requirement is met by the sort select element on the individual toy pages and the profile page.
 
 **19: I want to be informed if I cause errors in forms**<br>
-This requirement is met by error pop ups in forms, and the required field hinting on forms.
+This requirement is met by error pop ups in forms, the required field hinting on forms, and the form success messages.
 
 **20: I want to be able to change my password**<br>
 This requirement is met by the link to edit a password when editing profile, and the change password form.
@@ -146,8 +151,8 @@ This requirement is met by the burger menu for navigation links on smaller devic
 | Logged in: Burger link Toys | Click | Directs to toys page | Y | N/A |
 | Logged in: Navbar link Profile | Click | Directs to user profile page | Y | N/A |
 | Logged in: Burger link Profile | Click | Directs to user profile page | Y | N/A |
-| Logged in: Navbar link Logout | Click | Logs out and directs to home page | Y | N/A |
-| Logged in: Burger link Logour | Click | Logs out and directs to home page | Y | N/A |
+| Logged in: Navbar link Logout | Click | Logs out, displays message, and directs to home page | Y | N/A |
+| Logged in: Burger link Logout | Click | Logs out, displays message, and directs to home page | Y | N/A |
 | Footer links | Hover | Colour changes on hover | Y | N/A |
 | Footer link: email | Click | Opens an email to the developer in a new window | Y | N/A |
 | Footer link: LinkedIn | Click | Opens the developers LinkedIn profile in a new tab | Y | N/A |
@@ -174,14 +179,14 @@ This requirement is met by the burger menu for navigation links on smaller devic
 | Confirm password field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
 | Passwords | Make them not match | Alert appears highlighting that passwords do not match | Y | N/A |
 | Passwords | No capital letters, numbers, or special characters | Alert appears reminding the user of the password strength requirements | Y | N/A |
-| Signup button | Add valid detail and click | User is redirected to login screen | Y | N/A |
+| Signup button | Add valid detail and click | Success message appears and user is redirected to login screen | Y | N/A |
 | **login.html** | | | | |
 | Email field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
 | Email field | Use less than 4 characters | Alert appears asking user to complete the field with a longer entry | Y | N/A |
 | Password field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
 | Password field | Complete incorrectly | Alert appears informing the user that the login failed and to check their credentials | Y | N/A |
 | Sign up button | Click | Directs user to the signup page | Y | N/A |
-| Login button | Enter correct information and click | Directs user to the logged in homepage | Y | N/A |
+| Login button | Enter correct information and click | Success message appear and directs user to the logged in homepage | Y | N/A |
 | **toys.html** | | | | |
 | Toys page | Access url whilst logged out | Redirected to logged out homepage | Y | N/A |
 | Search bar | Search something | Toys with matching or similar toy name, toy company, or toy type are displayed | Y | N/A |
@@ -214,7 +219,7 @@ This requirement is met by the burger menu for navigation links on smaller devic
 | Toy type field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
 | Toy description field | Leave empty | Submits the form with the default value | Y | N/A |
 | Toy image url field | Leave empty | Submits the form with the default value | Y | N/A |
-| Add toy button | Fill out the form and click | Creates a Toy instance that appears on the toys page and redirects the user there | Y | N/A |
+| Add toy button | Fill out the form and click | Creates a Toy instance that appears on the toys page, shows success message, and redirects the user there | Y | N/A |
 | **edit_toy.html** | | | | |
 | Edit toy page | Access url whilst logged out | Directed to error 403 page, access denied | Y | N/A |
 | Edit toy page | Access url whilst logged in as a user that did not create the toy | Directed to error 403 page, access denied | Y | N/A |
@@ -227,12 +232,12 @@ This requirement is met by the burger menu for navigation links on smaller devic
 | Toy description field | Leave empty | Submits the form with the default value | N | Gives an empty field. routes.py updated to give default description |
 | Toy description field | Leave empty and do above fix | Submits the form with the default value | Y | N/A |
 | Toy image url field | Leave empty | Submits the form with the default value | Y | N/A |
-| Edit toy button | Make changes and click | Saves these changes and directs user to toys page if accessed from there or individual toy page if accessed from there | Y | N/A |
+| Edit toy button | Make changes and click | Saves these changes, displays success message, and directs user to toys page if accessed from there or individual toy page if accessed from there | Y | N/A |
 | **delete_toy** | | | | |
 | Delete toy button | Click | Opens modal asking to confirm deletion | Y | N/A |
 | Delete toy modal | N/A | Displays correct toy name | Y | N/A |
 | Delete toy modal: cancel | Click | Closes the modal | Y | N/A |
-| Delete toy modal: confirm | Click | Deletes the toy and directs the user to the toys page | Y | N |
+| Delete toy modal: confirm | Click | Deletes the toy, directs the user to the toys page, and shows success alert | Y | N |
 | Delete toy modal buttons | Hover | Colours change and words enlarge | Y | N |
 | Delete toy modal | Resize screen | Text and buttons get smaller on screen widths below 601px | Y | N |
 | Delete toy | Carry out deletion | Deletes all reviews associated with the toy | Y | N/A |
@@ -289,14 +294,14 @@ This requirement is met by the burger menu for navigation links on smaller devic
 | Star rating field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
 | Toy type field | Leave empty | Alert appears asking user to complete the field | Y | N/A |
 | Also liked field | Click | Shows a multiple select option comprised of all other toys in the database in alphabetical order | Y | N/A |
-| Submit review button | Complete form and click | Submits the form and directs the user to the individual toy page | Y | N/A |
+| Submit review button | Complete form and click | Submits the form, shows success alert, and directs the user to the individual toy page | Y | N/A |
 | **edit_review.html** | | | | |
 | Edit review page | Try to access it via url if you are not the creator or logged out | Directs the user to error 403 access denied page | Y | N/A |
 | Back button | Click | Takes user to individual toy page if accessed from there or user profile if accessed from there | Y | N/A |
 | Edit review form | N/A | Populated with existing data | Y | N/A |
 | Review field | Try to submit with an empty field | Alert appears asking user to complete the field | Y | N/A |
 | Star rating field | Set to default message and submit | Alert appears asking user to complete the field | Y | N/A |
-| Submit review button | Change values and submit | Values are saved and user is directed to individual toy page or profile page depending on where they accessed edit review from | Y | N/A |
+| Submit review button | Change values and submit | Values are saved, success alert shows, and user is directed to individual toy page or profile page depending on where they accessed edit review from | Y | N/A |
 | **profile.html** | | | | |
 | Own Profile page (/profile) | Try to access it via url if logged out | Directs the user to the 404 page | Y | N/A |
 | Other Profile page (/profile/<user_id>) | Try to access it via url if logged out | Directs the user to the logged out home page | Y | N/A |
@@ -312,10 +317,10 @@ This requirement is met by the burger menu for navigation links on smaller devic
 | Delete user button | Click | Opens the confirm delete modal | Y | N/A |
 | Delete user modal | N/A | Displays a warning message about the permanence of deletion | Y | N/A |
 | Delete user modal: cancel | Click | Closes the modal | Y | N/A |
-| Delete user modal: confirm | Click | Deletes the user account and profile, renames all review authors on the users reviews to "User Deleted", directs the user to the logged out home page | Y | N |
+| Delete user modal: confirm | Click | Deletes the user account and profile, renames all review authors on the users reviews to "User Deleted", directs the user to the logged out home page and displays success message | Y | N |
 | Delete user modal buttons | Hover | Colours change and words enlarge | Y | N |
 | Delete user modal | Resize screen | Text and buttons get smaller on screen widths below 601px | Y | N |
-| Delete review | Carry out deletion | Deletes the review and refreshes review page | Y | N/A |
+| Delete review | Carry out deletion | Deletes the review, shows success alert, and refreshes review page | Y | N/A |
 | User information | Resize screen | Layout changes to image on top and everything in one column on screen widths less than 600px | Y | N/A |
 | Reviews title and content | N/A | Only displays if the user has submitted reviews | Y | N/A |
 | Sort reviews: Newest first | Select | Displays the reviews in order of newest to oldest | Y | N/A |
@@ -338,7 +343,7 @@ This requirement is met by the burger menu for navigation links on smaller devic
 | Delete review modal: confirm | Click | Deletes the review and directs the user to the toy page or profile page depending on where they accessed it from | Y | N |
 | Delete review modal buttons | Hover | Colours change and words enlarge | Y | N |
 | Delete review modal | Resize screen | Text and buttons get smaller on screen widths below 601px | Y | N |
-| Delete review | Carry out deletion | Deletes the review and refreshes review page | Y | N/A |
+| Delete review | Carry out deletion | Deletes the review, shows success alert, and refreshes profile page | Y | N/A |
 | **edit_profile.html** | | | | |
 | Edit profile page | Try to access it via url as another user or logged out | Directed to the error 403 access denied page | Y | N/A |
 | Back button | Click | Directs the user back to their profile page | Y | N/A |
@@ -347,7 +352,7 @@ This requirement is met by the burger menu for navigation links on smaller devic
 | Parent status toggle | Click | Works well and displays/removes the verified parent display on the profile | Y | N/A |
 | Country select field | Select country | Displays all countries in alphabetical order, selecting one changes the flag on the user profile | Y | N/A |
 | Edit password button | Click | Directs the user to the change password page | Y | N/A |
-| Save changes button | Submits the changes, updates the user profile, directs user back to their profile page | Y | N/A |
+| Save changes button | Submits the changes, updates the user profile, displays success message and directs user back to their profile page | Y | N/A |
 | **change_password.html** | | | | |
 | Change password page | Try to access it for another user or logged out | Directed to error 403 access denied page | Y | N/A |
 | Back button | Click | Directs the user back to their edit profile page | Y | N/A |
@@ -356,7 +361,7 @@ This requirement is met by the burger menu for navigation links on smaller devic
 | Old password field | Fill in with incorrect data | Alert shows telling the user that the old password is incorrect | Y | N/A |
 | Password fields | Use two non-matching new passwords | Alert shows telling the user that the new passwords do not match | Y | N/A |
 | Password fields | Use new passwords that do not have a capital letter, number, or special character | Alert shows reminding the user of the password requirements | Y | N/A |
-| Change password button | Fill out form and click | Updates password and directs user to edit profile page | Y | N/A |
+| Change password button | Fill out form and click | Updates password, displays success message, and directs user to edit profile page | Y | N/A |
 | **403.html** | | | | |
 | 403 page | Try to access a url that you do not have access to | User is redirected to the error 403 access denied page | Y | N/A |
 | Error message | N/A | A clear message explaining the error with a link to the home page | Y | N/A |
@@ -641,3 +646,53 @@ The Python code for this project was written in strict accordance with the [PEP 
     <summary>update_db.py file results</summary>
     <img src="/documentation/testing/python_update.png">
 </details>
+
+## Bugs
+
+### Bug 1
+**Issues:** The default values for the toy image url and description were not being added to the database upon submission of data.<br>
+```py
+image_url = db.Column(
+    db.String(300),
+    default="/static/img/default_toy.webp",
+    nullable=False)
+    description = db.Column(
+        db.Text(),
+        default="No description added yet.",
+        nullable=False
+    )
+```
+
+**Fix:** Default values from here on were removed from the models.py file and defined instead in the routes.py file e.g: <br>
+```py
+if form.validate_on_submit():
+    if not form.image_url.data:
+        form.image_url.data = "/static/img/default_toy.webp"
+    if not form.description.data:
+        form.description.data = "No description added yet."
+```
+
+### Bug 2
+**Issue:** The countries in the select element in the edit profile form were not being displayed in alphabetical order, which made selecting a country difficult.
+**Fix:** Sorting the variable in the routes.py file :
+```py
+countries = sorted(pycountry.countries, key=lambda country: country.name)
+```
+
+### Bug 3
+**Issue:** When not selecting an option from a required dropdown menu, the page scrolls to top and the error flashed error message does not occur. Multiple fixes were attempted:
+- Having a default set in the forms file within the SelectField does not automatically set the value on submitting the form.
+- This means that checking for the value after submitting and before validation does not work e.g.:
+```py 
+if form.is_submitted():
+    if form.rating.data == '':
+        flash('Please rate the toy.')
+    elif form.validate():
+```
+- I can have the message appear setting the form.rating.data to any of the values, but not the default.
+- [This fix](https://stackoverflow.com/questions/57177597/materlialize-css-select-componenent-setting-default-value-with-javascript) on stack overflow did not work.
+
+**Fix:** Removing the data required setting in the forms.py file fixed the issue.
+
+### Known Bugs
+There are no known bugs currently in the deployed website.
