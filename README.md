@@ -146,10 +146,7 @@ Security risk are ever present so future updates will provide the extra security
 
 ## Future Development
 Listed here are features that will be introduced in future updates to provide a better user experience:
-- Success message for adding/editing/deleting things
-- Select country default on profile
-
-- Functionality to vote on specific review
+- Functionality to vote on specific reviews
 - Pages for toys and reviews so performance does not suffer with a large dataset
 - Image upload function for toy images
 - Image upload function for profile image
