@@ -30,6 +30,7 @@ Regression testing, to ensure that new features do not cause bugs, was not possi
     * [Bug 2](#bug-2)
     * [Bug 3](#bug-3)
     * [Bug 4](#bug-4)
+    * [Bug 5](#bug-5)
     * [Known bugs](#known-bugs)
 6. [Analytics](#analytics)
 
@@ -734,6 +735,27 @@ To get around this, the referer was checked to see if it came from the profile a
     </a>
     <br>
 {% endif %}
+```
+
+### Bug 5
+**Issue:** Deleted toys still appear as empty things in also_liked.
+
+**Fix:** Added a function that combs through reviews.also_liked and remove the specific toy id. It is called during the delete_toy function and uses the reviews that have the toy id in their also liked as the arguement. 
+
+```py
+def remove_toy_from_reviews(review):
+    """
+    A function to remove the toy id from the also_liked list
+    in the user reviews
+    """
+    updated_also_liked = []
+    # Loop through also_liked and if they still exist, add to updated list
+    for toy_id in review.also_liked:
+        toy = Toy.query.filter_by(id=toy_id).first()
+        if toy:
+            updated_also_liked.append(toy_id)
+    # Set also_liked as the updated list
+    review.also_liked = updated_also_liked
 ```
 
 ### Known Bugs
