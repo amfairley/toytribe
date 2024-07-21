@@ -29,6 +29,7 @@ Regression testing, to ensure that new features do not cause bugs, was not possi
     * [Bug 1](#bug-1)
     * [Bug 2](#bug-2)
     * [Bug 3](#bug-3)
+    * [Bug 4](#bug-4)
     * [Known bugs](#known-bugs)
 6. [Analytics](#analytics)
 
@@ -711,6 +712,29 @@ if form.is_submitted():
 - [This fix](https://stackoverflow.com/questions/57177597/materlialize-css-select-componenent-setting-default-value-with-javascript) on stack overflow did not work.
 
 **Fix:** Removing the data required setting in the forms.py file fixed the issue.
+
+### Bug 4
+**Issue:** The individual toys page back button created an infinite loop with the edit toys back button after editing the toy. 
+
+**Fix:** Added a ref on links to the page to check if it came from the profile to make the back button direct there. Otherwise it directs to the toys page.
+
+To get around this, the referer was checked to see if it came from the profile and created a back button linked to the profile, otherwise the back button always directed back to the toys page.
+
+```HTML
+{% if referer.endswith('/profile') %}
+    <a href="{{ referer }}" class="open-sans back-button" aria-label="Go back to previous page">
+        <i class="fa-solid fa-backward-step"></i>
+        <span>Back</span>
+    </a>
+    <br>
+{% else %}
+    <a href="{{ url_for('toys') }}" class="open-sans back-button" aria-label="Go back to previous page">
+        <i class="fa-solid fa-backward-step"></i>
+        <span>Back</span>
+    </a>
+    <br>
+{% endif %}
+```
 
 ### Known Bugs
 There are no known bugs currently in the deployed website.
