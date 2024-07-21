@@ -94,7 +94,7 @@ Flask is a lightweight Python web framework allowing me to create a web applicat
 ### Getting the Project Up and Running
 To get my project up and running I created the following files and folders:
 - **env.py** in the route directory.
-    * This file sets the values for connecting to the database.
+    * This is my settings file that sets the values for connecting to the database.
     * This holds sensitive data so an example is provided as [env_example.txt](/env_example.txt). You can create your own by inserting your own secret key, PostgreSQL password, and database name.
 - A new folder in the route directory named **toy_tribe**
     * This folder houses all of the app data.
@@ -105,7 +105,7 @@ To get my project up and running I created the following files and folders:
 - **run.py** in our root directory
     * This file is the one called that will launch our app using `python3 run.py` in the terminal.
 - **models.py** in the toy_tribe folder
-    * Here I modelled each table in the relational database and their relationships with one another.
+    * Here I modelled each table in the relational database and their relationships with one another. This allowed database configuration to be kept in one location where it can be easily modified if required.
 
 With these files created I set up my personal PostgreSQL server using the PostgreSQL extension (+ button at top right of the extension) with the following values:
 - Host: localhost
@@ -172,4 +172,5 @@ with app.app_context():
     db.create_all()
 ```
 
-Congratualations, the app should now be up and running and you can click "Open App" to see the deployed project!
+Congratulations, the app should now be up and running and you can click "Open App" to see the deployed project!
+The final action I took was to remove the DEBUG line from the config vars in my Heroku setting to reduce security vulnerabilities.
