@@ -2,15 +2,14 @@
 
 ---
 
+# Testing
+
+Manual testing (often called user testing) is where the site is manually tested by clicking buttons, filling out forms, and testing all the logic. Automated testing involves using scripts and a testing frameworks to test functionality. Automated testing can be quick, thorough, and allow the developer to pick up errors early on but relies on the developer asking the right questions and does not test for user experience. For this project, I have concentrated on manual testing to test the user experience and automated testing for validation of the code, accessibility testing, and site performance testing.<br>
+Regression testing, to ensure that new features do not cause bugs, was not possible without custom automated testing. However, during development each feature was robustly tested when implemented, with fixes being able to be applied as and when they were encountered. Larger bugs that took some time to fix are documented at the bottom of this document. Overall, manual and automated testing were completed upon deployment of the final project to ensure that there were no bugs left in the functionality of the website. Going forward, the automated and manual testing described in this document will be completed for each affected file or feature when future features are implemented to ensure that everything works as it should.
+
 See [README.md](/README.md) for information on project goals, user stories, security, future developments, technologies used, user feedback, credits, and acknowledgements.<br>
 See [DESIGN.md](/DESIGN.md) for information on the five planes of UX design, site map, database schema, and features. <br>
 See [DEV.md](/DEV.md) for an overview of the continuous integration and deployment process, how I set up my development environment, and deployment steps.
-
-# Testing
-
-Manual testing (often called user testing) is where the site is manually tested by clicking buttons, filling out forms, and testing all the logic. Automated testing involves using scripts and a testing framework to test functionality. Automated testing can be quick, thorough, and allow the developer to pick up errors early on but relies on the developer asking the right questions and does not test for user experience. For this project, I have concentrated on manual testing to test the user experience and automated testing for validation of the code, accessibility testing, and site performance testing.<br>
-Regression testing, to ensure that new features do not cause bugs, was not possible without custom automated testing. However, during development each feature was robustly tested when implemented, with fixes being able to be applied as and when they were encountered. Larger bugs that took some time to fix are documented at the bottom of this document. Overall, manual and automated testing were completed upon deployment of the final project to ensure that there were no bugs left in the functionality of the website. Going forward, the automated and manual testing described in this document will be completed for each affected file or feature when future features are implemented to ensure that everything works as it should.
-
 
 ---
 
@@ -35,7 +34,7 @@ Regression testing, to ensure that new features do not cause bugs, was not possi
 6. [Analytics](#analytics)
 
 ## Testing user stories 
-The [user stores](/README.md#user-stories) have been a driving force for the development of this project. Here, features are assigned to the user stories to show completion. More can be seen about the individual features [here](/DESIGN.md#features). This section is designed so at to confidently say that I have successfully met all of the criteria that I set out with to create a website that the target audience of parents and cares will find usable, intuitive, and that provides a unique purpose.
+The [user stories](/README.md#user-stories) have been a driving force for the development of this project. Here, features are assigned to the user stories to show completion. More can be seen about the individual features [here](/DESIGN.md#features). This section is designed so as to confidently say that I have successfully met all of the criteria that I set out with to create a website that the target audience of parents and cares will find usable, intuitive, and that provides a unique purpose.
 
 **1: I want to be able to the tell the purpose of the website immediately**<br>
 This requirement is met by the site logo in the header and footer, the hero image and welcome text on the home page, and the page titles.
