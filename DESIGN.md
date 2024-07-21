@@ -4,12 +4,9 @@
 
 # Design
 
-**This document covers the five stages of UX design that went into this project, along with the database design, and the final features provided.**
-
-For overview information of this website, see [README.md](/README.md) <br>
-For information on the development and deployment of this website, see DEV.md <br>
-For information on the integrated security built into the app, see SECURITY.md <br>
-For information on the testing procedure, see TESTING.md
+See [README.md](/README.md) for information on project goals, user stories, security, future developments, technologies used, user feedback, credits, and acknowledgements.<br>
+See [TESTING.md](/TESTING.md) for information on the manual and automated testing of the site, bugs encountered, and website analytics. <br>
+See [DEV.md](/DEV.md) for an overview of the continuous integration and deployment process, how I set up my development environment, and deployment steps.
 
 ---
 
@@ -401,7 +398,7 @@ Roboto is the most popular google font with high legibility and nice curves. It 
 | **Page:** signup.html|
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/signup_alert.png"></details> |
 | **Details:** If the form is submitted with invalid data, an alert appears at the relevent input to alert the user. These alerts are; "Please fill in this field" for any empty fields,"Please lengthen this text to 3 characters or more (you are currently using x characters)" for username, "Please include an @ in the email address" for email, and "Please lengthen this text to 8 characters or more (you are currently using x characters)" for password. |
-| **User stories covered:** 4, 19|
+| **User stories covered:** 4, 19| 
 
 | **User exists alert** |
 |-------- |
@@ -423,6 +420,13 @@ Roboto is the most popular google font with high legibility and nice curves. It 
 | <details><summary>Feature Image</summary><img src="/documentation/design/features/signup_submit_button.png"></details> |
 | **Details:** A button that submits the form details, allowing the user to signup to the website. |
 | **User stories covered:** 2|
+
+| **Form Success Alert** |
+| ------ | 
+| **Page:** signup.html, login.html, add_toy.html, edit_toy.html, add_review.html, edit_review.html, edit_profile.html, change_password.html |
+| <details><summary>Feature Image</summary><img src="/documentation/design/features/form_success.png"></details> |
+| **Details:** On successful submission of any form, a Materialize toast pops up informing the user that the submission was successful and alerting them that they will be redirected. |
+| **User stories covered:** 19 |
 
 | **Login title** |
 |-------- |

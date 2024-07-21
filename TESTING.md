@@ -2,43 +2,38 @@
 
 ---
 
-For overview information of this website, see [README.md](/README.md) <br>
-See [DESIGN.md](/DESIGN.md) for information on the five planes of UX design, site map, database scheme, and features. <br>
-For information on the development and deployment of this website, see DEV.md <br>
-For information on the integrated security built into the app, see SECURITY.md <br>
+See [README.md](/README.md) for information on project goals, user stories, security, future developments, technologies used, user feedback, credits, and acknowledgements.<br>
+See [DESIGN.md](/DESIGN.md) for information on the five planes of UX design, site map, database schema, and features. <br>
+See [DEV.md](/DEV.md) for an overview of the continuous integration and deployment process, how I set up my development environment, and deployment steps.
 
 # Testing
 
-Manual testing (often called user testing) is where the site is manually tested by clicking buttons, filling out forms, and testing all the logic. Automated testing involves using scripts and a testing framework to test functionality. Automated testing can be quick, thorough, and allow the developer to pick up errors early on but relies on the developer asking the right questions and does not test for user experience. For this project, I have concentrated on manual testing to test the user experience and automated testing for validation of the code, accessibility testing, and site performance testing.
+Manual testing (often called user testing) is where the site is manually tested by clicking buttons, filling out forms, and testing all the logic. Automated testing involves using scripts and a testing framework to test functionality. Automated testing can be quick, thorough, and allow the developer to pick up errors early on but relies on the developer asking the right questions and does not test for user experience. For this project, I have concentrated on manual testing to test the user experience and automated testing for validation of the code, accessibility testing, and site performance testing.<br>
+Regression testing, to ensure that new features do not cause bugs, was not possible without custom automated testing. However, during development each feature was robustly tested when implemented, with fixes being able to be applied as and when they were encountered. Larger bugs that took some time to fix are documented at the bottom of this document. Overall, manual and automated testing were completed upon deployment of the final project to ensure that there were no bugs left in the functionality of the website. Going forward, the automated and manual testing described in this document will be completed for each affected file or feature when future features are implemented to ensure that everything works as it should.
 
-
-This document covers the full testing of the website. This includes:
-- Testing user stories
-- Manual testing
-- Wave accessibility validation
-- Google Chrome Devtools Lighthouse performance testing
-- HTML validation
 
 ---
 
 ## Table of contents
 1. [Testing User Stories](#testing-user-stories)
-1. [Manual Testing](#manual-testing)
-1. [Automated Testing](#automated-testing)
+2. [Manual Testing](#manual-testing)
+3. [Device and Browser Testing](#device-and-browser-testing)
+4. [Automated Testing](#automated-testing)
     * [Accessibility Testing](#accessibility-testing)
     * [Performance Testing](#performance-testing)
     * [HTML Validation](#html-validation)
     * [CSS Validation](#css-validation)
     * [JavaScript Validation](#javascript-validation)
     * [Python Validation](#python-validation)
-1. [Bugs](#bugs)
+5. [Bugs](#bugs)
     * [Bug 1](#bug-1)
     * [Bug 2](#bug-2)
     * [Bug 3](#bug-3)
     * [Known bugs](#known-bugs)
+6. [Analytics](#analytics)
 
 ## Testing user stories 
-The [user stores](/README.md#user-stories) have been a driving force for the development of this project. Here, features are assigned to the user stories to show completion. More can be seen about the individual features [here](/DESIGN.md#features). This section is designed so at to confidently say that I have met all of the criteria that I set out with to create a website that the target audience of parents and cares will find usable, intuitive, and that provides a unique purpose.
+The [user stores](/README.md#user-stories) have been a driving force for the development of this project. Here, features are assigned to the user stories to show completion. More can be seen about the individual features [here](/DESIGN.md#features). This section is designed so at to confidently say that I have successfully met all of the criteria that I set out with to create a website that the target audience of parents and cares will find usable, intuitive, and that provides a unique purpose.
 
 **1: I want to be able to the tell the purpose of the website immediately**<br>
 This requirement is met by the site logo in the header and footer, the hero image and welcome text on the home page, and the page titles.
@@ -378,11 +373,34 @@ This requirement is met by the burger menu for navigation links on smaller devic
 | Home button | Hover | Button resizes | Y | N/A |
 | Home button | Click | User is directed to the home page | Y | N/A |
 
+## Device and Browser Testing
+I tested the responsiveness of the website using Google Chrome Devtools to simulate 17 screen sizes; ranging from large desktops to the iPhone 5/SE and am happy to report that the website appears and functions as intended across the large screen size range. Additionally the website was tested on the Google Chrome, Mozzila Firefox, Microsoft Edge, and Brave browsers and no issues were encountered. I also tested the website on my 17.5" Laptop, 14" Laptop, and smart phone, noticing that it worked well in each case.
+A group of 10 of my friends and family gave feedback throughout the development of the project, this gave information that the website functions as intended on the following browsers and devices:<br>
+
+**Browsers Used:**
+
+| | Chrome | Firefox | Opera | Safari | Edge | Brave |
+|---|---|---|---|---|---|---|
+| Browser Usage | 1 | 1 | 0 | 6 | 0 | 2 |
+
+There was no negative feedback that was browser specific. Although no users tested Opera or Edge, I have access to Edge and had already conducted browser compatability testing with it.
+<br>
+
+**Devices Used:**
+| | Desktop | Tablet | iPhone | Android Phone |
+| --- | --- | --- | --- | --- |
+| Device usage | 0 | 3 | 5 | 2 |
+
+There was no negative feedback that was device specific, which was great news as this covered many options of screen sizes. I had previously tested some of the devices using Chrome Dev Tools, however it was good to see that this was a suitable substitute to testing the devices themselves.
+<br>
+
+
 ## Automated Testing
 
 ### Accessibility Testing
 Accessibility was kept in mind throughout development and the best practices were kept to across the website including, but not limited to, ensuring aria-labels and alt texts were used throughout, using semantic HTML, creating easy to see colour contrasts. Where hidden text was used, it was hidden in a way that was still accessible to screen readers.
 Accessibility testing was performed using the [Wave](https://wave.webaim.org/) validator to provide key information about the accessibility standard of the website. Pages that required login were beyond the purview of the [Wave](https://wave.webaim.org/) browser tool, so the Wave extension for Google Chrome was used, which can be found [here](https://wave.webaim.org/extension/).
+On top of this, one of my partially sighted friends troubleshooted the website with use of their screenreader during development and provided essential feedback to achieve full accessibility, which was implemented.
 
 **home.html**<br>
 - The contrast error on the Hero text should be ignored, as the validator ignores the black shadowing of the words and assumes it is just white text on a picture background. In reality it is white text on a black shadow, making it clearly legible on the picture background. User feedback has confirmed this.
@@ -696,3 +714,16 @@ if form.is_submitted():
 
 ### Known Bugs
 There are no known bugs currently in the deployed website.
+
+## Analytics
+[Google Analytics](https://marketingplatform.google.com/about/analytics/) has been used to provide real time analytics about how users use my webpage. This includes how many page views, how many users scroll to the bottom of the page, indicating that content hinting is working, and how many users sign up. The data received from this will be used to inform the future updates to the webpage. This required the following code to be added to the base.html template at the bottom of the head element as directed:
+```HTML
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P76K2YLKVH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      
+      gtag('config', 'G-P76K2YLKVH', { 'anonymize_ip': true });
+    </script> 
+```

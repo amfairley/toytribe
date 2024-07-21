@@ -6,17 +6,17 @@
 
 *An online community for rating, reviewing, and recommending children's toys. Insightful feedback from parents and guardians*
 
-This full stack review website for children's toys was born from my wife and I's experience with finding the right toys for our child when he was young, resulting in toys that were rarely touched, and not enough of the toys that were stimulating and engaging. Every child is different and we attempt to overcome the difficulty of recommending toys by providing recommendations based on what your child already enjoys. The target audience are parents, carers, primary school teachers, and others with first-hand experience of how children have responded to their toys.
+This full stack review website for children's toys was born from my wife and I's experience with finding the right toys for our child when he was young, resulting in toys that were rarely touched, and not enough of the toys that were stimulating and engaging. Every child is different and we attempt to overcome the difficulty of recommending toys by providing recommendations based on what your child already enjoys. The target audience are parents, carers, primary school teachers, and others with first-hand experience of how children have responded to their toys. The website was created using custom code written in HTML, CSS, Python, and JavaScript. It was completed in the Flask microframework linking HTML and Python with the Jinja templating language. It is hosted on Heroku with a connected PostgreSQL relational database.
 
 ![A mock-up image of the website](/documentation/screenshots/site_mockup.png)
 
 [Click here to access the site](https://toytribe-78734704f44d.herokuapp.com/)
 
-For information on the development and deployment of this website, see DEV.md <br>
-See [DESIGN.md](/DESIGN.md) for information on the five planes of UX design, site map, database scheme, and features. <br>
-For information on the integrated security built into the app, see SECURITY.md <br>
-See [TESTING.md](/TESTING.md) for information on the testing of the site <br>
-For information on the testing procedure, see TESTING.md
+See [README.md](/README.md) for information on project goals, user stories, security, future developments, technologies used, user feedback, credits, and acknowledgements.<br>
+See [DESIGN.md](/DESIGN.md) for information on the five planes of UX design, site map, database schema, and features. <br>
+See [TESTING.md](/TESTING.md) for information on the manual and automated testing of the site, bugs encountered, and website analytics. <br>
+See [DEV.md](/DEV.md) for an overview of the continuous integration and deployment process, how I set up my development environment, and deployment steps.
+
 
 ---
 
@@ -38,8 +38,9 @@ For information on the testing procedure, see TESTING.md
     2. [Frameworks](#frameworks)
     3. [Libraries and Packages](#libraries-and-packages)
     3. [Tools](#tools)
-6. [Credits](#credits)
-7. [Acknowledgements](#acknowledgements)
+6. [User Feedback](#user-feedback)
+7. [Credits](#credits)
+8. [Acknowledgements](#acknowledgements)
 
 ## Project Goals
 
@@ -120,11 +121,12 @@ Security concerns were considered throughout the development of this project and
 - **403 error handling**: Only the creator of the user profile, toy, or review can edit and delete them. Trying to maliciously access this function without being the creator diverts the user to the error 403 access denied page.
 - **Password strength**: The password requirement for user accounts are at least 1 capital letter, 1 special character, 1 number and over 8 characters long, providing users with strong passwords by default.
 - **Password storage**: When the user or creates their password, it is not saved as it is in the database. It is salted with an 8 byte string to precede the password. This ensures that any 2 exact passwords are different before the hashing. The hashing is done using Password-Based Key Derivation Function 2 (PBKDF2) with Secure Hash Algorithm 256-bit (SHA-256) and the result is stored as the user password. This makes it computationally expensive to crack passwords, providing robust security. This is a one-way hash, making it impossible to reverse engineer the user password from the stored value.
-- **Usernames**: Originally first and last names were displayed on user reviews and user profiles, but this was changed to require users to create usernames. This allows users to feel that their personal information is not being shared without their consent.
+- **Usernames**: Originally first and last names were displayed on user reviews and user profiles, but this was changed to require users to create unique usernames. This allows users to feel that their personal information is not being shared without their consent.
 - **External links**: All external links open in a new tab and have the attribute `rel="noopener"` which removes the threat of [Tabnabbing](https://en.wikipedia.org/wiki/Tabnabbing).
 - **Cross-Site-Request-Forgery Protection**: WTFroms provides CSRF protection by generating a hidden field in each form containing a unique, secret token. When a form is submitted, the server uses this value to ensure that the submitted data is from my website and not from a malicious third party. This is achieved in the code with `{{ form.hidden_tag() }}` being present as the first thing in any form on this website.
 - **Database storage**: The database information is stored and maintained in a secure PostgreSQL database that can be only accessed with a secret key. To ensure that the data is kept securely, [binascii](https://docs.python.org/3/library/binascii.html) was used to generate a 24-byte random key converted into hexadecimal code using `secret_key=binascii.hexlify(os.urandom(24)).decode('utf-8)` which gave a 48 character string that was used for my secret key.
 - **Cross-Site Scripting (XSS) Defence**: To avoid the user providing malicious information into forms such as scripts; Flask-WTF is used to create the forms, which is a secure framework that automatically escapes user input, preventing any entered scripts from running.
+- **User Privacy**: As google analytics is used for real time analysis of the use of the website, anonymize_ip was set to true so that it did not gather user IPs and protect the user privacy.
 
 ### Defensive Programming
 Along with security measures, defensive programming was implemented throughout to ensure a good user experience. Examples of these are:
@@ -216,6 +218,8 @@ The current database schema has been developed to be future proof in the followi
 	* Used to store the code in a repository
 - [Heroku](https://www.heroku.com/)
     - A cloud platform as a service (PaaS) where I hosted my deployed project and can manage my database through.
+- [Google Analytics](https://marketingplatform.google.com/about/analytics/)
+    - Used for real time monitoring of the analytics of my webpage.
 - [Python minifier](https://python-minifier.com/)
     - Used to provide an example of minified code to implemented after assessment.
 - [BGJar](https://bgjar.com/)
@@ -251,10 +255,18 @@ The current database schema has been developed to be future proof in the followi
 - [Code Institute Python Linter](https://pep8ci.herokuapp.com/)
     - Used to validate Python code against PEP8 standards.
 
+
+## User feedback
+A group of 10 of my friends and family supported my development of this website, giving honest and thoughtful feedback on the website's functionality, accessibility and purpose throughout the development and I hope that their feedback is clear in the finished product.
+
 ## Credits
 - The styling and functionality of the star ratings from [Fred Genkin](https://codepen.io/FredGenkin/pen/eaXYGV)
 - The hero image on the homepage was retrieved from [Pixabay](https://pixabay.com/photos/building-business-design-display-1867350/) from a user named Pexels and is free to use.
 - The default profile image was taken from [Pexels](https://www.pexels.com/photo/brown-teddy-bear-on-brown-wooden-bench-outside-207891/) and was free to use.
 
 ## Acknowledgements
-- 
+- My mentor [Julia Konovalova](https://github.com/IuliiaKonovalova) for their continued guidance and support with this project.
+- Code Institute Slack community members for their support and help.
+- [Code Institute](https://codeinstitute.net/global/) Slack community members for their support and help.
+- My tutor Paul for his guidence and teaching.
+- My wife and friends who provided key user feedback throughout the development.

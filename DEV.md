@@ -4,12 +4,9 @@
 
 # Development and Deployment 
 
-**This document covers.**
-
-For overview information of this website, see [README.md](/README.md) <br>
-For information on the development and deployment of this website, see DEV.md <br>
-For information on the integrated security built into the app, see SECURITY.md <br>
-For information on the testing procedure, see TESTING.md
+See [README.md](/README.md) for information on project goals, user stories, security, future developments, technologies used, user feedback, credits, and acknowledgements.<br>
+See [DESIGN.md](/DESIGN.md) for information on the five planes of UX design, site map, database schema, and features. <br>
+See [TESTING.md](/TESTING.md) for information on the manual and automated testing of the site, bugs encountered, and website analytics. <br>
 
 ---
 
