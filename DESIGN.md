@@ -97,6 +97,7 @@ Multiple tables within a relational database are required for this project. Thes
 
 #### Front-end
 The website will utilise template inheritance that allows for less code to be written and quicker load times for a better user experience.
+
 **Templates**
 - base.html: This will be the base template that the others call from to ensure a cohesive structure across the website. Present here will be:
     - The header with the brand logo and title and the navigation links. Whilst logged out the navigation links will be replaced with buttons for login / sign up. When logged in the navigation bar will offer links to the user's own profile, and to view toys.
@@ -210,7 +211,7 @@ The key points are:
 - The profile page will display the user information, allowing the user to edit or delete their profile. Deletion will divert the user to the logged out home page.
 - The edit profile page will provide a link to change the password, which directs the user back to the profile when changed
 - Editing the reviews or toys will always divert the user back to their previous page upon completion
-- Trying to access the edit page for a toy, review, or user you do not own will diver the user to the error 403 access denied page
+- Trying to access the edit page for a toy, review, or user you do not own will divert the user to the error 403 access denied page
 
 **Back-end**: Entity-relationship-diagram (ERD) <br>
 Below is a proposed ERD for the tables to be modelled for the database that is relevant to the webite purpose and contains relationships between tables.
@@ -219,7 +220,7 @@ Below is a proposed ERD for the tables to be modelled for the database that is r
 - The relational database will consist of 5 linked tables.
 - The user table will house information on the user and will not use any foreign keys. It will autoincrement, giving each user a unique ID. This gives the potential functionality for users to create, edit, and delete their user account including changing password, meeting user stories 2, 12, 20, and 21.
 - The toy type table will list various types of toys with incremental ids. Allowing users to search through toys based on their type, meeting user stories 10 and 17.
-- The toy table will house the toy data. It will use the user_id as a foreign key in order to identify the creator of the toy. This creates a one to many relationship between users and toys, as one user may create many toys. It is linked in a way that if a user is deleted, the toy will remain in the database. The table also has a foreign key of the toy_type_id. This provides a one to one relationship, as a toy will only be able to have one toy type. This allows for functionality of the user to create, edit, delete, and search toys, meeting the requirements for user stories 6, 7, 10, 15, 17, 22, and 23.
+- The toy table will house the toy data. It will use the user_id as a foreign key in order to identify the creator of the toy. This creates a one to many relationship between users and toys, as one user may create many toys. It is linked in a way that if a user is deleted, the toy will remain in the database. The table also has a foreign key of the toy_type_id. This provides a one to one relationship, as a toy will only be able to have one toy type. This allows for functionality of the user to create, edit, delete, and search toys, meeting the requirements for user stories 6, 7, 10, 15, 17, 22, and 23. It also houses approved data, which is set to true by default but in future updates allows toy submission and editing to be approved before appearing on the site.
 - The review table will house the review data. It will have the user_id as a foreign key in order to identify the author of the review. This creates a one to many relationship between users and reviews, as one user may create multiple reviews. The table also has the foreign key of toy_id to identify which toy the review is for. This creates a one to many relationship between toys and reviews, as even though only one user may create a review for a specific toy, that toy can have multiple reviews from different users. It is linked in a way that deletion of a user will not delete the review, but deletion of a toy will delete all associated reviews. The also_liked data of a review houses a list of integers that relate to toy_ids that the reviewer also liked. Instead of setting up a many to many relationship in the schema, reading the also_liked data and assigning associated toys will be handled with python code. This allows users the functionality of creating, editing, and deleting reviews, assigning ratings to toys, and sorting the reviews. This meets the requirements for user stories 7, 8, 9, 16, 18, 24 and 25.
 - The profile table will house the public profile data about the user. It will have user_id as a foreign key to assign the profile to the correct user. This is a one to one relationship, as a user is only allowed one profile. It is linked in a way that deletion of the user will also delete the profile associated with them. Housing this data gives the potential functionality to edit their user profile and see other user profiles, providing the requirements for user stories 3, 13, and 14. 
 
@@ -293,7 +294,7 @@ The star ratings are coloured white and yellow and were the default colours used
 | | | | Error page button | | |
 
 **Other colours used:**
-- Green #008000: Verified parent tag on profile
+- Green #008000: Verified parent tag on profile and background for success messages.
 
 #### Typography
 
