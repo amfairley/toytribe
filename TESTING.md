@@ -130,6 +130,8 @@ This requirement is met by the burger menu for navigation links on smaller devic
 
 ## Manual Testing
 
+For each testing step that involved manipulation of database objects, the database was queried in PostgreSQL before and after to ensure that objects were created/edited/deleted correctly. All worked as it should.
+
 | Feature | Action | Expected results | Passed | Comments |
 | ----- | ----- | ----- | ----- | ----- |
 | **base.html** | | | | |
