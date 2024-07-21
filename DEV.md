@@ -89,7 +89,7 @@ To leave this virtual environment when you want to close the file later, you can
 ### Project Requirements
 This project was a flask app, so I installed the packages required for the project using pip; the python package manager.<br>
 `pip3 install Flask-SQLAlchemy pyscopg2`. <br>
-Flask is a lightweight Python web framework allowing me to create a web application with python. Flask-SQLAlchemy is a flask extension that adds support for SQLAlchemy; an Object Relational Mapping (ORM) library that allows us to query and manipulate data from a database in the form of an object. Psycopg2 is an adaptor for the PostgreSQL database for Python. With these three packages, you have everything you need to create a python based Flask app with a relational database backend. The full list of all libraries used can be found in my [reqirements.txt](/requirements.txt) file. Copy and pasting this into your project and typing in the terminal `pip install -r requirements.txt` will install all dependencies used in this project simply and efficiently.
+Flask is a lightweight Python web framework allowing me to create a web application with python. Flask-SQLAlchemy is a flask extension that adds support for SQLAlchemy; an Object Relational Mapping (ORM) library that allows us to query and manipulate data from a database in the form of an object. Psycopg2 is an adaptor for the PostgreSQL database for Python. With these three packages, you have everything you need to create a python based Flask app with a relational database backend. The full list of all libraries used can be found in my [requirements.txt](/requirements.txt) file. Copy and pasting this into your project and typing in the terminal `pip install -r requirements.txt` will install all dependencies used in this project simply and efficiently.
 
 ### Getting the Project Up and Running
 To get my project up and running I created the following files and folders:
@@ -140,7 +140,7 @@ Throughout the the project, I kept strict adherence to the Python good practices
 - 2 empty lines beneath each block of code
 - 1 empty line at the bottom of the file
 
-These were validated as show [here](/TESTING.md#python-validation) in my TESTING.md file.
+These were validated as shown [here](/TESTING.md#python-validation) in my TESTING.md file.
 
 ## Local development
 To install my project locally, you can follow my steps above in the [Development Environment](#development-environment) section, replacing file and folder names with the ones in my project.
