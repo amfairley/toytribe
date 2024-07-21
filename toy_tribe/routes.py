@@ -772,7 +772,7 @@ def edit_review(review_id):
     toy = Toy.query.get_or_404(review.toy_id)
     toy_id = toy.id
     # Get all toys to populate the also_liked selection
-    toys = Toy.query.all()
+    toys = Toy.query.order_by(Toy.name).all()
     toy_options = [(each_toy.id, each_toy.name) for each_toy in toys]
     # Select form to use and default values
     form = EditReview(
