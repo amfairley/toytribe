@@ -31,6 +31,7 @@ def create_app():
     # Define my database
     db.init_app(app)
 
-    from toy_tribe import routes
+    with app.app_context():
+        from toy_tribe import routes
 
     return app
