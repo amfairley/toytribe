@@ -6,8 +6,9 @@ from flask import (
     url_for,
     request
 )
+from flask import current_app as app
 from werkzeug.security import generate_password_hash, check_password_hash
-from toy_tribe import app, db
+from toy_tribe import db
 from toy_tribe.models import (
     Users,
     Toy,
